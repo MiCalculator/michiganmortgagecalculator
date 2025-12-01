@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Michigan Mortgage Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:#f5f5f5;
+      color:#222;
+    }
+    header{
+      padding:24px;
+      text-align:center;
+      font-size:26px;
+      font-weight:700;
+      color:#222;
+    }
+    main{
+      padding:20px;
+      max-width:1200px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:20px;
+    }
+    @media(max-width:900px){
+      main{grid-template-columns:1fr;}
+    }
+    .card{
+      background:#ffffff;
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    }
+    .card h2{
+      margin:0 0 12px 0;
+      font-size:20px;
+    }
+    .inputs{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:15px;
+    }
+    @media(max-width:600px){
+      .inputs{grid-template-columns:1fr;}
+    }
+    label{
+      display:block;
+      font-size:13px;
+      font-weight:600;
+      margin-bottom:4px;
+      color:#444;
+    }
+    input, select{
+      width:100%;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid #ccc;
+      background:white;
+      color:#222;
+      font-size:15px;
+    }
+    .note{
+      font-size:12px;
+      color:#666;
+      margin-top:4px;
+    }
+    .mode-toggle{
+      display:flex;
+      gap:6px;
+      background:#eee;
+      padding:4px;
+      border-radius:10px;
+      width:max-content;
+      margin-top:6px;
+    }
+    .mode-btn{
+      padding:6px 12px;
+      border-radius:8px;
+      border:0;
+      background:transparent;
+      cursor:pointer;
+      font-size:13px;
+      color:#555;
+      font-weight:600;
+    }
+    .mode-btn.active{
+      background:#4f8df7;
+      color:white;
+    }
+    .btns{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+    }
+    button{
+      cursor:pointer;
+      border:0;
+      padding:10px 16px;
+      font-size:14px;
+      font-weight:600;
+      border-radius:8px;
+    }
+    #calcBtn{
+      background:#4f8df7;
+      color:white;
+    }
+    #resetBtn{
+      background:#ddd;
+      color:#222;
+    }
+    .kpi{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:8px;
+    }
+    .kpi .box{
+      background:#fafafa;
+      border:1px solid #ddd;
+      padding:10px;
+      border-radius:10px;
+    }
+    .kpi .title{
+      font-size:13px;
+      color:#666;
+    }
+    .kpi .value{
+      margin-top:4px;
+      font-size:22px;
+      font-weight:700;
+      color:#222;
+    }
+    .breakdown{
+      border-top:1px solid #ddd;
+      margin-top:12px;
+      padding-top:12px;
+      display:grid;
+      gap:6px;
+      font-size:15px;
+    }
+    .line{display:flex;justify-content:space-between;}
+    .line span{color:#555;}
+    .line strong{color:#222;font-weight:700;}
+
+    details{
+      margin-top:14px;
+      font-size:14px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:600;
+      color:#2563eb;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:12px;
+      margin-top:8px;
+    }
+    th, td{
+      padding:6px 4px;
+      border-bottom:1px solid #ddd;
+      text-align:right;
+    }
+    th:first-child, td:first-child{text-align:left;}
+    th{
+      background:#f3f3f3;
+      position:sticky;
+      top:0;
+      z-index:1;
+    }
+
+    footer{
+      margin-top:40px;
+      padding:30px 12px;
+      text-align:center;
+      font-size:13px;
+      color:#555;
+      background:#f0f0f0;
+      line-height:1.5;
+    }
+    footer a{
+      color:#2563eb;
+      text-decoration:none;
+    }
+  </style>
+</head>
+
+<body>
+<header>Michigan Mortgage Calculator</header>
+
+<main>
+
+  <!-- LEFT SIDE -->
+  <section class="card">
+    <h2>Your Loan Details</h2>
+
+    <div class="inputs">
+
+      <div>
+        <label for="homePrice">Home price</label>
+        <input id="homePrice" type="number" step="1000" value="300000" />
+      </div>
+
+      <div>
+        <label for="downPct">Down payment (%)</label>
+        <input id="downPct" type="number" step="0.1" value="5" />
+      </div>
+
+      <div>
+        <label for="rate">Interest rate (APR %)</label>
+        <input id="rate" type="number" step="0.01" value="6.75" />
+      </div>
+
+      <div>
+        <label for="term">Loan term</label>
+        <select id="term">
+          <option value="30" selected>30</option>
+          <option value="20">20</option>
+          <option value="15">15</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+
+      <!-- MODE TOGGLE -->
+      <div style="grid-column:1 / -1;">
+        <label>Tax accuracy mode</label>
+
+        <div class="mode-toggle">
+          <button type="button" class="mode-btn" data-mode="basic">Basic</button>
+          <button type="button" class="mode-btn active" data-mode="advanced">Advanced</button>
+        </div>
+
+        <!-- BASIC MODE -->
+        <div id="basicFields" style="display:none; margin-top:10px;">
+          <label for="propTaxYr">Property tax ($/yr)</label>
+          <input id="propTaxYr" type="number" step="50" value="4200" />
+        </div>
+
+        <!-- ADVANCED MODE -->
+        <div id="advancedFields" style="margin-top:10px;">
+
+          <!-- PRE toggle (left-justified) -->
+          <label>Principal Residence Exemption (PRE)</label>
+
+          <div style="margin-top:4px;">
+            <input
+              type="checkbox"
+              id="preToggle"
+              checked
+              style="margin:0 6px 0 0; vertical-align:middle;"
+            />
+            <label
+              for="preToggle"
+              style="font-size:14px; font-weight:400; cursor:pointer; vertical-align:middle;"
+            >
+              Home is my primary residence (PRE applies)
+            </label>
+          </div>
+
+          <div class="note" style="margin-top:4px;">
+            Uncheck for <strong>second homes or rentals</strong> (non-homestead millage).
+          </div>
+
+          <div class="inputs" style="margin-top:14px;">
+            <div>
+              <label for="countySel">County</label>
+              <select id="countySel"></select>
+            </div>
+
+            <div>
+              <label for="localSel">City / Township / Village</label>
+              <select id="localSel"></select>
+            </div>
+
+            <div style="grid-column:1 / -1;">
+              <label for="schoolSel">School District</label>
+              <select id="schoolSel"></select>
+            </div>
+          </div>
+
+          <label for="mills" style="margin-top:12px;">Millage (mills)</label>
+          <input id="mills" type="number" step="0.001" value="0" />
+        </div>
+      </div>
+
+      <div>
+        <label for="insYear">Homeowners insurance ($/yr)</label>
+        <input id="insYear" type="number" value="1200" />
+      </div>
+
+      <div>
+        <label for="hoaMonth">HOA ($/mo)</label>
+        <input id="hoaMonth" type="number" value="0" />
+      </div>
+
+      <div>
+        <label for="pmiPct">PMI (%/yr of loan)</label>
+        <input id="pmiPct" type="number" value="0.5" step="0.01" />
+      </div>
+
+    </div>
+
+    <div class="btns">
+      <button id="calcBtn">Calculate</button>
+      <button id="resetBtn">Reset defaults</button>
+    </div>
+
+  </section>
+
+  <!-- RIGHT SIDE -->
+  <aside class="card">
+    <h2>Payment Estimate</h2>
+
+    <div class="kpi">
+      <div class="box">
+        <div class="title">Monthly payment</div>
+        <div id="monthlyTotal" class="value">$0</div>
+      </div>
+      <div class="box">
+        <div class="title">Loan amount</div>
+        <div id="loanAmt" class="value">$0</div>
+      </div>
+    </div>
+
+    <div class="breakdown">
+      <div class="line"><span>Principal &amp; Interest</span><strong id="piLine">$0</strong></div>
+      <div class="line"><span>Property tax</span><strong id="taxLine">$0</strong></div>
+      <div class="line"><span>Insurance</span><strong id="insLine">$0</strong></div>
+      <div class="line"><span>PMI</span><strong id="pmiLine">$0</strong></div>
+      <div class="line"><span>HOA</span><strong id="hoaLine">$0</strong></div>
+    </div>
+
+    <div class="breakdown">
+      <div class="line"><span>Total interest (life of loan)</span><strong id="totalInterest">$0</strong></div>
+      <div class="line"><span>Total paid</span><strong id="totalPaid">$0</strong></div>
+    </div>
+
+    <details>
+      <summary>Show amortization schedule</summary>
+      <div style="max-height:260px; overflow:auto; margin-top:6px;">
+        <table id="amTable">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Payment</th>
+              <th>Principal</th>
+              <th>Interest</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </details>
+  </aside>
+
+</main>
+
+<footer>
+  <strong>Disclaimer:</strong> This calculator provides an estimated monthly payment and property
+  tax projection based on user inputs and publicly available Michigan millage rates.
+  All results are estimates only and may not reflect your actual loan terms, assessed
+  values, or future tax changes. For a complete financial analysis and confirmed
+  figures, please consult a licensed mortgage professional or your local assessor.
+  <br><br>
+  Contact us:
+  <a href="mailto:michiganmortgagecalculator@gmail.com">
+    michiganmortgagecalculator@gmail.com
+  </a>
+</footer>
+
+<script>
+/* ------------------------------
+    Helper functions
+------------------------------ */
+const $ = id => document.getElementById(id);
+const fmt = n => n.toLocaleString("en-US", {
+  style:"currency", currency:"USD", maximumFractionDigits:2
+});
+
+/* ------------------------------
+    Global state
+------------------------------ */
+let taxMode = "advanced";  // default mode
+
+// Mode toggle buttons
+document.querySelectorAll(".mode-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    taxMode = btn.dataset.mode;
+
+    document.querySelectorAll(".mode-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+
+    $("basicFields").style.display    = (taxMode==="basic")    ? "block" : "none";
+    $("advancedFields").style.display = (taxMode==="advanced") ? "block" : "none";
+
+    calcMortgage();
+  });
+});
+
+/* ------------------------------
+    Load millage JSON
+------------------------------ */
+let millageData = {};
+const keys = o => Object.keys(o||{});
+
+async function loadMillageData(){
+  try{
+    const res = await fetch("mi_millage_2024.json");
+    millageData = await res.json();
+    initDropdowns("countySel","localSel","schoolSel","mills");
+    calcMortgage();
+  } catch (e){
+    console.error("Error loading mi_millage_2024.json", e);
+  }
+}
+
+function initDropdowns(countyId, localId, schoolId, millsId){
+  const cSel=$(countyId), lSel=$(localId), sSel=$(schoolId), mInp=$(millsId);
+
+  function fillCounties(){
+    cSel.innerHTML = keys(millageData).map(c=>`<option>${c}</option>`).join("");
+  }
+  function fillLocals(){
+    const c=cSel.value;
+    lSel.innerHTML = keys(millageData[c]||{}).map(l=>`<option>${l}</option>`).join("");
+  }
+  function fillSchools(){
+    const c=cSel.value, l=lSel.value;
+    sSel.innerHTML = keys((millageData[c]||{})[l]||{}).map(s=>`<option>${s}</option>`).join("");
+  }
+  function updateMills(){
+    const c=cSel.value, l=lSel.value, s=sSel.value;
+    const rec = (((millageData[c]||{})[l]||{})[s]||{});
+    mInp.value = $("preToggle").checked ? rec.homestead : rec.nonhomestead;
+  }
+
+  cSel.addEventListener("change",()=>{ fillLocals(); fillSchools(); updateMills(); calcMortgage(); });
+  lSel.addEventListener("change",()=>{ fillSchools(); updateMills(); calcMortgage(); });
+  sSel.addEventListener("change",()=>{ updateMills(); calcMortgage(); });
+  $("preToggle").addEventListener("change",()=>{ updateMills(); calcMortgage(); });
+
+  fillCounties();
+  fillLocals();
+  fillSchools();
+  updateMills();
+}
+
+/* ------------------------------
+    Main calculation + amortization
+------------------------------ */
+function calcMortgage(){
+  const homePrice = +($("homePrice")?.value || 0);
+  const downPct   = (+($("downPct")?.value || 0))/100;
+  const rate      = (+($("rate")?.value || 0))/100;
+  const years     = +($("term")?.value || 30);
+
+  const insYear   = +($("insYear")?.value || 0);
+  const hoaMonth  = +($("hoaMonth")?.value || 0);
+  const pmiPct    = (+($("pmiPct")?.value || 0))/100;
+
+  const loan = homePrice - homePrice*downPct;
+  const n = years*12;
+  const r = rate/12 || 0;
+
+  const pi = (r===0 || !isFinite(r))
+    ? (n ? loan/n : 0)
+    : loan*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1 || 1);
+
+  // property tax
+  let taxMonth = 0;
+  if(taxMode==="basic"){
+    taxMonth = (+($("propTaxYr")?.value || 0))/12;
+  } else {
+    const mills = +($("mills")?.value || 0);
+    const tv = homePrice * 0.5;
+    taxMonth = (tv/1000 * mills)/12;
+  }
+
+  const pmiMonth = (downPct<0.2) ? (loan*pmiPct)/12 : 0;
+  const insMonth = insYear/12;
+
+  const monthly = pi + taxMonth + insMonth + pmiMonth + hoaMonth;
+
+  // --- amortization schedule (up to 360 rows) ---
+  let balance = loan;
+  let totalInterest = 0;
+  const tbody = $("amTable")?.querySelector("tbody");
+  if (tbody) tbody.innerHTML = "";
+
+  for(let m=1; m<=n; m++){
+    const interest = balance * r;
+    let principal  = pi - interest;
+    if (principal > balance) principal = balance;
+    balance -= principal;
+    totalInterest += interest;
+
+    if (tbody && m <= 360){
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${m}</td>
+        <td>${fmt(pi)}</td>
+        <td>${fmt(principal)}</td>
+        <td>${fmt(interest)}</td>
+        <td>${fmt(Math.max(balance,0))}</td>
+      `;
+      tbody.appendChild(tr);
+    }
+    if (balance <= 0) break;
+  }
+
+  // totals
+  const totalPaidPrincipalInterest = pi * n;
+  const totalPaid =
+    totalPaidPrincipalInterest + (taxMonth + insMonth + pmiMonth + hoaMonth) * n;
+
+  if($("monthlyTotal")) $("monthlyTotal").textContent = fmt(monthly);
+  if($("loanAmt"))      $("loanAmt").textContent      = fmt(loan);
+  if($("piLine"))       $("piLine").textContent       = fmt(pi);
+  if($("taxLine"))      $("taxLine").textContent      = fmt(taxMonth);
+  if($("insLine"))      $("insLine").textContent      = fmt(insMonth);
+  if($("pmiLine"))      $("pmiLine").textContent      = fmt(pmiMonth);
+  if($("hoaLine"))      $("hoaLine").textContent      = fmt(hoaMonth);
+  if($("totalInterest"))$("totalInterest").textContent = fmt(totalInterest);
+  if($("totalPaid"))    $("totalPaid").textContent    = fmt(totalPaid);
+}
+
+/* ------------------------------
+    Reset + events
+------------------------------ */
+$("calcBtn").addEventListener("click",calcMortgage);
+
+$("resetBtn").addEventListener("click",()=>{
+  $("homePrice").value = 300000;
+  $("downPct").value   = 5;
+  $("rate").value      = 6.75;
+  $("term").value      = 30;
+  $("propTaxYr").value = 4200;
+  $("insYear").value   = 1200;
+  $("hoaMonth").value  = 0;
+  $("pmiPct").value    = 0.5;
+
+  taxMode = "advanced";
+  document.querySelector('[data-mode="advanced"]').classList.add("active");
+  document.querySelector('[data-mode="basic"]').classList.remove("active");
+  $("basicFields").style.display    = "none";
+  $("advancedFields").style.display = "block";
+
+  $("preToggle").checked = true;
+  $("preToggle").dispatchEvent(new Event("change"));
+
+  calcMortgage();
+});
+
+// AUTOCALC
+document.querySelectorAll("input, select").forEach(el=>{
+  el.addEventListener("input",calcMortgage);
+  el.addEventListener("change",calcMortgage);
+});
+
+// init
+loadMillageData();
+calcMortgage();
+</script>
+
+</body>
+</html>
+
