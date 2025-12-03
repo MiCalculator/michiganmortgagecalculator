@@ -1,17 +1,16 @@
 <script>
   /****************************************************
    * Michigan Mortgage + Property Tax Calculator
-   * Uses nested JSON: { County: { LocalUnit: { School: { homestead, nonhomestead }}}}
-   * File expected: mi_millage_2024.json (in same folder as index.html)
+   * Uses nested JSON: { County: { LocalUnit: { School: { homestead, nonhomestead } } } }
+   * Expects mi_millage_2024.json in the SAME folder as index.html
    ****************************************************/
 
-  // ====== MILLAGE DATA (JSON) ======
-  let millageData = {}; // structure: { County: { LocalUnit: { School: { homestead, nonhomestead } } } }
+  let millageData = {};
 
+  // ========== LOAD MILLAGE JSON ==========
   async function loadMillageData() {
     try {
-      // If your JSON is in a folder, e.g. data/mi_millage_2024.json,
-      // change this path accordingly:
+      // If you move the JSON into /data, change to 'data/mi_millage_2024.json'
       const res = await fetch('mi_millage_2024.json');
       if (!res.ok) {
         console.error('Failed to load millage JSON:', res.status, res.statusText);
@@ -22,7 +21,7 @@
 
       const data = await res.json();
       millageData = data;
-      console.log('Millage JSON loaded. Counties:', Object.keys(millageData).length);
+      console.log('Millage JSON loaded. Counties:', Object.keys(millageData));
 
       populateCountyOptions();
     } catch (err) {
@@ -32,6 +31,7 @@
     }
   }
 
+  // ========== DROPDOWN POPULATION ==========
   function populateCountyOptions() {
     const countySelect = document.getElementById('countySelect');
     if (!countySelect || !millageData) return;
@@ -58,12 +58,13 @@
     schoolSelect.innerHTML = '<option value="">Select school district…</option>';
     schoolSelect.disabled = true;
 
-    if (!countyName || !millageData[countyName]) {
+    const countyObj = millageData[countyName];
+    if (!countyName || !countyObj) {
       localUnitSelect.disabled = true;
       return;
     }
 
-    const units = Object.keys(millageData[countyName]).sort((a, b) => a.localeCompare(b));
+    const units = Object.keys(countyObj).sort((a, b) => a.localeCompare(b));
     units.forEach(u => {
       const opt = document.createElement('option');
       opt.value = u;
@@ -97,6 +98,7 @@
     schoolSelect.disabled = false;
   }
 
+  // ========== MILLAGE LOOKUP ==========
   function getMillage({ county, localUnit, school, isPRE }) {
     if (!millageData || !county || !localUnit || !school) return null;
 
@@ -111,10 +113,12 @@
 
     const raw = isPRE ? schoolObj.homestead : schoolObj.nonhomestead;
     const rate = typeof raw === 'number' ? raw : parseFloat(raw);
-    return isNaN(rate) ? null : rate;
+    if (isNaN(rate)) return null;
+
+    return rate;
   }
 
-  // ====== HELPERS ======
+  // ========== HELPERS ==========
   function parseNumber(id) {
     const el = document.getElementById(id);
     if (!el) return 0;
@@ -131,7 +135,7 @@
     });
   }
 
-  // ====== TAX CALC ======
+  // ========== PROPERTY TAX CALC (NO OVERRIDE) ==========
   function calculatePropertyTax() {
     const taxError = document.getElementById('taxError');
     if (taxError) taxError.textContent = '';
@@ -152,7 +156,6 @@
     const school    = schoolEl.value;
     const isPRE     = preEl ? preEl.checked : true;
 
-    // Require full selection
     if (!county || !localUnit || !school) {
       if (taxError) taxError.textContent = 'Select county, local unit, and school district.';
       if (taxDisplay) taxDisplay.textContent = '—';
@@ -168,12 +171,12 @@
       return;
     }
 
-    // ✅ Always show millage
+    // Always show millage once we have a valid combo
     if (millageDisplay) {
       millageDisplay.textContent = millage.toFixed(4) + ' mills';
     }
 
-    // If no taxable value, just return millage
+    // If no taxable value, just show millage and skip tax
     if (!tv) {
       if (taxDisplay) taxDisplay.textContent = '—';
       return { tax: 0, millage };
@@ -186,7 +189,7 @@
     return { tax, millage };
   }
 
-  // ====== MORTGAGE CALC ======
+  // ========== MORTGAGE CALC ==========
   function calculateMortgage() {
     const price = parseNumber('homePriceInput');
     const down = parseNumber('downPaymentInput');
@@ -208,13 +211,11 @@
     const monthlyPaymentOutput = document.getElementById('monthlyPaymentOutput');
     if (monthlyPaymentOutput) monthlyPaymentOutput.textContent = formatCurrency(monthlyPI);
 
-    // Tax: prefer calculator’s millage-based result; allow manual override
+    // Get annual tax from millage-based calculation
     const taxResultObj = calculatePropertyTax();
-    let annualTax = taxResultObj && taxResultObj.tax ? taxResultObj.tax : 0;
+    const annualTax = taxResultObj && taxResultObj.tax ? taxResultObj.tax : 0;
 
-    const manualAnnualTax = parseNumber('annualTaxInput');
-    if (manualAnnualTax) annualTax = manualAnnualTax;
-
+    // Optional insurance only
     const annualInsurance = parseNumber('annualInsuranceInput');
     const monthlyTax = annualTax / 12;
     const monthlyIns = annualInsurance / 12;
@@ -226,6 +227,7 @@
     buildAmortizationTable(principal, monthlyRate, nPayments, monthlyPI);
   }
 
+  // ========== AMORTIZATION TABLE ==========
   function buildAmortizationTable(principal, monthlyRate, nPayments, monthlyPI) {
     const tbody = document.getElementById('amortizationBody');
     if (!tbody) return;
@@ -265,7 +267,7 @@
     }
   }
 
-  // ====== EVENT WIRING ======
+  // ========== EVENT WIRING ==========
   document.addEventListener('DOMContentLoaded', () => {
     loadMillageData();
 
