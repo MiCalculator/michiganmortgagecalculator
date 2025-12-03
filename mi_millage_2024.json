@@ -34,10 +34,10 @@
         "nonhomestead": 39.6125
       }
     },
-    "Harrisville": {
+    "Harrisville Township": {
       "ALCONA COMMUNITY SCHOOLS": {
-        "homestead": 25.7147,
-        "nonhomestead": 43.7147
+        "homestead": 18.7411,
+        "nonhomestead": 36.7411
       }
     },
     "Hawes": {
@@ -72,6 +72,12 @@
       "FAIRVIEW AREA SCHOOL DIST.": {
         "homestead": 19.5826,
         "nonhomestead": 37.5826
+      }
+    },
+    "Harrisville City": {
+      "ALCONA COMMUNITY SCHOOLS": {
+        "homestead": 25.7147,
+        "nonhomestead": 43.7147
       }
     }
   },
@@ -114,10 +120,10 @@
         "nonhomestead": 43.5087
       }
     },
-    "Munising": {
+    "Munising Township": {
       "MUNISING PUBLIC SCHOOLS": {
-        "homestead": 40.7956,
-        "nonhomestead": 58.7956
+        "homestead": 25.5191,
+        "nonhomestead": 43.5191
       }
     },
     "Onota": {
@@ -131,13 +137,19 @@
         "homestead": 28.869,
         "nonhomestead": 46.538
       }
+    },
+    "Munising City": {
+      "MUNISING PUBLIC SCHOOLS": {
+        "homestead": 40.7956,
+        "nonhomestead": 58.7956
+      }
     }
   },
   "Allegan": {
-    "Allegan": {
+    "Allegan Township": {
       "ALLEGAN PUBLIC SCHOOLS": {
-        "homestead": 44.1149,
-        "nonhomestead": 62.0496
+        "homestead": 32.6898,
+        "nonhomestead": 50.6245
       },
       "HOPKINS PUBLIC SCHOOLS": {
         "homestead": 34.8786,
@@ -322,14 +334,14 @@
         "nonhomestead": 48.1633
       }
     },
-    "Otsego": {
+    "Otsego Township": {
       "PLAINWELL COMMUNITY SCHOOLS": {
         "homestead": 35.4927,
         "nonhomestead": 53.4927
       },
       "OTSEGO PUBLIC SCHOOLS": {
-        "homestead": 43.8614,
-        "nonhomestead": 61.8614
+        "homestead": 33.4327,
+        "nonhomestead": 51.4327
       },
       "TR-OTSEGO MARTIN DEBT": {
         "homestead": 31.9427,
@@ -372,14 +384,14 @@
         "nonhomestead": 53.1705
       }
     },
-    "Saugatuck": {
+    "Saugatuck Township": {
       "FENNVILLE PUBLIC SCHOOLS": {
         "homestead": 33.0341,
         "nonhomestead": 51.0341
       },
       "SAUGATUCK PUBLIC SCHOOLS": {
-        "homestead": 40.7409,
-        "nonhomestead": 58.7409
+        "homestead": 31.0642,
+        "nonhomestead": 49.0642
       },
       "HAMILTON COMMUNITY SCHOOLS": {
         "homestead": 31.2425,
@@ -428,14 +440,20 @@
         "nonhomestead": 52.1633
       }
     },
-    "Wayland": {
+    "Wayland Township": {
       "WAYLAND UNION SCHOOLS": {
-        "homestead": 43.87,
-        "nonhomestead": 61.87
+        "homestead": 29.5491,
+        "nonhomestead": 47.5491
       },
       "THORNAPPLE KELLOGG SCH DIST": {
         "homestead": 31.6869,
         "nonhomestead": 49.6869
+      }
+    },
+    "Allegan City": {
+      "ALLEGAN PUBLIC SCHOOLS": {
+        "homestead": 44.1149,
+        "nonhomestead": 62.0496
       }
     },
     "Fennville": {
@@ -454,10 +472,22 @@
         "nonhomestead": 61.5389
       }
     },
+    "Otsego City": {
+      "OTSEGO PUBLIC SCHOOLS": {
+        "homestead": 43.8614,
+        "nonhomestead": 61.8614
+      }
+    },
     "Plainwell": {
       "PLAINWELL COMMUNITY SCHOOLS": {
         "homestead": 45.5782,
         "nonhomestead": 63.5782
+      }
+    },
+    "Saugatuck City": {
+      "SAUGATUCK PUBLIC SCHOOLS": {
+        "homestead": 40.7409,
+        "nonhomestead": 58.7409
       }
     },
     "South Haven": {
@@ -471,13 +501,19 @@
         "homestead": 40.5825,
         "nonhomestead": 58.5825
       }
+    },
+    "Wayland City": {
+      "WAYLAND UNION SCHOOLS": {
+        "homestead": 43.87,
+        "nonhomestead": 61.87
+      }
     }
   },
   "Alpena": {
-    "Alpena": {
+    "Alpena Township": {
       "ALPENA PUBLIC SCHOOLS": {
-        "homestead": 38.7403,
-        "nonhomestead": 56.6557
+        "homestead": 24.411,
+        "nonhomestead": 42.3264
       }
     },
     "Green": {
@@ -528,6 +564,12 @@
       "ALPENA PUBLIC SCHOOLS": {
         "homestead": 22.9524,
         "nonhomestead": 40.8678
+      }
+    },
+    "Alpena City": {
+      "ALPENA PUBLIC SCHOOLS": {
+        "homestead": 38.7403,
+        "nonhomestead": 56.6557
       }
     }
   },
@@ -696,10 +738,10 @@
         "nonhomestead": 46.2976
       }
     },
-    "Au Gres": {
+    "Au Gres Township": {
       "AU GRES SIMS SCHOOL DISTRICT": {
-        "homestead": 42.4603,
-        "nonhomestead": 60.4603
+        "homestead": 31.1394,
+        "nonhomestead": 49.1394
       }
     },
     "Clayton": {
@@ -746,10 +788,10 @@
         "nonhomestead": 47.1509
       }
     },
-    "Standish": {
+    "Standish Township": {
       "STANDISH STERLING COMM S/D": {
-        "homestead": 43.1935,
-        "nonhomestead": 61.1935
+        "homestead": 28.3074,
+        "nonhomestead": 46.3074
       }
     },
     "Turner": {
@@ -768,10 +810,22 @@
         "nonhomestead": 42.9058
       }
     },
+    "Au Gres City": {
+      "AU GRES SIMS SCHOOL DISTRICT": {
+        "homestead": 42.4603,
+        "nonhomestead": 60.4603
+      }
+    },
     "Omer": {
       "STANDISH STERLING COMM S/D": {
         "homestead": 37.8838,
         "nonhomestead": 55.8838
+      }
+    },
+    "Standish City": {
+      "STANDISH STERLING COMM S/D": {
+        "homestead": 43.1935,
+        "nonhomestead": 61.1935
       }
     }
   },
@@ -878,10 +932,10 @@
         "nonhomestead": 41.6398
       }
     },
-    "Hastings": {
+    "Hastings Township": {
       "HASTINGS AREA SCHOOL DIST.": {
-        "homestead": 38.5017,
-        "nonhomestead": 56.1261
+        "homestead": 24.196,
+        "nonhomestead": 41.8204
       },
       "MAPLE VALLEY SCHOOL DISTRICT": {
         "homestead": 25.3487,
@@ -1019,6 +1073,12 @@
         "homestead": 31.3091,
         "nonhomestead": 49.3091
       }
+    },
+    "Hastings City": {
+      "HASTINGS AREA SCHOOL DIST.": {
+        "homestead": 38.5017,
+        "nonhomestead": 56.1261
+      }
     }
   },
   "Bay": {
@@ -1112,14 +1172,14 @@
         "nonhomestead": 50.3336
       }
     },
-    "Pinconning": {
+    "Pinconning Township": {
       "STANDISH STERLING COMM S/D": {
         "homestead": 30.037,
         "nonhomestead": 48.037
       },
       "PINCONNING AREA SCHOOLS": {
-        "homestead": 46.3093,
-        "nonhomestead": 64.0231
+        "homestead": 30.537,
+        "nonhomestead": 48.2508
       }
     },
     "Portsmouth": {
@@ -1160,6 +1220,12 @@
       "BAY CITY SCHOOL DISTRICT": {
         "homestead": 44.9065,
         "nonhomestead": 62.9065
+      }
+    },
+    "Pinconning City": {
+      "PINCONNING AREA SCHOOLS": {
+        "homestead": 46.3093,
+        "nonhomestead": 64.0231
       }
     }
   },
@@ -1346,14 +1412,14 @@
         "nonhomestead": 38.0352
       }
     },
-    "Buchanan": {
+    "Buchanan Township": {
       "RIVER VALLEY SCHOOL DISTRICT": {
         "homestead": 19.4631,
         "nonhomestead": 37.4631
       },
       "BUCHANAN COMMUNITY SCH DIST": {
-        "homestead": 38.1743,
-        "nonhomestead": 56.1743
+        "homestead": 22.8178,
+        "nonhomestead": 40.8178
       },
       "BUCHANAN (GALIEN DEBT)": {
         "homestead": 19.5337,
@@ -1370,14 +1436,14 @@
         "nonhomestead": 38.6906
       }
     },
-    "Coloma": {
+    "Coloma Township": {
       "WATERVLIET SCHOOL DISTRICT": {
         "homestead": 30.655,
         "nonhomestead": 48.655
       },
       "COLOMA COMMUNITY SCHOOLS": {
-        "homestead": 38.7244,
-        "nonhomestead": 56.7039
+        "homestead": 29.2479,
+        "nonhomestead": 47.2274
       },
       "COVERT PUBLIC SCHOOLS": {
         "homestead": 29.759,
@@ -1440,24 +1506,24 @@
         "nonhomestead": 33.0901
       }
     },
-    "New Buffalo": {
+    "New Buffalo Township": {
       "RIVER VALLEY SCHOOL DISTRICT": {
         "homestead": 20.72,
         "nonhomestead": 38.72
       },
       "NEW BUFFALO AREA SCHOOL DIST": {
-        "homestead": 29.3211,
-        "nonhomestead": 47.3211
+        "homestead": 28.3977,
+        "nonhomestead": 46.3977
       }
     },
-    "Niles": {
+    "Niles Township": {
       "BRANDYWINE PUBLIC SCH DIST": {
         "homestead": 28.9448,
         "nonhomestead": 46.9448
       },
       "NILES COMMUNITY SCHOOL DIST": {
-        "homestead": 36.3056,
-        "nonhomestead": 54.3056
+        "homestead": 28.4334,
+        "nonhomestead": 46.4334
       },
       "BUCHANAN COMMUNITY SCH DIST": {
         "homestead": 26.6652,
@@ -1510,14 +1576,14 @@
         "nonhomestead": 40.1453
       }
     },
-    "Saint Joseph": {
+    "Saint Joseph Township": {
       "BENTON HARBOR AREA SCHOOLS": {
-        "homestead": 37.0642,
-        "nonhomestead": 55.0642
+        "homestead": 28.648,
+        "nonhomestead": 46.648
       },
       "ST JOSEPH PUBLIC SCHOOLS": {
-        "homestead": 39.7484,
-        "nonhomestead": 57.7484
+        "homestead": 32.1322,
+        "nonhomestead": 50.1322
       },
       "LAKESHORE SCHOOL DISTRICT": {
         "homestead": 31.7125,
@@ -1544,10 +1610,10 @@
         "nonhomestead": 51.3462
       }
     },
-    "Watervliet": {
+    "Watervliet Township": {
       "WATERVLIET SCHOOL DISTRICT": {
-        "homestead": 45.3931,
-        "nonhomestead": 63.3931
+        "homestead": 29.2551,
+        "nonhomestead": 47.2551
       },
       "COLOMA COMMUNITY SCHOOLS": {
         "homestead": 27.848,
@@ -1586,6 +1652,46 @@
       "BRIDGMAN PUBLIC SCHOOLS": {
         "homestead": 34.155,
         "nonhomestead": 42.531
+      }
+    },
+    "Buchanan City": {
+      "BUCHANAN COMMUNITY SCH DIST": {
+        "homestead": 38.1743,
+        "nonhomestead": 56.1743
+      }
+    },
+    "Coloma City": {
+      "COLOMA COMMUNITY SCHOOLS": {
+        "homestead": 38.7244,
+        "nonhomestead": 56.7039
+      }
+    },
+    "New Buffalo City": {
+      "NEW BUFFALO AREA SCHOOL DIST": {
+        "homestead": 29.3211,
+        "nonhomestead": 47.3211
+      }
+    },
+    "Niles City": {
+      "NILES COMMUNITY SCHOOL DIST": {
+        "homestead": 36.3056,
+        "nonhomestead": 54.3056
+      }
+    },
+    "Saint Joseph City": {
+      "BENTON HARBOR AREA SCHOOLS": {
+        "homestead": 37.0642,
+        "nonhomestead": 55.0642
+      },
+      "ST JOSEPH PUBLIC SCHOOLS": {
+        "homestead": 39.7484,
+        "nonhomestead": 57.7484
+      }
+    },
+    "Watervliet City": {
+      "WATERVLIET SCHOOL DISTRICT": {
+        "homestead": 45.3931,
+        "nonhomestead": 63.3931
       }
     }
   },
@@ -1628,10 +1734,10 @@
         "nonhomestead": 44.4661
       }
     },
-    "Bronson": {
+    "Bronson Township": {
       "BRONSON COMMUNITY SCH DIST": {
-        "homestead": 40.4126,
-        "nonhomestead": 58.139
+        "homestead": 26.9506,
+        "nonhomestead": 44.677
       }
     },
     "Butler": {
@@ -1674,14 +1780,14 @@
         "nonhomestead": 42.8042
       }
     },
-    "Coldwater": {
+    "Coldwater Township": {
       "COLDWATER COMMUNITY SCHOOLS": {
-        "homestead": 39.9163,
-        "nonhomestead": 57.9163
+        "homestead": 26.6085,
+        "nonhomestead": 44.6085
       },
       "QUINCY COMMUNITY SCHOOL DIST": {
-        "homestead": 41.2903,
-        "nonhomestead": 59.2903
+        "homestead": 27.9825,
+        "nonhomestead": 45.9825
       }
     },
     "Gilead": {
@@ -1777,13 +1883,29 @@
         "homestead": 42.711,
         "nonhomestead": 60.0249
       }
+    },
+    "Bronson City": {
+      "BRONSON COMMUNITY SCH DIST": {
+        "homestead": 40.4126,
+        "nonhomestead": 58.139
+      }
+    },
+    "Coldwater City": {
+      "COLDWATER COMMUNITY SCHOOLS": {
+        "homestead": 39.9163,
+        "nonhomestead": 57.9163
+      },
+      "QUINCY COMMUNITY SCHOOL DIST": {
+        "homestead": 41.2903,
+        "nonhomestead": 59.2903
+      }
     }
   },
   "Calhoun": {
-    "Albion": {
+    "Albion Township": {
       "MARSHALL SD (ALBION DEBT)": {
-        "homestead": 48.5632,
-        "nonhomestead": 66.3925
+        "homestead": 31.8572,
+        "nonhomestead": 49.6865
       },
       "HOMER COMMUNITY SCHOOLS": {
         "homestead": 37.8594,
@@ -1984,14 +2106,14 @@
         "nonhomestead": 51.6181
       }
     },
-    "Marshall": {
+    "Marshall Township": {
       "HARPER CREEK COMM SCHOOLS": {
-        "homestead": 56.3859,
-        "nonhomestead": 74.3859
+        "homestead": 35.4882,
+        "nonhomestead": 53.4882
       },
       "MARSHALL PUBLIC SCHOOLS": {
-        "homestead": 54.2637,
-        "nonhomestead": 72.093
+        "homestead": 33.0201,
+        "nonhomestead": 50.8494
       }
     },
     "Newton": {
@@ -2062,6 +2184,12 @@
         "nonhomestead": 48.7889
       }
     },
+    "Albion City": {
+      "MARSHALL SD (ALBION DEBT)": {
+        "homestead": 48.5632,
+        "nonhomestead": 66.3925
+      }
+    },
     "Battle Creek": {
       "BATTLE CREEK PUBLIC SCHOOLS": {
         "homestead": 50.7948,
@@ -2082,6 +2210,16 @@
       "CLIMAX SCOTTS COMM SCHOOLS": {
         "homestead": 48.518,
         "nonhomestead": 65.9637
+      }
+    },
+    "Marshall City": {
+      "HARPER CREEK COMM SCHOOLS": {
+        "homestead": 56.3859,
+        "nonhomestead": 74.3859
+      },
+      "MARSHALL PUBLIC SCHOOLS": {
+        "homestead": 54.2637,
+        "nonhomestead": 72.093
       }
     },
     "Springfield": {
@@ -2314,10 +2452,10 @@
         "nonhomestead": 37.6956
       }
     },
-    "Charlevoix": {
+    "Charlevoix Township": {
       "CHARLEVOIX PUBLIC SCHOOLS": {
-        "homestead": 33.4802,
-        "nonhomestead": 51.4802
+        "homestead": 26.1243,
+        "nonhomestead": 44.1243
       }
     },
     "Evangeline": {
@@ -2434,6 +2572,12 @@
       "BOYNE FALLS PUBLIC SCH DIST": {
         "homestead": 36.3022,
         "nonhomestead": 54.3022
+      }
+    },
+    "Charlevoix City": {
+      "CHARLEVOIX PUBLIC SCHOOLS": {
+        "homestead": 33.4802,
+        "nonhomestead": 51.4802
       }
     },
     "East Jordan": {
@@ -2916,10 +3060,10 @@
         "nonhomestead": 45.0227
       }
     },
-    "Dewitt": {
+    "Dewitt Township": {
       "DEWITT PUBLIC SCHOOLS": {
-        "homestead": 44.7825,
-        "nonhomestead": 62.7825
+        "homestead": 38.2039,
+        "nonhomestead": 56.2039
       },
       "BATH COMMUNITY SCHOOLS": {
         "homestead": 36.1532,
@@ -3026,10 +3170,10 @@
         "nonhomestead": 48.7404
       }
     },
-    "Ovid": {
+    "Ovid Township": {
       "OVID ELSIE AREA SCHOOLS": {
-        "homestead": 42.4396,
-        "nonhomestead": 60.4396
+        "homestead": 28.8621,
+        "nonhomestead": 46.8621
       },
       "ST JOHNS PUBLIC SCHOOLS": {
         "homestead": 28.0621,
@@ -3144,6 +3288,12 @@
         "nonhomestead": 47.2732
       }
     },
+    "Dewitt City": {
+      "DEWITT PUBLIC SCHOOLS": {
+        "homestead": 44.7825,
+        "nonhomestead": 62.7825
+      }
+    },
     "East Lansing": {
       "BATH COMMUNITY SCHOOLS": {
         "homestead": 47.4201,
@@ -3170,6 +3320,12 @@
         "nonhomestead": 71.3532
       }
     },
+    "Ovid City": {
+      "OVID ELSIE AREA SCHOOLS": {
+        "homestead": 42.4396,
+        "nonhomestead": 60.4396
+      }
+    },
     "St Johns": {
       "ST JOHNS PUBLIC SCHOOLS": {
         "homestead": 38.7194,
@@ -3194,10 +3350,10 @@
         "nonhomestead": 48.4126
       }
     },
-    "Grayling": {
+    "Grayling Township": {
       "CRAWFORD AUSABLE SCHOOLS": {
-        "homestead": 42.0066,
-        "nonhomestead": 59.5842
+        "homestead": 26.0021,
+        "nonhomestead": 43.5797
       }
     },
     "Lovells": {
@@ -3220,6 +3376,12 @@
       "ROSCOMMON SCHOOL DIST": {
         "homestead": 29.3527,
         "nonhomestead": 47.3527
+      }
+    },
+    "Grayling City": {
+      "CRAWFORD AUSABLE SCHOOLS": {
+        "homestead": 42.0066,
+        "nonhomestead": 59.5842
       }
     }
   },
@@ -3260,14 +3422,10 @@
         "nonhomestead": 47.4761
       }
     },
-    "Escanaba": {
+    "Escanaba Township": {
       "GLADSTONE AREA SCHOOLS": {
         "homestead": 22.3591,
         "nonhomestead": 40.3591
-      },
-      "ESCANABA AREA PUBLIC SCHOOLS": {
-        "homestead": 41.4133,
-        "nonhomestead": 59.1495
       }
     },
     "Fairbanks": {
@@ -3312,6 +3470,12 @@
         "nonhomestead": 41.1075
       }
     },
+    "Escanaba City": {
+      "ESCANABA AREA PUBLIC SCHOOLS": {
+        "homestead": 41.4133,
+        "nonhomestead": 59.1495
+      }
+    },
     "Gladstone": {
       "GLADSTONE AREA SCHOOLS": {
         "homestead": 36.8395,
@@ -3338,10 +3502,10 @@
         "nonhomestead": 43.2847
       }
     },
-    "Norway": {
+    "Norway Township": {
       "NORWAY VULCAN AREA SCHOOLS": {
-        "homestead": 39.475,
-        "nonhomestead": 57.3009
+        "homestead": 26.3362,
+        "nonhomestead": 44.1621
       }
     },
     "Sagola": {
@@ -3376,6 +3540,12 @@
       "BREITUNG TWP SCHOOL DISTRICT": {
         "homestead": 40.671,
         "nonhomestead": 58.671
+      }
+    },
+    "Norway City": {
+      "NORWAY VULCAN AREA SCHOOLS": {
+        "homestead": 39.475,
+        "nonhomestead": 57.3009
       }
     }
   },
@@ -3486,14 +3656,14 @@
         "nonhomestead": 47.3928
       }
     },
-    "Eaton Rapids": {
+    "Eaton Rapids Township": {
       "CHARLOTTE PUBLIC SCHOOLS": {
         "homestead": 30.0329,
         "nonhomestead": 48.0329
       },
       "EATON RAPIDS PUBLIC SCHOOLS": {
-        "homestead": 38.3275,
-        "nonhomestead": 56.1944
+        "homestead": 29.9408,
+        "nonhomestead": 47.8077
       }
     },
     "Hamlin": {
@@ -3652,6 +3822,12 @@
       "CHARLOTTE PUBLIC SCHOOLS": {
         "homestead": 48.6022,
         "nonhomestead": 66.6022
+      }
+    },
+    "Eaton Rapids City": {
+      "EATON RAPIDS PUBLIC SCHOOLS": {
+        "homestead": 38.3275,
+        "nonhomestead": 56.1944
       }
     },
     "Grand Ledge": {
@@ -3884,7 +4060,7 @@
         "nonhomestead": 66.329
       }
     },
-    "Davison": {
+    "Davison Township": {
       "GOODRICH AREA SCHOOL DIST.": {
         "homestead": 35.2711,
         "nonhomestead": 53.2711
@@ -3894,54 +4070,42 @@
         "nonhomestead": 51.2311
       },
       "DAVISON COMMUNITY SCHOOLS": {
-        "homestead": 45.0464,
-        "nonhomestead": 62.807
+        "homestead": 33.3708,
+        "nonhomestead": 51.1314
       }
     },
-    "Fenton": {
+    "Fenton Township": {
       "FENTON AREA PUBLIC SCHOOLS": {
-        "homestead": 44.6725,
-        "nonhomestead": 62.6725
+        "homestead": 32.083,
+        "nonhomestead": 50.083
       },
       "LAKE FENTON SCHOOLS": {
-        "homestead": 41.761,
-        "nonhomestead": 58.3699
+        "homestead": 29.1715,
+        "nonhomestead": 45.7804
       },
       "LINDEN COMM SCHOOL DISTRICT": {
         "homestead": 31.5882,
         "nonhomestead": 49.5882
       }
     },
-    "Flint": {
+    "Flint Township": {
       "CARMAN-AINSWORTH SCHOOLS": {
-        "homestead": 52.9428,
-        "nonhomestead": 70.9428
+        "homestead": 39.0701,
+        "nonhomestead": 57.0701
       },
       "FLUSHING COMMUNITY SCHOOLS": {
         "homestead": 38.3684,
         "nonhomestead": 56.3684
       },
       "SWARTZ CREEK COMMUNITY SCHS": {
-        "homestead": 54.036,
-        "nonhomestead": 72.036
-      },
-      "FLINT CITY SCHOOL DISTRICT": {
-        "homestead": 52.3352,
-        "nonhomestead": 70.1948
-      },
-      "KEARSLEY COMMUNITY SCHOOLS": {
-        "homestead": 54.0549,
-        "nonhomestead": 72.0549
-      },
-      "WESTWOOD HEIGHTS SCH DIST": {
-        "homestead": 50.5344,
-        "nonhomestead": 68.5344
+        "homestead": 40.1633,
+        "nonhomestead": 58.1633
       }
     },
-    "Flushing": {
+    "Flushing Township": {
       "FLUSHING COMMUNITY SCHOOLS": {
-        "homestead": 41.1483,
-        "nonhomestead": 59.1483
+        "homestead": 32.7981,
+        "nonhomestead": 50.7981
       },
       "CLIO AREA SCHOOL DISTRICT": {
         "homestead": 33.1436,
@@ -3998,10 +4162,10 @@
         "nonhomestead": 56.9196
       }
     },
-    "Grand Blanc": {
+    "Grand Blanc Township": {
       "GRAND BLANC COMM SCHOOLS": {
-        "homestead": 44.2801,
-        "nonhomestead": 62.2801
+        "homestead": 39.6601,
+        "nonhomestead": 57.6601
       },
       "GOODRICH AREA SCHOOL DIST.": {
         "homestead": 40.1534,
@@ -4012,20 +4176,20 @@
         "nonhomestead": 51.9616
       }
     },
-    "Montrose": {
+    "Montrose Township": {
       "CLIO AREA SCHOOL DISTRICT": {
         "homestead": 33.7614,
         "nonhomestead": 51.7614
       },
       "MONTROSE COMMUNITY SCHOOLS": {
-        "homestead": 53.2435,
-        "nonhomestead": 70.6339
+        "homestead": 37.4835,
+        "nonhomestead": 54.8739
       }
     },
-    "Mount Morris": {
+    "Mount Morris Township": {
       "MT MORRIS CONSOLIDATED SCHS": {
-        "homestead": 48.4902,
-        "nonhomestead": 66.4902
+        "homestead": 43.6261,
+        "nonhomestead": 61.6261
       },
       "FLUSHING COMMUNITY SCHOOLS": {
         "homestead": 43.0303,
@@ -4156,10 +4320,72 @@
         "nonhomestead": 64.6679
       }
     },
+    "Davison City": {
+      "DAVISON COMMUNITY SCHOOLS": {
+        "homestead": 45.0464,
+        "nonhomestead": 62.807
+      }
+    },
+    "Fenton City": {
+      "FENTON AREA PUBLIC SCHOOLS": {
+        "homestead": 44.6725,
+        "nonhomestead": 62.6725
+      },
+      "LAKE FENTON SCHOOLS": {
+        "homestead": 41.761,
+        "nonhomestead": 58.3699
+      }
+    },
+    "Flint City": {
+      "FLINT CITY SCHOOL DISTRICT": {
+        "homestead": 52.3352,
+        "nonhomestead": 70.1948
+      },
+      "CARMAN-AINSWORTH SCHOOLS": {
+        "homestead": 52.9428,
+        "nonhomestead": 70.9428
+      },
+      "KEARSLEY COMMUNITY SCHOOLS": {
+        "homestead": 54.0549,
+        "nonhomestead": 72.0549
+      },
+      "SWARTZ CREEK COMMUNITY SCHS": {
+        "homestead": 54.036,
+        "nonhomestead": 72.036
+      },
+      "WESTWOOD HEIGHTS SCH DIST": {
+        "homestead": 50.5344,
+        "nonhomestead": 68.5344
+      }
+    },
+    "Flushing City": {
+      "FLUSHING COMMUNITY SCHOOLS": {
+        "homestead": 41.1483,
+        "nonhomestead": 59.1483
+      }
+    },
+    "Grand Blanc City": {
+      "GRAND BLANC COMM SCHOOLS": {
+        "homestead": 44.2801,
+        "nonhomestead": 62.2801
+      }
+    },
     "Linden": {
       "LINDEN COMM SCHOOL DISTRICT": {
         "homestead": 45.9297,
         "nonhomestead": 63.9297
+      }
+    },
+    "Montrose City": {
+      "MONTROSE COMMUNITY SCHOOLS": {
+        "homestead": 53.2435,
+        "nonhomestead": 70.6339
+      }
+    },
+    "Mount Morris City": {
+      "MT MORRIS CONSOLIDATED SCHS": {
+        "homestead": 48.4902,
+        "nonhomestead": 66.4902
       }
     },
     "Swartz Creek": {
@@ -4170,10 +4396,10 @@
     }
   },
   "Gladwin": {
-    "Beaverton": {
+    "Beaverton Township": {
       "BEAVERTON RURAL SCHOOLS": {
-        "homestead": 43.2563,
-        "nonhomestead": 61.1572
+        "homestead": 29.0392,
+        "nonhomestead": 46.9401
       }
     },
     "Bentley": {
@@ -4220,10 +4446,10 @@
         "nonhomestead": 45.2441
       }
     },
-    "Gladwin": {
+    "Gladwin Township": {
       "GLADWIN COMMUNITY SCHOOLS": {
-        "homestead": 40.3068,
-        "nonhomestead": 58.1034
+        "homestead": 24.5811,
+        "nonhomestead": 42.3777
       }
     },
     "Grim": {
@@ -4283,13 +4509,25 @@
         "homestead": 27.9135,
         "nonhomestead": 45.8144
       }
+    },
+    "Beaverton City": {
+      "BEAVERTON RURAL SCHOOLS": {
+        "homestead": 43.2563,
+        "nonhomestead": 61.1572
+      }
+    },
+    "Gladwin City": {
+      "GLADWIN COMMUNITY SCHOOLS": {
+        "homestead": 40.3068,
+        "nonhomestead": 58.1034
+      }
     }
   },
   "Gogebic": {
-    "Bessemer": {
+    "Bessemer Township": {
       "BESSEMER CITY SCHOOL DIST": {
-        "homestead": 41.4185,
-        "nonhomestead": 59.4137
+        "homestead": 32.709,
+        "nonhomestead": 50.7042
       },
       "WAKEFIELD TWP SCHOOL DIST": {
         "homestead": 32.0576,
@@ -4302,10 +4540,10 @@
         "nonhomestead": 46.7713
       }
     },
-    "Ironwood": {
+    "Ironwood Township": {
       "IRONWOOD AREA SCHOOLS": {
-        "homestead": 51.4251,
-        "nonhomestead": 69.2559
+        "homestead": 28.9137,
+        "nonhomestead": 46.7445
       }
     },
     "Marenisco": {
@@ -4314,16 +4552,34 @@
         "nonhomestead": 50.575
       }
     },
-    "Wakefield": {
+    "Wakefield Township": {
       "WAKEFIELD TWP SCHOOL DIST": {
-        "homestead": 45.8325,
-        "nonhomestead": 63.8325
+        "homestead": 27.2751,
+        "nonhomestead": 45.2751
       }
     },
     "Watersmeet": {
       "WATERSMEET TWP SCHOOL DIST": {
         "homestead": 26.8665,
         "nonhomestead": 44.6815
+      }
+    },
+    "Bessemer City": {
+      "BESSEMER CITY SCHOOL DIST": {
+        "homestead": 41.4185,
+        "nonhomestead": 59.4137
+      }
+    },
+    "Ironwood City": {
+      "IRONWOOD AREA SCHOOLS": {
+        "homestead": 51.4251,
+        "nonhomestead": 69.2559
+      }
+    },
+    "Wakefield City": {
+      "WAKEFIELD TWP SCHOOL DIST": {
+        "homestead": 45.8325,
+        "nonhomestead": 63.8325
       }
     }
   },
@@ -4794,10 +5050,10 @@
         "nonhomestead": 40.2335
       }
     },
-    "Hillsdale": {
+    "Hillsdale Township": {
       "HILLSDALE COMM PUBLIC SCHS": {
-        "homestead": 41.6647,
-        "nonhomestead": 58.4589
+        "homestead": 23.2885,
+        "nonhomestead": 40.0827
       },
       "JONESVILLE COMMUNITY SCHOOLS": {
         "homestead": 29.4498,
@@ -4818,7 +5074,7 @@
         "nonhomestead": 39.2381
       }
     },
-    "Litchfield": {
+    "Litchfield Township": {
       "QUINCY COMMUNITY SCHOOL DIST": {
         "homestead": 31.7066,
         "nonhomestead": 49.7066
@@ -4832,8 +5088,8 @@
         "nonhomestead": 50.7094
       },
       "LITCHFIELD COMMUNITY SCHOOLS": {
-        "homestead": 34.9151,
-        "nonhomestead": 52.9151
+        "homestead": 25.6313,
+        "nonhomestead": 43.6313
       }
     },
     "Moscow": {
@@ -4874,10 +5130,10 @@
         "nonhomestead": 42.4276
       }
     },
-    "Reading": {
+    "Reading Township": {
       "READING COMMUNITY SCHOOLS": {
-        "homestead": 37.8935,
-        "nonhomestead": 55.1178
+        "homestead": 27.3153,
+        "nonhomestead": 44.5396
       }
     },
     "Scipio": {
@@ -4954,10 +5210,28 @@
         "nonhomestead": 47.767
       }
     },
+    "Hillsdale City": {
+      "HILLSDALE COMM PUBLIC SCHS": {
+        "homestead": 41.6647,
+        "nonhomestead": 58.4589
+      }
+    },
     "Jonesville": {
       "JONESVILLE COMMUNITY SCHOOLS": {
         "homestead": 45.3694,
         "nonhomestead": 63.3694
+      }
+    },
+    "Litchfield City": {
+      "LITCHFIELD COMMUNITY SCHOOLS": {
+        "homestead": 34.9151,
+        "nonhomestead": 52.9151
+      }
+    },
+    "Reading City": {
+      "READING COMMUNITY SCHOOLS": {
+        "homestead": 37.8935,
+        "nonhomestead": 55.1178
       }
     }
   },
@@ -5006,10 +5280,10 @@
         "nonhomestead": 50.2196
       }
     },
-    "Hancock": {
+    "Hancock Township": {
       "HANCOCK PUBLIC SCHOOLS": {
-        "homestead": 42.5193,
-        "nonhomestead": 60.5193
+        "homestead": 29.6193,
+        "nonhomestead": 47.6193
       }
     },
     "Laird": {
@@ -5070,6 +5344,12 @@
         "nonhomestead": 44.9783
       }
     },
+    "Hancock City": {
+      "HANCOCK PUBLIC SCHOOLS": {
+        "homestead": 42.5193,
+        "nonhomestead": 60.5193
+      }
+    },
     "Houghton": {
       "ADAMS TWP SCHOOL DISTRICT": {
         "homestead": 48.6257,
@@ -5128,10 +5408,10 @@
         "nonhomestead": 65.1843
       }
     },
-    "Caseville": {
+    "Caseville Township": {
       "CASEVILLE PUBLIC SCHOOLS": {
-        "homestead": 38.4423,
-        "nonhomestead": 53.2024
+        "homestead": 25.0537,
+        "nonhomestead": 39.8138
       },
       "ELKTON PIGEON BAYPORT LAKER SD": {
         "homestead": 25.7937,
@@ -5436,6 +5716,12 @@
         "nonhomestead": 61.5558
       }
     },
+    "Caseville City": {
+      "CASEVILLE PUBLIC SCHOOLS": {
+        "homestead": 38.4423,
+        "nonhomestead": 53.2024
+      }
+    },
     "Harbor Beach": {
       "HARBOR BEACH COMM SCHOOLS": {
         "homestead": 38.0156,
@@ -5514,30 +5800,18 @@
         "nonhomestead": 58.7467
       }
     },
-    "Lansing": {
+    "Lansing Township": {
       "EAST LANSING SCHOOL DISTRICT": {
-        "homestead": 64.1334,
-        "nonhomestead": 82.1334
+        "homestead": 51.244,
+        "nonhomestead": 69.244
       },
       "LANSING PUBLIC SCHOOL DIST": {
-        "homestead": 62.6041,
-        "nonhomestead": 80.0519
+        "homestead": 49.7147,
+        "nonhomestead": 67.1625
       },
       "WAVERLY SCHOOLS": {
-        "homestead": 66.0174,
-        "nonhomestead": 80.4582
-      },
-      "HOLT PUBLIC SCHOOLS": {
-        "homestead": 65.0678,
-        "nonhomestead": 83.0678
-      },
-      "MASON PUBLIC SCHOOLS": {
-        "homestead": 63.5023,
-        "nonhomestead": 81.4771
-      },
-      "OKEMOS PUBLIC SCHOOLS": {
-        "homestead": 64.8228,
-        "nonhomestead": 82.8228
+        "homestead": 53.128,
+        "nonhomestead": 67.5688
       }
     },
     "Leroy": {
@@ -5554,14 +5828,14 @@
         "nonhomestead": 60.4199
       }
     },
-    "Leslie": {
+    "Leslie Township": {
       "DANSVILLE AG SCHOOL": {
         "homestead": 40.5157,
         "nonhomestead": 58.5157
       },
       "LESLIE PUBLIC SCHOOLS": {
-        "homestead": 51.5532,
-        "nonhomestead": 69.5532
+        "homestead": 36.8421,
+        "nonhomestead": 54.8421
       },
       "TR-LES/MASN": {
         "homestead": 32.5372,
@@ -5722,6 +5996,38 @@
         "nonhomestead": 76.7168
       }
     },
+    "Lansing City": {
+      "EAST LANSING SCHOOL DISTRICT": {
+        "homestead": 64.1334,
+        "nonhomestead": 82.1334
+      },
+      "LANSING PUBLIC SCHOOL DIST": {
+        "homestead": 62.6041,
+        "nonhomestead": 80.0519
+      },
+      "HOLT PUBLIC SCHOOLS": {
+        "homestead": 65.0678,
+        "nonhomestead": 83.0678
+      },
+      "MASON PUBLIC SCHOOLS": {
+        "homestead": 63.5023,
+        "nonhomestead": 81.4771
+      },
+      "OKEMOS PUBLIC SCHOOLS": {
+        "homestead": 64.8228,
+        "nonhomestead": 82.8228
+      },
+      "WAVERLY SCHOOLS": {
+        "homestead": 66.0174,
+        "nonhomestead": 80.4582
+      }
+    },
+    "Leslie City": {
+      "LESLIE PUBLIC SCHOOLS": {
+        "homestead": 51.5532,
+        "nonhomestead": 69.5532
+      }
+    },
     "Mason": {
       "MASON PUBLIC SCHOOLS": {
         "homestead": 53.5519,
@@ -5826,14 +6132,14 @@
         "nonhomestead": 37.786
       }
     },
-    "Ionia": {
+    "Ionia Township": {
       "IONIA PUBLIC SCHOOLS": {
-        "homestead": 38.5884,
-        "nonhomestead": 55.9864
+        "homestead": 41.4607,
+        "nonhomestead": 58.8587
       },
       "IONIA TWP SCHOOL DISTRICT 2": {
-        "homestead": 27.9243,
-        "nonhomestead": 45.9243
+        "homestead": 19.7837,
+        "nonhomestead": 37.7837
       }
     },
     "Keene": {
@@ -5934,7 +6240,7 @@
         "nonhomestead": 46.082
       }
     },
-    "Portland": {
+    "Portland Township": {
       "PEWAMO WESTPHALIA COMM SCHS": {
         "homestead": 26.0204,
         "nonhomestead": 44.0204
@@ -5944,8 +6250,8 @@
         "nonhomestead": 48.3555
       },
       "PORTLAND PUBLIC SCHOOL DIST": {
-        "homestead": 39.649,
-        "nonhomestead": 57.6328
+        "homestead": 27.6434,
+        "nonhomestead": 45.6272
       }
     },
     "Ronald": {
@@ -5980,6 +6286,22 @@
       "BELDING AREA SCHOOL DISTRICT": {
         "homestead": 42.3062,
         "nonhomestead": 60.3062
+      }
+    },
+    "Ionia City": {
+      "IONIA PUBLIC SCHOOLS": {
+        "homestead": 38.5884,
+        "nonhomestead": 55.9864
+      },
+      "IONIA TWP SCHOOL DISTRICT 2": {
+        "homestead": 27.9243,
+        "nonhomestead": 45.9243
+      }
+    },
+    "Portland City": {
+      "PORTLAND PUBLIC SCHOOL DIST": {
+        "homestead": 39.649,
+        "nonhomestead": 57.6328
       }
     }
   },
@@ -6092,10 +6414,10 @@
         "nonhomestead": 48.0672
       }
     },
-    "Crystal Falls": {
+    "Crystal Falls Township": {
       "FOREST PARK SCHOOL DISTRICT": {
-        "homestead": 44.6816,
-        "nonhomestead": 62.6816
+        "homestead": 28.5358,
+        "nonhomestead": 46.5358
       }
     },
     "Hematite": {
@@ -6104,10 +6426,10 @@
         "nonhomestead": 46.2643
       }
     },
-    "Iron River": {
+    "Iron River Township": {
       "WEST IRON COUNTY SCH DIST": {
-        "homestead": 42.8872,
-        "nonhomestead": 60.5349
+        "homestead": 27.6775,
+        "nonhomestead": 45.3252
       }
     },
     "Mansfield": {
@@ -6134,10 +6456,22 @@
         "nonhomestead": 60.0953
       }
     },
+    "Crystal Falls City": {
+      "FOREST PARK SCHOOL DISTRICT": {
+        "homestead": 44.6816,
+        "nonhomestead": 62.6816
+      }
+    },
     "Gaastra": {
       "WEST IRON COUNTY SCH DIST": {
         "homestead": 44.5073,
         "nonhomestead": 62.155
+      }
+    },
+    "Iron River City": {
+      "WEST IRON COUNTY SCH DIST": {
+        "homestead": 42.8872,
+        "nonhomestead": 60.5349
       }
     }
   },
@@ -6758,22 +7092,18 @@
         "nonhomestead": 53.7531
       }
     },
-    "Kalamazoo": {
+    "Kalamazoo Township": {
       "KALAMAZOO CITY SCHOOL DIST": {
-        "homestead": 50.8499,
-        "nonhomestead": 68.5256
+        "homestead": 53.0346,
+        "nonhomestead": 70.7103
       },
       "COMSTOCK PUBLIC SCHOOLS": {
-        "homestead": 49.1457,
-        "nonhomestead": 66.9894
+        "homestead": 51.3304,
+        "nonhomestead": 69.1741
       },
       "PARCHMENT SCHOOL DISTRICT": {
-        "homestead": 49.6237,
-        "nonhomestead": 67.6237
-      },
-      "PORTAGE PUBLIC SCHOOLS": {
-        "homestead": 49.9982,
-        "nonhomestead": 67.5677
+        "homestead": 51.8084,
+        "nonhomestead": 69.8084
       }
     },
     "Oshtemo": {
@@ -6896,6 +7226,24 @@
       "GALESBURG AUGUSTA COMM SCHS": {
         "homestead": 44.7671,
         "nonhomestead": 62.6771
+      }
+    },
+    "Kalamazoo City": {
+      "KALAMAZOO CITY SCHOOL DIST": {
+        "homestead": 50.8499,
+        "nonhomestead": 68.5256
+      },
+      "COMSTOCK PUBLIC SCHOOLS": {
+        "homestead": 49.1457,
+        "nonhomestead": 66.9894
+      },
+      "PARCHMENT SCHOOL DISTRICT": {
+        "homestead": 49.6237,
+        "nonhomestead": 67.6237
+      },
+      "PORTAGE PUBLIC SCHOOLS": {
+        "homestead": 49.9982,
+        "nonhomestead": 67.5677
       }
     },
     "Parchment": {
@@ -7170,7 +7518,7 @@
         "nonhomestead": 45.9554
       }
     },
-    "Grand Rapids": {
+    "Grand Rapids Township": {
       "NORTHVIEW PUBLIC SCHOOL DIST": {
         "homestead": 29.7355,
         "nonhomestead": 47.7355
@@ -7180,32 +7528,8 @@
         "nonhomestead": 51.4071
       },
       "FOREST HILLS PUBLIC SCHOOLS": {
-        "homestead": 36.3132,
-        "nonhomestead": 54.3132
-      },
-      "GRAND RAPIDS CITY SCH DIST": {
-        "homestead": 33.1249,
-        "nonhomestead": 51.1249
-      },
-      "GODWIN HEIGHTS PUBLIC SCHS": {
-        "homestead": 34.3949,
-        "nonhomestead": 52.3949
-      },
-      "CALEDONIA COMMUNITY SCHOOLS": {
-        "homestead": 36.2749,
-        "nonhomestead": 54.2749
-      },
-      "GRANDVILLE PUBLIC SCHOOLS": {
-        "homestead": 35.6751,
-        "nonhomestead": 53.6751
-      },
-      "KENOWA HILLS PUBLIC SCHOOLS": {
-        "homestead": 33.9449,
-        "nonhomestead": 51.9449
-      },
-      "KENTWOOD PUBLIC SCHOOLS": {
-        "homestead": 34.8114,
-        "nonhomestead": 52.8114
+        "homestead": 28.656,
+        "nonhomestead": 46.656
       }
     },
     "Grattan": {
@@ -7222,14 +7546,14 @@
         "nonhomestead": 49.304
       }
     },
-    "Lowell": {
+    "Lowell Township": {
       "CALEDONIA COMMUNITY SCHOOLS": {
         "homestead": 29.3196,
         "nonhomestead": 47.3196
       },
       "LOWELL AREA SCHOOL DISTRICT": {
-        "homestead": 44.0208,
-        "nonhomestead": 61.766
+        "homestead": 30.2777,
+        "nonhomestead": 48.0229
       }
     },
     "Nelson": {
@@ -7352,6 +7676,36 @@
         "nonhomestead": 65.4995
       }
     },
+    "Grand Rapids City": {
+      "GRAND RAPIDS CITY SCH DIST": {
+        "homestead": 33.1249,
+        "nonhomestead": 51.1249
+      },
+      "GODWIN HEIGHTS PUBLIC SCHS": {
+        "homestead": 34.3949,
+        "nonhomestead": 52.3949
+      },
+      "CALEDONIA COMMUNITY SCHOOLS": {
+        "homestead": 36.2749,
+        "nonhomestead": 54.2749
+      },
+      "FOREST HILLS PUBLIC SCHOOLS": {
+        "homestead": 36.3132,
+        "nonhomestead": 54.3132
+      },
+      "GRANDVILLE PUBLIC SCHOOLS": {
+        "homestead": 35.6751,
+        "nonhomestead": 53.6751
+      },
+      "KENOWA HILLS PUBLIC SCHOOLS": {
+        "homestead": 33.9449,
+        "nonhomestead": 51.9449
+      },
+      "KENTWOOD PUBLIC SCHOOLS": {
+        "homestead": 34.8114,
+        "nonhomestead": 52.8114
+      }
+    },
     "Grandville": {
       "WYOMING PUBLIC SCHOOLS": {
         "homestead": 40.1589,
@@ -7378,6 +7732,12 @@
       "KENTWOOD PUBLIC SCHOOLS": {
         "homestead": 39.2228,
         "nonhomestead": 57.2228
+      }
+    },
+    "Lowell City": {
+      "LOWELL AREA SCHOOL DISTRICT": {
+        "homestead": 44.0208,
+        "nonhomestead": 61.766
       }
     },
     "Rockford": {
@@ -7758,10 +8118,10 @@
         "nonhomestead": 42.4235
       }
     },
-    "Lapeer": {
+    "Lapeer Township": {
       "LAPEER COMMUNITY SCHOOLS": {
-        "homestead": 29.3642,
-        "nonhomestead": 47.3642
+        "homestead": 21.0232,
+        "nonhomestead": 39.0232
       }
     },
     "Marathon": {
@@ -7842,6 +8202,12 @@
       "IMLAY CITY COMMUNITY SCHOOLS": {
         "homestead": 43.0649,
         "nonhomestead": 60.8953
+      }
+    },
+    "Lapeer City": {
+      "LAPEER COMMUNITY SCHOOLS": {
+        "homestead": 29.3642,
+        "nonhomestead": 47.3642
       }
     }
   },
@@ -7956,14 +8322,14 @@
     }
   },
   "Lenawee": {
-    "Adrian": {
+    "Adrian Township": {
       "ADRIAN CITY SCHOOL DISTRICT": {
-        "homestead": 41.7306,
-        "nonhomestead": 59.7306
+        "homestead": 27.519,
+        "nonhomestead": 45.519
       },
       "MADISON SCHOOL DISTRICT": {
-        "homestead": 39.6306,
-        "nonhomestead": 57.6306
+        "homestead": 25.419,
+        "nonhomestead": 43.419
       },
       "ONSTED COMMUNITY SCHOOLS": {
         "homestead": 26.469,
@@ -8064,10 +8430,10 @@
         "nonhomestead": 46.4015
       }
     },
-    "Hudson": {
+    "Hudson Township": {
       "HUDSON AREA SCHOOLS": {
-        "homestead": 36.5589,
-        "nonhomestead": 54.5589
+        "homestead": 38.3754,
+        "nonhomestead": 56.3754
       },
       "MORENCI AREA SCHOOLS": {
         "homestead": 33.2433,
@@ -8228,14 +8594,14 @@
         "nonhomestead": 42.4204
       }
     },
-    "Tecumseh": {
+    "Tecumseh Township": {
       "CLINTON COMMUNITY SCHOOLS": {
         "homestead": 26.9373,
         "nonhomestead": 44.9373
       },
       "TECUMSEH PUBLIC SCHOOLS": {
-        "homestead": 40.9057,
-        "nonhomestead": 58.9057
+        "homestead": 26.1209,
+        "nonhomestead": 44.1209
       }
     },
     "Woodstock": {
@@ -8252,18 +8618,40 @@
         "nonhomestead": 44.8189
       }
     },
+    "Adrian City": {
+      "ADRIAN CITY SCHOOL DISTRICT": {
+        "homestead": 41.7306,
+        "nonhomestead": 59.7306
+      },
+      "MADISON SCHOOL DISTRICT": {
+        "homestead": 39.6306,
+        "nonhomestead": 57.6306
+      }
+    },
+    "Hudson City": {
+      "HUDSON AREA SCHOOLS": {
+        "homestead": 36.5589,
+        "nonhomestead": 54.5589
+      }
+    },
     "Morenci": {
       "MORENCI AREA SCHOOLS": {
         "homestead": 41.5553,
         "nonhomestead": 59.5553
       }
+    },
+    "Tecumseh City": {
+      "TECUMSEH PUBLIC SCHOOLS": {
+        "homestead": 40.9057,
+        "nonhomestead": 58.9057
+      }
     }
   },
   "Livingston": {
-    "Brighton": {
+    "Brighton Township": {
       "BRIGHTON AREA SCHOOLS": {
-        "homestead": 36.6593,
-        "nonhomestead": 54.6593
+        "homestead": 19.857,
+        "nonhomestead": 37.857
       },
       "HARTLAND CONSOLIDATED SCHS": {
         "homestead": 27.5026,
@@ -8422,14 +8810,14 @@
         "nonhomestead": 46.3548
       }
     },
-    "Howell": {
+    "Howell Township": {
       "FOWLERVILLE COMMUNITY SCHS": {
         "homestead": 27.5079,
         "nonhomestead": 45.5079
       },
       "HOWELL PUBLIC SCHOOLS": {
-        "homestead": 37.8695,
-        "nonhomestead": 55.8695
+        "homestead": 23.6604,
+        "nonhomestead": 41.6604
       }
     },
     "Iosco": {
@@ -8512,10 +8900,22 @@
         "nonhomestead": 44.8143
       }
     },
+    "Brighton City": {
+      "BRIGHTON AREA SCHOOLS": {
+        "homestead": 36.6593,
+        "nonhomestead": 54.6593
+      }
+    },
     "Fenton": {
       "FENTON AREA PUBLIC SCHOOLS": {
         "homestead": 21.7954,
         "nonhomestead": 39.7954
+      }
+    },
+    "Howell City": {
+      "HOWELL PUBLIC SCHOOLS": {
+        "homestead": 37.8695,
+        "nonhomestead": 55.8695
       }
     }
   },
@@ -8622,20 +9022,26 @@
         "nonhomestead": 41.0409
       }
     },
-    "Saint Ignace": {
+    "Saint Ignace Township": {
       "RUDYARD AREA SCHOOLS": {
         "homestead": 26.0948,
         "nonhomestead": 44.0502
       },
       "ST IGNACE AREA SCHOOL DIST.": {
-        "homestead": 40.119,
-        "nonhomestead": 58.119
+        "homestead": 25.062,
+        "nonhomestead": 43.062
       }
     },
     "Mackinac Island": {
       "MACKINAC ISLAND PUB SCHOOLS": {
         "homestead": 25.3948,
         "nonhomestead": 33.1948
+      }
+    },
+    "Saint Ignace City": {
+      "ST IGNACE AREA SCHOOL DIST.": {
+        "homestead": 40.119,
+        "nonhomestead": 58.119
       }
     }
   },
@@ -8764,14 +9170,14 @@
         "nonhomestead": 43.9689
       }
     },
-    "Richmond": {
+    "Richmond Township": {
       "ARMADA AREA SCHOOLS": {
         "homestead": 29.4618,
         "nonhomestead": 47.4618
       },
       "RICHMOND COMMUNITY SCHOOLS": {
-        "homestead": 39.8993,
-        "nonhomestead": 57.8237
+        "homestead": 28.1118,
+        "nonhomestead": 46.0362
       },
       "MEMPHIS COMMUNITY SCHOOLS": {
         "homestead": 25.9237,
@@ -8858,6 +9264,12 @@
       "ANCHOR BAY SCHOOL DISTRICT": {
         "homestead": 40.8182,
         "nonhomestead": 58.8182
+      }
+    },
+    "Richmond City": {
+      "RICHMOND COMMUNITY SCHOOLS": {
+        "homestead": 39.8993,
+        "nonhomestead": 57.8237
       }
     },
     "Roseville": {
@@ -8984,14 +9396,14 @@
         "nonhomestead": 46.768
       }
     },
-    "Manistee": {
+    "Manistee Township": {
       "ONEKAMA CONSOLIDATED SCHOOLS": {
         "homestead": 27.731,
         "nonhomestead": 45.731
       },
       "MANISTEE AREA PUBLIC SCHOOLS": {
-        "homestead": 43.637,
-        "nonhomestead": 61.637
+        "homestead": 34.7668,
+        "nonhomestead": 52.7668
       }
     },
     "Maple Grove": {
@@ -9067,6 +9479,12 @@
         "homestead": 28.434,
         "nonhomestead": 46.434
       }
+    },
+    "Manistee City": {
+      "MANISTEE AREA PUBLIC SCHOOLS": {
+        "homestead": 43.637,
+        "nonhomestead": 61.637
+      }
     }
   },
   "Marquette": {
@@ -9114,7 +9532,7 @@
         "nonhomestead": 44.3498
       }
     },
-    "Ishpeming": {
+    "Ishpeming Township": {
       "N.I.C.E. COMMUNITY SCHOOLS": {
         "homestead": 24.7106,
         "nonhomestead": 42.7106
@@ -9128,18 +9546,18 @@
         "nonhomestead": 40.9346
       },
       "ISHPEMING PUBLIC SCHOOL DIST": {
-        "homestead": 45.7906,
-        "nonhomestead": 63.7906
+        "homestead": 31.0569,
+        "nonhomestead": 49.0569
       }
     },
-    "Marquette": {
+    "Marquette Township": {
       "GWINN AREA COMMUNITY SCHOOLS": {
         "homestead": 29.6241,
         "nonhomestead": 47.6241
       },
       "MARQUETTE AREA SCHOOL DIST.": {
-        "homestead": 38.3216,
-        "nonhomestead": 56.3216
+        "homestead": 29.6596,
+        "nonhomestead": 47.6596
       }
     },
     "Michigamme": {
@@ -9152,10 +9570,10 @@
         "nonhomestead": 47.1753
       }
     },
-    "Negaunee": {
+    "Negaunee Township": {
       "NEGAUNEE PUBLIC SCHOOLS": {
-        "homestead": 42.5936,
-        "nonhomestead": 60.5936
+        "homestead": 30.1796,
+        "nonhomestead": 48.1796
       }
     },
     "Powell": {
@@ -9218,6 +9636,24 @@
       "GWINN AREA COMMUNITY SCHOOLS": {
         "homestead": 23.3224,
         "nonhomestead": 41.3224
+      }
+    },
+    "Ishpeming City": {
+      "ISHPEMING PUBLIC SCHOOL DIST": {
+        "homestead": 45.7906,
+        "nonhomestead": 63.7906
+      }
+    },
+    "Marquette City": {
+      "MARQUETTE AREA SCHOOL DIST.": {
+        "homestead": 38.3216,
+        "nonhomestead": 56.3216
+      }
+    },
+    "Negaunee City": {
+      "NEGAUNEE PUBLIC SCHOOLS": {
+        "homestead": 42.5936,
+        "nonhomestead": 60.5936
       }
     }
   },
@@ -9410,10 +9846,10 @@
         "nonhomestead": 40.022
       }
     },
-    "Big Rapids": {
+    "Big Rapids Township": {
       "BIG RAPIDS PUBLIC SCHOOLS": {
-        "homestead": 37.3525,
-        "nonhomestead": 55.3525
+        "homestead": 27.5902,
+        "nonhomestead": 45.5902
       },
       "MORLEY STANWOOD COMM SCHOOLS": {
         "homestead": 25.4489,
@@ -9553,6 +9989,12 @@
         "homestead": 30.4301,
         "nonhomestead": 48.4301
       }
+    },
+    "Big Rapids City": {
+      "BIG RAPIDS PUBLIC SCHOOLS": {
+        "homestead": 37.3525,
+        "nonhomestead": 55.3525
+      }
     }
   },
   "Menominee": {
@@ -9622,10 +10064,10 @@
         "nonhomestead": 42.3338
       }
     },
-    "Menominee": {
+    "Menominee Township": {
       "MENOMINEE AREA PUBLIC SCHS": {
-        "homestead": 43.9792,
-        "nonhomestead": 61.9792
+        "homestead": 22.1805,
+        "nonhomestead": 40.1805
       },
       "STEPHENSON AREA PUBLIC SCHS": {
         "homestead": 21.8652,
@@ -9650,7 +10092,19 @@
         "nonhomestead": 47.8018
       }
     },
-    "Stephenson": {
+    "Stephenson Township": {
+      "STEPHENSON AREA PUBLIC SCHS": {
+        "homestead": 24.4239,
+        "nonhomestead": 42.4239
+      }
+    },
+    "Menominee City": {
+      "MENOMINEE AREA PUBLIC SCHS": {
+        "homestead": 43.9792,
+        "nonhomestead": 61.9792
+      }
+    },
+    "Stephenson City": {
       "STEPHENSON AREA PUBLIC SCHS": {
         "homestead": 33.3652,
         "nonhomestead": 51.3652
@@ -9796,14 +10250,14 @@
         "nonhomestead": 49.7179
       }
     },
-    "Midland": {
+    "Midland Township": {
       "MIDLAND PUBLIC SCHOOLS": {
-        "homestead": 39.4808,
-        "nonhomestead": 57.0792
+        "homestead": 28.3409,
+        "nonhomestead": 45.9393
       },
       "BULLOCK CREEK SCHOOL DIST": {
-        "homestead": 43.5792,
-        "nonhomestead": 61.5792
+        "homestead": 32.4393,
+        "nonhomestead": 50.4393
       }
     },
     "Mills": {
@@ -9850,6 +10304,16 @@
       "COLEMAN COMMUNITY SCH DIST": {
         "homestead": 43.4785,
         "nonhomestead": 61.4785
+      }
+    },
+    "Midland City": {
+      "MIDLAND PUBLIC SCHOOLS": {
+        "homestead": 39.4808,
+        "nonhomestead": 57.0792
+      },
+      "BULLOCK CREEK SCHOOL DIST": {
+        "homestead": 43.5792,
+        "nonhomestead": 61.5792
       }
     }
   },
@@ -10154,7 +10618,7 @@
         "nonhomestead": 52.2572
       }
     },
-    "Milan": {
+    "Milan Township": {
       "BRITTON DEERFIELD SCHOOLS": {
         "homestead": 30.7356,
         "nonhomestead": 48.7356
@@ -10164,22 +10628,18 @@
         "nonhomestead": 47.788
       },
       "MILAN AREA SCHOOLS": {
-        "homestead": 50.8861,
-        "nonhomestead": 68.8555
+        "homestead": 36.0195,
+        "nonhomestead": 53.9889
       }
     },
-    "Monroe": {
+    "Monroe Township": {
       "MONROE PUBLIC SCHOOLS": {
-        "homestead": 43.6803,
-        "nonhomestead": 61.6803
+        "homestead": 28.7141,
+        "nonhomestead": 46.7141
       },
       "IDA PUBLIC SCHOOL DISTRICT": {
         "homestead": 28.8545,
         "nonhomestead": 46.8545
-      },
-      "JEFFERSON SCHOOLS-MONROE CO.": {
-        "homestead": 42.6303,
-        "nonhomestead": 60.6303
       }
     },
     "Raisinville": {
@@ -10228,6 +10688,22 @@
       "MASON CONS SCHOOL DISTRICT": {
         "homestead": 33.2036,
         "nonhomestead": 51.2036
+      }
+    },
+    "Milan City": {
+      "MILAN AREA SCHOOLS": {
+        "homestead": 50.8861,
+        "nonhomestead": 68.8555
+      }
+    },
+    "Monroe City": {
+      "MONROE PUBLIC SCHOOLS": {
+        "homestead": 43.6803,
+        "nonhomestead": 61.6803
+      },
+      "JEFFERSON SCHOOLS-MONROE CO.": {
+        "homestead": 42.6303,
+        "nonhomestead": 60.6303
       }
     },
     "Petersburg": {
@@ -10650,10 +11126,10 @@
         "nonhomestead": 49.7378
       }
     },
-    "Montague": {
+    "Montague Township": {
       "MONTAGUE AREA PUBLIC SCHOOLS": {
-        "homestead": 48.4706,
-        "nonhomestead": 66.4706
+        "homestead": 33.8706,
+        "nonhomestead": 51.8706
       }
     },
     "Moorland": {
@@ -10666,18 +11142,18 @@
         "nonhomestead": 44.7405
       }
     },
-    "Muskegon": {
+    "Muskegon Township": {
       "MUSKEGON CITY SCHOOL DIST": {
-        "homestead": 42.7984,
-        "nonhomestead": 60.7984
+        "homestead": 39.2834,
+        "nonhomestead": 57.2834
       },
       "ORCHARD VIEW SCHOOLS": {
-        "homestead": 43.3916,
-        "nonhomestead": 61.203
+        "homestead": 38.572,
+        "nonhomestead": 56.3834
       },
       "REETHS PUFFER SCHOOLS": {
-        "homestead": 43.1094,
-        "nonhomestead": 60.7593
+        "homestead": 38.2898,
+        "nonhomestead": 55.9397
       }
     },
     "Ravenna": {
@@ -10710,14 +11186,34 @@
         "nonhomestead": 51.444
       }
     },
-    "Whitehall": {
+    "Whitehall Township": {
       "MONTAGUE AREA PUBLIC SCHOOLS": {
         "homestead": 33.1947,
         "nonhomestead": 51.1947
       },
       "WHITEHALL SCHOOL DISTRICT": {
-        "homestead": 41.6816,
-        "nonhomestead": 59.1791
+        "homestead": 28.7138,
+        "nonhomestead": 46.2113
+      }
+    },
+    "Montague City": {
+      "MONTAGUE AREA PUBLIC SCHOOLS": {
+        "homestead": 48.4706,
+        "nonhomestead": 66.4706
+      }
+    },
+    "Muskegon City": {
+      "MUSKEGON CITY SCHOOL DIST": {
+        "homestead": 42.7984,
+        "nonhomestead": 60.7984
+      },
+      "ORCHARD VIEW SCHOOLS": {
+        "homestead": 43.3916,
+        "nonhomestead": 61.203
+      },
+      "REETHS PUFFER SCHOOLS": {
+        "homestead": 43.1094,
+        "nonhomestead": 60.7593
       }
     },
     "Muskegon Heights": {
@@ -10754,6 +11250,12 @@
       "MONA SHORES SCHOOL DISTRICT": {
         "homestead": 45.7944,
         "nonhomestead": 63.7944
+      }
+    },
+    "Whitehall City": {
+      "WHITEHALL SCHOOL DISTRICT": {
+        "homestead": 41.6816,
+        "nonhomestead": 59.1791
       }
     }
   },
@@ -10928,14 +11430,14 @@
         "nonhomestead": 50.7577
       }
     },
-    "Grant": {
+    "Grant Township": {
       "KENT CITY COMMUNITY SCHOOLS": {
         "homestead": 31.7986,
         "nonhomestead": 49.5244
       },
       "GRANT PUBLIC SCHOOL DISTRICT": {
-        "homestead": 39.0887,
-        "nonhomestead": 57.0887
+        "homestead": 26.3222,
+        "nonhomestead": 44.3222
       },
       "NEWAYGO PUBLIC SCHOOL DIST": {
         "homestead": 30.0222,
@@ -11042,6 +11544,12 @@
       "FREMONT PUBLIC SCHOOL DIST": {
         "homestead": 46.5161,
         "nonhomestead": 64.3001
+      }
+    },
+    "Grant City": {
+      "GRANT PUBLIC SCHOOL DISTRICT": {
+        "homestead": 39.0887,
+        "nonhomestead": 57.0887
       }
     },
     "Newaygo": {
@@ -11190,38 +11698,10 @@
         "nonhomestead": 51.3601
       }
     },
-    "Novi": {
+    "Novi Township": {
       "NORTHVILLE PUBLIC SCHOOLS": {
-        "homestead": 34.5195,
-        "nonhomestead": 52.5195
-      },
-      "TR-NRTHVL-NOVI TRANS": {
-        "homestead": 37.1177,
-        "nonhomestead": 54.1047
-      },
-      "TR-SLYON-NOVI TRANSFER": {
-        "homestead": 36.3224,
-        "nonhomestead": 53.3094
-      },
-      "TR-NOVI-WL TRANSFER": {
-        "homestead": 27.1551,
-        "nonhomestead": 27.1551
-      },
-      "TR-NOVI-NRTHVL TRANS": {
-        "homestead": 33.7242,
-        "nonhomestead": 51.7242
-      },
-      "NOVI COMMUNITY SCHOOLS": {
-        "homestead": 36.3224,
-        "nonhomestead": 53.3094
-      },
-      "SOUTH LYON COMMUNITY SCHOOLS W/OCC": {
-        "homestead": 34.1551,
-        "nonhomestead": 52.1551
-      },
-      "WALLED LAKE CONS SCH DIST": {
-        "homestead": 32.0426,
-        "nonhomestead": 49.7006
+        "homestead": 29.5569,
+        "nonhomestead": 47.5569
       }
     },
     "Oakland": {
@@ -11276,7 +11756,7 @@
         "nonhomestead": 62.8746
       }
     },
-    "Royal Oak": {
+    "Royal Oak Township": {
       "FERNDALE CITY SCHOOL DIST": {
         "homestead": 46.6458,
         "nonhomestead": 64.6458
@@ -11284,40 +11764,16 @@
       "OAK PARK CITY SCHOOL DIST": {
         "homestead": 47.2685,
         "nonhomestead": 65.2685
-      },
-      "SCH DIST CITY OF ROYAL OAK": {
-        "homestead": 37.961,
-        "nonhomestead": 54.9301
-      },
-      "BERKLEY CITY SCHOOL DISTRICT": {
-        "homestead": 41.9416,
-        "nonhomestead": 59.9416
-      },
-      "CLAWSON CITY SCHOOL DISTRICT": {
-        "homestead": 42.7595,
-        "nonhomestead": 60.7595
       }
     },
-    "Southfield": {
+    "Southfield Township": {
       "BIRMINGHAM CITY SCHOOL DIST": {
-        "homestead": 51.8496,
-        "nonhomestead": 65.229
+        "homestead": 35.1365,
+        "nonhomestead": 48.5159
       },
       "SOUTHFIELD PUBLIC SCH DIST": {
-        "homestead": 57.0201,
-        "nonhomestead": 67.6801
-      },
-      "TR-BIRMINGHAM/SOUTHFLD": {
-        "homestead": 50.6993,
-        "nonhomestead": 64.061
-      },
-      "TR-SOUTHFLD/BIRMINGHAM": {
-        "homestead": 58.1881,
-        "nonhomestead": 68.8481
-      },
-      "OAK PARK CITY SCHOOL DIST": {
-        "homestead": 52.1169,
-        "nonhomestead": 70.1169
+        "homestead": 40.8086,
+        "nonhomestead": 51.4686
       }
     },
     "Springfield": {
@@ -11558,6 +12014,40 @@
         "nonhomestead": 57.9709
       }
     },
+    "Novi City": {
+      "TR-NRTHVL-NOVI TRANS": {
+        "homestead": 37.1177,
+        "nonhomestead": 54.1047
+      },
+      "TR-SLYON-NOVI TRANSFER": {
+        "homestead": 36.3224,
+        "nonhomestead": 53.3094
+      },
+      "TR-NOVI-WL TRANSFER": {
+        "homestead": 27.1551,
+        "nonhomestead": 27.1551
+      },
+      "TR-NOVI-NRTHVL TRANS": {
+        "homestead": 33.7242,
+        "nonhomestead": 51.7242
+      },
+      "NOVI COMMUNITY SCHOOLS": {
+        "homestead": 36.3224,
+        "nonhomestead": 53.3094
+      },
+      "SOUTH LYON COMMUNITY SCHOOLS W/OCC": {
+        "homestead": 34.1551,
+        "nonhomestead": 52.1551
+      },
+      "WALLED LAKE CONS SCH DIST": {
+        "homestead": 32.0426,
+        "nonhomestead": 49.7006
+      },
+      "NORTHVILLE PUBLIC SCHOOLS": {
+        "homestead": 34.5195,
+        "nonhomestead": 52.5195
+      }
+    },
     "Oak Park": {
       "FERNDALE CITY SCHOOL DIST": {
         "homestead": 59.4486,
@@ -11614,10 +12104,46 @@
         "nonhomestead": 48.8553
       }
     },
+    "Royal Oak City": {
+      "SCH DIST CITY OF ROYAL OAK": {
+        "homestead": 37.961,
+        "nonhomestead": 54.9301
+      },
+      "BERKLEY CITY SCHOOL DISTRICT": {
+        "homestead": 41.9416,
+        "nonhomestead": 59.9416
+      },
+      "CLAWSON CITY SCHOOL DISTRICT": {
+        "homestead": 42.7595,
+        "nonhomestead": 60.7595
+      }
+    },
     "South Lyon": {
       "SOUTH LYON COMMUNITY SCHOOLS W/OCC": {
         "homestead": 42.1483,
         "nonhomestead": 60.1483
+      }
+    },
+    "Southfield City": {
+      "TR-BIRMINGHAM/SOUTHFLD": {
+        "homestead": 50.6993,
+        "nonhomestead": 64.061
+      },
+      "TR-SOUTHFLD/BIRMINGHAM": {
+        "homestead": 58.1881,
+        "nonhomestead": 68.8481
+      },
+      "BIRMINGHAM CITY SCHOOL DIST": {
+        "homestead": 51.8496,
+        "nonhomestead": 65.229
+      },
+      "SOUTHFIELD PUBLIC SCH DIST": {
+        "homestead": 57.0201,
+        "nonhomestead": 67.6801
+      },
+      "OAK PARK CITY SCHOOL DIST": {
+        "homestead": 52.1169,
+        "nonhomestead": 70.1169
       }
     },
     "Sylvan Lake": {
@@ -11768,10 +12294,10 @@
         "nonhomestead": 51.5513
       }
     },
-    "Hart": {
+    "Hart Township": {
       "HART PUBLIC SCHOOL DISTRICT": {
-        "homestead": 40.9651,
-        "nonhomestead": 57.9173
+        "homestead": 29.502,
+        "nonhomestead": 46.4542
       },
       "SHELBY PUBLIC SCHOOLS": {
         "homestead": 28.0111,
@@ -11848,6 +12374,12 @@
       "PENTWATER PUBLIC SCHOOL DIST W/WSCC": {
         "homestead": 27.763,
         "nonhomestead": 45.763
+      }
+    },
+    "Hart City": {
+      "HART PUBLIC SCHOOL DISTRICT": {
+        "homestead": 40.9651,
+        "nonhomestead": 57.9173
       }
     }
   },
@@ -11946,16 +12478,22 @@
         "nonhomestead": 44.2055
       }
     },
-    "West Branch": {
+    "West Branch Township": {
       "W BRANCH ROSE CITY AREA SCHS": {
-        "homestead": 40.2779,
-        "nonhomestead": 57.7912
+        "homestead": 23.7245,
+        "nonhomestead": 41.2378
       }
     },
     "Rose City": {
       "W BRANCH ROSE CITY AREA SCHS": {
         "homestead": 42.2955,
         "nonhomestead": 59.8088
+      }
+    },
+    "West Branch City": {
+      "W BRANCH ROSE CITY AREA SCHS": {
+        "homestead": 40.2779,
+        "nonhomestead": 57.7912
       }
     }
   },
@@ -12056,10 +12594,10 @@
         "nonhomestead": 47.9877
       }
     },
-    "Evart": {
+    "Evart Township": {
       "EVART PUBLIC SCHOOLS": {
-        "homestead": 42.0869,
-        "nonhomestead": 60.0869
+        "homestead": 27.6689,
+        "nonhomestead": 45.6689
       }
     },
     "Hartwick": {
@@ -12186,6 +12724,12 @@
       "MARION PUBLIC SCHOOLS": {
         "homestead": 29.8317,
         "nonhomestead": 47.8317
+      }
+    },
+    "Evart City": {
+      "EVART PUBLIC SCHOOLS": {
+        "homestead": 42.0869,
+        "nonhomestead": 60.0869
       }
     },
     "Reed City": {
@@ -12398,24 +12942,24 @@
         "nonhomestead": 45.9242
       }
     },
-    "Grand Haven": {
+    "Grand Haven Township": {
       "GRAND HAVEN CITY SCHOOL DIST": {
-        "homestead": 34.0702,
-        "nonhomestead": 52.0702
+        "homestead": 25.8877,
+        "nonhomestead": 43.8877
       }
     },
-    "Holland": {
+    "Holland Township": {
       "HOLLAND CITY SCHOOL DISTRICT": {
-        "homestead": 41.9411,
-        "nonhomestead": 59.9411
+        "homestead": 31.9819,
+        "nonhomestead": 49.9819
       },
       "WEST OTTAWA PUBLIC SCH DIST": {
         "homestead": 31.8015,
         "nonhomestead": 49.8015
       },
       "ZEELAND PUBLIC SCHOOLS": {
-        "homestead": 43.2003,
-        "nonhomestead": 61.2003
+        "homestead": 33.2411,
+        "nonhomestead": 51.2411
       }
     },
     "Jamestown": {
@@ -12516,14 +13060,14 @@
         "nonhomestead": 48.245
       }
     },
-    "Zeeland": {
+    "Zeeland Township": {
       "HUDSONVILLE PUBLIC SCH DIST": {
         "homestead": 31.3937,
         "nonhomestead": 49.3937
       },
       "ZEELAND PUBLIC SCHOOLS": {
-        "homestead": 37.8592,
-        "nonhomestead": 55.8592
+        "homestead": 32.344,
+        "nonhomestead": 50.344
       }
     },
     "Coopersville": {
@@ -12538,10 +13082,32 @@
         "nonhomestead": 47.5769
       }
     },
+    "Grand Haven City": {
+      "GRAND HAVEN CITY SCHOOL DIST": {
+        "homestead": 34.0702,
+        "nonhomestead": 52.0702
+      }
+    },
+    "Holland City": {
+      "HOLLAND CITY SCHOOL DISTRICT": {
+        "homestead": 41.9411,
+        "nonhomestead": 59.9411
+      },
+      "ZEELAND PUBLIC SCHOOLS": {
+        "homestead": 43.2003,
+        "nonhomestead": 61.2003
+      }
+    },
     "Hudsonville": {
       "HUDSONVILLE PUBLIC SCH DIST": {
         "homestead": 36.9045,
         "nonhomestead": 54.9045
+      }
+    },
+    "Zeeland City": {
+      "ZEELAND PUBLIC SCHOOLS": {
+        "homestead": 37.8592,
+        "nonhomestead": 55.8592
       }
     }
   },
@@ -12844,10 +13410,10 @@
         "nonhomestead": 57.4806
       }
     },
-    "Frankenmuth": {
+    "Frankenmuth Township": {
       "FRANKENMUTH SCHOOL DISTRICT": {
-        "homestead": 40.2846,
-        "nonhomestead": 58.2846
+        "homestead": 31.3684,
+        "nonhomestead": 49.3684
       }
     },
     "Fremont": {
@@ -12942,14 +13508,10 @@
         "nonhomestead": 56.6411
       }
     },
-    "Saginaw": {
+    "Saginaw Township": {
       "SAGINAW TWP COMMUNITY SCHOOL": {
         "homestead": 37.6171,
         "nonhomestead": 55.6171
-      },
-      "SAGINAW CITY SCHOOL DISTRICT": {
-        "homestead": 55.8221,
-        "nonhomestead": 73.8221
       }
     },
     "Saint Charles": {
@@ -13012,11 +13574,25 @@
         "nonhomestead": 53.4444
       }
     },
-    "Zilwaukee": {
+    "Zilwaukee Township": {
       "BAY CITY SCHOOL DISTRICT": {
         "homestead": 34.0215,
         "nonhomestead": 52.0215
-      },
+      }
+    },
+    "Frankenmuth City": {
+      "FRANKENMUTH SCHOOL DISTRICT": {
+        "homestead": 40.2846,
+        "nonhomestead": 58.2846
+      }
+    },
+    "Saginaw City": {
+      "SAGINAW CITY SCHOOL DISTRICT": {
+        "homestead": 55.8221,
+        "nonhomestead": 73.8221
+      }
+    },
+    "Zilwaukee City": {
       "SAGINAW CITY SCHOOL DISTRICT": {
         "homestead": 50.6279,
         "nonhomestead": 68.6279
@@ -13226,10 +13802,10 @@
         "nonhomestead": 59.4936
       }
     },
-    "Port Huron": {
+    "Port Huron Township": {
       "PORT HURON AREA SCHOOL DIST": {
-        "homestead": 41.3099,
-        "nonhomestead": 59.3099
+        "homestead": 34.8568,
+        "nonhomestead": 52.8568
       }
     },
     "Riley": {
@@ -13304,6 +13880,12 @@
       "MEMPHIS COMMUNITY SCHOOLS": {
         "homestead": 44.2314,
         "nonhomestead": 62.2314
+      }
+    },
+    "Port Huron City": {
+      "PORT HURON AREA SCHOOL DIST": {
+        "homestead": 41.3099,
+        "nonhomestead": 59.3099
       }
     },
     "Richmond": {
@@ -13534,16 +14116,22 @@
         "nonhomestead": 41.3702
       }
     },
-    "Sturgis": {
+    "Sturgis Township": {
       "STURGIS PUBLIC SCHOOLS": {
-        "homestead": 44.1886,
-        "nonhomestead": 61.5979
+        "homestead": 30.1419,
+        "nonhomestead": 47.5512
       }
     },
     "White Pigeon": {
       "WHITE PIGEON COMM SCH DIST": {
         "homestead": 36.2651,
         "nonhomestead": 54.2651
+      }
+    },
+    "Sturgis City": {
+      "STURGIS PUBLIC SCHOOLS": {
+        "homestead": 44.1886,
+        "nonhomestead": 61.5979
       }
     },
     "Three Rivers": {
@@ -13740,10 +14328,10 @@
         "nonhomestead": 63.5855
       }
     },
-    "Marlette": {
+    "Marlette Township": {
       "MARLETTE COMMUNITY SCHOOLS": {
-        "homestead": 34.6652,
-        "nonhomestead": 52.6652
+        "homestead": 23.8444,
+        "nonhomestead": 41.8444
       }
     },
     "Minden": {
@@ -13850,6 +14438,12 @@
         "nonhomestead": 56.4039
       }
     },
+    "Marlette City": {
+      "MARLETTE COMMUNITY SCHOOLS": {
+        "homestead": 34.6652,
+        "nonhomestead": 52.6652
+      }
+    },
     "Sandusky": {
       "SANDUSKY COMM SCHOOL DIST": {
         "homestead": 41.7266,
@@ -13886,10 +14480,10 @@
         "nonhomestead": 40.6167
       }
     },
-    "Manistique": {
+    "Manistique Township": {
       "MANISTIQUE AREA SCHOOLS": {
-        "homestead": 40.2827,
-        "nonhomestead": 58.2827
+        "homestead": 22.8484,
+        "nonhomestead": 40.8484
       }
     },
     "Mueller": {
@@ -13908,6 +14502,12 @@
       "MANISTIQUE AREA SCHOOLS": {
         "homestead": 23.6567,
         "nonhomestead": 41.6567
+      }
+    },
+    "Manistique City": {
+      "MANISTIQUE AREA SCHOOLS": {
+        "homestead": 40.2827,
+        "nonhomestead": 58.2827
       }
     }
   },
@@ -14020,24 +14620,24 @@
         "nonhomestead": 46.1379
       }
     },
-    "Owosso": {
+    "Owosso Township": {
       "OVID ELSIE AREA SCHOOLS": {
         "homestead": 29.6335,
         "nonhomestead": 47.6335
       },
       "OWOSSO PUBLIC SCHOOLS": {
-        "homestead": 41.8815,
-        "nonhomestead": 59.8815
+        "homestead": 28.0642,
+        "nonhomestead": 46.0642
       }
     },
-    "Perry": {
+    "Perry Township": {
       "MORRICE AREA SCHOOLS": {
         "homestead": 42.606,
         "nonhomestead": 57.2388
       },
       "PERRY PUBLIC SCHOOL DISTRICT": {
-        "homestead": 42.931,
-        "nonhomestead": 60.7574
+        "homestead": 31.3521,
+        "nonhomestead": 49.1785
       }
     },
     "Rush": {
@@ -14158,6 +14758,18 @@
       "OVID ELSIE AREA SCHOOLS": {
         "homestead": 26.9648,
         "nonhomestead": 44.9648
+      }
+    },
+    "Owosso City": {
+      "OWOSSO PUBLIC SCHOOLS": {
+        "homestead": 41.8815,
+        "nonhomestead": 59.8815
+      }
+    },
+    "Perry City": {
+      "PERRY PUBLIC SCHOOL DISTRICT": {
+        "homestead": 42.931,
+        "nonhomestead": 60.7574
       }
     }
   },
@@ -14384,7 +14996,7 @@
         "nonhomestead": 42.5755
       }
     },
-    "Vassar": {
+    "Vassar Township": {
       "MAYVILLE COMMUNITY SCH DIST": {
         "homestead": 24.599,
         "nonhomestead": 40.7579
@@ -14394,8 +15006,8 @@
         "nonhomestead": 41.852
       },
       "VASSAR PUBLIC SCHOOLS": {
-        "homestead": 39.299,
-        "nonhomestead": 57.299
+        "homestead": 23.299,
+        "nonhomestead": 41.299
       }
     },
     "Watertown": {
@@ -14436,6 +15048,12 @@
       "CARO COMMUNITY SCHOOLS": {
         "homestead": 43.9752,
         "nonhomestead": 61.7538
+      }
+    },
+    "Vassar City": {
+      "VASSAR PUBLIC SCHOOLS": {
+        "homestead": 39.299,
+        "nonhomestead": 57.299
       }
     }
   },
@@ -14478,10 +15096,10 @@
         "nonhomestead": 51.3678
       }
     },
-    "Bangor": {
+    "Bangor Township": {
       "BANGOR PUBLIC SCHOOLS": {
-        "homestead": 48.4177,
-        "nonhomestead": 66.144
+        "homestead": 34.5998,
+        "nonhomestead": 52.3261
       },
       "COVERT PUBLIC SCHOOLS": {
         "homestead": 30.0998,
@@ -14572,14 +15190,14 @@
         "nonhomestead": 56.3242
       }
     },
-    "Hartford": {
+    "Hartford Township": {
       "WATERVLIET SCHOOL DISTRICT": {
         "homestead": 25.5173,
         "nonhomestead": 43.5173
       },
       "HARTFORD PUBLIC SCHOOL DIST": {
-        "homestead": 45.749,
-        "nonhomestead": 63.749
+        "homestead": 32.3713,
+        "nonhomestead": 50.3713
       }
     },
     "Keeler": {
@@ -14652,10 +15270,10 @@
         "nonhomestead": 51.8779
       }
     },
-    "South Haven": {
+    "South Haven Township": {
       "SOUTH HAVEN PUBLIC SCHOOLS": {
-        "homestead": 42.5704,
-        "nonhomestead": 60.5704
+        "homestead": 35.7191,
+        "nonhomestead": 53.7191
       },
       "COVERT PUBLIC SCHOOLS": {
         "homestead": 28.9537,
@@ -14684,18 +15302,36 @@
         "nonhomestead": 52.7075
       }
     },
+    "Bangor City": {
+      "BANGOR PUBLIC SCHOOLS": {
+        "homestead": 48.4177,
+        "nonhomestead": 66.144
+      }
+    },
     "Gobles": {
       "GOBLES PUBLIC SCHOOL DIST": {
         "homestead": 49.1588,
         "nonhomestead": 67.1588
       }
+    },
+    "Hartford City": {
+      "HARTFORD PUBLIC SCHOOL DIST": {
+        "homestead": 45.749,
+        "nonhomestead": 63.749
+      }
+    },
+    "South Haven City": {
+      "SOUTH HAVEN PUBLIC SCHOOLS": {
+        "homestead": 42.5704,
+        "nonhomestead": 60.5704
+      }
     }
   },
   "Washtenaw": {
-    "Ann Arbor": {
+    "Ann Arbor Township": {
       "ANN ARBOR PUBLIC SCHOOLS": {
-        "homestead": 52.6657,
-        "nonhomestead": 68.6263
+        "homestead": 49.5586,
+        "nonhomestead": 65.5192
       }
     },
     "Augusta": {
@@ -14722,7 +15358,7 @@
         "nonhomestead": 51.0983
       }
     },
-    "Dexter": {
+    "Dexter Township": {
       "PINCKNEY COMMUNITY SCHOOLS": {
         "homestead": 34.4401,
         "nonhomestead": 52.4401
@@ -14736,8 +15372,8 @@
         "nonhomestead": 55.0409
       },
       "DEXTER COMMUNITY SCHOOL DIST": {
-        "homestead": 48.9002,
-        "nonhomestead": 66.9002
+        "homestead": 36.8924,
+        "nonhomestead": 54.8924
       }
     },
     "Freedom": {
@@ -14796,7 +15432,7 @@
         "nonhomestead": 55.4014
       }
     },
-    "Manchester": {
+    "Manchester Township": {
       "COLUMBIA SCHOOL DISTRICT": {
         "homestead": 31.2839,
         "nonhomestead": 49.2839
@@ -14806,8 +15442,8 @@
         "nonhomestead": 50.9175
       },
       "MANCHESTER COMMUNITY SCH DST": {
-        "homestead": 46.2508,
-        "nonhomestead": 64.2508
+        "homestead": 33.8571,
+        "nonhomestead": 51.8571
       }
     },
     "Northfield": {
@@ -14868,7 +15504,7 @@
         "nonhomestead": 44.9805
       }
     },
-    "Saline": {
+    "Saline Township": {
       "CLINTON COMMUNITY SCHOOLS": {
         "homestead": 32.7735,
         "nonhomestead": 50.7735
@@ -14878,8 +15514,8 @@
         "nonhomestead": 54.4268
       },
       "SALINE AREA SCHOOL DISTRICT": {
-        "homestead": 49.5525,
-        "nonhomestead": 67.5525
+        "homestead": 34.6799,
+        "nonhomestead": 52.6799
       }
     },
     "Scio": {
@@ -14994,10 +15630,10 @@
         "nonhomestead": 52.0199
       }
     },
-    "Ypsilanti": {
+    "Ypsilanti Township": {
       "YPSILANTI SCHOOL DISTRICT": {
-        "homestead": 63.2948,
-        "nonhomestead": 81.2948
+        "homestead": 47.4864,
+        "nonhomestead": 65.4864
       },
       "LINCOLN CONS SCHOOL DISTRICT": {
         "homestead": 49.9633,
@@ -15012,16 +15648,46 @@
         "nonhomestead": 63.1543
       }
     },
+    "Ann Arbor City": {
+      "ANN ARBOR PUBLIC SCHOOLS": {
+        "homestead": 52.6657,
+        "nonhomestead": 68.6263
+      }
+    },
     "Chelsea": {
       "CHELSEA SCHOOL DISTRICT": {
         "homestead": 47.0139,
         "nonhomestead": 65.0139
       }
     },
+    "Dexter City": {
+      "DEXTER COMMUNITY SCHOOL DIST": {
+        "homestead": 48.9002,
+        "nonhomestead": 66.9002
+      }
+    },
+    "Manchester City": {
+      "MANCHESTER COMMUNITY SCH DST": {
+        "homestead": 46.2508,
+        "nonhomestead": 64.2508
+      }
+    },
     "Milan": {
       "MILAN AREA SCHOOLS": {
         "homestead": 51.9861,
         "nonhomestead": 69.9555
+      }
+    },
+    "Saline City": {
+      "SALINE AREA SCHOOL DISTRICT": {
+        "homestead": 49.5525,
+        "nonhomestead": 67.5525
+      }
+    },
+    "Ypsilanti City": {
+      "YPSILANTI SCHOOL DISTRICT": {
+        "homestead": 63.2948,
+        "nonhomestead": 81.2948
       }
     }
   },
@@ -15074,20 +15740,20 @@
         "nonhomestead": 57.3455
       }
     },
-    "Northville": {
+    "Northville Township": {
       "PLYMOUTH CANTON COMM SCHS W/SCC": {
         "homestead": 35.1832,
         "nonhomestead": 53.1832
       },
       "NORTHVILLE PUBLIC SCHOOLS": {
-        "homestead": 42.1693,
-        "nonhomestead": 60.1693
+        "homestead": 35.5072,
+        "nonhomestead": 53.5072
       }
     },
-    "Plymouth": {
+    "Plymouth Township": {
       "PLYMOUTH CANTON COMM SCHS W/SCC": {
-        "homestead": 40.9761,
-        "nonhomestead": 58.9761
+        "homestead": 32.4045,
+        "nonhomestead": 50.4045
       }
     },
     "Redford": {
@@ -15320,6 +15986,18 @@
       "MELVINDALE ALLEN PARK SCHS": {
         "homestead": 70.0462,
         "nonhomestead": 88.0462
+      }
+    },
+    "Northville City": {
+      "NORTHVILLE PUBLIC SCHOOLS": {
+        "homestead": 42.1693,
+        "nonhomestead": 60.1693
+      }
+    },
+    "Plymouth City": {
+      "PLYMOUTH CANTON COMM SCHS W/SCC": {
+        "homestead": 40.9761,
+        "nonhomestead": 58.9761
       }
     },
     "River Rouge": {
