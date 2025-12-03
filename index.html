@@ -24,7 +24,7 @@
     }
 
     header {
-      margin-bottom: 24px;
+      margin-bottom: 16px;
     }
 
     h1 {
@@ -48,6 +48,33 @@
       color: #33c3ff;
       font-size: 0.78rem;
       margin-bottom: 8px;
+    }
+
+    .mode-toggle {
+      display: inline-flex;
+      border-radius: 999px;
+      background: rgba(5, 8, 20, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .mode-button {
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: #a5afc6;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 0;
+    }
+
+    .mode-button.active {
+      background: linear-gradient(135deg, #33c3ff, #7b5cff);
+      color: #fff;
     }
 
     .grid {
@@ -79,6 +106,14 @@
       margin: 0 0 10px;
       font-size: 0.85rem;
       color: #a5afc6;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #7f8bb0;
+      margin-bottom: 4px;
     }
 
     .field-group {
@@ -221,6 +256,14 @@
       font-size: 0.78rem;
       margin-top: 4px;
     }
+
+    .advanced-only {
+      display: none;
+    }
+
+    .mode-advanced .advanced-only {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -229,17 +272,23 @@
       <div class="pill">MichiganMortgageCalculator.org</div>
       <h1>Michigan Mortgage & Property Tax Calculator</h1>
       <p>
-        Uses 2024 Michigan millage rates by county / local unit / school district, with PRE vs non-PRE.
+        2024 Michigan millage by county / local unit / school district. PRE vs non-PRE, with city vs township separated.
       </p>
     </header>
+
+    <div class="mode-toggle">
+      <button class="mode-button active" data-mode="basic">Basic Settings</button>
+      <button class="mode-button" data-mode="advanced">Advanced Settings</button>
+    </div>
 
     <div class="grid">
       <!-- LEFT CARD: INPUTS & RESULTS -->
       <div class="card">
-        <h2>Inputs</h2>
-        <p>Enter loan details and property tax info.</p>
+        <div class="section-label">Mortgage</div>
+        <h2>Monthly Payment</h2>
+        <p>Basic: mortgage + property tax. Advanced: add insurance and detail.</p>
 
-        <p><strong>Mortgage details (P & I)</strong></p>
+        <p><strong>Basic loan details</strong></p>
         <div class="field-group">
           <div>
             <label for="homePriceInput">Home price</label>
@@ -295,11 +344,14 @@
           <label for="preCheckbox" style="margin: 0;">Principal Residence Exemption (PRE) applies</label>
         </div>
 
-        <p style="margin-top: 10px;"><strong>Optional</strong></p>
-        <div class="field-group">
-          <div>
-            <label for="annualInsuranceInput">Annual homeowners insurance (optional)</label>
-            <input id="annualInsuranceInput" type="number" inputmode="decimal" placeholder="900" />
+        <!-- Advanced-only settings -->
+        <div class="advanced-only" style="margin-top: 10px;">
+          <p><strong>Advanced: extras</strong></p>
+          <div class="field-group">
+            <div>
+              <label for="annualInsuranceInput">Annual homeowners insurance (optional)</label>
+              <input id="annualInsuranceInput" type="number" inputmode="decimal" placeholder="900" />
+            </div>
           </div>
         </div>
 
@@ -332,6 +384,7 @@
 
       <!-- RIGHT CARD: AMORTIZATION -->
       <div class="card">
+        <div class="section-label">Advanced output</div>
         <h2>Amortization Schedule</h2>
         <p>Updates when you click “Calculate payment”.</p>
 
@@ -354,8 +407,8 @@
 
     <div class="disclaimer">
       <strong>Disclaimer:</strong> This is an estimate tool only. Millage values are loaded from a JSON
-      file built from 2024 Treasury county/local/school rates. Always confirm with your assessor,
-      treasurer, and lender before making decisions.
+      file built from 2024 Treasury county/local/school rates with city / township separation. Always
+      confirm with your assessor, treasurer, and lender before making decisions.
     </div>
   </div>
 
@@ -365,6 +418,29 @@
      * Uses mi_millage_2024.json next to index.html
      ****************************************************/
     let millageData = {};
+
+    // ========= MODE TOGGLE (Basic / Advanced) =========
+    document.addEventListener('DOMContentLoaded', () => {
+      const modeButtons = document.querySelectorAll('.mode-button');
+      const page = document.querySelector('.page');
+
+      modeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          modeButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          if (btn.dataset.mode === 'advanced') {
+            page.classList.add('mode-advanced');
+          } else {
+            page.classList.remove('mode-advanced');
+          }
+        });
+      });
+
+      // After wiring toggles, load data and wire calc
+      loadMillageData();
+      wireEvents();
+    });
 
     // ========= LOAD MILLAGE JSON =========
     async function loadMillageData() {
@@ -615,10 +691,8 @@
       }
     }
 
-    // ========= EVENTS =========
-    document.addEventListener('DOMContentLoaded', () => {
-      loadMillageData();
-
+    // ========= WIRE EVENTS =========
+    function wireEvents() {
       const calcBtn = document.getElementById('calculateButton');
       if (calcBtn) {
         calcBtn.addEventListener('click', (e) => {
@@ -665,7 +739,7 @@
           el.addEventListener('input', () => calculatePropertyTax());
         }
       });
-    });
+    }
   </script>
 </body>
 </html>
