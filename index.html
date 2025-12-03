@@ -5,14 +5,13 @@
   <title>Michigan Mortgage & Property Tax Calculator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Google Analytics 4 -->
-  <!-- Replace G-XXXXXXXXXX with your GA4 Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HLMW6NEJ4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', 'G-6HLMW6NEJ4');
   </script>
 
   <style>
@@ -479,7 +478,7 @@
       <div class="card">
         <div class="section-label">Advanced output</div>
         <h2>Amortization Schedule</h2>
-        <p>Updates when you click “Calculate payment”.</p>
+        <p>Updates when you change inputs.</p>
 
         <div style="max-height: 380px; overflow: auto; border-radius: 10px; border: 1px solid #e5e7eb;">
           <table>
@@ -532,6 +531,7 @@
             page.classList.add("mode-basic");
             page.classList.remove("mode-advanced");
           }
+          calculateMortgage();
         });
       });
 
@@ -547,6 +547,7 @@
           const mode = btn.dataset.mode;
           dpModeHidden.value = mode;
           if (dpInput) dpInput.placeholder = mode === "percent" ? "20" : "60000";
+          calculateMortgage();
         });
       });
 
@@ -688,7 +689,10 @@
       if (!county || !localUnit || !school) {
         if (taxDisplay) taxDisplay.textContent = "—";
         if (millageDisplay) millageDisplay.textContent = "—";
-        if (taxError) taxError.textContent = "Select county, local unit, and school district.";
+        // Don't spam error until all three are picked AND there's a price
+        if (taxError && price) {
+          taxError.textContent = "Select county, local unit, and school district.";
+        }
         return { tax: 0, millage: 0 };
       }
 
@@ -773,7 +777,7 @@
         if (pmiMonthlyOutput) {
           pmiMonthlyOutput.textContent = monthlyPMI > 0 ? formatCurrency(monthlyPMI) : "—";
         }
-        // taxResult & millageResult already handled
+        // taxResult & millageResult handled in calculatePropertyTaxAdvanced
       } else {
         // Basic: manual annual tax, annual insurance, HOA monthly, annual PMI
         const annualTaxManual = parseNumber("basicTaxAnnualInput");
@@ -856,11 +860,12 @@
       const countySelect = document.getElementById("countySelect");
       const localUnitSelect = document.getElementById("localUnitSelect");
       const schoolSelect = document.getElementById("schoolSelect");
+      const preEl = document.getElementById("preCheckbox");
 
       if (countySelect) {
         countySelect.addEventListener("change", () => {
           populateLocalUnits(countySelect.value);
-          calculatePropertyTaxAdvanced();
+          calculateMortgage();
         });
       }
 
@@ -868,27 +873,38 @@
         localUnitSelect.addEventListener("change", () => {
           const countyName = countySelect ? countySelect.value : "";
           populateSchools(countyName, localUnitSelect.value);
-          calculatePropertyTaxAdvanced();
+          calculateMortgage();
         });
       }
 
       if (schoolSelect) {
-        schoolSelect.addEventListener("change", () => calculatePropertyTaxAdvanced());
+        schoolSelect.addEventListener("change", () => calculateMortgage());
       }
 
-      const preEl = document.getElementById("preCheckbox");
       if (preEl) {
-        preEl.addEventListener("change", () => calculatePropertyTaxAdvanced());
+        preEl.addEventListener("change", () => calculateMortgage());
       }
 
-      const priceEl = document.getElementById("homePriceInput");
-      if (priceEl) {
-        priceEl.addEventListener("input", () => {
-          const page = document.querySelector(".page");
-          const isAdvanced = page && page.classList.contains("mode-advanced");
-          if (isAdvanced) calculatePropertyTaxAdvanced();
-        });
-      }
+      // Auto-calc on key numeric fields
+      const autoFields = [
+        "homePriceInput",
+        "downPaymentInput",
+        "interestRateInput",
+        "loanTermYearsInput",
+        "basicTaxAnnualInput",
+        "basicInsuranceAnnualInput",
+        "basicHoaMonthlyInput",
+        "basicPmiAnnualInput",
+        "annualInsuranceInput",
+        "pmiRateInput"
+      ];
+
+      autoFields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener("input", () => calculateMortgage());
+        }
+      });
     }
   </script>
 </body>
