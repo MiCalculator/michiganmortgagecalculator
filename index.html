@@ -689,7 +689,6 @@
       if (!county || !localUnit || !school) {
         if (taxDisplay) taxDisplay.textContent = "—";
         if (millageDisplay) millageDisplay.textContent = "—";
-        // Don't spam error until all three are picked AND there's a price
         if (taxError && price) {
           taxError.textContent = "Select county, local unit, and school district.";
         }
@@ -777,7 +776,7 @@
         if (pmiMonthlyOutput) {
           pmiMonthlyOutput.textContent = monthlyPMI > 0 ? formatCurrency(monthlyPMI) : "—";
         }
-        // taxResult & millageResult handled in calculatePropertyTaxAdvanced
+        // taxResult & millageResult handled above
       } else {
         // Basic: manual annual tax, annual insurance, HOA monthly, annual PMI
         const annualTaxManual = parseNumber("basicTaxAnnualInput");
