@@ -13,8 +13,8 @@
 
     body {
       margin: 0;
-      background: #050814;
-      color: #f5f7ff;
+      background: #f5f5f7;
+      color: #111827;
     }
 
     .page {
@@ -25,16 +25,19 @@
 
     header {
       margin-bottom: 16px;
+      text-align: center;
     }
 
     h1 {
-      margin: 0 0 8px;
-      font-size: 1.8rem;
+      margin: 4px 0 6px;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #111827;
     }
 
     header p {
       margin: 0;
-      color: #a5afc6;
+      color: #4b5563;
       font-size: 0.95rem;
     }
 
@@ -44,19 +47,23 @@
       gap: 6px;
       padding: 4px 10px;
       border-radius: 999px;
-      background: rgba(51, 195, 255, 0.12);
-      color: #33c3ff;
+      background: #e0f2fe;
+      color: #0369a1;
       font-size: 0.78rem;
-      margin-bottom: 8px;
     }
 
     .mode-toggle {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .mode-toggle-inner {
       display: inline-flex;
       border-radius: 999px;
-      background: rgba(5, 8, 20, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #e5e7eb;
+      border: 1px solid #d1d5db;
       overflow: hidden;
-      margin-bottom: 16px;
     }
 
     .mode-button {
@@ -65,7 +72,7 @@
       cursor: pointer;
       border: none;
       background: transparent;
-      color: #a5afc6;
+      color: #4b5563;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -73,8 +80,8 @@
     }
 
     .mode-button.active {
-      background: linear-gradient(135deg, #33c3ff, #7b5cff);
-      color: #fff;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #ffffff;
     }
 
     .grid {
@@ -90,29 +97,30 @@
     }
 
     .card {
-      background: radial-gradient(circle at top left, #202b4b 0, #11162b 40%, #080b18 100%);
+      background: #ffffff;
       border-radius: 18px;
       padding: 18px 16px 16px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
     }
 
     .card h2 {
       margin: 0 0 8px;
       font-size: 1.15rem;
+      color: #111827;
     }
 
     .card p {
       margin: 0 0 10px;
       font-size: 0.85rem;
-      color: #a5afc6;
+      color: #6b7280;
     }
 
     .section-label {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: #7f8bb0;
+      color: #9ca3af;
       margin-bottom: 4px;
     }
 
@@ -127,7 +135,7 @@
       display: block;
       font-size: 0.78rem;
       margin-bottom: 4px;
-      color: #a5afc6;
+      color: #4b5563;
     }
 
     input[type="number"],
@@ -135,17 +143,17 @@
       width: 100%;
       padding: 7px 9px;
       border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(5, 8, 20, 0.9);
-      color: #f5f7ff;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #111827;
       font-size: 0.85rem;
       outline: none;
     }
 
     input[type="number"]:focus,
     select:focus {
-      border-color: #33c3ff;
-      box-shadow: 0 0 0 1px rgba(51, 195, 255, 0.2);
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25);
     }
 
     .checkbox-row {
@@ -154,26 +162,26 @@
       gap: 8px;
       font-size: 0.8rem;
       margin: 6px 0 10px;
-      color: #a5afc6;
+      color: #4b5563;
     }
 
     button {
       border: none;
       border-radius: 999px;
       padding: 8px 18px;
-      background: linear-gradient(135deg, #33c3ff, #7b5cff);
-      color: #fff;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #ffffff;
       font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
     }
 
     button:hover {
-      filter: brightness(1.06);
+      filter: brightness(1.05);
       transform: translateY(-1px);
     }
 
@@ -193,8 +201,8 @@
       flex: 0 0 auto;
       padding: 9px 10px;
       border-radius: 14px;
-      background: rgba(5, 8, 20, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
       font-size: 0.8rem;
       min-width: 150px;
     }
@@ -202,7 +210,7 @@
     .result-pill span.label {
       display: block;
       font-size: 0.72rem;
-      color: #a5afc6;
+      color: #6b7280;
     }
 
     .result-pill span.value {
@@ -210,13 +218,15 @@
       margin-top: 2px;
       font-size: 0.95rem;
       font-weight: 600;
+      color: #111827;
     }
 
     .disclaimer {
       margin-top: 22px;
       font-size: 0.8rem;
-      color: #a5afc6;
+      color: #6b7280;
       line-height: 1.4;
+      text-align: center;
     }
 
     table {
@@ -227,14 +237,14 @@
     }
 
     thead {
-      background: rgba(8, 12, 30, 0.95);
+      background: #f3f4f6;
     }
 
     th,
     td {
       padding: 4px 5px;
       text-align: right;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid #e5e7eb;
     }
 
     th:first-child,
@@ -244,15 +254,15 @@
 
     th {
       font-weight: 600;
-      color: #a5afc6;
+      color: #6b7280;
     }
 
     tbody tr:nth-child(even) {
-      background: rgba(255, 255, 255, 0.01);
+      background: #f9fafb;
     }
 
     .error-text {
-      color: #ff4d6a;
+      color: #b91c1c;
       font-size: 0.78rem;
       margin-top: 4px;
     }
@@ -270,15 +280,15 @@
   <div class="page">
     <header>
       <div class="pill">MichiganMortgageCalculator.org</div>
-      <h1>Michigan Mortgage & Property Tax Calculator</h1>
-      <p>
-        2024 Michigan millage by county / local unit / school district. PRE vs non-PRE, with city vs township separated.
-      </p>
+      <h1>Michigan Mortgage Calculator</h1>
+      <p>Estimate your payment and property taxes in one place (taxable value assumed as 50% of home price).</p>
     </header>
 
     <div class="mode-toggle">
-      <button class="mode-button active" data-mode="basic">Basic Settings</button>
-      <button class="mode-button" data-mode="advanced">Advanced Settings</button>
+      <div class="mode-toggle-inner">
+        <button class="mode-button active" data-mode="basic">Basic Settings</button>
+        <button class="mode-button" data-mode="advanced">Advanced Settings</button>
+      </div>
     </div>
 
     <div class="grid">
@@ -286,9 +296,9 @@
       <div class="card">
         <div class="section-label">Mortgage</div>
         <h2>Monthly Payment</h2>
-        <p>Basic: mortgage + property tax. Advanced: add insurance and detail.</p>
+        <p>Basic: mortgage + property tax. Advanced: add insurance.</p>
 
-        <p><strong>Basic loan details</strong></p>
+        <p><strong>Home & loan details</strong></p>
         <div class="field-group">
           <div>
             <label for="homePriceInput">Home price</label>
@@ -313,39 +323,37 @@
         <p style="margin-top: 12px;"><strong>Property tax inputs</strong></p>
         <div class="field-group">
           <div>
-            <label for="taxableValue">Taxable value</label>
-            <input id="taxableValue" type="number" inputmode="decimal" placeholder="150000" />
-          </div>
-          <div>
             <label for="countySelect">County</label>
             <select id="countySelect">
               <option value="">Select county…</option>
             </select>
           </div>
-        </div>
-
-        <div class="field-group">
           <div>
             <label for="localUnitSelect">City / Township / Village</label>
             <select id="localUnitSelect" disabled>
               <option value="">Select local unit…</option>
             </select>
           </div>
+        </div>
+
+        <div class="field-group">
           <div>
             <label for="schoolSelect">School district</label>
             <select id="schoolSelect" disabled>
               <option value="">Select school district…</option>
             </select>
           </div>
-        </div>
-
-        <div class="checkbox-row">
-          <input id="preCheckbox" type="checkbox" checked />
-          <label for="preCheckbox" style="margin: 0;">Principal Residence Exemption (PRE) applies</label>
+          <div>
+            <label>&nbsp;</label>
+            <div class="checkbox-row">
+              <input id="preCheckbox" type="checkbox" checked />
+              <label for="preCheckbox" style="margin: 0;">PRE applies</label>
+            </div>
+          </div>
         </div>
 
         <!-- Advanced-only settings -->
-        <div class="advanced-only" style="margin-top: 10px;">
+        <div class="advanced-only" style="margin-top: 4px;">
           <p><strong>Advanced: extras</strong></p>
           <div class="field-group">
             <div>
@@ -388,7 +396,7 @@
         <h2>Amortization Schedule</h2>
         <p>Updates when you click “Calculate payment”.</p>
 
-        <div style="max-height: 380px; overflow: auto; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05);">
+        <div style="max-height: 380px; overflow: auto; border-radius: 10px; border: 1px solid #e5e7eb;">
           <table>
             <thead>
               <tr>
@@ -406,9 +414,9 @@
     </div>
 
     <div class="disclaimer">
-      <strong>Disclaimer:</strong> This is an estimate tool only. Millage values are loaded from a JSON
-      file built from 2024 Treasury county/local/school rates with city / township separation. Always
-      confirm with your assessor, treasurer, and lender before making decisions.
+      <strong>Disclaimer:</strong> This is an estimate tool only. Property tax is estimated using 2024 millage
+      rates by county / local unit / school district with PRE vs non-PRE and city vs township separated.
+      Taxable value is assumed to be 50% of home price. Always confirm with your assessor, treasurer, and lender.
     </div>
   </div>
 
@@ -416,6 +424,7 @@
     /****************************************************
      * Michigan Mortgage & Property Tax Calculator
      * Uses mi_millage_2024.json next to index.html
+     * Taxable value assumed = 50% of home price
      ****************************************************/
     let millageData = {};
 
@@ -437,7 +446,6 @@
         });
       });
 
-      // After wiring toggles, load data and wire calc
       loadMillageData();
       wireEvents();
     });
@@ -570,10 +578,10 @@
       const taxError = document.getElementById('taxError');
       if (taxError) taxError.textContent = '';
 
-      const tv = parseNumber('taxableValue');
       const taxDisplay = document.getElementById('taxResult');
       const millageDisplay = document.getElementById('millageResult');
 
+      const price = parseNumber('homePriceInput');
       const countyEl    = document.getElementById('countySelect');
       const localUnitEl = document.getElementById('localUnitSelect');
       const schoolEl    = document.getElementById('schoolSelect');
@@ -603,12 +611,14 @@
 
       if (millageDisplay) millageDisplay.textContent = millage.toFixed(4) + ' mills';
 
-      if (!tv) {
+      // taxable value = 50% of home price
+      if (!price) {
         if (taxDisplay) taxDisplay.textContent = '—';
         return { tax: 0, millage };
       }
 
-      const tax = (tv / 1000) * millage;
+      const taxableValue = price * 0.5;
+      const tax = (taxableValue / 1000) * millage;
 
       if (taxDisplay) taxDisplay.textContent = formatCurrency(tax);
 
@@ -732,13 +742,15 @@
         schoolSelect.addEventListener('change', () => calculatePropertyTax());
       }
 
-      ['preCheckbox', 'taxableValue'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.addEventListener('change', () => calculatePropertyTax());
-          el.addEventListener('input', () => calculatePropertyTax());
-        }
-      });
+      const preEl = document.getElementById('preCheckbox');
+      if (preEl) {
+        preEl.addEventListener('change', () => calculatePropertyTax());
+      }
+
+      const priceEl = document.getElementById('homePriceInput');
+      if (priceEl) {
+        priceEl.addEventListener('input', () => calculatePropertyTax());
+      }
     }
   </script>
 </body>
