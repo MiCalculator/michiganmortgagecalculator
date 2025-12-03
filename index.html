@@ -1,8 +1,9 @@
 <script>
   /****************************************************
-   * Michigan Mortgage + Property Tax Calculator
-   * Uses nested JSON: { County: { LocalUnit: { School: { homestead, nonhomestead } } } }
-   * Expects mi_millage_2024.json in the SAME folder as index.html
+   * Michigan Mortgage & Property Tax Calculator
+   * Uses mi_millage_2024.json:
+   * { County: { LocalUnit: { School: { homestead, nonhomestead }}}}
+   * JSON file must be next to index.html: /mi_millage_2024.json
    ****************************************************/
 
   let millageData = {};
@@ -135,7 +136,7 @@
     });
   }
 
-  // ========== PROPERTY TAX CALC (NO OVERRIDE) ==========
+  // ========== PROPERTY TAX CALC ==========
   function calculatePropertyTax() {
     const taxError = document.getElementById('taxError');
     if (taxError) taxError.textContent = '';
@@ -156,27 +157,28 @@
     const school    = schoolEl.value;
     const isPRE     = preEl ? preEl.checked : true;
 
+    // Require all three dropdowns
     if (!county || !localUnit || !school) {
-      if (taxError) taxError.textContent = 'Select county, local unit, and school district.';
       if (taxDisplay) taxDisplay.textContent = '—';
       if (millageDisplay) millageDisplay.textContent = '—';
+      if (taxError) taxError.textContent = 'Select county, local unit, and school district.';
       return;
     }
 
     const millage = getMillage({ county, localUnit, school, isPRE });
     if (millage == null) {
-      if (taxError) taxError.textContent = 'No millage found for this combination (check JSON values).';
       if (taxDisplay) taxDisplay.textContent = '—';
       if (millageDisplay) millageDisplay.textContent = '—';
+      if (taxError) taxError.textContent = 'No millage found for this combination.';
       return;
     }
 
-    // Always show millage once we have a valid combo
+    // Always show millage
     if (millageDisplay) {
       millageDisplay.textContent = millage.toFixed(4) + ' mills';
     }
 
-    // If no taxable value, just show millage and skip tax
+    // If no taxable value, just show millage
     if (!tv) {
       if (taxDisplay) taxDisplay.textContent = '—';
       return { tax: 0, millage };
@@ -211,11 +213,11 @@
     const monthlyPaymentOutput = document.getElementById('monthlyPaymentOutput');
     if (monthlyPaymentOutput) monthlyPaymentOutput.textContent = formatCurrency(monthlyPI);
 
-    // Get annual tax from millage-based calculation
+    // Tax from millage
     const taxResultObj = calculatePropertyTax();
     const annualTax = taxResultObj && taxResultObj.tax ? taxResultObj.tax : 0;
 
-    // Optional insurance only
+    // Optional insurance
     const annualInsurance = parseNumber('annualInsuranceInput');
     const monthlyTax = annualTax / 12;
     const monthlyIns = annualInsurance / 12;
