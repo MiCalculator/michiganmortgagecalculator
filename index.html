@@ -277,7 +277,8 @@
   </style>
 </head>
 <body>
-  <div class="page">
+  <!-- default advanced mode via mode-advanced class -->
+  <div class="page mode-advanced">
     <header>
       <div class="pill">MichiganMortgageCalculator.org</div>
       <h1>Michigan Mortgage Calculator</h1>
@@ -286,8 +287,8 @@
 
     <div class="mode-toggle">
       <div class="mode-toggle-inner">
-        <button class="mode-button active" data-mode="basic">Basic Settings</button>
-        <button class="mode-button" data-mode="advanced">Advanced Settings</button>
+        <button class="mode-button" data-mode="basic">Basic Settings</button>
+        <button class="mode-button active" data-mode="advanced">Advanced Settings</button>
       </div>
     </div>
 
@@ -296,7 +297,6 @@
       <div class="card">
         <div class="section-label">Mortgage</div>
         <h2>Monthly Payment</h2>
-        <p>Basic: mortgage + property tax. Advanced: add insurance.</p>
 
         <p><strong>Home & loan details</strong></p>
         <div class="field-group">
@@ -312,7 +312,7 @@
         <div class="field-group">
           <div>
             <label for="interestRateInput">Interest rate (annual %)</label>
-            <input id="interestRateInput" type="number" inputmode="decimal" placeholder="7.25" />
+            <input id="interestRateInput" type="number" inputmode="decimal" value="6.2" placeholder="6.2" />
           </div>
           <div>
             <label for="loanTermYearsInput">Loan term (years)</label>
@@ -358,14 +358,13 @@
           <div class="field-group">
             <div>
               <label for="annualInsuranceInput">Annual homeowners insurance (optional)</label>
-              <input id="annualInsuranceInput" type="number" inputmode="decimal" placeholder="900" />
+              <input id="annualInsuranceInput" type="number" inputmode="decimal" value="1200" placeholder="1200" />
             </div>
           </div>
         </div>
 
         <div style="margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap;">
           <button id="calculateButton" type="button">Calculate payment</button>
-          <button id="calculateTaxButton" type="button">Tax only</button>
         </div>
 
         <div class="results-row">
@@ -711,14 +710,6 @@
         });
       }
 
-      const taxBtn = document.getElementById('calculateTaxButton');
-      if (taxBtn) {
-        taxBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          calculatePropertyTax();
-        });
-      }
-
       const countySelect = document.getElementById('countySelect');
       const localUnitSelect = document.getElementById('localUnitSelect');
       const schoolSelect = document.getElementById('schoolSelect');
@@ -755,3 +746,4 @@
   </script>
 </body>
 </html>
+
