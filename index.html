@@ -4,6 +4,17 @@
   <meta charset="UTF-8" />
   <title>Michigan Mortgage & Property Tax Calculator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Analytics 4 -->
+  <!-- Replace G-XXXXXXXXXX with your GA4 Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -417,28 +428,20 @@
           </div>
         </div>
 
-        <!-- ADVANCED: Home Insurance -->
+        <!-- ADVANCED: Home Insurance + PMI inline -->
         <div class="advanced-only" style="margin-top: 4px;">
-          <p><strong>Home Insurance</strong></p>
           <div class="field-group">
             <div>
               <label for="annualInsuranceInput">Home insurance (annual)</label>
               <input id="annualInsuranceInput" type="number" inputmode="decimal" value="1200" placeholder="1200" />
             </div>
-          </div>
-        </div>
-
-        <!-- ADVANCED: PMI -->
-        <div class="advanced-only" style="margin-top: 4px;">
-          <p><strong>PMI</strong></p>
-          <div class="field-group">
             <div>
               <label for="pmiRateInput">PMI rate</label>
               <input id="pmiRateInput" type="number" inputmode="decimal" value="0.5" placeholder="0.5" />
             </div>
           </div>
           <p style="font-size:0.75rem; color:#6b7280; margin-top:2px;">
-            Applied when down payment is less than 20% of the home price.
+            PMI is applied when down payment is less than 20% of the home price.
           </p>
         </div>
 
@@ -501,6 +504,8 @@
       2024 Michigan millage rates by county / local unit / school district with PRE vs non-PRE. Taxable value is
       assumed to be 50% of home price. Always confirm numbers with your lender, assessor/treasurer, HOA, and
       insurance provider.
+      <br/><br/>
+      Contact us at <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a>.
     </div>
   </div>
 
