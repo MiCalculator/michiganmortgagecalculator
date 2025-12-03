@@ -358,23 +358,27 @@
           </div>
         </div>
 
-        <!-- BASIC: manual tax / HOA / PMI -->
+        <!-- BASIC: manual tax / insurance / HOA / PMI -->
         <div class="basic-only" style="margin-top: 10px;">
-          <p><strong>Taxes, HOA & PMI (manual)</strong></p>
+          <p><strong>Taxes, Insurance, HOA & PMI</strong></p>
           <div class="field-group">
             <div>
               <label for="basicTaxAnnualInput">Annual property tax (estimate)</label>
               <input id="basicTaxAnnualInput" type="number" inputmode="decimal" placeholder="3600" />
             </div>
             <div>
-              <label for="basicHoaMonthlyInput">HOA dues (monthly)</label>
-              <input id="basicHoaMonthlyInput" type="number" inputmode="decimal" placeholder="0" />
+              <label for="basicInsuranceAnnualInput">Home insurance (annual)</label>
+              <input id="basicInsuranceAnnualInput" type="number" inputmode="decimal" value="1200" placeholder="1200" />
             </div>
           </div>
           <div class="field-group">
             <div>
-              <label for="basicPmiMonthlyInput">PMI (monthly)</label>
-              <input id="basicPmiMonthlyInput" type="number" inputmode="decimal" placeholder="0" />
+              <label for="basicHoaMonthlyInput">HOA dues (monthly)</label>
+              <input id="basicHoaMonthlyInput" type="number" inputmode="decimal" placeholder="0" />
+            </div>
+            <div>
+              <label for="basicPmiAnnualInput">PMI (annual)</label>
+              <input id="basicPmiAnnualInput" type="number" inputmode="decimal" placeholder="0" />
             </div>
           </div>
         </div>
@@ -407,7 +411,7 @@
               <label>&nbsp;</label>
               <div class="checkbox-row">
                 <input id="preCheckbox" type="checkbox" checked />
-                <label for="preCheckbox" style="margin: 0;">PRE applies</label>
+                <label for="preCheckbox" style="margin: 0;">Primary residence (uncheck if rental or second home)</label>
               </div>
             </div>
           </div>
@@ -429,7 +433,7 @@
           <p><strong>PMI</strong></p>
           <div class="field-group">
             <div>
-              <label for="pmiRateInput">PMI rate (annual % of loan)</label>
+              <label for="pmiRateInput">PMI rate</label>
               <input id="pmiRateInput" type="number" inputmode="decimal" value="0.5" placeholder="0.5" />
             </div>
           </div>
@@ -537,9 +541,7 @@
           btn.classList.add("active");
           const mode = btn.dataset.mode;
           dpModeHidden.value = mode;
-          if (dpInput) {
-            dpInput.placeholder = mode === "percent" ? "20" : "60000";
-          }
+          if (dpInput) dpInput.placeholder = mode === "percent" ? "20" : "60000";
         });
       });
 
@@ -724,8 +726,8 @@
       const years = parseNumber("loanTermYearsInput");
 
       const principal = Math.max(price - down, 0);
-      const monthlyRate = rate > 0 ? (rate / 100) / 12 : 0;
       const nPayments = years * 12;
+      const monthlyRate = rate > 0 ? (rate / 100) / 12 : 0;
 
       let monthlyPI = 0;
       if (monthlyRate > 0 && nPayments > 0) {
@@ -748,7 +750,7 @@
       const millageResultSpan = document.getElementById("millageResult");
 
       if (isAdvanced) {
-        // Advanced: use JSON millage + insurance + auto PMI
+        // Advanced: JSON millage + insurance + PMI from rate
         const taxResultObj = calculatePropertyTaxAdvanced();
         const annualTax = taxResultObj && taxResultObj.tax ? taxResultObj.tax : 0;
         monthlyTax = annualTax / 12;
@@ -756,7 +758,7 @@
         const annualInsurance = parseNumber("annualInsuranceInput");
         monthlyIns = annualInsurance / 12;
 
-        const pmiRate = parseNumber("pmiRateInput");
+        const pmiRate = parseNumber("pmiRateInput"); // percent of loan, annual
         if (pmiRate > 0 && price > 0) {
           const ltv = price > 0 ? principal / price : 0;
           if (ltv > 0.8) {
@@ -766,14 +768,19 @@
         if (pmiMonthlyOutput) {
           pmiMonthlyOutput.textContent = monthlyPMI > 0 ? formatCurrency(monthlyPMI) : "—";
         }
-        // taxResult & millageResult already set inside calculatePropertyTaxAdvanced
+        // taxResult & millageResult already handled
       } else {
-        // Basic: manual tax, HOA, PMI
+        // Basic: manual annual tax, annual insurance, HOA monthly, annual PMI
         const annualTaxManual = parseNumber("basicTaxAnnualInput");
         monthlyTax = annualTaxManual / 12;
 
+        const annualInsBasic = parseNumber("basicInsuranceAnnualInput");
+        monthlyIns = annualInsBasic / 12;
+
         monthlyHOA = parseNumber("basicHoaMonthlyInput");
-        monthlyPMI = parseNumber("basicPmiMonthlyInput");
+
+        const annualPmiBasic = parseNumber("basicPmiAnnualInput");
+        monthlyPMI = annualPmiBasic / 12;
 
         if (taxResultSpan) {
           taxResultSpan.textContent = annualTaxManual ? formatCurrency(annualTaxManual) : "—";
@@ -848,7 +855,6 @@
       if (countySelect) {
         countySelect.addEventListener("change", () => {
           populateLocalUnits(countySelect.value);
-          // Only meaningful in advanced; harmless in basic
           calculatePropertyTaxAdvanced();
         });
       }
