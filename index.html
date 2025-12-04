@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Michigan Mortgage Calculator</title>
@@ -27,6 +29,327 @@
     gtag('js', new Date());
     gtag('config', 'G-6HLMW6NEJ4');
   </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f5f5f7;
+      color: #111827;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 4px 0 6px;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    header p {
+      margin: 0;
+      color: #4b5563;
+      font-size: 0.95rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 0.78rem;
+    }
+
+    .mode-toggle {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .mode-toggle-inner {
+      display: inline-flex;
+      border-radius: 999px;
+      background: #e5e7eb;
+      border: 1px solid #d1d5db;
+      overflow: hidden;
+    }
+
+    .mode-button {
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: #4b5563;
+      flex: 1 1 0;
+    }
+
+    .mode-button.active {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #ffffff;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 18px 16px 16px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+      color: #111827;
+    }
+
+    .card p {
+      margin: 0 0 10px;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .field-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.78rem;
+      margin-bottom: 4px;
+      color: #4b5563;
+    }
+
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 7px 9px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #111827;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    input[type="number"]:focus,
+    select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25);
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 8px 18px;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    }
+
+    .results-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .result-pill {
+      flex: 0 0 auto;
+      padding: 9px 10px;
+      border-radius: 14px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      font-size: 0.8rem;
+      min-width: 150px;
+    }
+
+    .result-pill span.label {
+      display: block;
+      font-size: 0.72rem;
+      color: #6b7280;
+    }
+
+    .result-pill span.value {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    /* Total Monthly Payment emphasis */
+    .result-pill.total-monthly span.label {
+      font-size: 0.75rem;
+      text-transform: none;
+      font-weight: 700;
+    }
+
+    .result-pill.total-monthly span.value {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .error-text {
+      color: #b91c1c;
+      font-size: 0.78rem;
+      margin-top: 4px;
+    }
+
+    .disclaimer {
+      margin-top: 22px;
+      font-size: 0.8rem;
+      color: #6b7280;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 0.76rem;
+    }
+
+    thead {
+      background: #f3f4f6;
+    }
+
+    th,
+    td {
+      padding: 4px 5px;
+      text-align: right;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+
+    th {
+      font-weight: 600;
+      color: #6b7280;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f9fafb;
+    }
+
+    /* Mode visibility */
+    .advanced-only {
+      display: none;
+    }
+
+    .basic-only {
+      display: none;
+    }
+
+    .mode-advanced .advanced-only {
+      display: block;
+    }
+
+    .mode-basic .basic-only {
+      display: block;
+    }
+
+    .mode-basic .advanced-only {
+      display: none;
+    }
+
+    /* Down payment $ / % toggle */
+    .dp-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dp-toggle {
+      display: inline-flex;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #e5e7eb;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .dp-mode-button {
+      border: none;
+      background: transparent;
+      padding: 4px 8px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      color: #4b5563;
+    }
+
+    .dp-mode-button.active {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    .small-note {
+      font-size: 0.65rem;
+      color: #6b7280;
+      margin-top: 2px;
+      opacity: 0.85;
+    }
+  </style>
+</head>
 <body>
   <div class="page mode-advanced">
     <header>
@@ -220,6 +543,7 @@
       Contact us at <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a>.
     </div>
   </div>
+
   <script>
     /****************************************************
      * Michigan Mortgage Calculator (2024 millage + PMMS)
