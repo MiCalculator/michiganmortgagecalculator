@@ -344,7 +344,7 @@
         <div class="section-label">Mortgage</div>
         <h2>Monthly Payment</h2>
 
-        <p><strong>Home & loan details</strong></p>
+        <p><strong>Home &amp; loan details</strong></p>
         <div class="field-group">
           <div>
             <label for="homePriceInput">Home price</label>
@@ -377,7 +377,7 @@
 
         <!-- BASIC: manual tax / insurance / HOA / PMI -->
         <div class="basic-only" style="margin-top: 10px;">
-          <p><strong>Taxes, Insurance, HOA & PMI</strong></p>
+          <p><strong>Taxes, Insurance, HOA &amp; PMI</strong></p>
           <div class="field-group">
             <div>
               <label for="basicTaxAnnualInput">Annual property tax (estimate)</label>
@@ -457,7 +457,7 @@
 
         <div class="results-row">
           <div class="result-pill">
-            <span class="label">Principal & interest</span>
+            <span class="label">Principal &amp; interest</span>
             <span class="value" id="monthlyPaymentOutput">—</span>
           </div>
           <div class="result-pill">
@@ -520,9 +520,9 @@
      * Michigan Mortgage Calculator (2024 millage + PMMS)
      ****************************************************/
     let millageData = {};
-    // PMMS defaults (fallback if fetch fails)
-    let pmms30yr = 6.23; // example fallback
-    let pmms15yr = 5.51; // example fallback
+    // PMMS defaults (fallback if pmms.json missing)
+    let pmms30yr = 6.23;
+    let pmms15yr = 5.51;
 
     document.addEventListener("DOMContentLoaded", () => {
       const page = document.querySelector(".page");
@@ -561,43 +561,41 @@
         });
       });
 
-      // Initial PMMS fetch + millage data
+      // Initialize PMMS and millage
       fetchPmmsRates();
       loadMillageData();
       wireEvents();
     });
 
-    /************** PMMS Integration (Freddie Mac) **************/
+    /************** PMMS Integration via pmms.json **************/
     async function fetchPmmsRates() {
       const pmmsNote = document.getElementById("pmmsNote");
+
       try {
-        // Try to fetch the PMMS HTML page and parse text for the latest averages.
-        const res = await fetch("https://www.freddiemac.com/pmms");
+        const res = await fetch("pmms.json?cache-bust=" + Date.now());
         if (!res.ok) {
           throw new Error("HTTP " + res.status);
         }
-        const text = await res.text();
 
-        // Look for phrases like:
-        // "The 30-year fixed-rate mortgage averaged 6.23% ..."
-        // "The 15-year fixed-rate mortgage averaged 5.51% ..."
-        const m30 = text.match(/30-year fixed-rate mortgage averaged\s+([\d.]+)%/i);
-        const m15 = text.match(/15-year fixed-rate mortgage averaged\s+([\d.]+)%/i);
+        const data = await res.json();
 
-        if (m30 && m30[1]) pmms30yr = parseFloat(m30[1]);
-        if (m15 && m15[1]) pmms15yr = parseFloat(m15[1]);
+        if (typeof data.pmms30yr === "number") pmms30yr = data.pmms30yr;
+        if (typeof data.pmms15yr === "number") pmms15yr = data.pmms15yr;
 
         applyPmmsDefaults();
+
         if (pmmsNote) {
           pmmsNote.textContent =
             "Using latest Freddie Mac PMMS averages (national): 30-year " +
             pmms30yr.toFixed(2) + "%, 15-year " + pmms15yr.toFixed(2) + "%.";
         }
-        console.log("PMMS rates loaded from freddiemac.com:", pmms30yr, pmms15yr);
+
+        console.log("PMMS rates from pmms.json:", pmms30yr, pmms15yr);
       } catch (err) {
-        console.error("Could not load PMMS from freddiemac.com (likely CORS). Using fallback defaults.", err);
-        // Apply fallback values
+        console.error("Could not load pmms.json. Using fallback defaults.", err);
+
         applyPmmsDefaults();
+
         if (pmmsNote) {
           pmmsNote.textContent =
             "Using fallback defaults based on recent Freddie Mac PMMS (national): 30-year " +
@@ -611,7 +609,6 @@
       const rateEl = document.getElementById("interestRateInput");
       if (!rateEl) return;
 
-      // If no term typed yet, assume 30-year for default
       let term = termEl && termEl.value ? parseInt(termEl.value, 10) : 30;
       if (!termEl || !termEl.value) {
         if (termEl) termEl.value = term;
@@ -794,7 +791,6 @@
       const page = document.querySelector(".page");
       const isAdvanced = page && page.classList.contains("mode-advanced");
 
-      // Core mortgage (both modes)
       const price = parseNumber("homePriceInput");
 
       const dpModeEl = document.getElementById("downPaymentMode");
@@ -830,7 +826,6 @@
       const millageResultSpan = document.getElementById("millageResult");
 
       if (isAdvanced) {
-        // Advanced: JSON millage + insurance + PMI from rate
         const taxResultObj = calculatePropertyTaxAdvanced();
         const annualTax = taxResultObj && taxResultObj.tax ? taxResultObj.tax : 0;
         monthlyTax = annualTax / 12;
@@ -838,7 +833,7 @@
         const annualInsurance = parseNumber("annualInsuranceInput");
         monthlyIns = annualInsurance / 12;
 
-        const pmiRate = parseNumber("pmiRateInput"); // percent of loan, annual
+        const pmiRate = parseNumber("pmiRateInput");
         if (pmiRate > 0 && price > 0) {
           const ltv = price > 0 ? principal / price : 0;
           if (ltv > 0.8) {
@@ -848,9 +843,7 @@
         if (pmiMonthlyOutput) {
           pmiMonthlyOutput.textContent = monthlyPMI > 0 ? formatCurrency(monthlyPMI) : "—";
         }
-        // taxResult & millageResult handled above
       } else {
-        // Basic: manual annual tax, annual insurance, HOA monthly, annual PMI
         const annualTaxManual = parseNumber("basicTaxAnnualInput");
         monthlyTax = annualTaxManual / 12;
 
@@ -959,7 +952,6 @@
 
       if (termEl) {
         termEl.addEventListener("input", () => {
-          // When user sets term, adjust rate to PMMS 15 vs 30 bucket
           const rateEl = document.getElementById("interestRateInput");
           if (!rateEl) return;
           const term = parseInt(termEl.value || "30", 10);
@@ -972,7 +964,6 @@
         });
       }
 
-      // Auto-calc on key numeric fields
       const autoFields = [
         "homePriceInput",
         "downPaymentInput",
@@ -989,7 +980,6 @@
       autoFields.forEach(id => {
         const el = document.getElementById(id);
         if (el && id !== "loanTermYearsInput") {
-          // term field already has its own logic above
           el.addEventListener("input", () => calculateMortgage());
         }
       });
@@ -997,3 +987,4 @@
   </script>
 </body>
 </html>
+
