@@ -314,6 +314,12 @@
       background: #2563eb;
       color: #ffffff;
     }
+
+    .small-note {
+      font-size: 0.72rem;
+      color: #6b7280;
+      margin-top: 2px;
+    }
   </style>
 </head>
 <body>
@@ -360,7 +366,8 @@
         <div class="field-group">
           <div>
             <label for="interestRateInput">Interest rate (annual %)</label>
-            <input id="interestRateInput" type="number" inputmode="decimal" value="6.2" placeholder="6.2" />
+            <input id="interestRateInput" type="number" inputmode="decimal" placeholder="6.2" />
+            <div id="pmmsNote" class="small-note"></div>
           </div>
           <div>
             <label for="loanTermYearsInput">Loan term (years)</label>
@@ -510,9 +517,12 @@
 
   <script>
     /****************************************************
-     * Michigan Mortgage Calculator (2024 millage)
+     * Michigan Mortgage Calculator (2024 millage + PMMS)
      ****************************************************/
     let millageData = {};
+    // PMMS defaults (fallback if fetch fails)
+    let pmms30yr = 6.23; // example fallback
+    let pmms15yr = 5.51; // example fallback
 
     document.addEventListener("DOMContentLoaded", () => {
       const page = document.querySelector(".page");
@@ -551,10 +561,72 @@
         });
       });
 
+      // Initial PMMS fetch + millage data
+      fetchPmmsRates();
       loadMillageData();
       wireEvents();
     });
 
+    /************** PMMS Integration (Freddie Mac) **************/
+    async function fetchPmmsRates() {
+      const pmmsNote = document.getElementById("pmmsNote");
+      try {
+        // Try to fetch the PMMS HTML page and parse text for the latest averages.
+        const res = await fetch("https://www.freddiemac.com/pmms");
+        if (!res.ok) {
+          throw new Error("HTTP " + res.status);
+        }
+        const text = await res.text();
+
+        // Look for phrases like:
+        // "The 30-year fixed-rate mortgage averaged 6.23% ..."
+        // "The 15-year fixed-rate mortgage averaged 5.51% ..."
+        const m30 = text.match(/30-year fixed-rate mortgage averaged\s+([\d.]+)%/i);
+        const m15 = text.match(/15-year fixed-rate mortgage averaged\s+([\d.]+)%/i);
+
+        if (m30 && m30[1]) pmms30yr = parseFloat(m30[1]);
+        if (m15 && m15[1]) pmms15yr = parseFloat(m15[1]);
+
+        applyPmmsDefaults();
+        if (pmmsNote) {
+          pmmsNote.textContent =
+            "Using latest Freddie Mac PMMS averages (national): 30-year " +
+            pmms30yr.toFixed(2) + "%, 15-year " + pmms15yr.toFixed(2) + "%.";
+        }
+        console.log("PMMS rates loaded from freddiemac.com:", pmms30yr, pmms15yr);
+      } catch (err) {
+        console.error("Could not load PMMS from freddiemac.com (likely CORS). Using fallback defaults.", err);
+        // Apply fallback values
+        applyPmmsDefaults();
+        if (pmmsNote) {
+          pmmsNote.textContent =
+            "Using fallback defaults based on recent Freddie Mac PMMS (national): 30-year " +
+            pmms30yr.toFixed(2) + "%, 15-year " + pmms15yr.toFixed(2) + "%.";
+        }
+      }
+    }
+
+    function applyPmmsDefaults() {
+      const termEl = document.getElementById("loanTermYearsInput");
+      const rateEl = document.getElementById("interestRateInput");
+      if (!rateEl) return;
+
+      // If no term typed yet, assume 30-year for default
+      let term = termEl && termEl.value ? parseInt(termEl.value, 10) : 30;
+      if (!termEl || !termEl.value) {
+        if (termEl) termEl.value = term;
+      }
+
+      if (term <= 20) {
+        rateEl.value = pmms15yr.toFixed(2);
+      } else {
+        rateEl.value = pmms30yr.toFixed(2);
+      }
+
+      calculateMortgage();
+    }
+
+    /************** Millage JSON loading **************/
     async function loadMillageData() {
       try {
         const res = await fetch("mi_millage_2024.json");
@@ -860,6 +932,7 @@
       const localUnitSelect = document.getElementById("localUnitSelect");
       const schoolSelect = document.getElementById("schoolSelect");
       const preEl = document.getElementById("preCheckbox");
+      const termEl = document.getElementById("loanTermYearsInput");
 
       if (countySelect) {
         countySelect.addEventListener("change", () => {
@@ -884,6 +957,21 @@
         preEl.addEventListener("change", () => calculateMortgage());
       }
 
+      if (termEl) {
+        termEl.addEventListener("input", () => {
+          // When user sets term, adjust rate to PMMS 15 vs 30 bucket
+          const rateEl = document.getElementById("interestRateInput");
+          if (!rateEl) return;
+          const term = parseInt(termEl.value || "30", 10);
+          if (term <= 20) {
+            rateEl.value = pmms15yr.toFixed(2);
+          } else {
+            rateEl.value = pmms30yr.toFixed(2);
+          }
+          calculateMortgage();
+        });
+      }
+
       // Auto-calc on key numeric fields
       const autoFields = [
         "homePriceInput",
@@ -900,7 +988,8 @@
 
       autoFields.forEach(id => {
         const el = document.getElementById(id);
-        if (el) {
+        if (el && id !== "loanTermYearsInput") {
+          // term field already has its own logic above
           el.addEventListener("input", () => calculateMortgage());
         }
       });
