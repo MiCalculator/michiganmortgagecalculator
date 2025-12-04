@@ -22,6 +22,16 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Show directory layout (debug)
+        run: |
+          pwd
+          echo "== ROOT =="
+          ls
+          echo "== .github =="
+          ls .github || echo ".github missing"
+          echo "== .github/scripts =="
+          ls .github/scripts || echo ".github/scripts missing"
+
       - name: Fetch PMMS and update JSON
         run: |
           python .github/scripts/update_pmms.py
