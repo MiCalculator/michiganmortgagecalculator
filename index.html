@@ -379,18 +379,20 @@
         <div class="field-group">
           <div>
             <label for="homePriceInput">Home price</label>
-            <input id="homePriceInput" type="number" placeholder="300000" />
+            <!-- Default 300k -->
+            <input id="homePriceInput" type="number" value="300000" />
           </div>
 
           <div>
             <label for="downPaymentInput">Down payment</label>
             <div class="dp-row">
-              <input id="downPaymentInput" type="number" placeholder="60000" />
+              <!-- Default 20 and % mode -->
+              <input id="downPaymentInput" type="number" value="20" />
               <div class="dp-toggle">
-                <button type="button" class="dp-mode-button active" data-mode="dollar">$</button>
-                <button type="button" class="dp-mode-button" data-mode="percent">%</button>
+                <button type="button" class="dp-mode-button" data-mode="dollar">$</button>
+                <button type="button" class="dp-mode-button active" data-mode="percent">%</button>
               </div>
-              <input type="hidden" id="downPaymentMode" value="dollar" />
+              <input type="hidden" id="downPaymentMode" value="percent" />
             </div>
           </div>
         </div>
