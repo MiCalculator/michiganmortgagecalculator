@@ -355,11 +355,11 @@
       display: none;
     }
 
-    /* Down payment $ / % toggle */
+    /* Down payment $ / % toggle - bigger */
     .dp-row {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .dp-toggle {
@@ -369,13 +369,14 @@
       background: #e5e7eb;
       overflow: hidden;
       flex-shrink: 0;
+      padding: 2px;
     }
 
     .dp-mode-button {
       border: none;
       background: transparent;
-      padding: 4px 8px;
-      font-size: 0.75rem;
+      padding: 6px 12px;
+      font-size: 0.9rem;
       cursor: pointer;
       color: #4b5563;
     }
@@ -441,7 +442,13 @@
           </div>
           <div>
             <label for="loanTermYearsInput">Loan term (years)</label>
-            <input id="loanTermYearsInput" type="number" inputmode="decimal" placeholder="30" />
+            <select id="loanTermYearsInput">
+              <option value="30" selected>30</option>
+              <option value="25">25</option>
+              <option value="20">20</option>
+              <option value="15">15</option>
+              <option value="10">10</option>
+            </select>
           </div>
         </div>
 
@@ -523,9 +530,7 @@
           </p>
         </div>
 
-        <div style="margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap;">
-          <button id="calculateButton" type="button">Calculate payment</button>
-        </div>
+        <!-- No calculate button: full auto -->
 
         <div class="results-row">
           <div class="result-pill">
@@ -685,7 +690,7 @@
 
       let term = termEl && termEl.value ? parseInt(termEl.value, 10) : 30;
 
-      if (!termEl.value) termEl.value = term;
+      if (!termEl.value) termEl.value = "30";
 
       if (term <= 20) {
         rateEl.value = pmms15yr.toFixed(2);
@@ -968,9 +973,6 @@
 
     /************** Auto-calc event wiring **************/
     function wireEvents() {
-      document.getElementById("calculateButton")
-        .addEventListener("click", calculateMortgage);
-
       document.getElementById("countySelect")
         .addEventListener("change", () => {
           populateLocalUnits(document.getElementById("countySelect").value);
@@ -991,7 +993,7 @@
         .addEventListener("change", calculateMortgage);
 
       document.getElementById("loanTermYearsInput")
-        .addEventListener("input", () => {
+        .addEventListener("change", () => {
           const term = parseInt(
             document.getElementById("loanTermYearsInput").value || "30",
             10
