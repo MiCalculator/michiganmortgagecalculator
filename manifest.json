@@ -1,0 +1,15 @@
+{
+  "name": "Michigan Mortgage Calculator",
+  "short_name": "MI Mortgage Calc",
+  "icons": [
+    {
+      "src": "michigan-mortgage-calculator-thumbnail.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb"
+}
