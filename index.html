@@ -187,6 +187,13 @@
       background: #2563eb;
       color: #fff;
     }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
     .results-row {
       display: flex;
       flex-wrap: wrap;
@@ -457,6 +464,18 @@
     let millageData = {};
     let pmmsRates = { "30-year": 6.23, "15-year": 5.51 };
 
+    /* Helper to strip junk disclaimer/page lines from JSON keys */
+    function isNoiseLabel(name) {
+      if (!name) return true;
+      const lower = name.toLowerCase().trim();
+      if (!lower) return true;
+      if (lower.includes("see the disclaimers")) return true;
+      if (lower.includes("disclaimer")) return true;
+      if (lower.startsWith("page ")) return true;
+      if (lower.includes(" page ") && lower.includes(" of ")) return true;
+      return false;
+    }
+
     /* ---------------------------
        LOAD MILLAGE JSON
     --------------------------- */
@@ -471,11 +490,15 @@
     function populateCountySelect() {
       const sel = document.getElementById("countySelect");
       sel.innerHTML = '<option value="">Select county…</option>';
-      Object.keys(millageData).sort().forEach(c => {
-        const o = document.createElement("option");
-        o.value = c; o.textContent = c;
-        sel.appendChild(o);
-      });
+      Object.keys(millageData)
+        .filter(c => !isNoiseLabel(c))
+        .sort()
+        .forEach(c => {
+          const o = document.createElement("option");
+          o.value = c;
+          o.textContent = c;
+          sel.appendChild(o);
+        });
     }
 
     function populateLocalUnits(county) {
@@ -483,32 +506,48 @@
       const schoolSel = document.getElementById("schoolSelect");
       sel.innerHTML = '<option value="">Select local unit…</option>';
       schoolSel.innerHTML = '<option value="">Select school district…</option>';
-      sel.disabled = !county; schoolSel.disabled = true;
-      if (!county) return;
-      Object.keys(millageData[county]).sort().forEach(lu => {
-        const o = document.createElement("option");
-        o.value = o.textContent = lu;
-        sel.appendChild(o);
-      });
+      sel.disabled = !county;
+      schoolSel.disabled = true;
+
+      if (!county || !millageData[county]) return;
+
+      Object.keys(millageData[county])
+        .filter(lu => !isNoiseLabel(lu))
+        .sort()
+        .forEach(lu => {
+          const o = document.createElement("option");
+          o.value = lu;
+          o.textContent = lu;
+          sel.appendChild(o);
+        });
     }
 
     function populateSchools(county, localUnit) {
       const sel = document.getElementById("schoolSelect");
       sel.innerHTML = '<option value="">Select school district…</option>';
       sel.disabled = !(county && localUnit);
+
       if (!(county && localUnit)) return;
-      Object.keys(millageData[county][localUnit]).sort().forEach(s => {
-        const o = document.createElement("option");
-        o.value = o.textContent = s;
-        sel.appendChild(o);
-      });
+      if (!millageData[county] || !millageData[county][localUnit]) return;
+
+      Object.keys(millageData[county][localUnit])
+        .filter(s => !isNoiseLabel(s))
+        .sort()
+        .forEach(s => {
+          const o = document.createElement("option");
+          o.value = s;
+          o.textContent = s;
+          sel.appendChild(o);
+        });
     }
 
     function getMillageRate(county, lu, school, isPRE) {
       try {
         const m = millageData[county][lu][school];
         return isPRE ? m.homestead : m.nonhomestead;
-      } catch { return null; }
+      } catch {
+        return null;
+      }
     }
 
     /* ---------------------------
@@ -585,7 +624,7 @@
         const s = document.getElementById("schoolSelect").value;
         const pre = document.getElementById("preCheckbox").checked;
 
-        const mill = getMillageRate(c, lu, s, pre);
+        const mill = c && lu && s ? getMillageRate(c, lu, s, pre) : null;
         if (mill != null) {
           millageUsed = mill.toFixed(4) + " mills";
           taxAnnual = 0.5 * homePrice * (mill / 1000);
