@@ -44,6 +44,20 @@
     a { color:#2563eb; text-decoration:none; }
     a:hover { text-decoration: underline; }
     .muted { font-size: 0.85rem; color:#6b7280; }
+
+    .consent-row {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.88rem;
+      color: #374151;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 10px 12px;
+      border-radius: 12px;
+    }
+    .consent-row input { width: auto; margin-top: 3px; }
   </style>
 </head>
 <body>
@@ -102,6 +116,17 @@
         <label for="notes">Notes (optional)</label>
         <textarea id="notes" placeholder="VA/FHA/Conventional, credit range, preferred area, etc."></textarea>
 
+        <div class="consent-row">
+          <input id="consent" type="checkbox" required />
+          <div>
+            <div><strong>I agree to be contacted.</strong></div>
+            <div class="muted">
+              By submitting, you consent to be contacted by phone/text/email about mortgage options and related services.
+              See our <a href="/privacy.html">Privacy Policy</a>.
+            </div>
+          </div>
+        </div>
+
         <button class="btn" type="submit">Send Request</button>
       </form>
 
@@ -113,6 +138,7 @@
       <div class="links">
         <a href="/">← Back to Calculator</a>
         <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy Policy</a>
         <a href="/realtor.html">Need a realtor instead?</a>
       </div>
     </div>
@@ -121,6 +147,9 @@
   <script>
     document.getElementById("leadForm").addEventListener("submit", (e) => {
       e.preventDefault();
+
+      const consent = document.getElementById("consent").checked;
+      if (!consent) return;
 
       const name = document.getElementById("name").value.trim();
       const phone = document.getElementById("phone").value.trim();
@@ -132,12 +161,16 @@
 
       const subject = encodeURIComponent("Lender Connection Request");
       const body = encodeURIComponent(
-`Name: ${name}
+`LENDER CONNECTION REQUEST
+
+Name: ${name}
 Phone: ${phone}
 Email: ${email || "(not provided)"}
 Timeline: ${timeline}
 Target Price: ${price || "(not provided)"}
 Down Payment: ${down || "(not provided)"}
+
+Consent: YES (user checked consent box on site)
 
 Notes:
 ${notes || "(none)"}
