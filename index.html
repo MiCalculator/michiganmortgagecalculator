@@ -93,7 +93,7 @@
       font-size: 0.95rem;
     }
 
-    /* Top links with | separators */
+    /* Top links with | separators (NO PRIVACY HERE) */
     .top-links {
       margin-top: 10px;
       font-size: 0.9rem;
@@ -196,10 +196,7 @@
       flex-wrap: nowrap;
       min-width: 0;
     }
-    #downPaymentInput {
-      flex: 1 1 auto;
-      min-width: 0;
-    }
+    #downPaymentInput { flex: 1 1 auto; min-width: 0; }
     .dp-toggle {
       flex: 0 0 auto;
       display: inline-flex;
@@ -318,19 +315,19 @@
       <h1>Michigan Mortgage Calculator</h1>
       <p>Estimate your complete Michigan mortgage payment and property taxes instantly.</p>
 
+      <!-- Privacy removed from header -->
       <div class="top-links">
         <a href="/lender.html">Connect with a lender</a><span class="sep">|</span>
         <a href="/realtor.html">Connect with a realtor</a><span class="sep">|</span>
         <a href="/contact.html">Contact Us</a><span class="sep">|</span>
-        <a href="#glossary">Glossary</a><span class="sep">|</span>
-        <a href="/privacy.html">Privacy</a>
+        <a href="#glossary">Glossary</a>
       </div>
     </header>
 
     <div class="mode-toggle">
       <div class="mode-toggle-inner">
-        <button class="mode-button" data-mode="basic">Basic Settings</button>
-        <button class="mode-button active" data-mode="advanced">Advanced Settings</button>
+        <button class="mode-button" data-mode="basic" type="button">Basic Settings</button>
+        <button class="mode-button active" data-mode="advanced" type="button">Advanced Settings</button>
       </div>
     </div>
 
@@ -570,6 +567,8 @@
       <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a>
       <span class="sep">|</span>
       <a href="tel:16162059531">616-205-9531</a>
+      <span class="sep">|</span>
+      <a href="/privacy.html">Privacy Policy</a>
     </div>
   </div>
 
@@ -760,13 +759,8 @@
     }
 
     function clearOutputs() {
-      [
-        "monthlyPaymentOutput",
-        "taxResult",
-        "millageResult",
-        "pmiMonthlyOutput",
-        "totalMonthlyOutput"
-      ].forEach(id => document.getElementById(id).textContent = "—");
+      ["monthlyPaymentOutput","taxResult","millageResult","pmiMonthlyOutput","totalMonthlyOutput"]
+        .forEach(id => document.getElementById(id).textContent = "—");
       document.getElementById("amortizationBody").innerHTML = "";
     }
 
@@ -776,7 +770,6 @@
       if (!principal || !payment) return;
 
       let balance = principal;
-
       for (let i = 1; i <= months; i++) {
         const interest = balance * mRate;
         const principalPaid = payment - interest;
@@ -827,16 +820,9 @@
     });
 
     [
-      "homePriceInput",
-      "downPaymentInput",
-      "interestRateInput",
-      "loanTermYearsInput",
-      "basicTaxAnnualInput",
-      "basicInsuranceAnnualInput",
-      "basicHoaMonthlyInput",
-      "basicPmiAnnualInput",
-      "annualInsuranceInput",
-      "pmiRateInput"
+      "homePriceInput","downPaymentInput","interestRateInput","loanTermYearsInput",
+      "basicTaxAnnualInput","basicInsuranceAnnualInput","basicHoaMonthlyInput","basicPmiAnnualInput",
+      "annualInsuranceInput","pmiRateInput"
     ].forEach(id => {
       const e = document.getElementById(id);
       if (!e) return;
@@ -870,3 +856,4 @@
   </script>
 </body>
 </html>
+
