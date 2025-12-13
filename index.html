@@ -5,36 +5,25 @@
   <title>Michigan Mortgage Calculator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Canonical URL -->
   <link rel="canonical" href="https://michiganmortgagecalculator.org/" />
-
-  <!-- SEO Description (no explicit 2024 mention) -->
   <meta name="description" content="Michigan Mortgage Calculator with accurate Michigan millage-based property taxes, PMI, insurance, and full amortization." />
-
-  <!-- Keywords (no explicit 2024 mention) -->
   <meta name="keywords" content="Michigan mortgage calculator, Michigan property tax calculator, millage rates, Michigan taxes, PMI calculator Michigan" />
-
-  <!-- Google Search Console Verification -->
   <meta name="google-site-verification" content="uJ4hk7yJuv8LHqrCEiFtQOGfmhZ7CqYCpsd8QdF_f1c" />
 
-  <!-- Favicons -->
   <link rel="icon" href="/michigan-mortgage-calculator-thumbnail.png" sizes="192x192" type="image/png" />
   <link rel="apple-touch-icon" href="/michigan-mortgage-calculator-thumbnail.png" />
 
-  <!-- OpenGraph (no explicit 2024 mention) -->
   <meta property="og:title" content="Michigan Mortgage Calculator" />
   <meta property="og:description" content="Instant Michigan mortgage payments and millage-based property tax estimates." />
   <meta property="og:image" content="https://michiganmortgagecalculator.org/michigan-mortgage-calculator-thumbnail.png" />
   <meta property="og:url" content="https://michiganmortgagecalculator.org/" />
   <meta property="og:type" content="website" />
 
-  <!-- Twitter Card (no explicit 2024 mention) -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Michigan Mortgage Calculator" />
   <meta name="twitter:description" content="Instant Michigan mortgage payments with Michigan millage tax lookup." />
   <meta name="twitter:image" content="https://michiganmortgagecalculator.org/michigan-mortgage-calculator-thumbnail.png" />
 
-  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,7 +34,6 @@
   }
   </script>
 
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HLMW6NEJ4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -55,205 +43,96 @@
   </script>
 
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-    }
-    body {
-      margin: 0;
-      background: #f5f5f7;
-      color: #111827;
-    }
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px 16px 48px;
-    }
-    header {
-      margin-bottom: 16px;
-      text-align: center;
-    }
-    .pill {
-      display: inline-flex;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #e0f2fe;
-      color: #0369a1;
-      font-size: 0.78rem;
-    }
-    h1 {
-      margin: 4px 0 6px;
-      font-size: 2rem;
-      font-weight: 700;
-    }
-    header p {
-      margin: 0;
-      color: #4b5563;
-      font-size: 0.95rem;
-    }
-    .mode-toggle {
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif; }
+    body { margin: 0; background: #f5f5f7; color: #111827; }
+    .page { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+    header { margin-bottom: 16px; text-align: center; }
+    .pill { display: inline-flex; padding: 4px 10px; border-radius: 999px; background: #e0f2fe; color: #0369a1; font-size: 0.78rem; }
+    h1 { margin: 4px 0 6px; font-size: 2rem; font-weight: 700; }
+    header p { margin: 0; color: #4b5563; font-size: 0.95rem; }
+
+    .top-links {
+      margin-top: 10px;
       display: flex;
       justify-content: center;
-      margin-bottom: 16px;
-    }
-    .mode-toggle-inner {
-      display: inline-flex;
-      border-radius: 999px;
-      background: #e5e7eb;
-      border: 1px solid #d1d5db;
-      overflow: hidden;
-    }
-    .mode-button {
-      padding: 6px 14px;
-      font-size: 0.8rem;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      color: #4b5563;
-    }
-    .mode-button.active {
-      background: linear-gradient(135deg, #2563eb, #4f46e5);
-      color: #fff;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 20px;
-    }
-    @media (max-width: 900px) {
-      .grid { grid-template-columns: 1fr; }
-    }
-    .card {
-      background: white;
-      border-radius: 18px;
-      padding: 18px 16px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-      border: 1px solid #e5e7eb;
-    }
-    .section-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      color: #9ca3af;
-      margin-bottom: 4px;
-    }
-    .field-group {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    label {
-      font-size: 0.78rem;
-      margin-bottom: 4px;
-      color: #4b5563;
-      display: block;
-    }
-    input[type="number"], select {
-      width: 100%;
-      padding: 7px 9px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      background: #fff;
+      gap: 14px;
+      flex-wrap: wrap;
       font-size: 0.85rem;
-      color: #111827;
     }
-    input[type="number"]:focus, select:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
-      outline: none;
+    .top-links a { color: #2563eb; text-decoration: none; }
+    .top-links a:hover { text-decoration: underline; }
+
+    .mode-toggle { display: flex; justify-content: center; margin-bottom: 16px; }
+    .mode-toggle-inner { display: inline-flex; border-radius: 999px; background: #e5e7eb; border: 1px solid #d1d5db; overflow: hidden; }
+    .mode-button { padding: 6px 14px; font-size: 0.8rem; border: none; background: transparent; cursor: pointer; color: #4b5563; }
+    .mode-button.active { background: linear-gradient(135deg, #2563eb, #4f46e5); color: #fff; }
+
+    .grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 20px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+    .card { background: white; border-radius: 18px; padding: 18px 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); border: 1px solid #e5e7eb; }
+    .section-label { font-size: 0.78rem; text-transform: uppercase; color: #9ca3af; margin-bottom: 4px; }
+    .field-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 10px; margin-bottom: 10px; }
+    label { font-size: 0.78rem; margin-bottom: 4px; color: #4b5563; display: block; }
+
+    input[type="number"], select {
+      width: 100%; padding: 7px 9px; border: 1px solid #d1d5db; border-radius: 10px; background: #fff;
+      font-size: 0.85rem; color: #111827;
     }
+    input[type="number"]:focus, select:focus { border-color: #2563eb; box-shadow: 0 0 0 1px rgba(37,99,235,0.25); outline: none; }
+
+    /* ---- Down payment row (fix cut-off) ---- */
     .dp-row {
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-wrap: nowrap;
+      min-width: 0;
     }
+    #downPaymentInput { flex: 1 1 auto; min-width: 0; }
     .dp-toggle {
+      flex: 0 0 auto;
       display: inline-flex;
       border: 1px solid #d1d5db;
       background: #e5e7eb;
       border-radius: 999px;
       overflow: hidden;
+      min-width: 74px; /* guarantees room for $ and % */
     }
     .dp-mode-button {
-      padding: 6px 12px;
+      width: 36px;       /* consistent pill button width */
+      padding: 6px 0;    /* prevent clipping */
       border: none;
       background: transparent;
       cursor: pointer;
-      font-size: 0.9rem;
-      color: #4b5563;
-    }
-    .dp-mode-button.active {
-      background: #2563eb;
-      color: #fff;
-    }
-    .checkbox-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.8rem;
-      color: #4b5563;
-    }
-    .results-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 10px;
-    }
-    .result-pill {
-      padding: 9px 10px;
-      background: #f3f4f6;
-      border: 1px solid #e5e7eb;
-      border-radius: 14px;
-      min-width: 150px;
-    }
-    .result-pill .label {
-      font-size: 0.72rem;
-      color: #6b7280;
-      display: block;
-    }
-    .result-pill .value {
-      margin-top: 2px;
       font-size: 0.95rem;
-      font-weight: 600;
+      line-height: 1;
+      color: #4b5563;
+      text-align: center;
+      flex: 0 0 auto;
     }
-    .result-pill.total-monthly .value {
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.76rem;
-    }
-    thead {
-      background: #f3f4f6;
-    }
-    th, td {
-      padding: 4px 5px;
-      border-bottom: 1px solid #e5e7eb;
-      text-align: right;
-    }
-    th:first-child, td:first-child {
-      text-align: left;
-    }
-    tbody tr:nth-child(even) {
-      background: #f9fafb;
-    }
-    .basic-only, .advanced-only {
-      display: none;
-    }
+    .dp-mode-button.active { background: #2563eb; color: #fff; }
+
+    .checkbox-row { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: #4b5563; }
+    .results-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+
+    .result-pill { padding: 9px 10px; background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 14px; min-width: 150px; }
+    .result-pill .label { font-size: 0.72rem; color: #6b7280; display: block; }
+    .result-pill .value { margin-top: 2px; font-size: 0.95rem; font-weight: 600; }
+    .result-pill.total-monthly .value { font-size: 1.1rem; font-weight: 700; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
+    thead { background: #f3f4f6; }
+    th, td { padding: 4px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; }
+    th:first-child, td:first-child { text-align: left; }
+    tbody tr:nth-child(even) { background: #f9fafb; }
+
+    .basic-only, .advanced-only { display: none; }
     .page.mode-basic .basic-only { display: block; }
     .page.mode-advanced .advanced-only { display: block; }
 
-    .disclaimer {
-      margin-top: 22px;
-      font-size: 0.8rem;
-      color: #6b7280;
-      text-align: center;
-    }
+    .disclaimer { margin-top: 22px; font-size: 0.8rem; color: #6b7280; text-align: center; }
 
-    /* Smaller, italic PMMS note under rate */
     .small-note {
       font-size: 0.68rem;
       color: #6b7280;
@@ -261,6 +140,33 @@
       line-height: 1.2;
       opacity: 0.85;
       font-style: italic;
+    }
+
+    /* Glossary */
+    .glossary {
+      margin-top: 22px;
+      text-align: left;
+    }
+    .glossary h2 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+    }
+    .glossary dl {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .glossary dt {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #111827;
+    }
+    .glossary dd {
+      margin: 2px 0 0;
+      color: #4b5563;
+      font-size: 0.86rem;
+      line-height: 1.35;
     }
   </style>
 </head>
@@ -271,6 +177,11 @@
       <div class="pill">MichiganMortgageCalculator.org</div>
       <h1>Michigan Mortgage Calculator</h1>
       <p>Estimate your complete Michigan mortgage payment and property taxes instantly.</p>
+
+      <div class="top-links">
+        <a href="/contact.html">Contact Us</a>
+        <a href="#glossary">Glossary</a>
+      </div>
     </header>
 
     <div class="mode-toggle">
@@ -281,7 +192,6 @@
     </div>
 
     <div class="grid">
-
       <!-- LEFT INPUT CARD -->
       <div class="card">
         <div class="section-label">Mortgage</div>
@@ -299,9 +209,9 @@
             <label>Down payment</label>
             <div class="dp-row">
               <input id="downPaymentInput" type="number" value="20" />
-              <div class="dp-toggle">
-                <button class="dp-mode-button" data-mode="dollar">$</button>
-                <button class="dp-mode-button active" data-mode="percent">%</button>
+              <div class="dp-toggle" aria-label="Down payment type toggle">
+                <button class="dp-mode-button" data-mode="dollar" type="button">$</button>
+                <button class="dp-mode-button active" data-mode="percent" type="button">%</button>
               </div>
               <input type="hidden" id="downPaymentMode" value="percent" />
             </div>
@@ -451,6 +361,44 @@
       </div>
     </div>
 
+    <!-- Glossary -->
+    <div id="glossary" class="card glossary">
+      <div class="section-label">Glossary</div>
+      <h2>Mortgage & Property Tax Terms</h2>
+
+      <dl>
+        <div>
+          <dt>Principal & Interest (P&amp;I)</dt>
+          <dd>The monthly loan payment made up of the amount that reduces your loan balance (principal) plus the lender’s charge for borrowing (interest).</dd>
+        </div>
+
+        <div>
+          <dt>Millage</dt>
+          <dd>A property tax rate expressed as “mills.” 1 mill = $1 of tax per $1,000 of taxable value.</dd>
+        </div>
+
+        <div>
+          <dt>Taxable Value</dt>
+          <dd>For estimating here, taxable value is assumed to be 50% of home price (a simplification). Actual taxable value is set by the local assessor and can differ.</dd>
+        </div>
+
+        <div>
+          <dt>Primary Residence</dt>
+          <dd>Also known as a principal residence. If it’s a rental/second home, uncheck Primary Residence so the non-homestead rate is used.</dd>
+        </div>
+
+        <div>
+          <dt>PMI</dt>
+          <dd>Private Mortgage Insurance — typically required when your down payment is less than 20%. This calculator estimates PMI using the PMI rate input.</dd>
+        </div>
+
+        <div>
+          <dt>PMMS (Freddie Mac)</dt>
+          <dd>Freddie Mac Primary Mortgage Market Survey — a national average rate series used to pre-fill the interest rate for 15- and 30-year terms.</dd>
+        </div>
+      </dl>
+    </div>
+
     <div class="disclaimer">
       <strong>Disclaimer:</strong> Estimates only. Property taxes use 2024 Michigan millage rates by county / local unit / school district and PRE vs non-PRE.<br>
       Contact: <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a>
@@ -458,13 +406,9 @@
   </div>
 
   <script>
-    /* ---------------------------
-       GLOBAL STATE
-    --------------------------- */
     let millageData = {};
     let pmmsRates = { "30-year": 6.23, "15-year": 5.51 };
 
-    /* Helper to strip junk disclaimer/page lines from JSON keys */
     function isNoiseLabel(name) {
       if (!name) return true;
       const lower = name.toLowerCase().trim();
@@ -476,9 +420,6 @@
       return false;
     }
 
-    /* ---------------------------
-       LOAD MILLAGE JSON
-    --------------------------- */
     async function loadMillageData() {
       try {
         const res = await fetch("mi_millage_2024.json?cache=" + Date.now());
@@ -490,15 +431,11 @@
     function populateCountySelect() {
       const sel = document.getElementById("countySelect");
       sel.innerHTML = '<option value="">Select county…</option>';
-      Object.keys(millageData)
-        .filter(c => !isNoiseLabel(c))
-        .sort()
-        .forEach(c => {
-          const o = document.createElement("option");
-          o.value = c;
-          o.textContent = c;
-          sel.appendChild(o);
-        });
+      Object.keys(millageData).filter(c => !isNoiseLabel(c)).sort().forEach(c => {
+        const o = document.createElement("option");
+        o.value = c; o.textContent = c;
+        sel.appendChild(o);
+      });
     }
 
     function populateLocalUnits(county) {
@@ -506,53 +443,37 @@
       const schoolSel = document.getElementById("schoolSelect");
       sel.innerHTML = '<option value="">Select local unit…</option>';
       schoolSel.innerHTML = '<option value="">Select school district…</option>';
-      sel.disabled = !county;
-      schoolSel.disabled = true;
-
+      sel.disabled = !county; schoolSel.disabled = true;
       if (!county || !millageData[county]) return;
 
-      Object.keys(millageData[county])
-        .filter(lu => !isNoiseLabel(lu))
-        .sort()
-        .forEach(lu => {
-          const o = document.createElement("option");
-          o.value = lu;
-          o.textContent = lu;
-          sel.appendChild(o);
-        });
+      Object.keys(millageData[county]).filter(lu => !isNoiseLabel(lu)).sort().forEach(lu => {
+        const o = document.createElement("option");
+        o.value = o.textContent = lu;
+        sel.appendChild(o);
+      });
     }
 
     function populateSchools(county, localUnit) {
       const sel = document.getElementById("schoolSelect");
       sel.innerHTML = '<option value="">Select school district…</option>';
       sel.disabled = !(county && localUnit);
-
       if (!(county && localUnit)) return;
       if (!millageData[county] || !millageData[county][localUnit]) return;
 
-      Object.keys(millageData[county][localUnit])
-        .filter(s => !isNoiseLabel(s))
-        .sort()
-        .forEach(s => {
-          const o = document.createElement("option");
-          o.value = s;
-          o.textContent = s;
-          sel.appendChild(o);
-        });
+      Object.keys(millageData[county][localUnit]).filter(s => !isNoiseLabel(s)).sort().forEach(s => {
+        const o = document.createElement("option");
+        o.value = o.textContent = s;
+        sel.appendChild(o);
+      });
     }
 
     function getMillageRate(county, lu, school, isPRE) {
       try {
         const m = millageData[county][lu][school];
         return isPRE ? m.homestead : m.nonhomestead;
-      } catch {
-        return null;
-      }
+      } catch { return null; }
     }
 
-    /* ---------------------------
-       LOAD FREDDIE MAC PMMS
-    --------------------------- */
     async function loadPMMSRates() {
       try {
         const res = await fetch("pmms.json?cache=" + Date.now());
@@ -561,25 +482,20 @@
           if (pmms["30-year"]) pmmsRates["30-year"] = parseFloat(pmms["30-year"]);
           if (pmms["15-year"]) pmmsRates["15-year"] = parseFloat(pmms["15-year"]);
         }
-        document.getElementById("pmmsNote").textContent =
-          "Using latest Freddie Mac PMMS averages (national).";
+        document.getElementById("pmmsNote").textContent = "Using latest Freddie Mac PMMS averages (national).";
       } catch {
-        document.getElementById("pmmsNote").textContent =
-          "Using fallback Freddie Mac PMMS values.";
+        document.getElementById("pmmsNote").textContent = "Using fallback Freddie Mac PMMS values.";
       }
       setInterestRateFromPMMS();
     }
 
     function setInterestRateFromPMMS() {
-      const term = parseInt(document.getElementById("loanTermYearsInput").value);
+      const term = parseInt(document.getElementById("loanTermYearsInput").value, 10);
       const rateEl = document.getElementById("interestRateInput");
       if (term <= 20) rateEl.value = pmmsRates["15-year"].toFixed(2);
       else rateEl.value = pmmsRates["30-year"].toFixed(2);
     }
 
-    /* ---------------------------
-       CALCULATION ENGINE
-    --------------------------- */
     function calculate() {
       const homePrice = +document.getElementById("homePriceInput").value || 0;
       const dp = +document.getElementById("downPaymentInput").value || 0;
@@ -598,18 +514,14 @@
         ? (mRate * loan) / (1 - Math.pow(1 + mRate, -months))
         : loan / months;
 
-      document.getElementById("monthlyPaymentOutput").textContent =
-        isFinite(PI) ? PI.toFixed(2) : "—";
+      document.getElementById("monthlyPaymentOutput").textContent = isFinite(PI) ? PI.toFixed(2) : "—";
 
-      /* PMI */
       const ltv = loan / homePrice;
       let pmiMonthly = 0;
       const pmiRate = (+document.getElementById("pmiRateInput").value || 0) / 100;
       if (ltv > 0.8) pmiMonthly = (loan * pmiRate) / 12;
-      document.getElementById("pmiMonthlyOutput").textContent =
-        pmiMonthly ? pmiMonthly.toFixed(2) : "—";
+      document.getElementById("pmiMonthlyOutput").textContent = pmiMonthly ? pmiMonthly.toFixed(2) : "—";
 
-      /* Property tax */
       let taxAnnual = 0;
       let millageUsed = "—";
 
@@ -631,11 +543,9 @@
         }
       }
 
-      document.getElementById("taxResult").textContent =
-        taxAnnual ? taxAnnual.toFixed(2) : "—";
+      document.getElementById("taxResult").textContent = taxAnnual ? taxAnnual.toFixed(2) : "—";
       document.getElementById("millageResult").textContent = millageUsed;
 
-      /* Insurance */
       const insuranceAnnual = mode === "basic"
         ? +document.getElementById("basicInsuranceAnnualInput").value || 0
         : +document.getElementById("annualInsuranceInput").value || 0;
@@ -644,27 +554,15 @@
         ? +document.getElementById("basicHoaMonthlyInput").value || 0
         : 0;
 
-      const total =
-        PI +
-        pmiMonthly +
-        taxAnnual / 12 +
-        insuranceAnnual / 12 +
-        hoaMonthly;
-
-      document.getElementById("totalMonthlyOutput").textContent =
-        isFinite(total) ? total.toFixed(2) : "—";
+      const total = PI + pmiMonthly + (taxAnnual / 12) + (insuranceAnnual / 12) + hoaMonthly;
+      document.getElementById("totalMonthlyOutput").textContent = isFinite(total) ? total.toFixed(2) : "—";
 
       buildAmortization(loan, mRate, months, PI);
     }
 
     function clearOutputs() {
-      [
-        "monthlyPaymentOutput",
-        "taxResult",
-        "millageResult",
-        "pmiMonthlyOutput",
-        "totalMonthlyOutput"
-      ].forEach(id => document.getElementById(id).textContent = "—");
+      ["monthlyPaymentOutput","taxResult","millageResult","pmiMonthlyOutput","totalMonthlyOutput"]
+        .forEach(id => document.getElementById(id).textContent = "—");
       document.getElementById("amortizationBody").innerHTML = "";
     }
 
@@ -695,9 +593,6 @@
       }
     }
 
-    /* ---------------------------
-       UI EVENTS
-    --------------------------- */
     document.querySelectorAll(".mode-button").forEach(btn => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".mode-button").forEach(b => b.classList.remove("active"));
@@ -725,30 +620,20 @@
     });
 
     [
-      "homePriceInput",
-      "downPaymentInput",
-      "interestRateInput",
-      "loanTermYearsInput",
-      "basicTaxAnnualInput",
-      "basicInsuranceAnnualInput",
-      "basicHoaMonthlyInput",
-      "basicPmiAnnualInput",
-      "annualInsuranceInput",
-      "pmiRateInput"
+      "homePriceInput","downPaymentInput","interestRateInput","loanTermYearsInput",
+      "basicTaxAnnualInput","basicInsuranceAnnualInput","basicHoaMonthlyInput","basicPmiAnnualInput",
+      "annualInsuranceInput","pmiRateInput"
     ].forEach(id => {
       const e = document.getElementById(id);
       if (!e) return;
-      const evt = id === "loanTermYearsInput" ? "change" : "input";
+      const evt = (id === "loanTermYearsInput") ? "change" : "input";
       e.addEventListener(evt, () => {
         if (id === "loanTermYearsInput") setInterestRateFromPMMS();
         calculate();
       });
     });
 
-    document.getElementById("countySelect").addEventListener("change", e => {
-      populateLocalUnits(e.target.value);
-      calculate();
-    });
+    document.getElementById("countySelect").addEventListener("change", e => { populateLocalUnits(e.target.value); calculate(); });
     document.getElementById("localUnitSelect").addEventListener("change", e => {
       const county = document.getElementById("countySelect").value;
       populateSchools(county, e.target.value);
@@ -757,9 +642,6 @@
     document.getElementById("schoolSelect").addEventListener("change", calculate);
     document.getElementById("preCheckbox").addEventListener("change", calculate);
 
-    /* ---------------------------
-       INITIALIZE PAGE
-    --------------------------- */
     window.addEventListener("DOMContentLoaded", async () => {
       await loadMillageData();
       await loadPMMSRates();
