@@ -14,7 +14,7 @@
   <link rel="apple-touch-icon" href="/michigan-mortgage-calculator-thumbnail.png" />
 
   <meta property="og:title" content="Michigan Mortgage Calculator" />
-  <meta property="og:description" content="Instant Michigan mortgage payments and millage-based property tax estimates." />
+  <meta property="og:description" content="Instant Michigan mortgage payments and Michigan millage-based property tax estimates." />
   <meta property="og:image" content="https://michiganmortgagecalculator.org/michigan-mortgage-calculator-thumbnail.png" />
   <meta property="og:url" content="https://michiganmortgagecalculator.org/" />
   <meta property="og:type" content="website" />
@@ -45,10 +45,21 @@
   <style>
     * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif; }
     body { margin: 0; background: #f5f5f7; color: #111827; }
-    .page { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+
+    .site-banner {
+      width: 100%;
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 0.78rem;
+      text-align: center;
+      padding: 6px 10px;
+      border-bottom: 1px solid #fde68a;
+    }
+
+    .page { max-width: 1100px; margin: 0 auto; padding: 18px 16px 48px; }
     header { margin-bottom: 16px; text-align: center; }
     .pill { display: inline-flex; padding: 4px 10px; border-radius: 999px; background: #e0f2fe; color: #0369a1; font-size: 0.78rem; }
-    h1 { margin: 4px 0 6px; font-size: 2rem; font-weight: 700; }
+    h1 { margin: 6px 0 6px; font-size: 2rem; font-weight: 700; }
     header p { margin: 0; color: #4b5563; font-size: 0.95rem; }
 
     .top-links {
@@ -57,7 +68,7 @@
       justify-content: center;
       gap: 14px;
       flex-wrap: wrap;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
     }
     .top-links a { color: #2563eb; text-decoration: none; }
     .top-links a:hover { text-decoration: underline; }
@@ -81,14 +92,8 @@
     }
     input[type="number"]:focus, select:focus { border-color: #2563eb; box-shadow: 0 0 0 1px rgba(37,99,235,0.25); outline: none; }
 
-    /* ---- Down payment row (fix cut-off) ---- */
-    .dp-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: nowrap;
-      min-width: 0;
-    }
+    /* Down payment row fix */
+    .dp-row { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; min-width: 0; }
     #downPaymentInput { flex: 1 1 auto; min-width: 0; }
     .dp-toggle {
       flex: 0 0 auto;
@@ -97,11 +102,11 @@
       background: #e5e7eb;
       border-radius: 999px;
       overflow: hidden;
-      min-width: 74px; /* guarantees room for $ and % */
+      min-width: 76px;
     }
     .dp-mode-button {
-      width: 36px;       /* consistent pill button width */
-      padding: 6px 0;    /* prevent clipping */
+      width: 38px;
+      padding: 6px 0;
       border: none;
       background: transparent;
       cursor: pointer;
@@ -131,8 +136,6 @@
     .page.mode-basic .basic-only { display: block; }
     .page.mode-advanced .advanced-only { display: block; }
 
-    .disclaimer { margin-top: 22px; font-size: 0.8rem; color: #6b7280; text-align: center; }
-
     .small-note {
       font-size: 0.68rem;
       color: #6b7280;
@@ -142,36 +145,22 @@
       font-style: italic;
     }
 
+    .disclaimer { margin-top: 18px; font-size: 0.8rem; color: #6b7280; text-align: center; }
+
     /* Glossary */
-    .glossary {
-      margin-top: 22px;
-      text-align: left;
-    }
-    .glossary h2 {
-      margin: 0 0 10px;
-      font-size: 1.1rem;
-    }
-    .glossary dl {
-      margin: 0;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-    .glossary dt {
-      font-weight: 700;
-      font-size: 0.88rem;
-      color: #111827;
-    }
-    .glossary dd {
-      margin: 2px 0 0;
-      color: #4b5563;
-      font-size: 0.86rem;
-      line-height: 1.35;
-    }
+    .glossary { margin-top: 22px; text-align: left; }
+    .glossary h2 { margin: 0 0 10px; font-size: 1.1rem; }
+    .glossary dl { margin: 0; display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .glossary dt { font-weight: 700; font-size: 0.88rem; color: #111827; }
+    .glossary dd { margin: 2px 0 0; color: #4b5563; font-size: 0.86rem; line-height: 1.35; }
   </style>
 </head>
 
 <body>
+  <div class="site-banner">
+    Estimates only. Taxes, millage rates, special assessments, and loan terms vary by property and situation.
+  </div>
+
   <div class="page mode-advanced">
     <header>
       <div class="pill">MichiganMortgageCalculator.org</div>
@@ -179,6 +168,8 @@
       <p>Estimate your complete Michigan mortgage payment and property taxes instantly.</p>
 
       <div class="top-links">
+        <a href="/lender.html">Connect with a lender</a>
+        <a href="/realtor.html">Connect with a realtor</a>
         <a href="/contact.html">Contact Us</a>
         <a href="#glossary">Glossary</a>
       </div>
@@ -369,39 +360,59 @@
       <dl>
         <div>
           <dt>Principal & Interest (P&amp;I)</dt>
-          <dd>The monthly loan payment made up of the amount that reduces your loan balance (principal) plus the lender’s charge for borrowing (interest).</dd>
+          <dd>The monthly loan payment made up of principal (reduces balance) plus interest (cost to borrow).</dd>
         </div>
 
         <div>
           <dt>Millage</dt>
-          <dd>A property tax rate expressed as “mills.” 1 mill = $1 of tax per $1,000 of taxable value.</dd>
+          <dd>A property tax rate expressed in “mills.” 1 mill = $1 per $1,000 of taxable value. Millage rates are subject to change.</dd>
         </div>
 
         <div>
-          <dt>Taxable Value</dt>
-          <dd>For estimating here, taxable value is assumed to be 50% of home price (a simplification). Actual taxable value is set by the local assessor and can differ.</dd>
+          <dt>Taxable Value (Assumed)</dt>
+          <dd>For estimation, taxable value is assumed as 50% of the home price. Actual taxable value is set by the local assessor.</dd>
+        </div>
+
+        <div>
+          <dt>Uncapping (Assumed Possible)</dt>
+          <dd>After a sale/transfer, taxable value may “uncap,” which can increase taxes compared to the prior owner’s tax bill. This estimate may not match the post-sale taxable value.</dd>
+        </div>
+
+        <div>
+          <dt>Special Assessments</dt>
+          <dd>Special assessments (sewer, water, roads, lake districts, etc.) may apply and can vary by property. These may not be included in millage rates and may differ from this estimate.</dd>
+        </div>
+
+        <div>
+          <dt>Unique Circumstances</dt>
+          <dd>Exemptions, abatements, local debt changes, classification details, and other factors can change taxes. Use this as an estimate and confirm with local officials or a professional.</dd>
         </div>
 
         <div>
           <dt>Primary Residence</dt>
-          <dd>Also known as a principal residence. If it’s a rental/second home, uncheck Primary Residence so the non-homestead rate is used.</dd>
+          <dd>If it’s a rental or second home, uncheck primary residence so the non-homestead rate applies.</dd>
         </div>
 
         <div>
           <dt>PMI</dt>
-          <dd>Private Mortgage Insurance — typically required when your down payment is less than 20%. This calculator estimates PMI using the PMI rate input.</dd>
+          <dd>Private Mortgage Insurance. Often required when putting less than 20% down. Costs vary by lender and borrower profile.</dd>
         </div>
 
         <div>
           <dt>PMMS (Freddie Mac)</dt>
-          <dd>Freddie Mac Primary Mortgage Market Survey — a national average rate series used to pre-fill the interest rate for 15- and 30-year terms.</dd>
+          <dd>Freddie Mac PMMS is a national average rate series used to pre-fill interest rates for 15- and 30-year terms (not a loan offer).</dd>
         </div>
       </dl>
     </div>
 
     <div class="disclaimer">
-      <strong>Disclaimer:</strong> Estimates only. Property taxes use 2024 Michigan millage rates by county / local unit / school district and PRE vs non-PRE.<br>
-      Contact: <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a>
+      <strong>Disclaimer:</strong> Estimates only. Property taxes use 2024 Michigan millage rates by county / local unit / school district and PRE vs non-PRE.
+      Uncapping after purchase, millage changes, special assessments, and unique circumstances may cause actual taxes to differ.
+      <br>
+      Contact:
+      <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a>
+      •
+      <a href="tel:16162059531">616-205-9531</a>
     </div>
   </div>
 
