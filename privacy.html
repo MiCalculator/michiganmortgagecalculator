@@ -5,97 +5,38 @@
   <title>Privacy Policy – Michigan Mortgage Calculator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://michiganmortgagecalculator.org/privacy.html" />
-  <meta name="description" content="Privacy policy for MichiganMortgageCalculator.org" />
-
-  <link rel="icon" href="/michigan-mortgage-calculator-thumbnail.png" sizes="192x192" type="image/png" />
-  <link rel="apple-touch-icon" href="/michigan-mortgage-calculator-thumbnail.png" />
+  <link rel="icon" href="/michigan-mortgage-calculator-thumbnail.png" />
 
   <style>
-    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif; }
-    body { margin: 0; background: #f5f5f7; color: #111827; }
-
-    .site-banner {
-      width: 100%;
-      background: #fef3c7;
-      color: #92400e;
-      font-size: 0.78rem;
-      text-align: center;
-      padding: 6px 10px;
-      border-bottom: 1px solid #fde68a;
-    }
-
-    .page { max-width: 900px; margin: 0 auto; padding: 18px 16px 48px; }
-    .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 18px; padding: 18px 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
-    .pill { display: inline-flex; padding: 4px 10px; border-radius: 999px; background: #e0f2fe; color: #0369a1; font-size: 0.78rem; margin-bottom: 10px; }
-    h1 { margin: 0 0 6px; font-size: 1.7rem; }
-    h2 { margin: 16px 0 6px; font-size: 1.05rem; }
-    p, li { color: #4b5563; line-height: 1.45; }
-    a { color:#2563eb; text-decoration:none; }
-    a:hover { text-decoration: underline; }
-    .links { margin-top: 14px; display:flex; gap: 14px; flex-wrap: wrap; font-size: 0.95rem; }
-    .muted { font-size: 0.85rem; color:#6b7280; }
+    * { box-sizing: border-box; font-family: system-ui, sans-serif; }
+    body { margin:0; background:#f5f5f7; color:#111827; }
+    .site-header { text-align:center; padding:16px; }
+    .site-header a { font-size:1.7rem; font-weight:700; color:#111827; text-decoration:none; }
+    .page { max-width:900px; margin:0 auto; padding:0 16px 48px; }
+    .card { background:#fff; padding:18px; border-radius:18px; border:1px solid #e5e7eb; }
+    h1 { margin-top:0; }
+    p { color:#4b5563; line-height:1.5; }
   </style>
 </head>
 <body>
-  <div class="site-banner">
-    Estimates only. Taxes, millage rates, special assessments, and loan terms vary by property and situation.
+
+<header class="site-header">
+  <a href="/">Michigan Mortgage Calculator</a>
+</header>
+
+<div class="page">
+  <div class="card">
+    <h1>Privacy Policy</h1>
+    <p>
+      Information entered into the calculator is used for estimation only.
+      If you submit a request to connect with a lender or realtor, your information
+      is sent via your email client and used only to respond to your request.
+    </p>
+    <p>
+      We use Google Analytics to understand site usage and improve the experience.
+    </p>
   </div>
+</div>
 
-  <div class="page">
-    <div class="card">
-      <div class="pill">MichiganMortgageCalculator.org</div>
-      <h1>Privacy Policy</h1>
-      <p class="muted">Last updated: <span id="lastUpdated"></span></p>
-
-      <h2>What we collect</h2>
-      <ul>
-        <li><strong>Calculator inputs:</strong> values you type into the calculator (home price, down payment, etc.) are used to generate estimates in your browser.</li>
-        <li><strong>Analytics:</strong> we use Google Analytics to understand site traffic (for example: pages viewed and general location/ device data). This helps improve the site.</li>
-        <li><strong>Lead form information:</strong> if you request to be connected with a lender or realtor, you may provide contact info (name, phone, email, etc.).</li>
-      </ul>
-
-      <h2>How lead forms work</h2>
-      <p>
-        The “Connect with a lender” and “Connect with a realtor” forms open your email app using a mailto link.
-        That means the information is sent using your email client and provider.
-      </p>
-
-      <h2>How we use information</h2>
-      <ul>
-        <li>To provide mortgage and tax estimates.</li>
-        <li>To respond to requests and connect you with a lender or realtor (if you submit a connection request).</li>
-        <li>To improve the site through analytics.</li>
-      </ul>
-
-      <h2>Sharing</h2>
-      <p>
-        If you request to be connected with a lender or realtor, we may share your submitted information with a partner
-        lender or real estate professional for the purpose of contacting you and providing services.
-      </p>
-
-      <h2>Cookies</h2>
-      <p>
-        Google Analytics may use cookies or similar technologies. You can control cookies through your browser settings.
-      </p>
-
-      <h2>Contact</h2>
-      <p>
-        Questions? Email <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a>
-        or call <a href="tel:16162059531">616-205-9531</a>.
-      </p>
-
-      <div class="links">
-        <a href="/">← Back to Calculator</a>
-        <a href="/contact.html">Contact</a>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Simple “last updated” without needing backend
-    const d = new Date();
-    document.getElementById("lastUpdated").textContent =
-      d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
-  </script>
 </body>
 </html>
