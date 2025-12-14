@@ -49,23 +49,12 @@
   <style>
     * {
       box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif;
     }
-    body {
-      margin: 0;
-      background: #f5f5f7;
-      color: #111827;
-    }
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px 16px 48px;
-    }
-    header {
-      margin-bottom: 16px;
-      text-align: center;
-    }
+    body { margin: 0; background: #f5f5f7; color: #111827; }
+    .page { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+
+    header { margin-bottom: 10px; text-align: center; }
     .pill {
       display: inline-flex;
       padding: 4px 10px;
@@ -74,22 +63,25 @@
       color: #0369a1;
       font-size: 0.78rem;
     }
-    h1 {
-      margin: 4px 0 6px;
-      font-size: 2rem;
-      font-weight: 700;
-    }
-    header p {
-      margin: 0;
-      color: #4b5563;
-      font-size: 0.95rem;
-    }
+    h1 { margin: 4px 0 6px; font-size: 2rem; font-weight: 700; }
+    header p { margin: 0; color: #4b5563; font-size: 0.95rem; }
 
-    .mode-toggle {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 16px;
+    /* Beige inline banner (same style as other pages) */
+    .navbar {
+      background: #f5f0e6;
+      border: 1px solid #eadfcd;
+      border-radius: 14px;
+      padding: 10px 12px;
+      text-align: center;
+      font-size: 0.9rem;
+      margin: 10px auto 16px;
+      max-width: 1100px;
     }
+    .navbar a { color: #111827; text-decoration: none; font-weight: 600; }
+    .navbar a:hover { text-decoration: underline; }
+    .navbar .sep { margin: 0 10px; color: #9ca3af; }
+
+    .mode-toggle { display: flex; justify-content: center; margin-bottom: 16px; }
     .mode-toggle-inner {
       display: inline-flex;
       border-radius: 999px;
@@ -110,14 +102,8 @@
       color: #fff;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 20px;
-    }
-    @media (max-width: 900px) {
-      .grid { grid-template-columns: 1fr; }
-    }
+    .grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 20px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
 
     .card {
       background: white;
@@ -126,25 +112,10 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.08);
       border: 1px solid #e5e7eb;
     }
-    .section-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      color: #9ca3af;
-      margin-bottom: 4px;
-    }
-    .field-group {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    label {
-      font-size: 0.78rem;
-      margin-bottom: 4px;
-      color: #4b5563;
-      display: block;
-    }
-    input[type="number"], select, input[type="text"] {
+    .section-label { font-size: 0.78rem; text-transform: uppercase; color: #9ca3af; margin-bottom: 4px; }
+    .field-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 10px; margin-bottom: 10px; }
+    label { font-size: 0.78rem; margin-bottom: 4px; color: #4b5563; display: block; }
+    input[type="number"], select {
       width: 100%;
       padding: 7px 9px;
       border: 1px solid #d1d5db;
@@ -153,18 +124,13 @@
       font-size: 0.85rem;
       color: #111827;
     }
-    input[type="number"]:focus, select:focus, input[type="text"]:focus {
+    input[type="number"]:focus, select:focus {
       border-color: #2563eb;
       box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
       outline: none;
     }
 
-    .dp-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: nowrap;
-    }
+    .dp-row { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; }
     .dp-toggle {
       display: inline-flex;
       border: 1px solid #d1d5db;
@@ -183,32 +149,14 @@
       line-height: 1;
       min-width: 44px;
     }
-    .dp-mode-button.active {
-      background: #2563eb;
-      color: #fff;
-    }
+    .dp-mode-button.active { background: #2563eb; color: #fff; }
 
-    .small-note {
-      margin-top: 6px;
-      font-size: 0.70rem;
-      color: #6b7280;
-      font-style: italic;
-    }
+    .small-note { margin-top: 6px; font-size: 0.70rem; color: #6b7280; font-style: italic; }
 
-    .checkbox-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      padding: 6px 0 0;
-    }
+    .checkbox-row { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0 0; }
     .checkbox-row input { margin-top: 2px; }
 
-    .results-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 10px;
-    }
+    .results-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
     .result-pill {
       padding: 9px 10px;
       background: #f3f4f6;
@@ -216,59 +164,22 @@
       border-radius: 14px;
       min-width: 150px;
     }
-    .result-pill .label {
-      font-size: 0.72rem;
-      color: #6b7280;
-      display: block;
-    }
-    .result-pill .value {
-      margin-top: 2px;
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-    .result-pill.total-monthly .value {
-      font-size: 1.2rem;
-      font-weight: 800;
-    }
+    .result-pill .label { font-size: 0.72rem; color: #6b7280; display: block; }
+    .result-pill .value { margin-top: 2px; font-size: 0.95rem; font-weight: 600; }
+    .result-pill.total-monthly .value { font-size: 1.2rem; font-weight: 800; }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.76rem;
-    }
-    thead {
-      background: #f3f4f6;
-    }
-    th, td {
-      padding: 4px 5px;
-      border-bottom: 1px solid #e5e7eb;
-      text-align: right;
-    }
-    th:first-child, td:first-child {
-      text-align: left;
-    }
-    tbody tr:nth-child(even) {
-      background: #f9fafb;
-    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
+    thead { background: #f3f4f6; }
+    th, td { padding: 4px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; }
+    th:first-child, td:first-child { text-align: left; }
+    tbody tr:nth-child(even) { background: #f9fafb; }
 
     /* Freeze amortization header */
-    thead th {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      background: #f3f4f6;
-    }
+    thead th { position: sticky; top: 0; z-index: 2; background: #f3f4f6; }
 
     .basic-only, .advanced-only { display: none; }
     .page.mode-basic .basic-only { display: block; }
     .page.mode-advanced .advanced-only { display: block; }
-
-    .disclaimer {
-      margin-top: 16px;
-      font-size: 0.8rem;
-      color: #6b7280;
-      text-align: center;
-    }
 
     /* Glossary dropdown (beige) */
     .glossary {
@@ -293,6 +204,8 @@
       text-align: left;
     }
     .glossary .content p { margin: 8px 0; }
+
+    .disclaimer { margin-top: 16px; font-size: 0.8rem; color: #6b7280; text-align: center; }
   </style>
 </head>
 
@@ -303,6 +216,14 @@
       <h1>Michigan Mortgage Calculator</h1>
       <p>Estimate your complete Michigan mortgage payment and property taxes instantly.</p>
     </header>
+
+    <!-- Beige banner links (restored) -->
+    <nav class="navbar">
+      <a href="/">Calculator</a><span class="sep">|</span>
+      <a href="/lender.html">Lender</a><span class="sep">|</span>
+      <a href="/realtor.html">Realtor</a><span class="sep">|</span>
+      <a href="/contact.html">Contact</a>
+    </nav>
 
     <div class="mode-toggle">
       <div class="mode-toggle-inner">
@@ -464,20 +385,22 @@
           </div>
         </div>
 
-        <!-- Glossary dropdown -->
+        <!-- Glossary dropdown (restored/expanded) -->
         <details class="glossary">
           <summary>Glossary</summary>
           <div class="content">
-            <p><strong>Taxable Value (TV):</strong> This calculator assumes taxable value is approximately <strong>50% of home price</strong>. Actual TV can differ due to capped value, uncapping after transfer, and assessor records.</p>
-            <p><strong>Millage:</strong> Property tax rates (mills) vary by county, local unit, and school district. Millage rates are subject to change.</p>
-            <p><strong>Special Assessments:</strong> Not included. Special assessments (roads, water, sewer, etc.) vary by property and can significantly impact taxes.</p>
-            <p><strong>Estimates only:</strong> Contact us for a more detailed, property-specific analysis.</p>
+            <p><strong>Taxable Value (TV):</strong> This calculator assumes taxable value is approximately <strong>50% of home price</strong>. Actual taxable value may differ due to capped value and assessed/taxable records.</p>
+            <p><strong>Uncapping:</strong> This calculator assumes uncapping impacts are not modeled. Transfers of ownership can “uncap” taxable value under Michigan rules and change future taxes.</p>
+            <p><strong>Millage:</strong> Millage rates vary by county, local unit, and school district. Rates are subject to change and may not reflect every special situation.</p>
+            <p><strong>Special Assessments:</strong> Not included. Special assessments (roads, water/sewer, sidewalk, etc.) may differ by property and can significantly affect your total tax bill.</p>
+            <p><strong>PRE / Non-PRE:</strong> “Primary residence” reflects PRE vs non-PRE. Rentals/second homes typically use non-PRE rates.</p>
+            <p><strong>Estimates only:</strong> Loan terms, taxes, and fees vary. Contact us for a more detailed, property-specific analysis.</p>
           </div>
         </details>
 
         <div class="disclaimer">
           Contact: <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a> · Phone: <a href="tel:16162059531">616-205-9531</a><br>
-          Property taxes use Michigan millage lookups (PRE vs non-PRE). Year shown on-site; not emphasized in search snippets.
+          Property tax lookups use Michigan millage data (PRE vs non-PRE). Special assessments not included.
         </div>
       </div>
 
@@ -524,8 +447,7 @@
       sel.innerHTML = '<option value="">Select county…</option>';
       Object.keys(millageData).sort().forEach(c => {
         const o = document.createElement("option");
-        o.value = c;
-        o.textContent = c;
+        o.value = c; o.textContent = c;
         sel.appendChild(o);
       });
     }
@@ -535,14 +457,12 @@
       const schoolSel = document.getElementById("schoolSelect");
       sel.innerHTML = '<option value="">Select local unit…</option>';
       schoolSel.innerHTML = '<option value="">Select school district…</option>';
-      sel.disabled = !county;
-      schoolSel.disabled = true;
+      sel.disabled = !county; schoolSel.disabled = true;
       if (!county) return;
 
       Object.keys(millageData[county]).sort().forEach(lu => {
         const o = document.createElement("option");
-        o.value = lu;
-        o.textContent = lu;
+        o.value = o.textContent = lu;
         sel.appendChild(o);
       });
     }
@@ -555,8 +475,7 @@
 
       Object.keys(millageData[county][localUnit]).sort().forEach(s => {
         const o = document.createElement("option");
-        o.value = s;
-        o.textContent = s;
+        o.value = o.textContent = s;
         sel.appendChild(o);
       });
     }
@@ -565,9 +484,7 @@
       try {
         const m = millageData[county][lu][school];
         return isPRE ? m.homestead : m.nonhomestead;
-      } catch {
-        return null;
-      }
+      } catch { return null; }
     }
 
     async function loadPMMSRates() {
@@ -584,15 +501,45 @@
         document.getElementById("pmmsNote").textContent =
           "Using fallback Freddie Mac PMMS values.";
       }
-      setInterestRateFromPMMS();
+      setInterestRateFromPMMS(true);
     }
 
-    function setInterestRateFromPMMS() {
+    function setInterestRateFromPMMS(force=false) {
       const term = parseInt(document.getElementById("loanTermYearsInput").value, 10);
       const rateEl = document.getElementById("interestRateInput");
-      if (!rateEl.value) {
-        if (term <= 20) rateEl.value = pmmsRates["15-year"].toFixed(2);
-        else rateEl.value = pmmsRates["30-year"].toFixed(2);
+      if (!force && rateEl.value) return;
+      if (term <= 20) rateEl.value = pmmsRates["15-year"].toFixed(2);
+      else rateEl.value = pmmsRates["30-year"].toFixed(2);
+    }
+
+    function clearOutputs() {
+      ["monthlyPaymentOutput","taxResult","millageResult","pmiMonthlyOutput","totalMonthlyOutput"]
+        .forEach(id => document.getElementById(id).textContent = "—");
+      document.getElementById("amortizationBody").innerHTML = "";
+    }
+
+    function buildAmortization(principal, mRate, months, payment) {
+      const body = document.getElementById("amortizationBody");
+      body.innerHTML = "";
+      if (!principal || !payment || !isFinite(payment)) return;
+
+      let balance = principal;
+      for (let i = 1; i <= months; i++) {
+        const interest = balance * mRate;
+        const principalPaid = payment - interest;
+        balance -= principalPaid;
+        if (balance < 0) balance = 0;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${i}</td>
+          <td>${payment.toFixed(2)}</td>
+          <td>${principalPaid.toFixed(2)}</td>
+          <td>${interest.toFixed(2)}</td>
+          <td>${balance.toFixed(2)}</td>
+        `;
+        body.appendChild(row);
+        if (balance <= 0) break;
       }
     }
 
@@ -617,10 +564,10 @@
       document.getElementById("monthlyPaymentOutput").textContent =
         isFinite(PI) ? PI.toFixed(2) : "—";
 
-      // PMI (uses PMI rate input in Advanced; Basic uses annual $ input)
       const page = document.querySelector(".page");
       const mode = page.classList.contains("mode-basic") ? "basic" : "advanced";
 
+      // PMI
       let pmiMonthly = 0;
       const ltv = homePrice > 0 ? (loan / homePrice) : 0;
 
@@ -681,39 +628,6 @@
       buildAmortization(loan, mRate, months, PI);
     }
 
-    function clearOutputs() {
-      ["monthlyPaymentOutput","taxResult","millageResult","pmiMonthlyOutput","totalMonthlyOutput"]
-        .forEach(id => document.getElementById(id).textContent = "—");
-      document.getElementById("amortizationBody").innerHTML = "";
-    }
-
-    function buildAmortization(principal, mRate, months, payment) {
-      const body = document.getElementById("amortizationBody");
-      body.innerHTML = "";
-      if (!principal || !payment || !isFinite(payment)) return;
-
-      let balance = principal;
-
-      for (let i = 1; i <= months; i++) {
-        const interest = balance * mRate;
-        const principalPaid = payment - interest;
-        balance = balance - principalPaid;
-        if (balance < 0) balance = 0;
-
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${i}</td>
-          <td>${payment.toFixed(2)}</td>
-          <td>${principalPaid.toFixed(2)}</td>
-          <td>${interest.toFixed(2)}</td>
-          <td>${balance.toFixed(2)}</td>
-        `;
-        body.appendChild(row);
-
-        if (balance <= 0) break;
-      }
-    }
-
     // Mode buttons
     document.querySelectorAll(".mode-button").forEach(btn => {
       btn.addEventListener("click", () => {
@@ -742,7 +656,7 @@
       });
     });
 
-    // Inputs auto-calc
+    // Auto-calc listeners
     [
       "homePriceInput",
       "downPaymentInput",
@@ -760,11 +674,7 @@
       if (!el) return;
       const evt = (id === "loanTermYearsInput") ? "change" : "input";
       el.addEventListener(evt, () => {
-        if (id === "loanTermYearsInput") {
-          // Always reset rate to PMMS default when term changes, unless user already typed a value
-          document.getElementById("interestRateInput").value = "";
-          setInterestRateFromPMMS();
-        }
+        if (id === "loanTermYearsInput") setInterestRateFromPMMS(true);
         calculate();
       });
     });
@@ -790,5 +700,3 @@
   </script>
 </body>
 </html>
-
-   
