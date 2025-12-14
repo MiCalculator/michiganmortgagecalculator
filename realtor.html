@@ -17,6 +17,17 @@
     .site-header a { font-size: 1.7rem; font-weight: 700; color: #111827; text-decoration: none; }
     .site-header a:hover { text-decoration: underline; }
 
+    .navbar {
+      background: #f5f0e6;
+      border-bottom: 1px solid #eadfcd;
+      padding: 10px 12px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .navbar a { color: #111827; text-decoration: none; font-weight: 600; }
+    .navbar a:hover { text-decoration: underline; }
+    .navbar .sep { margin: 0 10px; color: #9ca3af; }
+
     .page { max-width: 900px; margin: 0 auto; padding: 0 16px 48px; }
     .card {
       background: #fff;
@@ -69,13 +80,19 @@
   <a href="/">Michigan Mortgage Calculator</a>
 </header>
 
+<nav class="navbar">
+  <a href="/">Calculator</a><span class="sep">|</span>
+  <a href="/lender.html">Lender</a><span class="sep">|</span>
+  <a href="/realtor.html">Realtor</a><span class="sep">|</span>
+  <a href="/contact.html">Contact</a>
+</nav>
+
 <div class="page">
   <div class="card">
     <h1>Connect With a Realtor</h1>
     <p>Submit your information below and we’ll help connect you with a realtor.</p>
 
     <form id="leadForm">
-      <!-- Honeypot -->
       <input type="text" id="company" name="company" autocomplete="off" style="display:none" tabindex="-1" />
 
       <label>Name</label>
@@ -108,7 +125,6 @@
 
 <script>
   const API_URL = "https://api.michiganmortgagecalculator.org/lead";
-
   const form = document.getElementById("leadForm");
   const statusEl = document.getElementById("status");
   const btn = document.getElementById("submitBtn");
@@ -125,7 +141,7 @@
       phone: document.getElementById("phone").value.trim(),
       email: document.getElementById("email").value.trim(),
       notes: document.getElementById("notes").value.trim(),
-      company: document.getElementById("company").value.trim(),
+      company: document.getElementById("company").value.trim()
     };
 
     try {
@@ -133,9 +149,8 @@
       const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(payload)
       });
-
       const data = await res.json().catch(() => ({}));
 
       if (res.ok && data.ok) {
@@ -146,7 +161,7 @@
         statusEl.textContent = "Error submitting. Please call 616-205-9531.";
         statusEl.classList.add("err");
       }
-    } catch (err) {
+    } catch {
       statusEl.textContent = "Error submitting. Please call 616-205-9531.";
       statusEl.classList.add("err");
     } finally {
@@ -154,11 +169,5 @@
     }
   });
 </script>
-
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
-  integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
-  data-cf-beacon='{"version":"2024.11.0","token":"a21991d948bd42e6ae8500ae9588d864","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
-  crossorigin="anonymous"></script>
-
 </body>
 </html>
