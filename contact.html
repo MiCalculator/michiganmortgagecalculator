@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <title>Contact – Michigan Mortgage Calculator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <link rel="canonical" href="https://michiganmortgagecalculator.org/contact.html" />
-  <meta name="description" content="Contact Michigan Mortgage Calculator." />
 
   <link rel="icon" href="/michigan-mortgage-calculator-thumbnail.png" sizes="192x192" type="image/png" />
   <link rel="apple-touch-icon" href="/michigan-mortgage-calculator-thumbnail.png" />
@@ -23,14 +21,12 @@
   <style>
     * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif; }
     body { margin: 0; background: #f5f5f7; color: #111827; }
-
     .page { max-width: 900px; margin: 0 auto; padding: 24px 16px 48px; }
-    header { text-align: center; margin-bottom: 10px; }
-    .pill { display: inline-flex; padding: 4px 10px; border-radius: 999px; background: #e0f2fe; color: #0369a1; font-size: 0.78rem; }
-    h1 { margin: 6px 0 4px; font-size: 2rem; font-weight: 700; }
-    header p { margin: 0; color: #4b5563; font-size: 0.95rem; }
-    .site-title a { color: #111827; text-decoration: none; }
-    .site-title a:hover { text-decoration: underline; }
+
+    header { text-align:center; margin-bottom: 10px; }
+    header a { text-decoration:none; color:#111827; }
+    .site-title { font-size: 1.9rem; font-weight: 800; margin: 0; }
+    .subtitle { margin: 6px 0 0; color: #4b5563; font-size: 0.95rem; }
 
     .navbar {
       background: #f5f0e6;
@@ -39,7 +35,7 @@
       padding: 10px 12px;
       text-align: center;
       font-size: 0.9rem;
-      margin: 10px auto 18px;
+      margin: 12px auto 18px;
     }
     .navbar a { color: #111827; text-decoration: none; font-weight: 600; }
     .navbar a:hover { text-decoration: underline; }
@@ -47,52 +43,46 @@
 
     .card {
       background: #fff;
-      border-radius: 18px;
-      padding: 18px 16px;
       border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 18px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.08);
     }
-    .section-label { font-size: 0.78rem; text-transform: uppercase; color: #9ca3af; margin-bottom: 4px; }
-    .lead-title { margin: 0 0 6px; font-size: 1.4rem; }
-    .lead-sub { margin: 0 0 10px; color: #4b5563; font-size: 0.95rem; line-height: 1.4; }
 
-    .callout {
+    .section-label { font-size: 0.78rem; text-transform: uppercase; color: #9ca3af; margin-bottom: 6px; }
+    h1 { margin: 0 0 8px; font-size: 1.45rem; }
+    p { margin: 0 0 10px; color: #4b5563; line-height: 1.5; }
+
+    .highlight {
       background: #f3f4f6;
       border: 1px solid #e5e7eb;
       border-radius: 14px;
-      padding: 10px 12px;
-      margin: 12px 0 14px;
+      padding: 12px;
       color: #374151;
-      font-size: 0.92rem;
-      text-align: center;
     }
-    .callout a { color: #2563eb; text-decoration: none; font-weight: 700; }
 
-    label { font-size: 0.78rem; margin-bottom: 4px; color: #4b5563; display: block; }
+    label { display:block; font-size: 0.82rem; color: #4b5563; margin: 10px 0 4px; }
     input, textarea {
       width: 100%;
-      padding: 9px 10px;
-      border: 1px solid #d1d5db;
+      padding: 10px 10px;
       border-radius: 12px;
+      border: 1px solid #d1d5db;
+      font-size: 0.95rem;
       background: #fff;
-      font-size: 0.9rem;
       color: #111827;
     }
     input:focus, textarea:focus {
+      outline: none;
       border-color: #2563eb;
       box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
-      outline: none;
-    }
-    .field-group {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 10px;
-      margin-bottom: 10px;
     }
 
+    .row { display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 700px) { .row { grid-template-columns: 1fr; } }
+
     .btn {
+      margin-top: 14px;
       width: 100%;
-      margin-top: 6px;
       padding: 10px 14px;
       border-radius: 12px;
       border: none;
@@ -100,30 +90,40 @@
       color: #fff;
       font-weight: 700;
       cursor: pointer;
+      font-size: 0.98rem;
     }
     .btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-    .status { margin-top: 10px; font-size: 0.9rem; color: #4b5563; }
-    .status.ok { color: #065f46; }
-    .status.err { color: #b91c1c; }
+    .status {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #374151;
+      display: none;
+      white-space: pre-wrap;
+    }
+    .status.ok { border-color: #bbf7d0; background: #f0fdf4; }
+    .status.err { border-color: #fecaca; background: #fef2f2; }
 
     .footer {
       margin-top: 18px;
-      text-align: center;
-      font-size: 0.85rem;
+      text-align:center;
+      font-size: 0.82rem;
       color: #6b7280;
     }
     .footer a { color: #2563eb; text-decoration: none; }
   </style>
 </head>
+
 <body>
   <div class="page">
     <header>
-      <div class="pill">MichiganMortgageCalculator.org</div>
-      <div class="site-title">
-        <h1><a href="/">Michigan Mortgage Calculator</a></h1>
-      </div>
-      <p>Questions about Michigan taxes, millage, or how the calculator works? Send a message.</p>
+      <a href="/" aria-label="Go to calculator">
+        <div class="site-title">Michigan Mortgage Calculator</div>
+      </a>
+      <div class="subtitle">Questions? Want a property-specific breakdown?</div>
     </header>
 
     <nav class="navbar">
@@ -135,73 +135,59 @@
 
     <div class="card">
       <div class="section-label">Contact</div>
-      <h2 class="lead-title">Contact Us</h2>
-      <p class="lead-sub">Use the form below and we’ll get back to you.</p>
+      <h1>Contact Us</h1>
+      <p>
+        Send a message and we’ll get back to you. Prefer to call/text? <strong>616-205-9531</strong>
+      </p>
 
-      <div class="callout">
-        Prefer to call/text? <a href="tel:16162059531">616-205-9531</a>
+      <div class="highlight">
+        <strong>Property-specific analysis:</strong> If you have an address or parcel details, include them in the notes (optional).
       </div>
 
       <form id="leadForm">
-        <div class="field-group">
+        <div class="row">
           <div>
             <label for="name">Name</label>
             <input id="name" name="name" autocomplete="name" required />
           </div>
           <div>
-            <label for="phone">Phone (optional)</label>
-            <input id="phone" name="phone" autocomplete="tel" />
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" autocomplete="tel" required />
           </div>
         </div>
 
-        <div class="field-group">
-          <div>
-            <label for="email">Email (optional)</label>
-            <input id="email" name="email" type="email" autocomplete="email" />
-          </div>
-          <div>
-            <label for="topic">Topic (optional)</label>
-            <input id="topic" name="topic" type="text" placeholder="Taxes, millage, PMI, insurance, etc." />
-          </div>
-        </div>
+        <label for="email">Email (optional)</label>
+        <input id="email" name="email" type="email" autocomplete="email" />
 
-        <div style="margin-bottom:10px;">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" required placeholder="How can we help?"></textarea>
-        </div>
+        <label for="notes">Message</label>
+        <textarea id="notes" name="notes" rows="5" placeholder="How can we help?"></textarea>
 
         <button class="btn" id="submitBtn" type="submit">Send Message</button>
-        <div id="status" class="status" aria-live="polite"></div>
+        <div class="status" id="statusBox"></div>
       </form>
-    </div>
 
-    <div class="footer">
-      <a href="/privacy.html">Privacy Policy</a>
+      <div class="footer" style="margin-top:16px;">
+        Email: <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a> ·
+        Phone: <a href="tel:16162059531">616-205-9531</a><br/>
+        <a href="/privacy.html">Privacy Policy</a>
+      </div>
     </div>
   </div>
 
   <script>
-    async function postLead(payload) {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || !data.ok) {
-        const msg = (data && (data.error || data.detail)) ? (data.error || data.detail) : "Error submitting.";
-        throw new Error(msg);
-      }
-      return data;
+    const form = document.getElementById("leadForm");
+    const btn = document.getElementById("submitBtn");
+    const statusBox = document.getElementById("statusBox");
+
+    function setStatus(type, msg) {
+      statusBox.className = "status " + (type || "");
+      statusBox.textContent = msg || "";
+      statusBox.style.display = msg ? "block" : "none";
     }
 
-    document.getElementById("leadForm").addEventListener("submit", async (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const btn = document.getElementById("submitBtn");
-      const status = document.getElementById("status");
-
-      status.className = "status";
-      status.textContent = "";
+      setStatus("", "");
       btn.disabled = true;
 
       const payload = {
@@ -209,20 +195,30 @@
         name: document.getElementById("name").value.trim(),
         phone: document.getElementById("phone").value.trim(),
         email: document.getElementById("email").value.trim(),
-        topic: document.getElementById("topic").value.trim(),
-        message: document.getElementById("message").value.trim(),
-        page: location.pathname
+        notes: document.getElementById("notes").value.trim()
       };
 
       try {
-        await postLead(payload);
-        status.className = "status ok";
-        status.textContent = "Message sent — we’ll reply soon. Prefer to call/text? 616-205-9531.";
-        e.target.reset();
+        const res = await fetch("/api/lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const text = await res.text();
+        let data = null;
+        try { data = JSON.parse(text); } catch {}
+
+        if (!res.ok || (data && data.ok === false)) {
+          setStatus("err", "Error submitting. Please call 616-205-9531.\n\n" + (data?.detail || data?.error || text || ""));
+          btn.disabled = false;
+          return;
+        }
+
+        setStatus("ok", "Sent! Prefer to call/text? 616-205-9531.");
+        form.reset();
       } catch (err) {
-        console.error(err);
-        status.className = "status err";
-        status.textContent = "Error submitting. Please call/text 616-205-9531.";
+        setStatus("err", "Error submitting. Please call 616-205-9531.\n\n" + (err?.message || err));
       } finally {
         btn.disabled = false;
       }
