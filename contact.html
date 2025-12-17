@@ -5,11 +5,13 @@
   <title>Contact – Michigan Mortgage Calculator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://michiganmortgagecalculator.org/contact.html" />
-  <meta name="description" content="Contact Michigan Mortgage Calculator. Prefer to call/text? 616-205-9531" />
+
+  <meta name="description" content="Contact Michigan Mortgage Calculator. Prefer to call/text? 616-205-9531." />
 
   <link rel="icon" href="/michigan-mortgage-calculator-thumbnail.png" sizes="192x192" type="image/png" />
   <link rel="apple-touch-icon" href="/michigan-mortgage-calculator-thumbnail.png" />
 
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HLMW6NEJ4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -21,65 +23,109 @@
   <style>
     * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif; }
     body { margin: 0; background: #f5f5f7; color: #111827; }
+    a { color: inherit; }
+
     .page { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
 
-    header { text-align: center; margin-bottom: 12px; }
-    header a.brand { display:inline-block; font-size:1.8rem; font-weight:800; text-decoration:none; color:#111827; }
-    header a.brand:hover { text-decoration: underline; }
+    header { text-align: center; margin-bottom: 10px; }
+    header a { text-decoration: none; }
+    .pill { display: inline-flex; padding: 4px 10px; border-radius: 999px; background: #e0f2fe; color: #0369a1; font-size: 0.78rem; }
+    h1 { margin: 6px 0 0; font-size: 2rem; font-weight: 800; }
+    .subtitle { margin: 6px 0 0; color: #4b5563; font-size: 0.95rem; }
 
     .navbar {
-      background: #f5f0e6; border: 1px solid #eadfcd; border-radius: 14px;
-      padding: 10px 12px; text-align: center; font-size: 0.95rem; margin: 12px auto 18px;
+      background: #f5f0e6;
+      border: 1px solid #eadfcd;
+      border-radius: 14px;
+      padding: 10px 12px;
+      text-align: center;
+      font-size: 0.9rem;
+      margin: 10px auto 18px;
+      max-width: 1100px;
     }
-    .navbar a { text-decoration:none; font-weight:700; color:#111827; }
+    .navbar a { color: #111827; text-decoration: none; font-weight: 600; }
     .navbar a:hover { text-decoration: underline; }
     .navbar .sep { margin: 0 10px; color: #9ca3af; }
 
-    .center-wrap { display:grid; place-items:center; min-height: calc(100vh - 220px); }
+    .wrap { max-width: 900px; margin: 0 auto; }
+
     .card {
-      width: min(680px, 100%);
-      background:#fff; border-radius:18px; padding:18px 16px; border:1px solid #e5e7eb;
+      background: #fff;
+      border-radius: 18px;
+      padding: 18px 16px;
+      border: 1px solid #e5e7eb;
       box-shadow: 0 12px 30px rgba(0,0,0,0.08);
     }
 
-    .section-label { font-size:0.78rem; text-transform:uppercase; color:#9ca3af; margin-bottom:4px; }
-    h1 { margin:0 0 6px; font-size:1.7rem; }
-    .subhead { margin:0 0 14px; color:#4b5563; line-height:1.4; }
+    .hero-center { text-align: center; max-width: 680px; margin: 0 auto 14px; }
+    .section-label { font-size: 0.78rem; text-transform: uppercase; color: #9ca3af; margin-bottom: 6px; }
+    .hero-title { margin: 0 0 8px; font-size: 1.55rem; font-weight: 800; }
+    .hero-sub { margin: 0; color: #4b5563; line-height: 1.45; }
+    .hero-sub a { color: #2563eb; text-decoration: none; font-weight: 700; }
+    .hero-sub a:hover { text-decoration: underline; }
 
-    .field-group { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; }
-    @media (max-width: 640px) { .field-group { grid-template-columns: 1fr; } }
-
-    label { font-size:0.8rem; margin-bottom:4px; color:#4b5563; display:block; }
+    label { display: block; font-size: 0.78rem; color: #4b5563; margin-bottom: 4px; }
     input, textarea {
-      width:100%; padding:10px; border-radius:12px; border:1px solid #d1d5db; background:#fff; font-size:0.95rem;
+      width: 100%;
+      padding: 9px 10px;
+      border-radius: 12px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      font-size: 0.9rem;
+      color: #111827;
     }
-    textarea { min-height: 110px; resize: vertical; }
-    input:focus, textarea:focus { border-color:#2563eb; box-shadow:0 0 0 1px rgba(37,99,235,0.25); outline:none; }
+    textarea { resize: vertical; min-height: 130px; }
+
+    input:focus, textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
+      outline: none;
+    }
+
+    .field-group { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 14px; }
+    @media (max-width: 760px) { .field-group { grid-template-columns: 1fr; } }
 
     .btn {
-      margin-top:14px; width:100%; padding:11px 14px; border-radius:12px; border:none;
+      margin-top: 14px;
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: none;
       background: linear-gradient(135deg, #2563eb, #4f46e5);
-      color:#fff; font-weight:800; cursor:pointer; font-size:1rem;
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 0.95rem;
     }
-    .btn:disabled { opacity:0.7; cursor:not-allowed; }
+    .btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
     .status {
-      margin-top:12px; padding:10px 12px; border-radius:12px; border:1px solid #e5e7eb;
-      background:#f9fafb; color:#374151; display:none; font-size:0.92rem; line-height:1.35;
+      margin-top: 12px;
+      font-size: 0.9rem;
+      text-align: center;
     }
-    .status.ok { border-color:#bbf7d0; background:#f0fdf4; }
-    .status.err { border-color:#fecaca; background:#fef2f2; }
+    .status.ok { color: #065f46; }
+    .status.err { color: #b91c1c; }
 
-    .footer { margin-top:18px; text-align:center; color:#6b7280; font-size:0.85rem; }
-    .footer a { color:#2563eb; text-decoration:none; }
-    .footer a:hover { text-decoration:underline; }
+    .footer {
+      margin-top: 18px;
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.82rem;
+    }
+    .footer a { color: #2563eb; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
   </style>
 </head>
 
 <body>
   <div class="page">
     <header>
-      <a class="brand" href="/">Michigan Mortgage Calculator</a>
+      <a href="/">
+        <div class="pill">MichiganMortgageCalculator.org</div>
+        <h1>Michigan Mortgage Calculator</h1>
+      </a>
+      <p class="subtitle">Contact us.</p>
     </header>
 
     <nav class="navbar">
@@ -89,14 +135,16 @@
       <a href="/contact.html">Contact</a>
     </nav>
 
-    <div class="center-wrap">
+    <div class="wrap">
       <div class="card">
-        <div class="section-label">Get Started</div>
-        <h1>Contact Us</h1>
-        <p class="subhead">
-          Have a question or want a property-specific analysis?
-          <strong>Prefer to call/text?</strong> <a href="tel:16162059531">616-205-9531</a>
-        </p>
+        <div class="hero-center">
+          <div class="section-label">Get Started</div>
+          <div class="hero-title">Contact Us</div>
+          <p class="hero-sub">
+            Send a message and we’ll follow up. Prefer to call/text?
+            <a href="tel:16162059531">616-205-9531</a>
+          </p>
+        </div>
 
         <form id="leadForm">
           <div class="field-group">
@@ -110,86 +158,66 @@
             </div>
           </div>
 
-          <div class="field-group" style="margin-top:10px;">
-            <div>
-              <label for="email">Email (optional)</label>
-              <input id="email" name="email" type="email" autocomplete="email" />
-            </div>
-            <div>
-              <label for="subject">Subject (optional)</label>
-              <input id="subject" name="subject" placeholder="Ex: millage question, payment estimate…" />
-            </div>
+          <div style="margin-top: 10px;">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="What can we help with?" required></textarea>
           </div>
-
-          <div style="margin-top:10px;">
-            <label for="notes">Message</label>
-            <textarea id="notes" name="notes" placeholder="How can we help?"></textarea>
-          </div>
-
-          <input type="text" id="website" name="website" style="display:none" tabindex="-1" autocomplete="off"/>
 
           <button class="btn" id="submitBtn" type="submit">Submit</button>
-
-          <div id="statusOk" class="status ok"></div>
-          <div id="statusErr" class="status err"></div>
+          <div class="status" id="statusMsg"></div>
         </form>
+      </div>
 
-        <div class="footer">
-          Email: <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a> ·
-          <a href="/privacy.html">Privacy Policy</a>
-        </div>
+      <div class="footer">
+        Email <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a>
+        · Prefer to call/text? <a href="tel:16162059531">616-205-9531</a>
+        · <a href="/privacy.html">Privacy Policy</a>
       </div>
     </div>
   </div>
 
   <script>
     const form = document.getElementById("leadForm");
-    const btn = document.getElementById("submitBtn");
-    const okBox = document.getElementById("statusOk");
-    const errBox = document.getElementById("statusErr");
+    const statusMsg = document.getElementById("statusMsg");
+    const submitBtn = document.getElementById("submitBtn");
 
-    function show(el, msg) { el.textContent = msg; el.style.display = "block"; }
-    function hide(el) { el.style.display = "none"; el.textContent = ""; }
+    function setStatus(text, kind) {
+      statusMsg.textContent = text || "";
+      statusMsg.className = "status " + (kind || "");
+    }
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      hide(okBox); hide(errBox);
-      if (document.getElementById("website").value) return;
-
-      btn.disabled = true;
-      btn.textContent = "Submitting…";
+      setStatus("", "");
+      submitBtn.disabled = true;
 
       const payload = {
         type: "contact",
         name: document.getElementById("name").value.trim(),
         phone: document.getElementById("phone").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        notes: ("Subject: " + (document.getElementById("subject").value.trim() || "—") + "\n\n" +
-                (document.getElementById("notes").value.trim() || "—")).trim(),
+        message: document.getElementById("message").value.trim()
       };
 
       try {
         const res = await fetch("/api/lead", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
+          body: JSON.stringify(payload)
         });
 
-        const text = await res.text();
-        let data = null;
-        try { data = JSON.parse(text); } catch { data = { ok: res.ok, raw: text }; }
-
-        if (!res.ok || !data.ok) {
-          show(errBox, "Error submitting. Prefer to call/text? 616-205-9531.");
-        } else {
-          show(okBox, "Submitted! We’ll follow up shortly. Prefer to call/text? 616-205-9531.");
-          form.reset();
+        if (!res.ok) {
+          let detail = "";
+          try { detail = (await res.text()) || ""; } catch {}
+          throw new Error(detail || ("HTTP " + res.status));
         }
-      } catch {
-        show(errBox, "Error submitting. Prefer to call/text? 616-205-9531.");
+
+        setStatus("Submitted ✅ We’ll follow up soon.", "ok");
+        form.reset();
+      } catch (err) {
+        setStatus("Error submitting. Please call/text 616-205-9531.", "err");
+        console.error(err);
       } finally {
-        btn.disabled = false;
-        btn.textContent = "Submit";
+        submitBtn.disabled = false;
       }
     });
   </script>
