@@ -1,76 +1,43 @@
-name: Update PMMS Rates
+name: Update PMMS rates
 
 on:
+  workflow_dispatch:
   schedule:
-    # Every Thursday at 14:00 UTC
-    - cron: '0 14 * * 4'
-  workflow_dispatch: {}
+    # Every Thursday at 11:05 UTC (~6:05am ET during standard time)
+    - cron: "5 11 * * 4"
+
+permissions:
+  contents: write
 
 jobs:
   update:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
     steps:
-      - name: Check out repo
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: "3.12"
 
-      - name: Fetch PMMS and update pmms.json
+      - name: Update pmms.json
+        env:
+          PMMS_SOURCE: "https://michiganmortgagecalculator.org/api/pmms"
         run: |
-          python - << 'EOF'
-          import json
-          import re
-          import urllib.request
-          import datetime
+          python .github/scripts/update_pmms.py
+          echo "==== pmms.json ===="
+          cat pmms.json
 
-          PMMS_URL = "https://www.freddiemac.com/pmms"
-
-          def fetch_html(url):
-              with urllib.request.urlopen(url, timeout=30) as resp:
-                  return resp.read().decode("utf-8", errors="ignore")
-
-          def main():
-              html = fetch_html(PMMS_URL)
-
-              m30 = re.search(r"30-year fixed-rate mortgage averaged\s+([\d.]+)%", html, re.IGNORECASE)
-              m15 = re.search(r"15-year fixed-rate mortgage averaged\s+([\d.]+)%", html, re.IGNORECASE)
-
-              pmms30 = 6.23  # fallback
-              pmms15 = 5.51  # fallback
-
-              if m30:
-                  pmms30 = float(m30.group(1))
-              if m15:
-                  pmms15 = float(m15.group(1))
-
-              data = {
-                  "pmms30yr": pmms30,
-                  "pmms15yr": pmms15,
-                  "source": PMMS_URL,
-                  "lastUpdatedUtc": datetime.datetime.utcnow().isoformat() + "Z",
-              }
-
-              with open("pmms.json", "w", encoding="utf-8") as f:
-                  json.dump(data, f, indent=2)
-                  f.write("\n")
-
-              print("Updated pmms.json with:", data)
-
-          if __name__ == "__main__":
-              main()
-          EOF
-
-      - name: Commit and push changes
+      - name: Commit and push if changed
         run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add pmms.json
-          git commit -m "Update PMMS rates" || echo "No changes to commit"
+          git commit -m "Update PMMS rates"
           git push
