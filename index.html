@@ -116,11 +116,10 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.08);
       border: 1px solid #e5e7eb;
     }
-
     .section-label { font-size: 0.78rem; text-transform: uppercase; color: #9ca3af; margin-bottom: 4px; }
     .field-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 10px; margin-bottom: 10px; }
-    label { font-size: 0.78rem; margin-bottom: 4px; color: #4b5563; display: block; }
 
+    label { font-size: 0.78rem; margin-bottom: 4px; color: #4b5563; display: block; }
     input[type="number"], select {
       width: 100%;
       padding: 7px 9px;
@@ -146,24 +145,18 @@
       flex: 0 0 auto;
     }
     .dp-mode-button {
-      padding: 7px 16px;
+      padding: 7px 14px;
       border: none;
       background: transparent;
       cursor: pointer;
       font-size: 1rem;
       color: #4b5563;
       line-height: 1;
-      min-width: 48px;
-      white-space: nowrap;
+      min-width: 52px; /* extra width so it doesn’t feel cramped */
     }
     .dp-mode-button.active { background: #2563eb; color: #fff; }
 
-    .small-note {
-      margin-top: 6px;
-      font-size: 0.70rem;     /* smaller than labels */
-      color: #6b7280;
-      font-style: italic;
-    }
+    .small-note { margin-top: 6px; font-size: 0.70rem; color: #6b7280; font-style: italic; }
 
     .checkbox-row { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0 0; }
     .checkbox-row input { margin-top: 2px; }
@@ -185,7 +178,9 @@
     th, td { padding: 4px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; }
     th:first-child, td:first-child { text-align: left; }
     tbody tr:nth-child(even) { background: #f9fafb; }
-    thead th { position: sticky; top: 0; z-index: 2; background: #f3f4f6; } /* freeze header */
+
+    /* Freeze amortization header */
+    thead th { position: sticky; top: 0; z-index: 2; background: #f3f4f6; }
 
     .basic-only, .advanced-only { display: none; }
     .page.mode-basic .basic-only { display: block; }
@@ -227,7 +222,6 @@
       <p>Estimate your complete Michigan mortgage payment and property taxes instantly.</p>
     </header>
 
-    <!-- Beige banner links -->
     <nav class="navbar">
       <a href="/">Calculator</a><span class="sep">|</span>
       <a href="/lender.html">Lender</a><span class="sep">|</span>
@@ -352,7 +346,7 @@
             </div>
           </div>
 
-          <p style="margin: 8px 0 6px;"><strong>Extras</strong></p>
+          <p style="margin: 10px 0 6px;"><strong>Insurance, PMI & HOA</strong></p>
 
           <div class="field-group">
             <div>
@@ -401,11 +395,11 @@
         <details class="glossary">
           <summary>Glossary</summary>
           <div class="content">
-            <p><strong>Taxable Value (TV):</strong> This calculator assumes taxable value is <strong>50% of the sale price</strong>. Actual taxable value may differ due to capped value and assessed/taxable records.</p>
-            <p><strong>Uncapping / First-year taxes:</strong> This estimate assumes taxable value uncaps to <strong>50% of the sale price</strong>. First-year property taxes are based on the seller’s taxable value as of <strong>December 31 of the prior year</strong>. Contact us for a property-specific analysis.</p>
-            <p><strong>Millage:</strong> Millage rates vary by county, local unit, and school district. Millage rates are subject to change.</p>
-            <p><strong>Special Assessments:</strong> Not included. Special assessments (roads, water/sewer, sidewalk, etc.) may differ by property and can significantly affect your total tax bill.</p>
-            <p><strong>PRE / Non-PRE:</strong> “Primary residence” reflects PRE vs non-PRE. Rentals/second homes typically use non-PRE rates.</p>
+            <p><strong>Taxable Value (TV):</strong> This calculator assumes taxable value is <strong>50% of the sale price</strong>.</p>
+            <p><strong>Uncapping:</strong> This estimate assumes taxable value resets to <strong>50% of the sale price</strong>. First-year property taxes are based on the seller’s taxable value as of <strong>December 31 of the prior year</strong>. Contact us for a property-specific analysis.</p>
+            <p><strong>Millage:</strong> Millage rates vary by county, local unit, and school district and are subject to change.</p>
+            <p><strong>Special Assessments:</strong> Not included. Roads, water/sewer, sidewalks, and other assessments may apply and can significantly affect your total tax bill.</p>
+            <p><strong>PRE / Non-PRE:</strong> “Primary residence” reflects PRE vs non-PRE. Rentals and second homes typically use non-PRE rates.</p>
             <p><strong>Estimates only:</strong> Loan terms, taxes, and fees vary by property and situation. Contact us for a more detailed, property-specific analysis.</p>
           </div>
         </details>
@@ -443,52 +437,28 @@
 
   <script>
     /* ---------------------------
-       STATE
+       GLOBAL STATE
     --------------------------- */
     let millageData = {};
-    // fallback in case /api/pmms fails
-    let pmmsRates = { pmms30yr: 6.23, pmms15yr: 5.51 };
-
-    /* ---------------------------
-       HELPERS
-    --------------------------- */
-    function isJunkOption(name) {
-      const s = String(name || "").trim().toLowerCase();
-      if (!s) return true;
-      if (s.includes("see the disclaimers")) return true;
-      if (s.includes("disclaimers at the end of this report")) return true;
-      if (s.includes("page ") && s.includes(" of ")) return true;
-      return false;
-    }
-
-    function safeSortedKeys(obj) {
-      return Object.keys(obj || {})
-        .filter(k => !isJunkOption(k))
-        .sort((a,b) => a.localeCompare(b));
-    }
-
-    function toNumber(x, fallback=0) {
-      const n = parseFloat(x);
-      return Number.isFinite(n) ? n : fallback;
-    }
+    let pmmsRates = { "30-year": 6.23, "15-year": 5.51 };
 
     /* ---------------------------
        LOAD MILLAGE JSON
     --------------------------- */
     async function loadMillageData() {
       try {
-        const res = await fetch("mi_millage_2024.json?cache=" + Date.now(), { cache: "no-store" });
+        const res = await fetch("mi_millage_2024.json?cache=" + Date.now());
         millageData = await res.json();
         populateCountySelect();
       } catch (e) {
-        console.error("Millage JSON load failed:", e);
+        console.error("Millage load error:", e);
       }
     }
 
     function populateCountySelect() {
       const sel = document.getElementById("countySelect");
       sel.innerHTML = '<option value="">Select county…</option>';
-      safeSortedKeys(millageData).forEach(c => {
+      Object.keys(millageData).sort().forEach(c => {
         const o = document.createElement("option");
         o.value = c; o.textContent = c;
         sel.appendChild(o);
@@ -502,13 +472,11 @@
       schoolSel.innerHTML = '<option value="">Select school district…</option>';
       sel.disabled = !county;
       schoolSel.disabled = true;
+      if (!county) return;
 
-      if (!county || !millageData[county]) return;
-
-      safeSortedKeys(millageData[county]).forEach(lu => {
+      Object.keys(millageData[county] || {}).sort().forEach(lu => {
         const o = document.createElement("option");
-        o.value = lu;
-        o.textContent = lu;
+        o.value = o.textContent = lu;
         sel.appendChild(o);
       });
     }
@@ -517,14 +485,11 @@
       const sel = document.getElementById("schoolSelect");
       sel.innerHTML = '<option value="">Select school district…</option>';
       sel.disabled = !(county && localUnit);
-
       if (!(county && localUnit)) return;
-      if (!millageData[county] || !millageData[county][localUnit]) return;
 
-      safeSortedKeys(millageData[county][localUnit]).forEach(s => {
+      Object.keys((millageData[county] || {})[localUnit] || {}).sort().forEach(s => {
         const o = document.createElement("option");
-        o.value = s;
-        o.textContent = s;
+        o.value = o.textContent = s;
         sel.appendChild(o);
       });
     }
@@ -539,42 +504,39 @@
     }
 
     /* ---------------------------
-       LOAD PMMS (from Worker)
-       Expected response:
-       { pmms30yr: number, pmms15yr: number, source: "...", lastUpdatedUtc: "..." }
+       LOAD PMMS (via your Worker)
+       expects:
+       { pmms30yr, pmms15yr, ... }
     --------------------------- */
     async function loadPMMSRates() {
-      const note = document.getElementById("pmmsNote");
-
       try {
-        const res = await fetch("/api/pmms?cache=" + Date.now(), { cache: "no-store" });
-        if (!res.ok) throw new Error("PMMS fetch failed: " + res.status);
-
-        const data = await res.json();
-        if (Number.isFinite(toNumber(data.pmms30yr))) pmmsRates.pmms30yr = toNumber(data.pmms30yr);
-        if (Number.isFinite(toNumber(data.pmms15yr))) pmmsRates.pmms15yr = toNumber(data.pmms15yr);
-
-        note.textContent = "Using latest Freddie Mac PMMS averages (national).";
+        const res = await fetch("/api/pmms?cache=" + Date.now());
+        if (res.ok) {
+          const pmms = await res.json();
+          if (pmms.pmms30yr) pmmsRates["30-year"] = parseFloat(pmms.pmms30yr);
+          if (pmms.pmms15yr) pmmsRates["15-year"] = parseFloat(pmms.pmms15yr);
+        }
+        document.getElementById("pmmsNote").textContent =
+          "Using latest Freddie Mac PMMS averages (national).";
       } catch (e) {
-        console.warn(e);
-        note.textContent = "Using fallback Freddie Mac PMMS values.";
+        console.error("PMMS load error:", e);
+        document.getElementById("pmmsNote").textContent =
+          "Using fallback Freddie Mac PMMS values.";
       }
-
       setInterestRateFromPMMS(true);
     }
 
-    function setInterestRateFromPMMS(force=false) {
+    function setInterestRateFromPMMS(force = false) {
       const term = parseInt(document.getElementById("loanTermYearsInput").value, 10);
       const rateEl = document.getElementById("interestRateInput");
+      if (!force && rateEl.value) return;
 
-      if (!force && String(rateEl.value || "").trim() !== "") return;
-
-      if (term <= 20) rateEl.value = pmmsRates.pmms15yr.toFixed(2);
-      else rateEl.value = pmmsRates.pmms30yr.toFixed(2);
+      if (term <= 20) rateEl.value = pmmsRates["15-year"].toFixed(2);
+      else rateEl.value = pmmsRates["30-year"].toFixed(2);
     }
 
     /* ---------------------------
-       CALCULATION
+       CALCULATION ENGINE
     --------------------------- */
     function clearOutputs() {
       ["monthlyPaymentOutput","taxResult","millageResult","pmiMonthlyOutput","totalMonthlyOutput"]
@@ -588,7 +550,6 @@
       if (!principal || !payment || !isFinite(payment)) return;
 
       let balance = principal;
-
       for (let i = 1; i <= months; i++) {
         const interest = balance * mRate;
         const principalPaid = payment - interest;
@@ -604,29 +565,28 @@
           <td>${balance.toFixed(2)}</td>
         `;
         body.appendChild(row);
-
         if (balance <= 0) break;
       }
     }
 
     function calculate() {
-      const homePrice = toNumber(document.getElementById("homePriceInput").value, 0);
-      const dp = toNumber(document.getElementById("downPaymentInput").value, 0);
+      const homePrice = +document.getElementById("homePriceInput").value || 0;
+      const dp = +document.getElementById("downPaymentInput").value || 0;
       const dpMode = document.getElementById("downPaymentMode").value;
 
-      const rateAnnual = toNumber(document.getElementById("interestRateInput").value, 0) / 100;
-      const years = parseInt(document.getElementById("loanTermYearsInput").value, 10) || 30;
+      const rate = (+document.getElementById("interestRateInput").value || 0) / 100;
+      const years = +document.getElementById("loanTermYearsInput").value || 30;
       const months = years * 12;
 
       if (!homePrice || months <= 0) { clearOutputs(); return; }
 
-      const down = (dpMode === "percent") ? (homePrice * (dp / 100)) : dp;
+      const down = dpMode === "percent" ? homePrice * (dp / 100) : dp;
       const loan = Math.max(0, homePrice - down);
-      const mRate = rateAnnual / 12;
+      const mRate = rate / 12;
 
-      const PI = (mRate > 0)
+      const PI = mRate > 0
         ? (mRate * loan) / (1 - Math.pow(1 + mRate, -months))
-        : (loan / months);
+        : (months ? loan / months : 0);
 
       document.getElementById("monthlyPaymentOutput").textContent =
         isFinite(PI) ? PI.toFixed(2) : "—";
@@ -639,10 +599,10 @@
       const ltv = homePrice > 0 ? (loan / homePrice) : 0;
 
       if (mode === "basic") {
-        const basicPmiAnnual = toNumber(document.getElementById("basicPmiAnnualInput").value, 0);
+        const basicPmiAnnual = +document.getElementById("basicPmiAnnualInput").value || 0;
         pmiMonthly = basicPmiAnnual / 12;
       } else {
-        const pmiRate = toNumber(document.getElementById("pmiRateInput").value, 0) / 100;
+        const pmiRate = (+document.getElementById("pmiRateInput").value || 0) / 100;
         if (ltv > 0.8) pmiMonthly = (loan * pmiRate) / 12;
       }
 
@@ -654,7 +614,7 @@
       let millageUsed = "—";
 
       if (mode === "basic") {
-        taxAnnual = toNumber(document.getElementById("basicTaxAnnualInput").value, 0);
+        taxAnnual = +document.getElementById("basicTaxAnnualInput").value || 0;
       } else {
         const c = document.getElementById("countySelect").value;
         const lu = document.getElementById("localUnitSelect").value;
@@ -662,24 +622,25 @@
         const pre = document.getElementById("preCheckbox").checked;
 
         const mill = getMillageRate(c, lu, s, pre);
-        if (mill != null && isFinite(mill)) {
-          millageUsed = Number(mill).toFixed(4) + " mills";
-          taxAnnual = 0.5 * homePrice * (Number(mill) / 1000);
+        if (mill != null) {
+          millageUsed = mill.toFixed(4) + " mills";
+          taxAnnual = 0.5 * homePrice * (mill / 1000);
         }
       }
 
-      document.getElementById("taxResult").textContent = taxAnnual ? taxAnnual.toFixed(2) : "—";
+      document.getElementById("taxResult").textContent =
+        taxAnnual ? taxAnnual.toFixed(2) : "—";
       document.getElementById("millageResult").textContent = millageUsed;
 
       // Insurance
-      const insuranceAnnual = (mode === "basic")
-        ? toNumber(document.getElementById("basicInsuranceAnnualInput").value, 0)
-        : toNumber(document.getElementById("annualInsuranceInput").value, 0);
+      const insuranceAnnual = mode === "basic"
+        ? (+document.getElementById("basicInsuranceAnnualInput").value || 0)
+        : (+document.getElementById("annualInsuranceInput").value || 0);
 
       // HOA
-      const hoaMonthly = (mode === "basic")
-        ? toNumber(document.getElementById("basicHoaMonthlyInput").value, 0)
-        : toNumber(document.getElementById("advancedHoaMonthlyInput").value, 0);
+      const hoaMonthly = mode === "basic"
+        ? (+document.getElementById("basicHoaMonthlyInput").value || 0)
+        : (+document.getElementById("advancedHoaMonthlyInput").value || 0);
 
       const total =
         PI +
@@ -738,7 +699,6 @@
     ].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
-
       const evt = (id === "loanTermYearsInput") ? "change" : "input";
       el.addEventListener(evt, () => {
         if (id === "loanTermYearsInput") setInterestRateFromPMMS(true);
