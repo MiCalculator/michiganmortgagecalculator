@@ -13,24 +13,20 @@
 
   <meta name="google-site-verification" content="uJ4hk7yJuv8LHqrCEiFtQOGfmhZ7CqYCpsd8QdF_f1c" />
 
-  <!-- Icons -->
   <link rel="icon" href="/michigan-mortgage-calculator-thumbnail.png" sizes="192x192" type="image/png" />
   <link rel="apple-touch-icon" href="/michigan-mortgage-calculator-thumbnail.png" />
 
-  <!-- OpenGraph -->
   <meta property="og:title" content="Michigan Mortgage Calculator" />
   <meta property="og:description" content="Instant Michigan mortgage payments and millage-based property tax estimates." />
   <meta property="og:image" content="https://michiganmortgagecalculator.org/michigan-mortgage-calculator-thumbnail.png" />
   <meta property="og:url" content="https://michiganmortgagecalculator.org/" />
   <meta property="og:type" content="website" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Michigan Mortgage Calculator" />
   <meta name="twitter:description" content="Instant Michigan mortgage payments with millage tax lookup." />
   <meta name="twitter:image" content="https://michiganmortgagecalculator.org/michigan-mortgage-calculator-thumbnail.png" />
 
-  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -70,7 +66,7 @@
     h1 { margin: 4px 0 6px; font-size: 2rem; font-weight: 700; }
     header p { margin: 0; color: #4b5563; font-size: 0.95rem; }
 
-    /* Beige banner */
+    /* Beige inline banner */
     .navbar {
       background: #f5f0e6;
       border: 1px solid #eadfcd;
@@ -134,9 +130,7 @@
       outline: none;
     }
 
-    /* Down payment row */
     .dp-row { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; }
-    .dp-row input { min-width: 0; }
     .dp-toggle {
       display: inline-flex;
       border: 1px solid #d1d5db;
@@ -146,18 +140,18 @@
       flex: 0 0 auto;
     }
     .dp-mode-button {
-      padding: 8px 14px;
+      padding: 7px 14px;
       border: none;
       background: transparent;
       cursor: pointer;
       font-size: 1rem;
       color: #4b5563;
       line-height: 1;
-      min-width: 46px;
+      min-width: 44px;
     }
     .dp-mode-button.active { background: #2563eb; color: #fff; }
 
-    .small-note { margin-top: 6px; font-size: 0.68rem; color: #6b7280; font-style: italic; }
+    .small-note { margin-top: 6px; font-size: 0.70rem; color: #6b7280; font-style: italic; }
 
     .checkbox-row { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0 0; }
     .checkbox-row input { margin-top: 2px; }
@@ -179,6 +173,7 @@
     th, td { padding: 4px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; }
     th:first-child, td:first-child { text-align: left; }
     tbody tr:nth-child(even) { background: #f9fafb; }
+
     thead th { position: sticky; top: 0; z-index: 2; background: #f3f4f6; }
 
     .basic-only, .advanced-only { display: none; }
@@ -213,7 +208,6 @@
 </head>
 
 <body>
-  <!-- IMPORTANT: mode-advanced is what makes the dropdowns visible by default -->
   <div class="page mode-advanced">
     <header>
       <div class="pill">MichiganMortgageCalculator.org</div>
@@ -236,7 +230,7 @@
     </div>
 
     <div class="grid">
-      <!-- LEFT CARD -->
+      <!-- LEFT -->
       <div class="card">
         <div class="section-label">Mortgage</div>
         <h2>Monthly Payment</h2>
@@ -253,9 +247,9 @@
             <label>Down payment</label>
             <div class="dp-row">
               <input id="downPaymentInput" type="number" value="20" />
-              <div class="dp-toggle" aria-label="Down payment mode">
-                <button class="dp-mode-button" data-mode="dollar" type="button">$</button>
-                <button class="dp-mode-button active" data-mode="percent" type="button">%</button>
+              <div class="dp-toggle">
+                <button class="dp-mode-button" data-mode="dollar">$</button>
+                <button class="dp-mode-button active" data-mode="percent">%</button>
               </div>
               <input type="hidden" id="downPaymentMode" value="percent" />
             </div>
@@ -362,7 +356,6 @@
               <label>HOA dues (monthly)</label>
               <input id="advancedHoaMonthlyInput" type="number" value="0" />
             </div>
-            <div></div>
           </div>
         </div>
 
@@ -390,15 +383,16 @@
           </div>
         </div>
 
+        <!-- Glossary -->
         <details class="glossary">
           <summary>Glossary</summary>
           <div class="content">
-            <p><strong>Taxable Value (TV):</strong> This estimate assumes taxable value uncaps to <strong>50% of the sale price</strong>.</p>
-            <p><strong>Uncapping:</strong> This estimate assumes taxable value uncaps to <strong>50% of the sale price</strong>. First-year property taxes are based on the seller’s taxable value as of <strong>December 31 of the prior year</strong>. Contact us for a property-specific analysis.</p>
-            <p><strong>Millage:</strong> Millage rates vary by county, local unit, and school district. Millage rates are subject to change.</p>
-            <p><strong>Special Assessments:</strong> Not included. Roads, water/sewer, sidewalks, and other assessments may apply and can change your total tax bill.</p>
+            <p><strong>Taxable Value (TV):</strong> This calculator assumes taxable value is <strong>50% of the sale price</strong>.</p>
+            <p><strong>Uncapping:</strong> This estimate assumes taxable value uncaps to <strong>50% of the sale price</strong>. In some cases, the first year property taxes may be lower based on the seller’s taxable value (based on <strong>December 31</strong> prior year). Contact us for a property-specific analysis.</p>
+            <p><strong>Millage:</strong> Millage rates vary by county, local unit, and school district. Rates are subject to change and may not reflect every special situation.</p>
+            <p><strong>Special Assessments:</strong> Not included. Special assessments (roads, water/sewer, sidewalk, etc.) may differ by property and can significantly affect your total tax bill.</p>
             <p><strong>PRE / Non-PRE:</strong> “Primary residence” reflects PRE vs non-PRE. Rentals/second homes typically use non-PRE rates.</p>
-            <p><strong>Estimates only:</strong> Loan terms, taxes, and fees vary by property and situation. Contact us for a more detailed, property-specific analysis.</p>
+            <p><strong>Estimates only:</strong> Loan terms, taxes, and fees vary. Contact us for a more detailed, property-specific analysis.</p>
           </div>
         </details>
 
@@ -409,7 +403,7 @@
         </div>
       </div>
 
-      <!-- RIGHT CARD -->
+      <!-- RIGHT -->
       <div class="card">
         <div class="section-label">Advanced Output</div>
         <h2>Amortization Schedule</h2>
@@ -435,11 +429,12 @@
 
   <script>
     let millageData = {};
+    // default fallback if pmms.json fails
     let pmmsRates = { "30-year": 6.23, "15-year": 5.51 };
 
     async function loadMillageData() {
       try {
-        const res = await fetch("mi_millage_2024.json?cache=" + Date.now());
+        const res = await fetch("mi_millage_2024.json?cache=" + Date.now(), { cache: "no-store" });
         millageData = await res.json();
         populateCountySelect();
       } catch (e) {
@@ -450,7 +445,7 @@
     function populateCountySelect() {
       const sel = document.getElementById("countySelect");
       sel.innerHTML = '<option value="">Select county…</option>';
-      Object.keys(millageData || {}).sort().forEach(c => {
+      Object.keys(millageData).sort().forEach(c => {
         const o = document.createElement("option");
         o.value = c; o.textContent = c;
         sel.appendChild(o);
@@ -462,9 +457,8 @@
       const schoolSel = document.getElementById("schoolSelect");
       sel.innerHTML = '<option value="">Select local unit…</option>';
       schoolSel.innerHTML = '<option value="">Select school district…</option>';
-      sel.disabled = !county;
-      schoolSel.disabled = true;
-      if (!county || !millageData[county]) return;
+      sel.disabled = !county; schoolSel.disabled = true;
+      if (!county) return;
 
       Object.keys(millageData[county]).sort().forEach(lu => {
         const o = document.createElement("option");
@@ -478,7 +472,6 @@
       sel.innerHTML = '<option value="">Select school district…</option>';
       sel.disabled = !(county && localUnit);
       if (!(county && localUnit)) return;
-      if (!millageData[county] || !millageData[county][localUnit]) return;
 
       Object.keys(millageData[county][localUnit]).sort().forEach(s => {
         const o = document.createElement("option");
@@ -491,30 +484,34 @@
       try {
         const m = millageData[county][lu][school];
         return isPRE ? m.homestead : m.nonhomestead;
-      } catch {
-        return null;
-      }
+      } catch { return null; }
+    }
+
+    function normalizePmmsJson(pmms) {
+      // Supports BOTH formats:
+      // A) { "30-year": 6.18, "15-year": 5.50 }
+      // B) { "pmms30yr": 6.18, "pmms15yr": 5.50 }
+      const thirty = pmms["30-year"] ?? pmms["pmms30yr"];
+      const fifteen = pmms["15-year"] ?? pmms["pmms15yr"];
+
+      if (thirty != null && isFinite(parseFloat(thirty))) pmmsRates["30-year"] = parseFloat(thirty);
+      if (fifteen != null && isFinite(parseFloat(fifteen))) pmmsRates["15-year"] = parseFloat(fifteen);
     }
 
     async function loadPMMSRates() {
-      const note = document.getElementById("pmmsNote");
+      const noteEl = document.getElementById("pmmsNote");
       try {
-        const res = await fetch("pmms.json?cache=" + Date.now());
-        if (!res.ok) throw new Error("pmms.json not found");
-        const pmms = await res.json();
-
-        // Support BOTH formats:
-        // A) {"30-year": 6.23, "15-year": 5.51}
-        // B) {"pmms30yr": 6.23, "pmms15yr": 5.51, ...}
-        if (pmms["30-year"] != null) pmmsRates["30-year"] = parseFloat(pmms["30-year"]);
-        if (pmms["15-year"] != null) pmmsRates["15-year"] = parseFloat(pmms["15-year"]);
-        if (pmms.pmms30yr != null) pmmsRates["30-year"] = parseFloat(pmms.pmms30yr);
-        if (pmms.pmms15yr != null) pmmsRates["15-year"] = parseFloat(pmms.pmms15yr);
-
-        note.textContent = "Using latest Freddie Mac PMMS averages (national).";
+        const res = await fetch("pmms.json?cache=" + Date.now(), { cache: "no-store" });
+        if (res.ok) {
+          const pmms = await res.json();
+          normalizePmmsJson(pmms);
+          noteEl.textContent = "Using latest Freddie Mac PMMS averages (national).";
+        } else {
+          noteEl.textContent = "Using fallback Freddie Mac PMMS values.";
+        }
       } catch (e) {
-        console.warn("PMMS load fallback:", e);
-        note.textContent = "Using fallback Freddie Mac PMMS values.";
+        console.warn("PMMS load failed:", e);
+        noteEl.textContent = "Using fallback Freddie Mac PMMS values.";
       }
       setInterestRateFromPMMS(true);
     }
@@ -612,7 +609,6 @@
         const mill = getMillageRate(c, lu, s, pre);
         if (mill != null) {
           millageUsed = mill.toFixed(4) + " mills";
-          // Taxable value assumed 50% of sale price
           taxAnnual = 0.5 * homePrice * (mill / 1000);
         }
       }
@@ -716,4 +712,3 @@
   </script>
 </body>
 </html>
-
