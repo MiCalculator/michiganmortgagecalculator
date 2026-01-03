@@ -51,11 +51,25 @@
   </script>
 
   <style>
+    :root{
+      --bg: #f5f5f7;
+      --text: #111827;
+      --muted: #4b5563;
+      --muted2: #6b7280;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --soft: #f3f4f6;
+      --brand1: #2563eb;
+      --brand2: #4f46e5;
+      --beige: #f5f0e6;
+      --beigeBorder: #eadfcd;
+    }
+
     * {
       box-sizing: border-box;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif;
     }
-    body { margin: 0; background: #f5f5f7; color: #111827; }
+    body { margin: 0; background: var(--bg); color: var(--text); }
     .page { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
 
     header { margin-bottom: 10px; text-align: center; }
@@ -68,24 +82,25 @@
       font-size: 0.78rem;
     }
     h1 { margin: 4px 0 6px; font-size: 2rem; font-weight: 700; }
-    header p { margin: 0; color: #4b5563; font-size: 0.95rem; }
+    header p { margin: 0; color: var(--muted); font-size: 0.95rem; }
 
-    /* Logo under title */
+    /* Logo under title (matches site background) */
     .site-logo {
       display: block;
-      width: min(220px, 70vw);
+      width: min(220px, 72vw);
       height: auto;
       margin: 10px auto 6px;
       border-radius: 14px;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.10);
-      border: 1px solid #e5e7eb;
-      background: #fff;
+      border: 1px solid var(--border);
+      background: var(--bg);              /* <-- match page background */
+      box-shadow: none;                   /* <-- remove harsh contrast on mobile */
+      padding: 8px;                       /* <-- gives breathing room if logo has transparency */
     }
 
     /* Beige inline banner */
     .navbar {
-      background: #f5f0e6;
-      border: 1px solid #eadfcd;
+      background: var(--beige);
+      border: 1px solid var(--beigeBorder);
       border-radius: 14px;
       padding: 10px 12px;
       text-align: center;
@@ -93,7 +108,7 @@
       margin: 10px auto 16px;
       max-width: 1100px;
     }
-    .navbar a { color: #111827; text-decoration: none; font-weight: 600; }
+    .navbar a { color: var(--text); text-decoration: none; font-weight: 600; }
     .navbar a:hover { text-decoration: underline; }
     .navbar .sep { margin: 0 10px; color: #9ca3af; }
 
@@ -111,10 +126,10 @@
       border: none;
       background: transparent;
       cursor: pointer;
-      color: #4b5563;
+      color: var(--muted);
     }
     .mode-button.active {
-      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      background: linear-gradient(135deg, var(--brand1), var(--brand2));
       color: #fff;
     }
 
@@ -122,20 +137,17 @@
     @media (max-width: 900px) { .grid { grid-template-columns: 1fr; gap: 14px; } }
 
     .card {
-      background: white;
+      background: var(--card);
       border-radius: 18px;
       padding: 18px 16px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-      border: 1px solid #e5e7eb;
-    }
-    @media (max-width: 900px){
-      .card{ padding: 16px 14px; }
+      border: 1px solid var(--border);
     }
 
     .section-label { font-size: 0.78rem; text-transform: uppercase; color: #9ca3af; margin-bottom: 4px; }
     .field-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 10px; margin-bottom: 10px; }
 
-    label { font-size: 0.78rem; margin-bottom: 4px; color: #4b5563; display: block; }
+    label { font-size: 0.78rem; margin-bottom: 4px; color: var(--muted); display: block; }
     input[type="number"], select {
       width: 100%;
       padding: 7px 9px;
@@ -143,10 +155,10 @@
       border-radius: 10px;
       background: #fff;
       font-size: 0.85rem;
-      color: #111827;
+      color: var(--text);
     }
     input[type="number"]:focus, select:focus {
-      border-color: #2563eb;
+      border-color: var(--brand1);
       box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
       outline: none;
     }
@@ -166,13 +178,13 @@
       background: transparent;
       cursor: pointer;
       font-size: 1rem;
-      color: #4b5563;
+      color: var(--muted);
       line-height: 1;
       min-width: 52px;
     }
-    .dp-mode-button.active { background: #2563eb; color: #fff; }
+    .dp-mode-button.active { background: var(--brand1); color: #fff; }
 
-    .small-note { margin-top: 6px; font-size: 0.70rem; color: #6b7280; font-style: italic; }
+    .small-note { margin-top: 6px; font-size: 0.70rem; color: var(--muted2); font-style: italic; }
 
     .checkbox-row { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0 0; }
     .checkbox-row input { margin-top: 2px; }
@@ -180,75 +192,46 @@
     .results-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
     .result-pill {
       padding: 9px 10px;
-      background: #f3f4f6;
-      border: 1px solid #e5e7eb;
+      background: var(--soft);
+      border: 1px solid var(--border);
       border-radius: 14px;
       min-width: 150px;
+      flex: 1 1 160px; /* better wrapping on mobile */
     }
-    .result-pill .label { font-size: 0.72rem; color: #6b7280; display: block; }
+    .result-pill .label { font-size: 0.72rem; color: var(--muted2); display: block; }
     .result-pill .value { margin-top: 2px; font-size: 0.95rem; font-weight: 600; }
     .result-pill.total-monthly .value { font-size: 1.2rem; font-weight: 800; }
 
     /* Table base */
     table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
-    thead { background: #f3f4f6; }
-    th, td { padding: 4px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; }
+    thead { background: var(--soft); }
+    th, td { padding: 6px 6px; border-bottom: 1px solid var(--border); text-align: right; }
     th:first-child, td:first-child { text-align: left; }
     tbody tr:nth-child(even) { background: #f9fafb; }
-    thead th { position: sticky; top: 0; z-index: 2; background: #f3f4f6; }
+    thead th { position: sticky; top: 0; z-index: 2; background: var(--soft); }
 
-    /* Make amortization box fill the card on desktop and be mobile-friendly */
-    .card.amort-card{
-      display: flex;
-      flex-direction: column;
-    }
-    .amort-sub{
-      margin-top: 0;
-      margin-bottom: 10px;
-      color: #4b5563;
-    }
+    /* Amortization sizing: desktop fill, mobile sane */
+    .card.amort-card{ display:flex; flex-direction:column; }
+    .amort-sub{ margin-top:0; margin-bottom:10px; color: var(--muted); }
+
     .amort-wrap{
       flex: 1 1 auto;
-      min-height: 240px;
-      height: clamp(320px, 65vh, 720px);
+      min-height: 260px;
+      height: clamp(360px, 65vh, 760px);
       overflow: auto;
       border-radius: 10px;
-      border: 1px solid #e5e7eb;
+      border: 1px solid var(--border);
       background: #fff;
+      -webkit-overflow-scrolling: touch;
     }
-    .amort-table{
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.76rem;
-      table-layout: auto;
-    }
-    .amort-table thead th{
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      background: #f3f4f6;
-    }
-
-    @media (max-width: 900px){
-      .amort-wrap{
-        height: clamp(260px, 45vh, 460px);
-      }
-    }
-    @media (max-width: 420px){
-      .amort-table{
-        min-width: 520px;
-      }
-    }
-
-    .basic-only, .advanced-only { display: none; }
-    .page.mode-basic .basic-only { display: block; }
-    .page.mode-advanced .advanced-only { display: block; }
+    .amort-table{ width:100%; border-collapse:collapse; font-size:0.76rem; table-layout:auto; }
+    .amort-table thead th{ position: sticky; top:0; z-index:2; background: var(--soft); }
 
     /* Footer */
     .site-footer {
       margin-top: 22px;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 18px;
       padding: 16px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.06);
@@ -267,26 +250,26 @@
       gap: 10px 14px;
       font-size: 0.9rem;
     }
-    .footer-links a { color: #111827; text-decoration: none; font-weight: 600; }
+    .footer-links a { color: var(--text); text-decoration: none; font-weight: 600; }
     .footer-links a:hover { text-decoration: underline; }
     .footer-small {
       font-size: 0.82rem;
-      color: #6b7280;
+      color: var(--muted2);
       line-height: 1.4;
     }
 
     /* Glossary dropdown in footer (with obvious arrow) */
     .footer-glossary {
       margin-top: 12px;
-      background: #f5f0e6;
-      border: 1px solid #eadfcd;
+      background: var(--beige);
+      border: 1px solid var(--beigeBorder);
       border-radius: 18px;
       padding: 14px 16px;
     }
     .footer-glossary summary {
       cursor: pointer;
       font-weight: 900;
-      color: #111827;
+      color: var(--text);
       list-style: none;
       display: flex;
       align-items: center;
@@ -300,14 +283,14 @@
       align-items: center;
       gap: 10px;
       font-size: 0.82rem;
-      color: #6b7280;
+      color: var(--muted2);
       font-weight: 700;
     }
     .footer-glossary .chev {
       width: 28px;
       height: 28px;
       border-radius: 999px;
-      border: 1px solid #eadfcd;
+      border: 1px solid var(--beigeBorder);
       background: #fff;
       display: grid;
       place-items: center;
@@ -319,14 +302,44 @@
 
     .footer-glossary .content {
       margin-top: 10px;
-      color: #4b5563;
+      color: var(--muted);
       font-size: 0.88rem;
       line-height: 1.5;
       text-align: left;
     }
     .footer-glossary .content p { margin: 8px 0; }
 
-    .disclaimer { margin-top: 12px; font-size: 0.8rem; color: #6b7280; text-align: center; }
+    .disclaimer { margin-top: 12px; font-size: 0.8rem; color: var(--muted2); text-align: center; }
+
+    /* -------------------------
+       MOBILE FIXES (this is the big change)
+    ------------------------- */
+    @media (max-width: 600px){
+      .page{ padding: 18px 12px 36px; }
+      h1{ font-size: 1.6rem; }
+      .navbar{ font-size: 0.86rem; padding: 10px 10px; }
+      .navbar .sep{ margin: 0 8px; }
+
+      .card{ padding: 14px 12px; border-radius: 16px; box-shadow: 0 10px 24px rgba(0,0,0,0.07); }
+
+      /* Prevent DP row from causing weird overflow */
+      .dp-row{ flex-wrap: wrap; }
+      .dp-row input#downPaymentInput{ flex: 1 1 120px; min-width: 120px; }
+
+      /* Make results wrap cleanly and not look “odd” */
+      .results-row{ gap: 10px; }
+      .result-pill{ min-width: 0; flex: 1 1 calc(50% - 10px); }
+      .result-pill.total-monthly{ flex-basis: 100%; }
+
+      /* Amortization: don't try to be huge on mobile */
+      .amort-wrap{
+        height: clamp(240px, 40vh, 420px);
+        min-height: 240px;
+      }
+
+      /* Allow horizontal scroll if table needs it (instead of crushing columns) */
+      .amort-table{ min-width: 560px; }
+    }
   </style>
 </head>
 
