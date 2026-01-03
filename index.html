@@ -65,37 +65,28 @@
     }
 
     *{ box-sizing:border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif; }
-    html, body { height: 100%; }
+
+    html, body { height: 100%; width: 100%; }
     body{
       margin:0;
       background:var(--bg);
       color:var(--text);
-      overflow-x: hidden; /* IMPORTANT: prevents mobile “off-center” caused by any overflow */
+      overflow-x:hidden;                /* stop sideways panning */
+      max-width:100vw;                  /* stop layout from exceeding viewport */
+      touch-action: pan-y;              /* discourage sideways pan on mobile */
     }
 
-    /* Main constrained container */
+    /* HARD STOP: nothing is allowed to exceed viewport width */
+    img, svg, canvas, video, iframe, table { max-width: 100%; }
+    .page, .grid, .card, .navbar, .mode-toggle, footer { max-width: 100%; }
+
     .page{
       max-width:1100px;
-      width: 100%;
+      width:100%;
       margin:0 auto;
       padding:24px 16px 48px;
     }
 
-    /* Full-bleed sections (span viewport like you want on mobile) */
-    .full-bleed{
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      margin-right: calc(50% - 50vw);
-      padding-left: 16px;
-      padding-right: 16px;
-    }
-    .full-bleed .inner{
-      max-width:1100px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    /* Header: hard-center on all sizes */
     header{
       margin-bottom:10px;
       text-align:center;
@@ -114,27 +105,22 @@
       font-size:0.78rem;
     }
     h1{ margin:4px 0 6px; font-size:2rem; font-weight:700; }
-    header p{
-      margin:0;
-      color:var(--muted);
-      font-size:0.95rem;
-      max-width: 46rem;
-    }
+    header p{ margin:0; color:var(--muted); font-size:0.95rem; max-width:46rem; }
 
-    /* Logo: remove “bubble” look, match page background by blending (no border/padding) */
+    /* Logo: no bubble, no border/padding */
     .site-logo{
       display:block;
       width:min(240px, 82vw);
       height:auto;
       margin:10px auto 6px;
-      background: transparent;
-      border: none;
-      padding: 0;
-      border-radius: 0;
-      box-shadow: none;
+      background:transparent;
+      border:none;
+      padding:0;
+      border-radius:0;
+      box-shadow:none;
     }
 
-    /* Beige inline banner */
+    /* Beige nav */
     .navbar{
       background:var(--beige);
       border:1px solid var(--beigeBorder);
@@ -142,7 +128,8 @@
       padding:10px 12px;
       text-align:center;
       font-size:0.9rem;
-      width: 100%;
+      margin:10px auto 16px;
+      width:100%;
     }
     .navbar a{ color:var(--text); text-decoration:none; font-weight:600; }
     .navbar a:hover{ text-decoration:underline; }
@@ -155,6 +142,7 @@
       background:#e5e7eb;
       border:1px solid #d1d5db;
       overflow:hidden;
+      max-width:100%;
     }
     .mode-button{
       padding:6px 14px;
@@ -163,14 +151,22 @@
       background:transparent;
       cursor:pointer;
       color:var(--muted);
+      white-space:nowrap;
     }
     .mode-button.active{
       background:linear-gradient(135deg, var(--brand1), var(--brand2));
       color:#fff;
     }
 
-    .grid{ display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:20px; }
-    @media (max-width:900px){ .grid{ grid-template-columns:1fr; gap:14px; } }
+    .grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+      gap:20px;
+      width:100%;
+    }
+    @media (max-width:900px){
+      .grid{ grid-template-columns:1fr; gap:14px; }
+    }
 
     .card{
       background:var(--card);
@@ -178,11 +174,19 @@
       padding:18px 16px;
       box-shadow:0 12px 30px rgba(0,0,0,0.08);
       border:1px solid var(--border);
-      width: 100%;
+      width:100%;
+      min-width:0; /* CRITICAL: prevents grid children from forcing overflow */
     }
 
     .section-label{ font-size:0.78rem; text-transform:uppercase; color:#9ca3af; margin-bottom:4px; }
-    .field-group{ display:grid; grid-template-columns:repeat(auto-fit, minmax(140px,1fr)); gap:10px; margin-bottom:10px; }
+    .field-group{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(140px,1fr));
+      gap:10px;
+      margin-bottom:10px;
+      width:100%;
+      min-width:0;
+    }
 
     label{ font-size:0.78rem; margin-bottom:4px; color:var(--muted); display:block; }
     input[type="number"], select{
@@ -193,6 +197,7 @@
       background:#fff;
       font-size:0.85rem;
       color:var(--text);
+      min-width:0; /* prevents weird iOS overflow */
     }
     input[type="number"]:focus, select:focus{
       border-color:var(--brand1);
@@ -200,7 +205,20 @@
       outline:none;
     }
 
-    .dp-row{ display:flex; align-items:center; gap:8px; flex-wrap:nowrap; }
+    /* Down payment row was the #1 cause of sideways overflow on mobile */
+    .dp-row{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;        /* allow wrap so it never forces sideways */
+      justify-content:flex-start;
+      width:100%;
+      min-width:0;
+    }
+    .dp-row input#downPaymentInput{
+      flex: 1 1 140px;
+      min-width: 140px;
+    }
     .dp-toggle{
       display:inline-flex;
       border:1px solid #d1d5db;
@@ -223,88 +241,87 @@
 
     .small-note{ margin-top:6px; font-size:0.70rem; color:var(--muted2); font-style:italic; }
 
-    .checkbox-row{ display:flex; align-items:flex-start; gap:8px; padding:6px 0 0; }
+    .checkbox-row{ display:flex; align-items:flex-start; gap:8px; padding:6px 0 0; width:100%; min-width:0; }
     .checkbox-row input{ margin-top:2px; }
 
-    .results-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:10px; }
+    .results-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:10px; width:100%; }
     .result-pill{
       padding:9px 10px;
       background:var(--soft);
       border:1px solid var(--border);
       border-radius:14px;
-      min-width:150px;
+      min-width:0;
       flex:1 1 160px;
     }
     .result-pill .label{ font-size:0.72rem; color:var(--muted2); display:block; }
     .result-pill .value{ margin-top:2px; font-size:0.95rem; font-weight:600; }
     .result-pill.total-monthly .value{ font-size:1.2rem; font-weight:800; }
 
-    /* Table base */
-    table{ width:100%; border-collapse:collapse; font-size:0.76rem; }
-    thead{ background:var(--soft); }
-    th, td{ padding:6px 6px; border-bottom:1px solid var(--border); text-align:right; }
-    th:first-child, td:first-child{ text-align:left; }
-    tbody tr:nth-child(even){ background:#f9fafb; }
-    thead th{ position:sticky; top:0; z-index:2; background:var(--soft); }
-
-    /* Amortization */
+    /* Amortization: keep scroll INSIDE box */
     .card.amort-card{ display:flex; flex-direction:column; }
     .amort-sub{ margin-top:0; margin-bottom:10px; color:var(--muted); }
     .amort-wrap{
       flex:1 1 auto;
       min-height:260px;
       height:clamp(360px, 65vh, 760px);
-      overflow:auto;              /* scroll stays inside the box */
-      overflow-x:auto;            /* allow horizontal scroll if needed */
+      overflow:auto;
+      overflow-x:auto;
       border-radius:10px;
       border:1px solid var(--border);
       background:#fff;
       -webkit-overflow-scrolling:touch;
+      max-width:100%;
     }
-    .amort-table{ width:100%; border-collapse:collapse; font-size:0.76rem; table-layout:auto; }
-    .amort-table thead th{ position:sticky; top:0; z-index:2; background:var(--soft); }
+
+    table{ width:100%; border-collapse:collapse; font-size:0.76rem; }
+    thead{ background:var(--soft); }
+    th, td{ padding:6px 6px; border-bottom:1px solid var(--border); text-align:right; white-space:nowrap; }
+    th:first-child, td:first-child{ text-align:left; }
+    tbody tr:nth-child(even){ background:#f9fafb; }
+    thead th{ position:sticky; top:0; z-index:2; background:var(--soft); }
 
     .basic-only, .advanced-only{ display:none; }
     .page.mode-basic .basic-only{ display:block; }
     .page.mode-advanced .advanced-only{ display:block; }
 
-    /* Footer */
+    /* Footer (desktop + mobile centered lines exactly as requested) */
     .site-footer{
+      margin-top:22px;
       background:var(--card);
       border:1px solid var(--border);
       border-radius:18px;
       padding:16px;
       box-shadow:0 12px 30px rgba(0,0,0,0.06);
       width:100%;
+      text-align:center;
     }
-    .footer-top{
+    .footer-nav{
       display:flex;
+      justify-content:center;
+      gap:18px;
       flex-wrap:wrap;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
+      font-size:0.95rem;
+      font-weight:700;
       margin-bottom:10px;
     }
-    .footer-links{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px 14px;
-      font-size:0.9rem;
-    }
-    .footer-links a{ color:var(--text); text-decoration:none; font-weight:600; }
-    .footer-links a:hover{ text-decoration:underline; }
-    .footer-small{
-      font-size:0.82rem;
+    .footer-nav a{ color:var(--text); text-decoration:none; }
+    .footer-nav a:hover{ text-decoration:underline; }
+    .footer-line{
+      font-size:0.85rem;
       color:var(--muted2);
-      line-height:1.4;
+      line-height:1.5;
+      margin:4px 0;
     }
 
+    /* Glossary dropdown (arrow obvious) */
     .footer-glossary{
-      margin-top:12px;
+      margin:12px auto 0;
       background:var(--beige);
       border:1px solid var(--beigeBorder);
       border-radius:18px;
       padding:14px 16px;
+      text-align:left;
+      max-width: 900px;
     }
     .footer-glossary summary{
       cursor:pointer;
@@ -344,52 +361,39 @@
       color:var(--muted);
       font-size:0.88rem;
       line-height:1.5;
-      text-align:left;
     }
     .footer-glossary .content p{ margin:8px 0; }
 
-    .disclaimer{ margin-top:12px; font-size:0.8rem; color:var(--muted2); text-align:center; }
-
-    /* MOBILE: fix centering + prevent any element from pushing layout sideways */
+    /* MOBILE: remove pipes in nav, tighten layout, and FORCE single-column inputs */
     @media (max-width: 600px){
       .page{ padding:18px 12px 32px; }
       h1{ font-size:1.6rem; }
 
-      /* Nav wraps cleanly (no pipes breaking alignment) */
       .navbar{
         display:flex;
-        justify-content:center;
-        align-items:center;
         flex-wrap:wrap;
+        justify-content:center;
         gap:10px 14px;
       }
       .navbar .sep{ display:none; }
 
       .card{ padding:14px 12px; border-radius:16px; }
 
-      /* Down payment row: stop overflow */
-      .dp-row{ flex-wrap:wrap; justify-content:center; }
-      #downPaymentInput{ flex:1 1 160px; min-width:160px; }
-      .dp-toggle{ margin-left:auto; margin-right:auto; }
+      /* This is the KEY mobile fix: all input grids become 1 column (no sideways) */
+      .field-group{ grid-template-columns: 1fr !important; }
 
-      /* Results: 2-up + full width total */
+      /* Keep results clean and not forcing width */
       .results-row{ gap:10px; }
-      .result-pill{ min-width:0; flex:1 1 calc(50% - 10px); }
+      .result-pill{ flex: 1 1 100%; } /* one per row, zero chance of overflow */
       .result-pill.total-monthly{ flex-basis:100%; }
 
-      /* Amortization: keep inside box; allow horizontal scroll without shifting page */
+      /* amortization box shorter; table scroll stays inside */
       .amort-wrap{ height:clamp(240px, 40vh, 420px); min-height:240px; }
-      .amort-table{ min-width: 560px; }
+      table{ font-size:0.74rem; }
 
-      /* Footer: center content, but still full-bleed container spans viewport */
-      .footer-top{
-        flex-direction:column;
-        align-items:center;
-        text-align:center;
-        gap:8px;
-      }
-      .footer-links{ justify-content:center; }
-      .footer-small{ width:100%; text-align:center; }
+      /* footer links still inline + centered, wrap if needed */
+      .footer-nav{ gap:14px; }
+      .footer-glossary{ text-align:left; }
     }
   </style>
 </head>
@@ -400,7 +404,6 @@
       <div class="pill">MichiganMortgageCalculator.org</div>
       <h1>Michigan Mortgage Calculator</h1>
 
-      <!-- Logo (no border/padding so it doesn't look like a “bubble”) -->
       <img
         class="site-logo"
         src="/michigan-mortgage-calculator-thumbnail.png"
@@ -412,17 +415,12 @@
       <p>Estimate your complete Michigan mortgage payment and property taxes instantly.</p>
     </header>
 
-    <!-- FULL-BLEED NAV (spans viewport on mobile, still aligned to desktop) -->
-    <div class="full-bleed">
-      <div class="inner">
-        <nav class="navbar">
-          <a href="/">Calculator</a><span class="sep">|</span>
-          <a href="/lender.html">Lender</a><span class="sep">|</span>
-          <a href="/realtor.html">Realtor</a><span class="sep">|</span>
-          <a href="/contact.html">Contact</a>
-        </nav>
-      </div>
-    </div>
+    <nav class="navbar">
+      <a href="/">Calculator</a><span class="sep">|</span>
+      <a href="/lender.html">Lender</a><span class="sep">|</span>
+      <a href="/realtor.html">Realtor</a><span class="sep">|</span>
+      <a href="/contact.html">Contact</a>
+    </nav>
 
     <div class="mode-toggle">
       <div class="mode-toggle-inner">
@@ -594,7 +592,7 @@
         <p class="amort-sub">Updates automatically.</p>
 
         <div class="amort-wrap">
-          <table class="amort-table">
+          <table>
             <thead>
               <tr>
                 <th>#</th>
@@ -610,52 +608,43 @@
       </div>
     </div>
 
-    <!-- FULL-BLEED FOOTER (spans viewport on mobile) -->
-    <div class="full-bleed" style="margin-top:22px;">
-      <div class="inner">
-        <footer class="site-footer">
-          <div class="footer-top">
-            <div class="footer-links">
-              <a href="/">Calculator</a>
-              <a href="/lender.html">Lender</a>
-              <a href="/realtor.html">Realtor</a>
-              <a href="/contact.html">Contact</a>
-            </div>
-            <div class="footer-small">
-              Contact: <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a> ·
-              Phone: <a href="tel:16162059531">616-205-9531</a>
-            </div>
-          </div>
-
-          <div class="footer-small">
-            Property tax lookups use Michigan millage data (PRE vs non-PRE). Special assessments not included.
-          </div>
-
-          <!-- Glossary (alphabetical) -->
-          <details class="footer-glossary">
-            <summary>
-              <span>Glossary</span>
-              <span class="summary-right">
-                <span>Tap to expand</span>
-                <span class="chev" aria-hidden="true"></span>
-              </span>
-            </summary>
-            <div class="content">
-              <p><strong>Estimates only:</strong> Loan terms, taxes, and fees vary by property and situation. Contact us for a more detailed, property-specific analysis.</p>
-              <p><strong>Millage:</strong> Millage rates vary by county, local unit, and school district and are subject to change.</p>
-              <p><strong>PRE / Non-PRE:</strong> “Primary residence” reflects PRE vs non-PRE. Rentals and second homes typically use non-PRE rates.</p>
-              <p><strong>Special Assessments:</strong> Not included. Roads, water/sewer, sidewalks, and other assessments may apply and can significantly affect your total tax bill.</p>
-              <p><strong>Taxable Value (TV):</strong> This calculator assumes taxable value is <strong>50% of the sale price</strong>.</p>
-              <p><strong>Uncapping:</strong> This estimate assumes taxable value resets to <strong>50% of the sale price</strong>. First-year property taxes are based on the seller’s taxable value as of <strong>December 31 of the prior year</strong>. Contact us for a property-specific analysis.</p>
-            </div>
-          </details>
-
-          <div class="disclaimer">
-            Disclaimer: Estimates only. Verify figures with your lender and local unit before making financial decisions.
-          </div>
-        </footer>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-nav">
+        <a href="/">Calculator</a>
+        <a href="/lender.html">Lender</a>
+        <a href="/realtor.html">Realtor</a>
+        <a href="/contact.html">Contact</a>
       </div>
-    </div>
+
+      <div class="footer-line">
+        Contact: <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a> ·
+        Phone: <a href="tel:16162059531">616-205-9531</a>
+      </div>
+
+      <div class="footer-line">
+        Property tax lookups use Michigan millage data (PRE vs non-PRE). Special assessments not included.
+      </div>
+
+      <!-- Glossary (alphabetical) -->
+      <details class="footer-glossary">
+        <summary>
+          <span>Glossary</span>
+          <span class="summary-right">
+            <span>Tap to expand</span>
+            <span class="chev" aria-hidden="true"></span>
+          </span>
+        </summary>
+        <div class="content">
+          <p><strong>Estimates only:</strong> Loan terms, taxes, and fees vary by property and situation. Contact us for a more detailed, property-specific analysis.</p>
+          <p><strong>Millage:</strong> Millage rates vary by county, local unit, and school district and are subject to change.</p>
+          <p><strong>PRE / Non-PRE:</strong> “Primary residence” reflects PRE vs non-PRE. Rentals and second homes typically use non-PRE rates.</p>
+          <p><strong>Special Assessments:</strong> Not included. Roads, water/sewer, sidewalks, and other assessments may apply and can significantly affect your total tax bill.</p>
+          <p><strong>Taxable Value (TV):</strong> This calculator assumes taxable value is <strong>50% of the sale price</strong>.</p>
+          <p><strong>Uncapping:</strong> This estimate assumes taxable value resets to <strong>50% of the sale price</strong>. First-year property taxes are based on the seller’s taxable value as of <strong>December 31 of the prior year</strong>. Contact us for a property-specific analysis.</p>
+        </div>
+      </details>
+    </footer>
   </div>
 
   <script>
