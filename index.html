@@ -70,6 +70,18 @@
     h1 { margin: 4px 0 6px; font-size: 2rem; font-weight: 700; }
     header p { margin: 0; color: #4b5563; font-size: 0.95rem; }
 
+    /* Logo under title */
+    .site-logo {
+      display: block;
+      width: min(220px, 70vw);
+      height: auto;
+      margin: 10px auto 6px;
+      border-radius: 14px;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+      border: 1px solid #e5e7eb;
+      background: #fff;
+    }
+
     /* Beige inline banner */
     .navbar {
       background: #f5f0e6;
@@ -224,7 +236,7 @@
     }
     @media (max-width: 420px){
       .amort-table{
-        min-width: 520px; /* prevents columns crushing on tiny screens */
+        min-width: 520px;
       }
     }
 
@@ -323,6 +335,16 @@
     <header>
       <div class="pill">MichiganMortgageCalculator.org</div>
       <h1>Michigan Mortgage Calculator</h1>
+
+      <!-- Logo (below title) -->
+      <img
+        class="site-logo"
+        src="/michigan-mortgage-calculator-thumbnail.png"
+        alt="Michigan Mortgage Calculator logo"
+        loading="eager"
+        decoding="async"
+      />
+
       <p>Estimate your complete Michigan mortgage payment and property taxes instantly.</p>
     </header>
 
@@ -538,6 +560,7 @@
         Property tax lookups use Michigan millage data (PRE vs non-PRE). Special assessments not included.
       </div>
 
+      <!-- Glossary (alphabetical) -->
       <details class="footer-glossary">
         <summary>
           <span>Glossary</span>
@@ -547,12 +570,12 @@
           </span>
         </summary>
         <div class="content">
+          <p><strong>Estimates only:</strong> Loan terms, taxes, and fees vary by property and situation. Contact us for a more detailed, property-specific analysis.</p>
+          <p><strong>Millage:</strong> Millage rates vary by county, local unit, and school district and are subject to change.</p>
+          <p><strong>PRE / Non-PRE:</strong> “Primary residence” reflects PRE vs non-PRE. Rentals and second homes typically use non-PRE rates.</p>
+          <p><strong>Special Assessments:</strong> Not included. Roads, water/sewer, sidewalks, and other assessments may apply and can significantly affect your total tax bill.</p>
           <p><strong>Taxable Value (TV):</strong> This calculator assumes taxable value is <strong>50% of the sale price</strong>.</p>
           <p><strong>Uncapping:</strong> This estimate assumes taxable value resets to <strong>50% of the sale price</strong>. First-year property taxes are based on the seller’s taxable value as of <strong>December 31 of the prior year</strong>. Contact us for a property-specific analysis.</p>
-          <p><strong>Millage:</strong> Millage rates vary by county, local unit, and school district and are subject to change.</p>
-          <p><strong>Special Assessments:</strong> Not included. Roads, water/sewer, sidewalks, and other assessments may apply and can significantly affect your total tax bill.</p>
-          <p><strong>PRE / Non-PRE:</strong> “Primary residence” reflects PRE vs non-PRE. Rentals and second homes typically use non-PRE rates.</p>
-          <p><strong>Estimates only:</strong> Loan terms, taxes, and fees vary by property and situation. Contact us for a more detailed, property-specific analysis.</p>
         </div>
       </details>
 
