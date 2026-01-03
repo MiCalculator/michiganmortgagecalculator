@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Michigan Mortgage Calculator</title>
-  <meta name="description" content="Estimate your Michigan mortgage payment with taxes (PRE vs non-PRE), insurance, PMI, and an amortization schedule." />
+  <meta name="description" content="Estimate your Michigan mortgage payment with property taxes (PRE vs non-PRE), insurance, PMI, and more." />
   <link rel="canonical" href="https://michiganmortgagecalculator.org/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Michigan Mortgage Calculator" />
-  <meta property="og:description" content="Estimate payments with Michigan property taxes (PRE vs non-PRE), insurance, PMI, and amortization." />
+  <meta property="og:description" content="Estimate payments with Michigan property taxes (PRE vs non-PRE), insurance, PMI, and more." />
   <meta property="og:url" content="https://michiganmortgagecalculator.org/" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Michigan Mortgage Calculator" />
-  <meta name="twitter:description" content="Estimate payments with Michigan property taxes (PRE vs non-PRE), insurance, PMI, and amortization." />
+  <meta name="twitter:description" content="Estimate payments with Michigan property taxes (PRE vs non-PRE), insurance, PMI, and more." />
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HLMW6NEJ4"></script>
@@ -28,67 +28,51 @@
     gtag('config', 'G-6HLMW6NEJ4');
   </script>
 
-  <!-- Structured Data -->
+  <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Michigan Mortgage Calculator",
     "url": "https://michiganmortgagecalculator.org/",
-    "description": "Estimate your Michigan mortgage payment with taxes (PRE vs non-PRE), insurance, PMI, and amortization.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Michigan Mortgage Calculator",
-      "url": "https://michiganmortgagecalculator.org/"
-    }
+    "description": "Estimate your Michigan mortgage payment with property taxes (PRE vs non-PRE), insurance, PMI, and more."
   }
   </script>
 
   <style>
+    /* IMPORTANT: No body background override here (prevents the “site turned black” issue). */
     :root{
-      --bg0:#070A12;
-      --bg1:#0B1020;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.09);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.68);
-      --border: rgba(255,255,255,.14);
-      --shadow: 0 16px 60px rgba(0,0,0,.55);
+      --card-bg: rgba(255,255,255,0.06);
+      --card-border: rgba(255,255,255,0.14);
+      --muted: rgba(255,255,255,0.75);
+      --shadow: 0 16px 60px rgba(0,0,0,0.35);
       --radius: 18px;
       --max: 1100px;
-      --link: rgba(255,255,255,.86);
-      --linkHover: #fff;
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    /* Only apply these if your site already uses a dark theme. If not, they’ll still look okay. */
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color: var(--text);
-      background:
-        radial-gradient(900px 500px at 20% 10%, rgba(120,140,255,.25), transparent 60%),
-        radial-gradient(900px 500px at 80% 15%, rgba(40,220,190,.18), transparent 55%),
-        radial-gradient(1200px 800px at 60% 95%, rgba(255,170,60,.10), transparent 55%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
-
-    a{ color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
-    a:hover{ color: var(--linkHover); }
 
     .wrap{
       max-width: var(--max);
       margin: 0 auto;
-      padding: 28px 18px 40px;
+      padding: 20px 14px 40px;
     }
 
-    header{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 14px;
-      margin-bottom: 18px;
+    .card{
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+    }
+
+    header.card{
+      margin-bottom: 16px;
     }
 
     .brand h1{
@@ -96,148 +80,131 @@
       font-size: clamp(22px, 3vw, 34px);
       letter-spacing: .2px;
     }
+
     .brand p{
-      margin:0;
-      color: var(--muted);
-      max-width: 70ch;
+      margin: 0;
+      opacity: 0.85;
       line-height: 1.4;
       font-size: 14px;
-    }
-
-    .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 16px;
-      backdrop-filter: blur(10px);
+      max-width: 75ch;
     }
 
     main{
-      display:grid;
+      display: grid;
       gap: 16px;
     }
 
-    /* Footer */
-    footer{
-      margin-top: 20px;
-      padding-top: 16px;
+    /* Footer blocks */
+    footer.card{
+      margin-top: 8px;
     }
-    .footerGrid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    .footerTop{
+
+    .footer-row{
       display:flex;
       flex-wrap:wrap;
       align-items:center;
       justify-content:space-between;
-      gap: 10px;
-    }
-    .footerSmall{
-      color: var(--muted);
-      font-size: 12.5px;
-      line-height: 1.45;
-    }
-    .footerLinks{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px 14px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .badgeRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top: 8px;
-    }
-    .badge{
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--card2);
-      border: 1px solid var(--border);
-      color: rgba(255,255,255,.82);
-      white-space: nowrap;
+      gap:10px;
     }
 
-    /* Glossary dropdown (with obvious arrow) */
-    details{
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--border);
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      font-size: 13px;
+      opacity: .85;
+    }
+
+    .footer-small{
+      font-size: 12.5px;
+      opacity: .85;
+      line-height: 1.45;
+    }
+
+    /* Glossary dropdown with obvious arrow */
+    .footer-glossary details{
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
       border-radius: 14px;
       padding: 10px 12px;
     }
 
-    summary{
+    .footer-glossary summary{
       cursor:pointer;
-      font-weight: 750;
-      letter-spacing:.2px;
-      list-style: none; /* remove default marker so our arrow is consistent */
+      list-style:none;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap: 10px;
+      gap:12px;
       user-select:none;
+      font-weight: 750;
     }
-    summary::-webkit-details-marker{ display:none; } /* Safari/Chrome default triangle */
 
-    .summaryRight{
+    .footer-glossary summary::-webkit-details-marker{ display:none; }
+
+    .footer-glossary .summary-right{
       display:flex;
       align-items:center;
-      gap: 10px;
-      color: rgba(255,255,255,.75);
-      font-weight: 650;
+      gap:10px;
       font-size: 12.5px;
+      opacity: .9;
+      font-weight: 650;
     }
 
-    .chev{
+    .footer-glossary .chev{
       width: 26px;
       height: 26px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
       display:grid;
       place-items:center;
-      line-height: 1;
       transition: transform .18s ease;
       flex: 0 0 auto;
     }
-    /* Use a clear down arrow; rotates when open */
-    .chev::before{
-      content: "▼";
+
+    .footer-glossary .chev::before{
+      content:"▼";
       font-size: 12px;
       transform: translateY(-1px);
     }
-    details[open] .chev{
+
+    .footer-glossary details[open] .chev{
       transform: rotate(180deg);
     }
 
-    .glossary{
+    .footer-glossary .glossary{
       margin-top: 10px;
       display:grid;
-      gap: 10px;
+      gap:10px;
     }
-    .term{
+
+    .footer-glossary .term{
       padding: 10px 12px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.10);
     }
-    .term b{
+
+    .footer-glossary .term b{
       display:block;
       margin-bottom: 4px;
       font-size: 13px;
     }
-    .term span{
-      color: var(--muted);
+
+    .footer-glossary .term span{
+      display:block;
       font-size: 13px;
       line-height: 1.45;
-      display:block;
+      opacity: .9;
     }
   </style>
+
+  <!--
+    If your calculator relies on external CSS/JS files, keep those <link>/<script> tags here.
+    Example:
+    <link rel="stylesheet" href="./styles.css">
+  -->
 </head>
 
 <body>
@@ -246,122 +213,104 @@
     <header class="card">
       <div class="brand">
         <h1>Michigan Mortgage Calculator</h1>
-        <p>
-          Estimate your monthly payment with Michigan property taxes (PRE vs non-PRE), insurance, PMI, and an amortization schedule.
-        </p>
+        <p>Estimate your monthly payment with Michigan property taxes (PRE vs non-PRE), insurance, PMI, and more.</p>
       </div>
     </header>
 
     <main>
-      <!-- START: CALCULATOR APP -->
       <!--
-        Paste your existing calculator HTML here.
-        If your current file already contains the entire calculator UI + scripts,
-        replace ONLY the footer section below OR merge your calculator section into here.
+        ✅ KEEP YOUR CALCULATOR:
+        If your existing JS renders into a container, it usually expects a specific ID.
+        This file provides BOTH #app and #calculator to be safe.
       -->
-      <section class="card" id="calculator">
-        <h2 style="margin:0 0 10px; font-size:18px;">Calculator</h2>
-        <p style="margin:0; color: var(--muted); font-size:13px; line-height:1.5;">
-          (Paste your existing calculator UI here.)
-        </p>
+      <section id="calculator" class="card">
+        <div id="app">
+          <!-- If your calculator is static HTML (not JS-rendered), paste it here. -->
+        </div>
       </section>
-      <!-- END: CALCULATOR APP -->
 
       <footer class="card" aria-label="Footer">
-        <div class="footerGrid">
-
-          <div class="footerTop">
-            <div class="footerLinks" aria-label="Footer links">
+        <div style="display:grid; gap:12px;">
+          <div class="footer-row">
+            <div class="footer-links">
               <a href="#calculator">Calculator</a>
               <a href="mailto:michiganmortgagecalculator@gmail.com">Email</a>
               <a href="tel:16162059531">Call</a>
             </div>
 
-            <div class="footerSmall">
+            <div class="footer-small">
               Contact: <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a>
               &nbsp;·&nbsp; Phone: <a href="tel:16162059531">616-205-9531</a>
             </div>
           </div>
 
-          <div class="footerSmall">
+          <div class="footer-small">
             Property tax lookups use Michigan millage data (PRE vs non-PRE). Special assessments not included.
           </div>
 
-          <div class="footerSmall">
+          <div class="footer-glossary">
+            <details>
+              <summary>
+                <span>Glossary</span>
+                <span class="summary-right">
+                  <span>Tap to expand</span>
+                  <span class="chev" aria-hidden="true"></span>
+                </span>
+              </summary>
+
+              <div class="glossary">
+                <div class="term">
+                  <b>PRE (Principal Residence Exemption)</b>
+                  <span>Michigan’s exemption that reduces the school operating portion of property taxes for an owner-occupied primary residence. Non-PRE generally applies to rentals/second homes.</span>
+                </div>
+
+                <div class="term">
+                  <b>Millage</b>
+                  <span>Property tax rate per $1,000 of taxable value. Millage varies by local unit (city/township), county, school district, and other authorities.</span>
+                </div>
+
+                <div class="term">
+                  <b>Taxable Value (TV)</b>
+                  <span>The value used to calculate property taxes in Michigan. TV is generally capped (Proposal A) and uncaps on transfer of ownership.</span>
+                </div>
+
+                <div class="term">
+                  <b>Assessed Value (AV)</b>
+                  <span>Typically 50% of a property’s True Cash Value (market value estimate) for assessment purposes.</span>
+                </div>
+
+                <div class="term">
+                  <b>PMI (Private Mortgage Insurance)</b>
+                  <span>Insurance often required when down payment is under 20%. Typically calculated annually and paid monthly.</span>
+                </div>
+
+                <div class="term">
+                  <b>Escrow</b>
+                  <span>Monthly collection for taxes and insurance held by the lender and paid when due.</span>
+                </div>
+
+                <div class="term">
+                  <b>Amortization</b>
+                  <span>A schedule showing how each payment is split between interest and principal over the life of the loan.</span>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <div class="footer-small" style="opacity:.75;">
             Disclaimer: Estimates only. Mortgage payments, taxes, insurance, and PMI can vary. Verify figures with your lender and local unit before making financial decisions.
           </div>
-
-          <details>
-            <summary>
-              <span>Glossary</span>
-              <span class="summaryRight">
-                <span>Tap to expand</span>
-                <span class="chev" aria-hidden="true"></span>
-              </span>
-            </summary>
-
-            <div class="glossary">
-              <div class="term" id="glossary-pre">
-                <b>PRE (Principal Residence Exemption)</b>
-                <span>
-                  Michigan’s exemption that reduces the school operating portion of property taxes for an owner-occupied primary residence. Non-PRE generally applies to rentals/second homes.
-                </span>
-              </div>
-
-              <div class="term" id="glossary-millage">
-                <b>Millage</b>
-                <span>
-                  Property tax rate per $1,000 of taxable value. Millage can vary by local unit (city/township), county, school district, and other authorities.
-                </span>
-              </div>
-
-              <div class="term" id="glossary-tv">
-                <b>Taxable Value (TV)</b>
-                <span>
-                  The value used to calculate property taxes in Michigan. TV is generally capped (Proposal A) and can increase by inflation (or 5%, whichever is lower) until it uncaps on transfer of ownership.
-                </span>
-              </div>
-
-              <div class="term" id="glossary-av">
-                <b>Assessed Value (AV)</b>
-                <span>
-                  Typically 50% of a property’s True Cash Value (market value estimate) for assessment purposes.
-                </span>
-              </div>
-
-              <div class="term" id="glossary-pmi">
-                <b>PMI (Private Mortgage Insurance)</b>
-                <span>
-                  Insurance typically required when down payment is under 20%. Often calculated annually and paid monthly as part of your mortgage payment.
-                </span>
-              </div>
-
-              <div class="term" id="glossary-escrow">
-                <b>Escrow</b>
-                <span>
-                  A monthly collection for taxes and insurance held by the lender and paid when due.
-                </span>
-              </div>
-
-              <div class="term" id="glossary-amortization">
-                <b>Amortization</b>
-                <span>
-                  The schedule showing how each payment is split between interest and principal over the life of the loan.
-                </span>
-              </div>
-            </div>
-          </details>
-
-          <div class="badgeRow" aria-label="Site notes">
-            <span class="badge">Michigan-focused</span>
-            <span class="badge">PRE vs non-PRE</span>
-            <span class="badge">Estimates only</span>
-          </div>
-
         </div>
       </footer>
     </main>
 
   </div>
+
+  <!--
+    ✅ IMPORTANT:
+    Put your existing calculator <script> tags back EXACTLY as they were.
+    Example:
+    <script src="./app.js"></script>
+  -->
 </body>
 </html>
