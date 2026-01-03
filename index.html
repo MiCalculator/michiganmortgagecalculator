@@ -1,21 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <title>Michigan Mortgage Calculator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Michigan Mortgage Calculator</title>
-  <meta name="description" content="Michigan mortgage calculator with taxes (PRE vs non-PRE), insurance, PMI, and amortization schedule." />
   <link rel="canonical" href="https://michiganmortgagecalculator.org/" />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Michigan Mortgage Calculator" />
-  <meta property="og:description" content="Estimate payments with Michigan property taxes (PRE vs non-PRE), insurance, PMI, and amortization." />
-  <meta property="og:url" content="https://michiganmortgagecalculator.org/" />
+  <!-- SEO (don’t emphasize 2024 in search results) -->
+  <meta name="description" content="Michigan Mortgage Calculator with millage-based property tax estimates, PMI, insurance, and full amortization." />
+  <meta name="keywords" content="Michigan mortgage calculator, Michigan property tax calculator, millage rates, PMI calculator Michigan" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
+  <meta name="google-site-verification" content="uJ4hk7yJuv8LHqrCEiFtQOGfmhZ7CqYCpsd8QdF_f1c" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="/michigan-mortgage-calculator-thumbnail.png" sizes="192x192" type="image/png" />
+  <link rel="apple-touch-icon" href="/michigan-mortgage-calculator-thumbnail.png" />
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Michigan Mortgage Calculator" />
+  <meta property="og:description" content="Instant Michigan mortgage payments and millage-based property tax estimates." />
+  <meta property="og:image" content="https://michiganmortgagecalculator.org/michigan-mortgage-calculator-thumbnail.png" />
+  <meta property="og:url" content="https://michiganmortgagecalculator.org/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Michigan Mortgage Calculator" />
+  <meta name="twitter:description" content="Instant Michigan mortgage payments with millage tax lookup." />
+  <meta name="twitter:image" content="https://michiganmortgagecalculator.org/michigan-mortgage-calculator-thumbnail.png" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Michigan Mortgage Calculator",
+    "url": "https://michiganmortgagecalculator.org/",
+    "logo": "https://michiganmortgagecalculator.org/michigan-mortgage-calculator-thumbnail.png"
+  }
+  </script>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HLMW6NEJ4"></script>
@@ -27,986 +51,762 @@
   </script>
 
   <style>
-    :root{
-      --bg0:#070A12;
-      --bg1:#0B1020;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.09);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
-      --border: rgba(255,255,255,.14);
-      --shadow: 0 16px 60px rgba(0,0,0,.55);
-      --radius: 18px;
-      --max: 1150px;
-      --accent: rgba(120,140,255,.85);
-      --good: rgba(80,220,160,.85);
-      --warn: rgba(255,190,90,.9);
-      --danger: rgba(255,120,120,.9);
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif;
     }
+    body { margin: 0; background: #f5f5f7; color: #111827; }
+    .page { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color: var(--text);
-      background:
-        radial-gradient(900px 500px at 20% 10%, rgba(120,140,255,.25), transparent 60%),
-        radial-gradient(900px 500px at 80% 15%, rgba(40,220,190,.18), transparent 55%),
-        radial-gradient(1200px 800px at 60% 95%, rgba(255,170,60,.10), transparent 55%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-    }
-
-    a{ color: rgba(255,255,255,.88); text-decoration: underline; text-underline-offset: 3px; }
-    a:hover{ color: #fff; }
-
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 26px 16px 44px;
-    }
-
-    .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 16px;
-      backdrop-filter: blur(10px);
-    }
-
-    header.card{ padding: 18px; }
-    h1{ margin:0 0 6px; font-size: clamp(22px, 3vw, 34px); letter-spacing:.2px; }
-    .sub{ margin:0; color: var(--muted); line-height:1.45; font-size: 14px; max-width: 80ch; }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    @media (max-width: 920px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-
-    .section-title{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px;
-      margin:0 0 10px;
-      font-size: 15px;
-      letter-spacing: .2px;
-    }
-    .pill{
-      font-size: 12px;
-      padding: 6px 10px;
+    header { margin-bottom: 10px; text-align: center; }
+    .pill {
+      display: inline-flex;
+      padding: 4px 10px;
       border-radius: 999px;
-      background: var(--card2);
-      border: 1px solid var(--border);
-      color: rgba(255,255,255,.82);
-      white-space: nowrap;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 0.78rem;
     }
+    h1 { margin: 4px 0 6px; font-size: 2rem; font-weight: 700; }
+    header p { margin: 0; color: #4b5563; font-size: 0.95rem; }
 
-    .form{
-      display:grid;
-      gap: 12px;
+    /* Beige inline banner */
+    .navbar {
+      background: #f5f0e6;
+      border: 1px solid #eadfcd;
+      border-radius: 14px;
+      padding: 10px 12px;
+      text-align: center;
+      font-size: 0.9rem;
+      margin: 10px auto 16px;
+      max-width: 1100px;
     }
+    .navbar a { color: #111827; text-decoration: none; font-weight: 600; }
+    .navbar a:hover { text-decoration: underline; }
+    .navbar .sep { margin: 0 10px; color: #9ca3af; }
 
-    .row{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+    .mode-toggle { display: flex; justify-content: center; margin-bottom: 16px; }
+    .mode-toggle-inner {
+      display: inline-flex;
+      border-radius: 999px;
+      background: #e5e7eb;
+      border: 1px solid #d1d5db;
+      overflow: hidden;
     }
-    @media (max-width: 520px){
-      .row{ grid-template-columns: 1fr; }
-    }
-
-    label{
-      display:block;
-      font-size: 12.5px;
-      color: rgba(255,255,255,.78);
-      margin-bottom: 6px;
-    }
-
-    .field{
-      background: rgba(0,0,0,.20);
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 12px;
-      padding: 10px 10px;
-    }
-
-    input, select{
-      width:100%;
+    .mode-button {
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      border: none;
       background: transparent;
-      border: 0;
+      cursor: pointer;
+      color: #4b5563;
+    }
+    .mode-button.active {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #fff;
+    }
+
+    .grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 20px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 18px 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      border: 1px solid #e5e7eb;
+    }
+    .section-label { font-size: 0.78rem; text-transform: uppercase; color: #9ca3af; margin-bottom: 4px; }
+    .field-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 10px; margin-bottom: 10px; }
+
+    label { font-size: 0.78rem; margin-bottom: 4px; color: #4b5563; display: block; }
+    input[type="number"], select {
+      width: 100%;
+      padding: 7px 9px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      background: #fff;
+      font-size: 0.85rem;
+      color: #111827;
+    }
+    input[type="number"]:focus, select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
       outline: none;
-      color: var(--text);
-      font-size: 15px;
-    }
-    select{ cursor:pointer; }
-
-    .hint{
-      margin-top: 6px;
-      font-size: 12px;
-      color: rgba(255,255,255,.62);
-      line-height: 1.35;
     }
 
-    .toggleRow{
-      display:flex; flex-wrap:wrap; gap:10px;
-      align-items:center; justify-content:space-between;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-    }
-    .toggleRow .left{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-    }
-    .toggleRow input[type="checkbox"]{ width: 18px; height: 18px; }
-    .toggleRow .txt{ font-size: 13px; color: rgba(255,255,255,.86); }
-
-    .tabs{
-      display:flex; gap:8px; flex-wrap:wrap;
-    }
-    .btn{
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-      color: rgba(255,255,255,.88);
+    .dp-row { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; }
+    .dp-toggle {
+      display: inline-flex;
+      border: 1px solid #d1d5db;
+      background: #e5e7eb;
       border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 13px;
-      cursor:pointer;
-      user-select:none;
+      overflow: hidden;
+      flex: 0 0 auto;
     }
-    .btn.active{
-      border-color: rgba(120,140,255,.55);
-      background: rgba(120,140,255,.18);
+    .dp-mode-button {
+      padding: 7px 14px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #4b5563;
+      line-height: 1;
+      min-width: 52px; /* extra width so it doesn’t feel cramped */
     }
+    .dp-mode-button.active { background: #2563eb; color: #fff; }
 
-    .results{
-      display:grid;
-      gap: 12px;
-    }
-    .big{
-      padding: 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.18);
-    }
-    .big .k{
-      font-size: 12.5px;
-      color: rgba(255,255,255,.74);
-      margin-bottom: 6px;
-    }
-    .big .v{
-      font-size: 28px;
-      letter-spacing: .2px;
-      font-weight: 800;
-    }
-    .big .subv{
-      margin-top: 6px;
-      font-size: 12.5px;
-      color: rgba(255,255,255,.70);
-      line-height: 1.35;
-    }
+    .small-note { margin-top: 6px; font-size: 0.70rem; color: #6b7280; font-style: italic; }
 
-    .breakdown{
-      display:grid;
+    .checkbox-row { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0 0; }
+    .checkbox-row input { margin-top: 2px; }
+
+    .results-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+    .result-pill {
+      padding: 9px 10px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      min-width: 150px;
+    }
+    .result-pill .label { font-size: 0.72rem; color: #6b7280; display: block; }
+    .result-pill .value { margin-top: 2px; font-size: 0.95rem; font-weight: 600; }
+    .result-pill.total-monthly .value { font-size: 1.2rem; font-weight: 800; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
+    thead { background: #f3f4f6; }
+    th, td { padding: 4px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; }
+    th:first-child, td:first-child { text-align: left; }
+    tbody tr:nth-child(even) { background: #f9fafb; }
+
+    /* Freeze amortization header */
+    thead th { position: sticky; top: 0; z-index: 2; background: #f3f4f6; }
+
+    .basic-only, .advanced-only { display: none; }
+    .page.mode-basic .basic-only { display: block; }
+    .page.mode-advanced .advanced-only { display: block; }
+
+    /* Footer */
+    .site-footer {
+      margin-top: 22px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    }
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
       gap: 10px;
-      padding: 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
+      margin-bottom: 10px;
     }
-    .line{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      font-size: 0.9rem;
+    }
+    .footer-links a { color: #111827; text-decoration: none; font-weight: 600; }
+    .footer-links a:hover { text-decoration: underline; }
+    .footer-small {
+      font-size: 0.82rem;
+      color: #6b7280;
+      line-height: 1.4;
+    }
+
+    /* Glossary dropdown in footer (with obvious arrow) */
+    .footer-glossary {
+      margin-top: 12px;
+      background: #f5f0e6;
+      border: 1px solid #eadfcd;
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+    .footer-glossary summary {
+      cursor: pointer;
+      font-weight: 900;
+      color: #111827;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 12px;
-      font-size: 13.5px;
-      color: rgba(255,255,255,.86);
+      user-select: none;
     }
-    .line span{ color: rgba(255,255,255,.74); }
-
-    details{
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 14px;
-      padding: 10px 12px;
+    .footer-glossary summary::-webkit-details-marker { display: none; }
+    .footer-glossary .summary-right {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: #6b7280;
+      font-weight: 700;
     }
-
-    summary{
-      cursor:pointer;
-      list-style:none;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      user-select:none;
-      font-weight: 750;
-      letter-spacing:.2px;
-    }
-    summary::-webkit-details-marker{ display:none; }
-
-    .summaryRight{
-      display:flex; align-items:center; gap:10px;
-      color: rgba(255,255,255,.78);
-      font-weight: 650;
-      font-size: 12.5px;
-    }
-    .chev{
-      width: 26px; height: 26px;
+    .footer-glossary .chev {
+      width: 28px;
+      height: 28px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.08);
-      display:grid; place-items:center;
+      border: 1px solid #eadfcd;
+      background: #fff;
+      display: grid;
+      place-items: center;
       transition: transform .18s ease;
       flex: 0 0 auto;
     }
-    .chev::before{ content:"▼"; font-size: 12px; transform: translateY(-1px); }
-    details[open] .chev{ transform: rotate(180deg); }
+    .footer-glossary .chev::before { content: "▼"; font-size: 12px; transform: translateY(-1px); }
+    details[open] .chev { transform: rotate(180deg); }
 
-    table{
-      width:100%;
-      border-collapse: collapse;
-      overflow:hidden;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.16);
-    }
-    th, td{
-      padding: 10px 10px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      font-size: 12.5px;
-      text-align: right;
-      white-space: nowrap;
-    }
-    th{
-      text-align:right;
-      font-size: 12px;
-      color: rgba(255,255,255,.74);
-      background: rgba(255,255,255,.06);
-      position: sticky;
-      top: 0;
-    }
-    td:first-child, th:first-child{ text-align:left; }
-    tr:last-child td{ border-bottom: none; }
-
-    .footerSmall{
-      color: rgba(255,255,255,.72);
-      font-size: 12.5px;
-      line-height: 1.45;
-    }
-
-    .footerTop{
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-    }
-
-    .footerLinks{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px 14px;
-      font-size: 13px;
-      color: rgba(255,255,255,.74);
-    }
-
-    .term{
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
+    .footer-glossary .content {
       margin-top: 10px;
+      color: #4b5563;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      text-align: left;
     }
-    .term b{ display:block; margin-bottom: 4px; font-size: 13px; }
-    .term span{ color: rgba(255,255,255,.72); font-size: 13px; line-height: 1.45; display:block; }
+    .footer-glossary .content p { margin: 8px 0; }
 
-    .notice{
-      font-size: 12.5px;
-      line-height: 1.4;
-      color: rgba(255,255,255,.72);
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-    }
-    .notice strong{ color: rgba(255,255,255,.9); }
-
-    .badgeRow{
-      display:flex; flex-wrap:wrap; gap:8px; margin-top: 8px;
-    }
-    .badge{
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--card2);
-      border: 1px solid var(--border);
-      color: rgba(255,255,255,.82);
-      white-space: nowrap;
-    }
+    .disclaimer { margin-top: 12px; font-size: 0.8rem; color: #6b7280; text-align: center; }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header class="card">
+  <div class="page mode-advanced">
+    <header>
+      <div class="pill">MichiganMortgageCalculator.org</div>
       <h1>Michigan Mortgage Calculator</h1>
-      <p class="sub">
-        Estimate your monthly payment with Michigan property taxes (PRE vs non-PRE), insurance, PMI, and an amortization schedule.
-      </p>
+      <p>Estimate your complete Michigan mortgage payment and property taxes instantly.</p>
     </header>
 
-    <div class="grid" id="calculator">
-      <!-- Inputs -->
-      <section class="card">
-        <div class="section-title">
-          <div>Inputs</div>
-          <div class="tabs" aria-label="Mode tabs">
-            <button class="btn active" id="tabBasic" type="button">Basic</button>
-            <button class="btn" id="tabAdvanced" type="button">Advanced</button>
-          </div>
-        </div>
+    <nav class="navbar">
+      <a href="/">Calculator</a><span class="sep">|</span>
+      <a href="/lender.html">Lender</a><span class="sep">|</span>
+      <a href="/realtor.html">Realtor</a><span class="sep">|</span>
+      <a href="/contact.html">Contact</a>
+    </nav>
 
-        <div class="form" id="basicPanel">
-          <div class="row">
-            <div>
-              <label for="homePrice">Home price</label>
-              <div class="field"><input id="homePrice" inputmode="decimal" value="350000" /></div>
-            </div>
-            <div>
-              <label for="loanTerm">Loan term (years)</label>
-              <div class="field">
-                <select id="loanTerm">
-                  <option value="30" selected>30</option>
-                  <option value="25">25</option>
-                  <option value="20">20</option>
-                  <option value="15">15</option>
-                  <option value="10">10</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div>
-              <label>Down payment</label>
-              <div class="row" style="grid-template-columns: 1fr 1fr;">
-                <div class="field"><input id="downPayment" inputmode="decimal" value="70000" /></div>
-                <div class="field">
-                  <select id="downType">
-                    <option value="dollars" selected>$</option>
-                    <option value="percent">%</option>
-                  </select>
-                </div>
-              </div>
-              <div class="hint" id="downHint"></div>
-            </div>
-
-            <div>
-              <label for="interestRate">Interest rate (%)</label>
-              <div class="field"><input id="interestRate" inputmode="decimal" value="6.875" /></div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div>
-              <label for="homeInsurance">Home insurance (annual)</label>
-              <div class="field"><input id="homeInsurance" inputmode="decimal" value="1200" /></div>
-              <div class="hint">Estimate — you can edit this.</div>
-            </div>
-            <div>
-              <label for="hoaMonthly">HOA (monthly)</label>
-              <div class="field"><input id="hoaMonthly" inputmode="decimal" value="0" /></div>
-              <div class="hint">Set to 0 if none.</div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div>
-              <label for="pmiAnnualPct">PMI (annual %)</label>
-              <div class="field"><input id="pmiAnnualPct" inputmode="decimal" value="0.50" /></div>
-              <div class="hint">If down payment ≥ 20%, PMI typically becomes 0.</div>
-            </div>
-            <div>
-              <label for="propertyTaxAnnual">Property taxes (annual)</label>
-              <div class="field"><input id="propertyTaxAnnual" inputmode="decimal" value="0" /></div>
-              <div class="hint">Use lookup (Advanced) or enter an annual estimate here.</div>
-            </div>
-          </div>
-
-          <div class="toggleRow">
-            <div class="left">
-              <input type="checkbox" id="preApplies" checked />
-              <div class="txt">Home is my primary residence (PRE applies)</div>
-            </div>
-            <div class="pill" id="prePill">PRE: ON</div>
-          </div>
-
-          <div class="notice" id="lookupStatus">
-            <strong>Tip:</strong> If you don’t know taxes yet, switch to <strong>Advanced</strong> to try a Michigan millage lookup (if available). Special assessments are not included.
-          </div>
-        </div>
-
-        <!-- Advanced -->
-        <div class="form" id="advancedPanel" style="display:none;">
-          <div class="toggleRow">
-            <div class="left">
-              <input type="checkbox" id="preApplies2" checked />
-              <div class="txt">Home is my primary residence (PRE applies)</div>
-            </div>
-            <div class="pill" id="prePill2">PRE: ON</div>
-          </div>
-
-          <div class="notice" id="millageNotice">
-            <strong>Millage lookup:</strong> This page will attempt to load <code>/data/millage.json</code>. If the file isn’t present yet, lookup will show “Unavailable” and you can still enter taxes manually.
-          </div>
-
-          <div class="row">
-            <div>
-              <label for="county">County (lookup)</label>
-              <div class="field">
-                <select id="county">
-                  <option value="">Loading…</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label for="jurisdiction">City / Township (lookup)</label>
-              <div class="field">
-                <select id="jurisdiction" disabled>
-                  <option value="">Select county first</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div>
-              <label for="schoolDistrict">School district (lookup)</label>
-              <div class="field">
-                <select id="schoolDistrict" disabled>
-                  <option value="">Select county first</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label for="taxableValue">Taxable value (for lookup)</label>
-              <div class="field"><input id="taxableValue" inputmode="decimal" value="" placeholder="Optional (defaults to 50% of price)" /></div>
-              <div class="hint">If blank, we estimate TV = 50% of home price (rough estimate).</div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div>
-              <label for="computedMillage">Total millage (computed)</label>
-              <div class="field"><input id="computedMillage" value="Unavailable" disabled /></div>
-              <div class="hint">Uses PRE vs non-PRE if your data provides both.</div>
-            </div>
-            <div>
-              <label for="computedTaxAnnual">Taxes (annual, computed)</label>
-              <div class="field"><input id="computedTaxAnnual" value="0" disabled /></div>
-              <div class="hint">When available, this writes into Basic “Property taxes (annual)”.</div>
-            </div>
-          </div>
-
-          <div class="notice">
-            If lookup is unavailable, enter taxes in Basic (annual) and you’re good.
-          </div>
-        </div>
-      </section>
-
-      <!-- Results -->
-      <section class="card">
-        <div class="section-title">
-          <div>Results</div>
-          <div class="pill" id="loanPill">Loan: $0</div>
-        </div>
-
-        <div class="results">
-          <div class="big">
-            <div class="k">Estimated total monthly payment</div>
-            <div class="v" id="totalMonthly">$0</div>
-            <div class="subv" id="subSummary">Includes principal & interest + taxes + insurance + PMI + HOA (as entered).</div>
-          </div>
-
-          <div class="breakdown" aria-label="Payment breakdown">
-            <div class="line"><div>P&I</div><div><span id="piMonthly">$0</span></div></div>
-            <div class="line"><div>Property taxes</div><div><span id="taxMonthly">$0</span></div></div>
-            <div class="line"><div>Home insurance</div><div><span id="insMonthly">$0</span></div></div>
-            <div class="line"><div>PMI</div><div><span id="pmiMonthly">$0</span></div></div>
-            <div class="line"><div>HOA</div><div><span id="hoaOut">$0</span></div></div>
-            <div class="line" style="font-weight:800;"><div>Total</div><div><span id="totalMonthly2">$0</span></div></div>
-          </div>
-
-          <details>
-            <summary>
-              <span>Amortization schedule</span>
-              <span class="summaryRight"><span>Tap to expand</span><span class="chev" aria-hidden="true"></span></span>
-            </summary>
-            <div style="margin-top:10px; max-height: 420px; overflow:auto; border-radius:14px;">
-              <table id="amTable">
-                <thead>
-                  <tr>
-                    <th>Month</th>
-                    <th>Payment</th>
-                    <th>Principal</th>
-                    <th>Interest</th>
-                    <th>Balance</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
-            </div>
-          </details>
-
-          <div class="notice" id="pmiNote">
-            PMI auto-sets to $0 if down payment is ≥ 20% (you can still override PMI % if you want).
-          </div>
-        </div>
-      </section>
+    <div class="mode-toggle">
+      <div class="mode-toggle-inner">
+        <button class="mode-button" data-mode="basic">Basic Settings</button>
+        <button class="mode-button active" data-mode="advanced">Advanced Settings</button>
+      </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="card" style="margin-top:16px;">
-      <div style="display:grid; gap:12px;">
+    <div class="grid">
+      <!-- LEFT -->
+      <div class="card">
+        <div class="section-label">Mortgage</div>
+        <h2>Monthly Payment</h2>
 
-        <div class="footerTop">
-          <div class="footerLinks">
-            <a href="#calculator">Calculator</a>
-            <a href="mailto:michiganmortgagecalculator@gmail.com">Email</a>
-            <a href="tel:16162059531">Call</a>
+        <p><strong>Home & loan details</strong></p>
+
+        <div class="field-group">
+          <div>
+            <label>Home price</label>
+            <input id="homePriceInput" type="number" value="300000" />
           </div>
 
-          <div class="footerSmall">
-            Contact: <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a>
-            &nbsp;·&nbsp; Phone: <a href="tel:16162059531">616-205-9531</a>
+          <div>
+            <label>Down payment</label>
+            <div class="dp-row">
+              <input id="downPaymentInput" type="number" value="20" />
+              <div class="dp-toggle">
+                <button class="dp-mode-button" data-mode="dollar">$</button>
+                <button class="dp-mode-button active" data-mode="percent">%</button>
+              </div>
+              <input type="hidden" id="downPaymentMode" value="percent" />
+            </div>
           </div>
         </div>
 
-        <div class="footerSmall">
-          Property tax lookups use Michigan millage data (PRE vs non-PRE). Special assessments not included.
+        <div class="field-group">
+          <div>
+            <label>Interest rate (annual %)</label>
+            <input id="interestRateInput" type="number" placeholder="6.2" />
+            <div id="pmmsNote" class="small-note"></div>
+          </div>
+
+          <div>
+            <label>Loan term (years)</label>
+            <select id="loanTermYearsInput">
+              <option value="30" selected>30</option>
+              <option value="25">25</option>
+              <option value="20">20</option>
+              <option value="15">15</option>
+              <option value="10">10</option>
+            </select>
+          </div>
         </div>
 
-        <div class="footerSmall">
-          Disclaimer: Estimates only. Mortgage payments, taxes, insurance, PMI, and fees can vary. Verify figures with your lender and local unit before making financial decisions.
+        <!-- BASIC -->
+        <div class="basic-only">
+          <p><strong>Taxes, Insurance, HOA & PMI</strong></p>
+
+          <div class="field-group">
+            <div>
+              <label>Annual property tax</label>
+              <input id="basicTaxAnnualInput" type="number" placeholder="3600" />
+            </div>
+            <div>
+              <label>Home insurance (annual)</label>
+              <input id="basicInsuranceAnnualInput" type="number" value="1200" />
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div>
+              <label>HOA dues (monthly)</label>
+              <input id="basicHoaMonthlyInput" type="number" placeholder="0" />
+            </div>
+            <div>
+              <label>PMI (annual)</label>
+              <input id="basicPmiAnnualInput" type="number" placeholder="0" />
+            </div>
+          </div>
         </div>
 
-        <details>
-          <summary>
-            <span>Glossary</span>
-            <span class="summaryRight"><span>Tap to expand</span><span class="chev" aria-hidden="true"></span></span>
-          </summary>
+        <!-- ADVANCED -->
+        <div class="advanced-only" style="margin-top:12px;">
+          <p><strong>Property tax inputs</strong></p>
 
-          <div class="term">
-            <b>PRE (Principal Residence Exemption)</b>
-            <span>Michigan’s exemption that reduces the school operating portion of property taxes for an owner-occupied primary residence. Non-PRE generally applies to rentals/second homes.</span>
+          <div class="field-group">
+            <div>
+              <label>County</label>
+              <select id="countySelect">
+                <option value="">Select county…</option>
+              </select>
+            </div>
+
+            <div>
+              <label>City / Township / Village</label>
+              <select id="localUnitSelect" disabled>
+                <option value="">Select local unit…</option>
+              </select>
+            </div>
           </div>
 
-          <div class="term">
-            <b>Millage</b>
-            <span>Property tax rate per $1,000 of taxable value. Millage varies by local unit (city/township), county, school district, and other authorities.</span>
+          <div class="field-group">
+            <div>
+              <label>School district</label>
+              <select id="schoolSelect" disabled>
+                <option value="">Select school district…</option>
+              </select>
+            </div>
+
+            <div>
+              <label>&nbsp;</label>
+              <div class="checkbox-row">
+                <input id="preCheckbox" type="checkbox" checked />
+                <label for="preCheckbox">Primary residence (uncheck if rental or second home)</label>
+              </div>
+            </div>
           </div>
 
-          <div class="term">
-            <b>Taxable Value (TV)</b>
-            <span>The value used to calculate property taxes in Michigan. TV is generally capped under Proposal A and uncaps on transfer of ownership.</span>
+          <p style="margin: 10px 0 6px;"><strong>Insurance, PMI & HOA</strong></p>
+
+          <div class="field-group">
+            <div>
+              <label>Home insurance (annual)</label>
+              <input id="annualInsuranceInput" type="number" value="1200" />
+            </div>
+            <div>
+              <label>PMI rate</label>
+              <input id="pmiRateInput" type="number" value="0.5" />
+            </div>
           </div>
 
-          <div class="term">
-            <b>PMI</b>
-            <span>Private Mortgage Insurance — often required when down payment is under 20% on conventional loans. Usually priced as an annual % and paid monthly.</span>
+          <div class="field-group">
+            <div>
+              <label>HOA dues (monthly)</label>
+              <input id="advancedHoaMonthlyInput" type="number" value="0" />
+            </div>
           </div>
-
-          <div class="term">
-            <b>Escrow</b>
-            <span>Monthly amounts collected by the lender for taxes/insurance and paid when due.</span>
-          </div>
-
-          <div class="term">
-            <b>Amortization</b>
-            <span>A schedule showing how each payment is split between principal and interest over the loan term.</span>
-          </div>
-        </details>
-
-        <div class="badgeRow">
-          <span class="badge">Michigan-focused</span>
-          <span class="badge">PRE vs non-PRE</span>
-          <span class="badge">Auto-calculate</span>
         </div>
 
+        <!-- RESULTS -->
+        <div class="results-row">
+          <div class="result-pill">
+            <span class="label">Principal & Interest</span>
+            <span class="value" id="monthlyPaymentOutput">—</span>
+          </div>
+          <div class="result-pill">
+            <span class="label">Estimated Property Tax (annual)</span>
+            <span class="value" id="taxResult">—</span>
+          </div>
+          <div class="result-pill">
+            <span class="label">Millage Used</span>
+            <span class="value" id="millageResult">—</span>
+          </div>
+          <div class="result-pill">
+            <span class="label">PMI (monthly)</span>
+            <span class="value" id="pmiMonthlyOutput">—</span>
+          </div>
+          <div class="result-pill total-monthly">
+            <span class="label">Total Monthly Payment</span>
+            <span class="value" id="totalMonthlyOutput">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="card">
+        <div class="section-label">Advanced Output</div>
+        <h2>Amortization Schedule</h2>
+        <p>Updates automatically.</p>
+
+        <div style="max-height:380px; overflow:auto; border-radius:10px; border:1px solid #e5e7eb;">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Payment</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody id="amortizationBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER (moved glossary + contact here) -->
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-links">
+          <a href="/">Calculator</a>
+          <a href="/lender.html">Lender</a>
+          <a href="/realtor.html">Realtor</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+        <div class="footer-small">
+          Contact: <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a> ·
+          Phone: <a href="tel:16162059531">616-205-9531</a>
+        </div>
+      </div>
+
+      <div class="footer-small">
+        Property tax lookups use Michigan millage data (PRE vs non-PRE). Special assessments not included.
+      </div>
+
+      <details class="footer-glossary">
+        <summary>
+          <span>Glossary</span>
+          <span class="summary-right">
+            <span>Tap to expand</span>
+            <span class="chev" aria-hidden="true"></span>
+          </span>
+        </summary>
+        <div class="content">
+          <p><strong>Taxable Value (TV):</strong> This calculator assumes taxable value is <strong>50% of the sale price</strong>.</p>
+          <p><strong>Uncapping:</strong> This estimate assumes taxable value resets to <strong>50% of the sale price</strong>. First-year property taxes are based on the seller’s taxable value as of <strong>December 31 of the prior year</strong>. Contact us for a property-specific analysis.</p>
+          <p><strong>Millage:</strong> Millage rates vary by county, local unit, and school district and are subject to change.</p>
+          <p><strong>Special Assessments:</strong> Not included. Roads, water/sewer, sidewalks, and other assessments may apply and can significantly affect your total tax bill.</p>
+          <p><strong>PRE / Non-PRE:</strong> “Primary residence” reflects PRE vs non-PRE. Rentals and second homes typically use non-PRE rates.</p>
+          <p><strong>Estimates only:</strong> Loan terms, taxes, and fees vary by property and situation. Contact us for a more detailed, property-specific analysis.</p>
+        </div>
+      </details>
+
+      <div class="disclaimer">
+        Disclaimer: Estimates only. Verify figures with your lender and local unit before making financial decisions.
       </div>
     </footer>
   </div>
 
   <script>
-    // ---------- Helpers ----------
-    const $ = (id) => document.getElementById(id);
+    /* ---------------------------
+       GLOBAL STATE
+    --------------------------- */
+    let millageData = {};
+    let pmmsRates = { "30-year": 6.23, "15-year": 5.51 };
 
-    function parseNum(v){
-      if (v === null || v === undefined) return 0;
-      const s = String(v).replace(/[$,%\s,]/g,'').trim();
-      const n = Number(s);
-      return Number.isFinite(n) ? n : 0;
-    }
-
-    function fmtMoney(n){
-      const x = Number(n || 0);
-      return x.toLocaleString(undefined, { style:'currency', currency:'USD', maximumFractionDigits:0 });
-    }
-    function fmtMoney2(n){
-      const x = Number(n || 0);
-      return x.toLocaleString(undefined, { style:'currency', currency:'USD', maximumFractionDigits:2 });
-    }
-
-    function clamp(n, lo, hi){ return Math.max(lo, Math.min(hi, n)); }
-
-    // ---------- State ----------
-    let millageData = null;
-
-    // ---------- Tabs ----------
-    const tabBasic = $("tabBasic");
-    const tabAdvanced = $("tabAdvanced");
-    const basicPanel = $("basicPanel");
-    const advancedPanel = $("advancedPanel");
-
-    function showBasic(){
-      tabBasic.classList.add("active");
-      tabAdvanced.classList.remove("active");
-      basicPanel.style.display = "";
-      advancedPanel.style.display = "none";
-    }
-    function showAdvanced(){
-      tabAdvanced.classList.add("active");
-      tabBasic.classList.remove("active");
-      advancedPanel.style.display = "";
-      basicPanel.style.display = "none";
-    }
-    tabBasic.addEventListener("click", showBasic);
-    tabAdvanced.addEventListener("click", showAdvanced);
-
-    // ---------- PRE sync ----------
-    const pre1 = $("preApplies");
-    const pre2 = $("preApplies2");
-    function syncPRE(from, to){
-      to.checked = from.checked;
-      $("prePill").textContent = from.checked ? "PRE: ON" : "PRE: OFF";
-      $("prePill2").textContent = from.checked ? "PRE: ON" : "PRE: OFF";
-      recalc();
-      // If lookup exists, recompute taxes
-      computeLookupTaxes();
-    }
-    pre1.addEventListener("change", () => syncPRE(pre1, pre2));
-    pre2.addEventListener("change", () => syncPRE(pre2, pre1));
-
-    // ---------- Down payment hint ----------
-    function updateDownHint(){
-      const price = parseNum($("homePrice").value);
-      const dp = parseNum($("downPayment").value);
-      const type = $("downType").value;
-
-      let dpDollars = dp;
-      let dpPct = 0;
-
-      if (type === "percent"){
-        dpPct = dp;
-        dpDollars = price * (dpPct/100);
-      } else {
-        dpDollars = dp;
-        dpPct = price > 0 ? (dpDollars/price)*100 : 0;
-      }
-
-      $("downHint").textContent = `Down payment ≈ ${fmtMoney(dpDollars)} (${dpPct.toFixed(2)}%)`;
-    }
-
-    // ---------- Core mortgage math ----------
-    function monthlyPI(loanAmount, annualRatePct, termYears){
-      const r = (annualRatePct/100)/12;
-      const n = termYears * 12;
-      if (loanAmount <= 0 || n <= 0) return 0;
-      if (r === 0) return loanAmount / n;
-      // M = P * r(1+r)^n / ((1+r)^n - 1)
-      const pow = Math.pow(1+r, n);
-      return loanAmount * (r * pow) / (pow - 1);
-    }
-
-    function buildAmortization(loanAmount, annualRatePct, termYears, payment){
-      const r = (annualRatePct/100)/12;
-      const n = termYears*12;
-      let bal = loanAmount;
-      const rows = [];
-      for (let m=1; m<=n; m++){
-        const interest = bal * r;
-        let principal = payment - interest;
-        if (principal > bal) principal = bal;
-        bal = bal - principal;
-        rows.push({m, pay: payment, prin: principal, int: interest, bal});
-        if (bal <= 0.01) break;
-      }
-      return rows;
-    }
-
-    // ---------- PMI calc ----------
-    function calcPMIMonthly(homePrice, downPaymentDollars, pmiAnnualPct){
-      const loan = Math.max(0, homePrice - downPaymentDollars);
-      const ltv = homePrice > 0 ? (loan / homePrice) : 0;
-      // Auto zero if <= 80% LTV (>=20% down)
-      if (ltv <= 0.80) return 0;
-      const annual = loan * (pmiAnnualPct/100);
-      return annual / 12;
-    }
-
-    // ---------- Recalc ----------
-    function recalc(){
-      updateDownHint();
-
-      const price = parseNum($("homePrice").value);
-      const term = parseNum($("loanTerm").value);
-      const rate = parseNum($("interestRate").value);
-
-      const dpRaw = parseNum($("downPayment").value);
-      const dpType = $("downType").value;
-
-      let dpDollars = dpRaw;
-      if (dpType === "percent"){
-        dpDollars = price * (dpRaw/100);
-      }
-
-      dpDollars = clamp(dpDollars, 0, price);
-      const loan = Math.max(0, price - dpDollars);
-
-      const pi = monthlyPI(loan, rate, term);
-
-      // Taxes/ins/hoa
-      const taxAnnual = parseNum($("propertyTaxAnnual").value);
-      const taxMo = taxAnnual / 12;
-
-      const insAnnual = parseNum($("homeInsurance").value);
-      const insMo = insAnnual / 12;
-
-      const hoaMo = parseNum($("hoaMonthly").value);
-
-      const pmiPct = parseNum($("pmiAnnualPct").value);
-      const pmiMo = calcPMIMonthly(price, dpDollars, pmiPct);
-
-      const total = pi + taxMo + insMo + pmiMo + hoaMo;
-
-      $("loanPill").textContent = `Loan: ${fmtMoney(loan)}`;
-      $("totalMonthly").textContent = fmtMoney2(total);
-      $("totalMonthly2").textContent = fmtMoney2(total);
-
-      $("piMonthly").textContent = fmtMoney2(pi);
-      $("taxMonthly").textContent = fmtMoney2(taxMo);
-      $("insMonthly").textContent = fmtMoney2(insMo);
-      $("pmiMonthly").textContent = fmtMoney2(pmiMo);
-      $("hoaOut").textContent = fmtMoney2(hoaMo);
-
-      // Amortization
-      const tbody = $("amTable").querySelector("tbody");
-      tbody.innerHTML = "";
-      const rows = buildAmortization(loan, rate, term, pi);
-      for (const r of rows){
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${r.m}</td>
-          <td>${fmtMoney2(r.pay)}</td>
-          <td>${fmtMoney2(r.prin)}</td>
-          <td>${fmtMoney2(r.int)}</td>
-          <td>${fmtMoney2(r.bal)}</td>
-        `;
-        tbody.appendChild(tr);
-      }
-
-      const ltv = price > 0 ? (loan/price) : 0;
-      $("pmiNote").textContent = (ltv <= 0.80)
-        ? "PMI is $0 because your down payment is ≥ 20%."
-        : "PMI is included because your down payment is under 20% (you can adjust PMI %).";
-    }
-
-    // Auto recalc on inputs
-    const inputs = [
-      "homePrice","downPayment","downType","interestRate","loanTerm",
-      "propertyTaxAnnual","homeInsurance","pmiAnnualPct","hoaMonthly","taxableValue"
-    ];
-    inputs.forEach(id => $(id).addEventListener("input", recalc));
-    $("loanTerm").addEventListener("change", recalc);
-    $("downType").addEventListener("change", () => { updateDownHint(); recalc(); });
-
-    // ---------- Millage lookup (optional) ----------
-    async function loadMillage(){
-      try{
-        const res = await fetch("/data/millage.json", { cache: "no-store" });
-        if (!res.ok) throw new Error("millage.json not found");
+    /* ---------------------------
+       LOAD MILLAGE JSON
+    --------------------------- */
+    async function loadMillageData() {
+      try {
+        const res = await fetch("mi_millage_2024.json?cache=" + Date.now());
         millageData = await res.json();
-        initLookupUI();
-        $("lookupStatus").innerHTML = `<strong>Millage lookup loaded:</strong> Use Advanced to compute taxes from your data. Special assessments not included.`;
-        $("computedMillage").value = "Ready";
-      } catch (e){
-        millageData = null;
-        initLookupUI(); // still initializes dropdowns as unavailable
-        $("computedMillage").value = "Unavailable";
+        populateCountySelect();
+      } catch (e) {
+        console.error("Millage load error:", e);
       }
     }
 
-    function initLookupUI(){
-      const countySel = $("county");
-      const jurSel = $("jurisdiction");
-      const schoolSel = $("schoolDistrict");
-
-      countySel.innerHTML = "";
-      if (!millageData){
-        countySel.innerHTML = `<option value="">Unavailable</option>`;
-        jurSel.innerHTML = `<option value="">Unavailable</option>`;
-        schoolSel.innerHTML = `<option value="">Unavailable</option>`;
-        countySel.disabled = true;
-        jurSel.disabled = true;
-        schoolSel.disabled = true;
-        return;
-      }
-
-      // Expected flexible formats:
-      // Option A: { counties: [{ name, jurisdictions:[], schoolDistricts:[], rates:... }]}
-      // Option B: { "Kent": {...}, "Ottawa": {...} }
-      const counties = Array.isArray(millageData.counties)
-        ? millageData.counties.map(c => c.name)
-        : Object.keys(millageData);
-
-      countySel.disabled = false;
-      countySel.innerHTML = `<option value="">Select county</option>` + counties
-        .sort((a,b)=>a.localeCompare(b))
-        .map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
-
-      countySel.addEventListener("change", () => {
-        populateCounty(countySel.value);
-        computeLookupTaxes();
+    function populateCountySelect() {
+      const sel = document.getElementById("countySelect");
+      sel.innerHTML = '<option value="">Select county…</option>';
+      Object.keys(millageData).sort().forEach(c => {
+        const o = document.createElement("option");
+        o.value = c; o.textContent = c;
+        sel.appendChild(o);
       });
+    }
 
-      jurSel.addEventListener("change", computeLookupTaxes);
-      schoolSel.addEventListener("change", computeLookupTaxes);
-
-      // default
-      jurSel.disabled = true;
+    function populateLocalUnits(county) {
+      const sel = document.getElementById("localUnitSelect");
+      const schoolSel = document.getElementById("schoolSelect");
+      sel.innerHTML = '<option value="">Select local unit…</option>';
+      schoolSel.innerHTML = '<option value="">Select school district…</option>';
+      sel.disabled = !county;
       schoolSel.disabled = true;
-      jurSel.innerHTML = `<option value="">Select county first</option>`;
-      schoolSel.innerHTML = `<option value="">Select county first</option>`;
+      if (!county) return;
+
+      Object.keys(millageData[county] || {}).sort().forEach(lu => {
+        const o = document.createElement("option");
+        o.value = o.textContent = lu;
+        sel.appendChild(o);
+      });
     }
 
-    function getCountyObj(countyName){
-      if (!millageData || !countyName) return null;
-      if (Array.isArray(millageData.counties)){
-        return millageData.counties.find(c => c.name === countyName) || null;
-      }
-      return millageData[countyName] || null;
+    function populateSchools(county, localUnit) {
+      const sel = document.getElementById("schoolSelect");
+      sel.innerHTML = '<option value="">Select school district…</option>';
+      sel.disabled = !(county && localUnit);
+      if (!(county && localUnit)) return;
+
+      Object.keys((millageData[county] || {})[localUnit] || {}).sort().forEach(s => {
+        const o = document.createElement("option");
+        o.value = o.textContent = s;
+        sel.appendChild(o);
+      });
     }
 
-    function populateCounty(countyName){
-      const jurSel = $("jurisdiction");
-      const schoolSel = $("schoolDistrict");
-
-      const c = getCountyObj(countyName);
-      if (!c){
-        jurSel.disabled = true; schoolSel.disabled = true;
-        jurSel.innerHTML = `<option value="">Select county first</option>`;
-        schoolSel.innerHTML = `<option value="">Select county first</option>`;
-        return;
+    function getMillageRate(county, lu, school, isPRE) {
+      try {
+        const m = millageData[county][lu][school];
+        return isPRE ? m.homestead : m.nonhomestead;
+      } catch {
+        return null;
       }
-
-      const jurisdictions = (c.jurisdictions || c.units || []).map(x => (typeof x === "string" ? x : x.name));
-      const schools = (c.schoolDistricts || c.schools || []).map(x => (typeof x === "string" ? x : x.name));
-
-      jurSel.disabled = false;
-      schoolSel.disabled = false;
-
-      jurSel.innerHTML = `<option value="">Select city/township</option>` +
-        jurisdictions.sort((a,b)=>a.localeCompare(b)).map(n => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join("");
-
-      schoolSel.innerHTML = `<option value="">Select school district</option>` +
-        schools.sort((a,b)=>a.localeCompare(b)).map(n => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join("");
     }
 
-    function computeLookupTaxes(){
-      if (!millageData) {
-        $("computedTaxAnnual").value = "0";
-        $("computedMillage").value = "Unavailable";
-        return;
+    /* ---------------------------
+       LOAD PMMS (via your Worker)
+       expects:
+       { pmms30yr, pmms15yr, ... }
+    --------------------------- */
+    async function loadPMMSRates() {
+      try {
+        const res = await fetch("/api/pmms?cache=" + Date.now());
+        if (res.ok) {
+          const pmms = await res.json();
+          if (pmms.pmms30yr) pmmsRates["30-year"] = parseFloat(pmms.pmms30yr);
+          if (pmms.pmms15yr) pmmsRates["15-year"] = parseFloat(pmms.pmms15yr);
+        }
+        document.getElementById("pmmsNote").textContent =
+          "Using latest Freddie Mac PMMS averages (national).";
+      } catch (e) {
+        console.error("PMMS load error:", e);
+        document.getElementById("pmmsNote").textContent =
+          "Using fallback Freddie Mac PMMS values.";
       }
-
-      const county = $("county").value;
-      const jur = $("jurisdiction").value;
-      const school = $("schoolDistrict").value;
-      if (!county || !jur || !school){
-        $("computedTaxAnnual").value = "0";
-        $("computedMillage").value = "Select all";
-        return;
-      }
-
-      const c = getCountyObj(county);
-      if (!c){
-        $("computedTaxAnnual").value = "0";
-        $("computedMillage").value = "Unavailable";
-        return;
-      }
-
-      const isPRE = $("preApplies2").checked;
-
-      // Flexible rate reading:
-      // Try find a matching record in c.rates[] or nested structures.
-      // Expected to store something like:
-      // { jurisdiction, schoolDistrict, preMillage, nonPreMillage } OR { totalPRE, totalNonPRE }
-      let rec = null;
-      const rates = c.rates || c.millageRates || [];
-      if (Array.isArray(rates)){
-        rec = rates.find(r =>
-          (r.jurisdiction === jur || r.unit === jur || r.cityTownship === jur) &&
-          (r.schoolDistrict === school || r.school === school)
-        ) || null;
-      }
-
-      let totalMillage = null;
-      if (rec){
-        totalMillage = isPRE
-          ? (rec.totalPRE ?? rec.preMillage ?? rec.pre ?? rec.PRE ?? null)
-          : (rec.totalNonPRE ?? rec.nonPreMillage ?? rec.nonPre ?? rec.NONPRE ?? rec.nonPRE ?? null);
-      }
-
-      // If your JSON stores by keys:
-      // c.lookup[jur][school] = { pre: x, nonpre: y }
-      if (totalMillage === null && c.lookup && c.lookup[jur] && c.lookup[jur][school]){
-        const v = c.lookup[jur][school];
-        totalMillage = isPRE ? (v.pre ?? v.PRE ?? null) : (v.nonpre ?? v.NONPRE ?? v.nonPre ?? null);
-      }
-
-      if (totalMillage === null || !Number.isFinite(Number(totalMillage))){
-        $("computedMillage").value = "Unavailable";
-        $("computedTaxAnnual").value = "0";
-        return;
-      }
-
-      const price = parseNum($("homePrice").value);
-      const tvInput = parseNum($("taxableValue").value);
-      const tv = tvInput > 0 ? tvInput : price * 0.50; // rough fallback
-      const annualTax = (tv / 1000) * Number(totalMillage);
-
-      $("computedMillage").value = String(Number(totalMillage).toFixed(3));
-      $("computedTaxAnnual").value = String(Math.round(annualTax));
-
-      // write computed into Basic annual property tax
-      $("propertyTaxAnnual").value = String(Math.round(annualTax));
-      recalc();
+      setInterestRateFromPMMS(true);
     }
 
-    function escapeHtml(s){
-      return String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    function setInterestRateFromPMMS(force = false) {
+      const term = parseInt(document.getElementById("loanTermYearsInput").value, 10);
+      const rateEl = document.getElementById("interestRateInput");
+      if (!force && rateEl.value) return;
+
+      if (term <= 20) rateEl.value = pmmsRates["15-year"].toFixed(2);
+      else rateEl.value = pmmsRates["30-year"].toFixed(2);
     }
 
-    // ---------- Init ----------
-    updateDownHint();
-    recalc();
-    loadMillage();
+    /* ---------------------------
+       CALCULATION ENGINE
+    --------------------------- */
+    function clearOutputs() {
+      ["monthlyPaymentOutput","taxResult","millageResult","pmiMonthlyOutput","totalMonthlyOutput"]
+        .forEach(id => document.getElementById(id).textContent = "—");
+      document.getElementById("amortizationBody").innerHTML = "";
+    }
+
+    function buildAmortization(principal, mRate, months, payment) {
+      const body = document.getElementById("amortizationBody");
+      body.innerHTML = "";
+      if (!principal || !payment || !isFinite(payment)) return;
+
+      let balance = principal;
+      for (let i = 1; i <= months; i++) {
+        const interest = balance * mRate;
+        const principalPaid = payment - interest;
+        balance -= principalPaid;
+        if (balance < 0) balance = 0;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${i}</td>
+          <td>${payment.toFixed(2)}</td>
+          <td>${principalPaid.toFixed(2)}</td>
+          <td>${interest.toFixed(2)}</td>
+          <td>${balance.toFixed(2)}</td>
+        `;
+        body.appendChild(row);
+        if (balance <= 0) break;
+      }
+    }
+
+    function calculate() {
+      const homePrice = +document.getElementById("homePriceInput").value || 0;
+      const dp = +document.getElementById("downPaymentInput").value || 0;
+      const dpMode = document.getElementById("downPaymentMode").value;
+
+      const rate = (+document.getElementById("interestRateInput").value || 0) / 100;
+      const years = +document.getElementById("loanTermYearsInput").value || 30;
+      const months = years * 12;
+
+      if (!homePrice || months <= 0) { clearOutputs(); return; }
+
+      const down = dpMode === "percent" ? homePrice * (dp / 100) : dp;
+      const loan = Math.max(0, homePrice - down);
+      const mRate = rate / 12;
+
+      const PI = mRate > 0
+        ? (mRate * loan) / (1 - Math.pow(1 + mRate, -months))
+        : (months ? loan / months : 0);
+
+      document.getElementById("monthlyPaymentOutput").textContent =
+        isFinite(PI) ? PI.toFixed(2) : "—";
+
+      const page = document.querySelector(".page");
+      const mode = page.classList.contains("mode-basic") ? "basic" : "advanced";
+
+      // PMI
+      let pmiMonthly = 0;
+      const ltv = homePrice > 0 ? (loan / homePrice) : 0;
+
+      if (mode === "basic") {
+        const basicPmiAnnual = +document.getElementById("basicPmiAnnualInput").value || 0;
+        pmiMonthly = basicPmiAnnual / 12;
+      } else {
+        const pmiRate = (+document.getElementById("pmiRateInput").value || 0) / 100;
+        if (ltv > 0.8) pmiMonthly = (loan * pmiRate) / 12;
+      }
+
+      document.getElementById("pmiMonthlyOutput").textContent =
+        pmiMonthly ? pmiMonthly.toFixed(2) : "—";
+
+      // Property tax
+      let taxAnnual = 0;
+      let millageUsed = "—";
+
+      if (mode === "basic") {
+        taxAnnual = +document.getElementById("basicTaxAnnualInput").value || 0;
+      } else {
+        const c = document.getElementById("countySelect").value;
+        const lu = document.getElementById("localUnitSelect").value;
+        const s = document.getElementById("schoolSelect").value;
+        const pre = document.getElementById("preCheckbox").checked;
+
+        const mill = getMillageRate(c, lu, s, pre);
+        if (mill != null) {
+          millageUsed = mill.toFixed(4) + " mills";
+          taxAnnual = 0.5 * homePrice * (mill / 1000);
+        }
+      }
+
+      document.getElementById("taxResult").textContent =
+        taxAnnual ? taxAnnual.toFixed(2) : "—";
+      document.getElementById("millageResult").textContent = millageUsed;
+
+      // Insurance
+      const insuranceAnnual = mode === "basic"
+        ? (+document.getElementById("basicInsuranceAnnualInput").value || 0)
+        : (+document.getElementById("annualInsuranceInput").value || 0);
+
+      // HOA
+      const hoaMonthly = mode === "basic"
+        ? (+document.getElementById("basicHoaMonthlyInput").value || 0)
+        : (+document.getElementById("advancedHoaMonthlyInput").value || 0);
+
+      const total =
+        PI +
+        pmiMonthly +
+        (taxAnnual / 12) +
+        (insuranceAnnual / 12) +
+        hoaMonthly;
+
+      document.getElementById("totalMonthlyOutput").textContent =
+        isFinite(total) ? total.toFixed(2) : "—";
+
+      buildAmortization(loan, mRate, months, PI);
+    }
+
+    /* ---------------------------
+       UI EVENTS
+    --------------------------- */
+    document.querySelectorAll(".mode-button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".mode-button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const page = document.querySelector(".page");
+        if (btn.dataset.mode === "basic") {
+          page.classList.add("mode-basic");
+          page.classList.remove("mode-advanced");
+        } else {
+          page.classList.add("mode-advanced");
+          page.classList.remove("mode-basic");
+        }
+        calculate();
+      });
+    });
+
+    document.querySelectorAll(".dp-mode-button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".dp-mode-button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("downPaymentMode").value = btn.dataset.mode;
+        calculate();
+      });
+    });
+
+    [
+      "homePriceInput",
+      "downPaymentInput",
+      "interestRateInput",
+      "loanTermYearsInput",
+      "basicTaxAnnualInput",
+      "basicInsuranceAnnualInput",
+      "basicHoaMonthlyInput",
+      "basicPmiAnnualInput",
+      "annualInsuranceInput",
+      "pmiRateInput",
+      "advancedHoaMonthlyInput"
+    ].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const evt = (id === "loanTermYearsInput") ? "change" : "input";
+      el.addEventListener(evt, () => {
+        if (id === "loanTermYearsInput") setInterestRateFromPMMS(true);
+        calculate();
+      });
+    });
+
+    document.getElementById("countySelect").addEventListener("change", e => {
+      populateLocalUnits(e.target.value);
+      calculate();
+    });
+    document.getElementById("localUnitSelect").addEventListener("change", e => {
+      const county = document.getElementById("countySelect").value;
+      populateSchools(county, e.target.value);
+      calculate();
+    });
+    document.getElementById("schoolSelect").addEventListener("change", calculate);
+    document.getElementById("preCheckbox").addEventListener("change", calculate);
+
+    /* ---------------------------
+       INIT
+    --------------------------- */
+    window.addEventListener("DOMContentLoaded", async () => {
+      await loadMillageData();
+      await loadPMMSRates();
+      calculate();
+    });
   </script>
 </body>
 </html>
