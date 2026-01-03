@@ -7,12 +7,13 @@
 
   <link rel="canonical" href="https://michiganmortgagecalculator.org/" />
 
+  <!-- SEO -->
   <meta name="description" content="Michigan Mortgage Calculator with millage-based property tax estimates, PMI, insurance, and full amortization." />
   <meta name="keywords" content="Michigan mortgage calculator, Michigan property tax calculator, millage rates, PMI calculator Michigan" />
 
   <meta name="google-site-verification" content="uJ4hk7yJuv8LHqrCEiFtQOGfmhZ7CqYCpsd8QdF_f1c" />
 
-  <!-- ===== Favicons (match your repo files) ===== -->
+  <!-- Favicons (match your repo files) -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -52,64 +53,32 @@
   </script>
 
   <style>
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif; }
+
     :root{
-      --bg: #f5f5f7;
-      --text: #111827;
-      --muted: #4b5563;
-      --muted2: #6b7280;
-      --card: #ffffff;
-      --border: #e5e7eb;
-      --soft: #f3f4f6;
-      --brand1: #2563eb;
-      --brand2: #4f46e5;
-      --beige: #f5f0e6;
-      --beigeBorder: #eadfcd;
+      --bg:#f5f5f7;
+      --text:#111827;
+      --muted:#4b5563;
+      --muted2:#6b7280;
+      --card:#ffffff;
+      --border:#e5e7eb;
+      --soft:#f3f4f6;
+      --brand1:#2563eb;
+      --brand2:#4f46e5;
+      --beige:#f5f0e6;
+      --beigeBorder:#eadfcd;
     }
 
-    *{ box-sizing:border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif; }
-
-    html, body { height: 100%; width: 100%; }
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      overflow-x:hidden;
-      max-width:100vw;
-      touch-action: pan-y;
-    }
-
-    /* HARD STOP: nothing is allowed to exceed viewport width */
+    html, body { margin:0; padding:0; width:100%; overflow-x:hidden; background:var(--bg); color:var(--text); }
     img, svg, canvas, video, iframe, table { max-width: 100%; }
-    .page, .grid, .card, .navbar, .mode-toggle, footer { max-width: 100%; }
+    .page { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
 
-    .page{
-      max-width:1100px;
-      width:100%;
-      margin:0 auto;
-      padding:24px 16px 48px;
-    }
+    header { margin-bottom: 10px; text-align: center; display:flex; flex-direction:column; align-items:center; }
+    .pill { display: inline-flex; padding: 4px 10px; border-radius: 999px; background: #e0f2fe; color: #0369a1; font-size: 0.78rem; }
+    h1 { margin: 4px 0 6px; font-size: 2rem; font-weight: 700; }
+    header p { margin: 0; color: var(--muted); font-size: 0.95rem; max-width: 46rem; }
 
-    header{
-      margin-bottom:10px;
-      text-align:center;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .pill{
-      display:inline-flex;
-      padding:4px 10px;
-      border-radius:999px;
-      background:#e0f2fe;
-      color:#0369a1;
-      font-size:0.78rem;
-    }
-    h1{ margin:4px 0 6px; font-size:2rem; font-weight:700; }
-    header p{ margin:0; color:var(--muted); font-size:0.95rem; max-width:46rem; }
-
-    /* Logo: no bubble, no border/padding */
+    /* Logo under title */
     .site-logo{
       display:block;
       width:min(240px, 82vw);
@@ -122,173 +91,144 @@
       box-shadow:none;
     }
 
-    /* Beige nav */
-    .navbar{
-      background:var(--beige);
-      border:1px solid var(--beigeBorder);
-      border-radius:14px;
-      padding:10px 12px;
-      text-align:center;
-      font-size:0.9rem;
-      margin:10px auto 16px;
-      width:100%;
+    /* Beige inline banner */
+    .navbar {
+      background: var(--beige);
+      border: 1px solid var(--beigeBorder);
+      border-radius: 14px;
+      padding: 10px 12px;
+      text-align: center;
+      font-size: 0.9rem;
+      margin: 10px auto 16px;
+      max-width: 1100px;
+      width: 100%;
     }
-    .navbar a{ color:var(--text); text-decoration:none; font-weight:600; }
-    .navbar a:hover{ text-decoration:underline; }
-    .navbar .sep{ margin:0 10px; color:#9ca3af; }
+    .navbar a { color: var(--text); text-decoration: none; font-weight: 700; }
+    .navbar a:hover { text-decoration: underline; }
+    .navbar .sep { margin: 0 10px; color: #9ca3af; }
 
-    .mode-toggle{ display:flex; justify-content:center; margin: 16px 0; }
-    .mode-toggle-inner{
-      display:inline-flex;
-      border-radius:999px;
-      background:#e5e7eb;
-      border:1px solid #d1d5db;
-      overflow:hidden;
-      max-width:100%;
+    .mode-toggle { display: flex; justify-content: center; margin: 16px 0; }
+    .mode-toggle-inner {
+      display: inline-flex;
+      border-radius: 999px;
+      background: #e5e7eb;
+      border: 1px solid #d1d5db;
+      overflow: hidden;
+      max-width: 100%;
+      flex-wrap: wrap;
     }
-    .mode-button{
-      padding:6px 14px;
-      font-size:0.8rem;
-      border:none;
-      background:transparent;
-      cursor:pointer;
-      color:var(--muted);
-      white-space:nowrap;
+    .mode-button {
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      color: var(--muted);
+      white-space: nowrap;
     }
-    .mode-button.active{
-      background:linear-gradient(135deg, var(--brand1), var(--brand2));
-      color:#fff;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
-      gap:20px;
-      width:100%;
-    }
-    @media (max-width:900px){
-      .grid{ grid-template-columns:1fr; gap:14px; }
+    .mode-button.active {
+      background: linear-gradient(135deg, var(--brand1), var(--brand2));
+      color: #fff;
     }
 
-    .card{
-      background:var(--card);
-      border-radius:18px;
-      padding:18px 16px;
-      box-shadow:0 12px 30px rgba(0,0,0,0.08);
-      border:1px solid var(--border);
-      width:100%;
-      min-width:0;
+    .grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 20px; width:100%; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 18px 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      width: 100%;
+      min-width: 0;
+    }
+    .section-label { font-size: 0.78rem; text-transform: uppercase; color: #9ca3af; margin-bottom: 4px; }
+    .field-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 10px; margin-bottom: 10px; width:100%; min-width:0; }
+    @media (max-width: 600px){ .field-group { grid-template-columns: 1fr !important; } .navbar .sep{ display:none; } }
+
+    label { font-size: 0.78rem; margin-bottom: 4px; color: var(--muted); display: block; }
+    input[type="number"], select {
+      width: 100%;
+      padding: 7px 9px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      background: #fff;
+      font-size: 0.85rem;
+      color: var(--text);
+      min-width: 0;
+    }
+    input[type="number"]:focus, select:focus {
+      border-color: var(--brand1);
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
+      outline: none;
     }
 
-    .section-label{ font-size:0.78rem; text-transform:uppercase; color:#9ca3af; margin-bottom:4px; }
-    .field-group{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(140px,1fr));
-      gap:10px;
-      margin-bottom:10px;
-      width:100%;
-      min-width:0;
+    .dp-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; width:100%; }
+    .dp-toggle {
+      display: inline-flex;
+      border: 1px solid #d1d5db;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+      flex: 0 0 auto;
     }
+    .dp-mode-button {
+      padding: 7px 14px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1;
+      min-width: 52px;
+    }
+    .dp-mode-button.active { background: var(--brand1); color: #fff; }
 
-    label{ font-size:0.78rem; margin-bottom:4px; color:var(--muted); display:block; }
+    .small-note { margin-top: 6px; font-size: 0.70rem; color: var(--muted2); font-style: italic; }
 
-    /* Use text inputs so we can show commas; keep numeric keyboard */
-    input[type="text"], select{
-      width:100%;
-      padding:7px 9px;
-      border:1px solid #d1d5db;
-      border-radius:10px;
-      background:#fff;
-      font-size:0.85rem;
-      color:var(--text);
-      min-width:0;
-    }
-    input[type="text"]:focus, select:focus{
-      border-color:var(--brand1);
-      box-shadow:0 0 0 1px rgba(37,99,235,0.25);
-      outline:none;
-    }
+    .checkbox-row { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0 0; }
+    .checkbox-row input { margin-top: 2px; }
 
-    /* Down payment row (mobile-safe) */
-    .dp-row{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:flex-start;
-      width:100%;
-      min-width:0;
+    .results-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; width:100%; }
+    .result-pill {
+      padding: 9px 10px;
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      min-width: 0;
+      flex: 1 1 160px;
     }
-    .dp-row input#downPaymentInput{
-      flex: 1 1 140px;
-      min-width: 140px;
-    }
-    .dp-toggle{
-      display:inline-flex;
-      border:1px solid #d1d5db;
-      background:#e5e7eb;
-      border-radius:999px;
-      overflow:hidden;
-      flex:0 0 auto;
-    }
-    .dp-mode-button{
-      padding:7px 14px;
-      border:none;
-      background:transparent;
-      cursor:pointer;
-      font-size:1rem;
-      color:var(--muted);
-      line-height:1;
-      min-width:52px;
-    }
-    .dp-mode-button.active{ background:var(--brand1); color:#fff; }
+    .result-pill .label { font-size: 0.72rem; color: var(--muted2); display: block; }
+    .result-pill .value { margin-top: 2px; font-size: 0.95rem; font-weight: 600; }
+    .result-pill.total-monthly .value { font-size: 1.2rem; font-weight: 800; }
 
-    .small-note{ margin-top:6px; font-size:0.70rem; color:var(--muted2); font-style:italic; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
+    thead { background: var(--soft); }
+    th, td { padding: 6px 6px; border-bottom: 1px solid var(--border); text-align: right; white-space: nowrap; }
+    th:first-child, td:first-child { text-align: left; }
+    tbody tr:nth-child(even) { background: #f9fafb; }
+    thead th { position: sticky; top: 0; z-index: 2; background: var(--soft); }
 
-    .checkbox-row{ display:flex; align-items:flex-start; gap:8px; padding:6px 0 0; width:100%; min-width:0; }
-    .checkbox-row input{ margin-top:2px; }
+    .basic-only, .advanced-only { display: none; }
+    .page.mode-basic .basic-only { display: block; }
+    .page.mode-advanced .advanced-only { display: block; }
 
-    .results-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:10px; width:100%; }
-    .result-pill{
-      padding:9px 10px;
-      background:var(--soft);
-      border:1px solid var(--border);
-      border-radius:14px;
-      min-width:0;
-      flex:1 1 160px;
-    }
-    .result-pill .label{ font-size:0.72rem; color:var(--muted2); display:block; }
-    .result-pill .value{ margin-top:2px; font-size:0.95rem; font-weight:600; }
-    .result-pill.total-monthly .value{ font-size:1.2rem; font-weight:800; }
-
-    /* Amortization: keep scroll INSIDE box */
-    .card.amort-card{ display:flex; flex-direction:column; }
-    .amort-sub{ margin-top:0; margin-bottom:10px; color:var(--muted); }
+    /* Amortization scroll box fills better on desktop */
     .amort-wrap{
-      flex:1 1 auto;
-      min-height:260px;
-      height:clamp(360px, 65vh, 760px);
+      height: clamp(360px, 65vh, 760px);
       overflow:auto;
-      overflow-x:auto;
       border-radius:10px;
       border:1px solid var(--border);
       background:#fff;
-      -webkit-overflow-scrolling:touch;
+      -webkit-overflow-scrolling: touch;
       max-width:100%;
     }
+    @media (max-width: 600px){
+      .amort-wrap{ height: clamp(240px, 40vh, 420px); }
+    }
 
-    table{ width:100%; border-collapse:collapse; font-size:0.76rem; }
-    thead{ background:var(--soft); }
-    th, td{ padding:6px 6px; border-bottom:1px solid var(--border); text-align:right; white-space:nowrap; }
-    th:first-child, td:first-child{ text-align:left; }
-    tbody tr:nth-child(even){ background:#f9fafb; }
-    thead th{ position:sticky; top:0; z-index:2; background:var(--soft); }
-
-    .basic-only, .advanced-only{ display:none; }
-    .page.mode-basic .basic-only{ display:block; }
-    .page.mode-advanced .advanced-only{ display:block; }
-
-    /* Footer */
+    /* Footer (full-width card) */
     .site-footer{
       margin-top:22px;
       background:var(--card);
@@ -305,7 +245,7 @@
       gap:18px;
       flex-wrap:wrap;
       font-size:0.95rem;
-      font-weight:700;
+      font-weight:800;
       margin-bottom:10px;
     }
     .footer-nav a{ color:var(--text); text-decoration:none; }
@@ -345,7 +285,7 @@
       gap:10px;
       font-size:0.82rem;
       color:var(--muted2);
-      font-weight:700;
+      font-weight:800;
     }
     .footer-glossary .chev{
       width:28px;
@@ -367,37 +307,6 @@
       line-height:1.5;
     }
     .footer-glossary .content p{ margin:8px 0; }
-
-    /* MOBILE: remove pipes in nav, tighten layout, and FORCE single-column inputs */
-    @media (max-width: 600px){
-      .page{ padding:18px 12px 32px; }
-      h1{ font-size:1.6rem; }
-
-      .navbar{
-        display:flex;
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:10px 14px;
-      }
-      .navbar .sep{ display:none; }
-
-      .card{ padding:14px 12px; border-radius:16px; }
-
-      /* KEY mobile fix: all input grids become 1 column (no sideways) */
-      .field-group{ grid-template-columns: 1fr !important; }
-
-      /* Keep results clean and not forcing width */
-      .results-row{ gap:10px; }
-      .result-pill{ flex: 1 1 100%; }
-      .result-pill.total-monthly{ flex-basis:100%; }
-
-      /* amortization box shorter; table scroll stays inside */
-      .amort-wrap{ height:clamp(240px, 40vh, 420px); min-height:240px; }
-      table{ font-size:0.74rem; }
-
-      .footer-nav{ gap:14px; }
-      .footer-glossary{ text-align:left; }
-    }
   </style>
 </head>
 
@@ -406,22 +315,16 @@
     <header>
       <div class="pill">MichiganMortgageCalculator.org</div>
       <h1>Michigan Mortgage Calculator</h1>
-
-      <img
-        class="site-logo"
-        src="/michigan-mortgage-calculator-thumbnail.png"
-        alt="Michigan Mortgage Calculator logo"
-        loading="eager"
-        decoding="async"
-      />
-
+      <img class="site-logo" src="/michigan-mortgage-calculator-thumbnail.png" alt="Michigan Mortgage Calculator logo" />
       <p>Estimate your complete Michigan mortgage payment and property taxes instantly.</p>
     </header>
 
+    <!-- NAVBAR UPDATED: Early Payoff between Realtor and Contact -->
     <nav class="navbar">
       <a href="/">Calculator</a><span class="sep">|</span>
       <a href="/lender.html">Lender</a><span class="sep">|</span>
       <a href="/realtor.html">Realtor</a><span class="sep">|</span>
+      <a href="/early-payoff.html">Early Payoff</a><span class="sep">|</span>
       <a href="/contact.html">Contact</a>
     </nav>
 
@@ -443,13 +346,13 @@
         <div class="field-group">
           <div>
             <label>Home price</label>
-            <input id="homePriceInput" type="text" inputmode="numeric" autocomplete="off" value="300,000" data-format="number" />
+            <input id="homePriceInput" type="number" value="300000" />
           </div>
 
           <div>
             <label>Down payment</label>
             <div class="dp-row">
-              <input id="downPaymentInput" type="text" inputmode="numeric" autocomplete="off" value="20" data-format="number" />
+              <input id="downPaymentInput" type="number" value="20" />
               <div class="dp-toggle">
                 <button class="dp-mode-button" data-mode="dollar">$</button>
                 <button class="dp-mode-button active" data-mode="percent">%</button>
@@ -462,7 +365,7 @@
         <div class="field-group">
           <div>
             <label>Interest rate (annual %)</label>
-            <input id="interestRateInput" type="text" inputmode="decimal" autocomplete="off" placeholder="6.2" data-format="decimal" />
+            <input id="interestRateInput" type="number" placeholder="6.2" />
             <div id="pmmsNote" class="small-note"></div>
           </div>
 
@@ -485,22 +388,22 @@
           <div class="field-group">
             <div>
               <label>Annual property tax</label>
-              <input id="basicTaxAnnualInput" type="text" inputmode="numeric" autocomplete="off" placeholder="3,600" data-format="number" />
+              <input id="basicTaxAnnualInput" type="number" placeholder="3600" />
             </div>
             <div>
               <label>Home insurance (annual)</label>
-              <input id="basicInsuranceAnnualInput" type="text" inputmode="numeric" autocomplete="off" value="1,200" data-format="number" />
+              <input id="basicInsuranceAnnualInput" type="number" value="1200" />
             </div>
           </div>
 
           <div class="field-group">
             <div>
               <label>HOA dues (monthly)</label>
-              <input id="basicHoaMonthlyInput" type="text" inputmode="numeric" autocomplete="off" placeholder="0" data-format="number" />
+              <input id="basicHoaMonthlyInput" type="number" placeholder="0" />
             </div>
             <div>
               <label>PMI (annual)</label>
-              <input id="basicPmiAnnualInput" type="text" inputmode="numeric" autocomplete="off" placeholder="0" data-format="number" />
+              <input id="basicPmiAnnualInput" type="number" placeholder="0" />
             </div>
           </div>
         </div>
@@ -547,18 +450,18 @@
           <div class="field-group">
             <div>
               <label>Home insurance (annual)</label>
-              <input id="annualInsuranceInput" type="text" inputmode="numeric" autocomplete="off" value="1,200" data-format="number" />
+              <input id="annualInsuranceInput" type="number" value="1200" />
             </div>
             <div>
-              <label>PMI rate (%)</label>
-              <input id="pmiRateInput" type="text" inputmode="decimal" autocomplete="off" value="0.5" data-format="decimal" />
+              <label>PMI rate</label>
+              <input id="pmiRateInput" type="number" value="0.5" />
             </div>
           </div>
 
           <div class="field-group">
             <div>
               <label>HOA dues (monthly)</label>
-              <input id="advancedHoaMonthlyInput" type="text" inputmode="numeric" autocomplete="off" value="0" data-format="number" />
+              <input id="advancedHoaMonthlyInput" type="number" value="0" />
             </div>
           </div>
         </div>
@@ -589,10 +492,10 @@
       </div>
 
       <!-- RIGHT -->
-      <div class="card amort-card">
+      <div class="card">
         <div class="section-label">Advanced Output</div>
         <h2>Amortization Schedule</h2>
-        <p class="amort-sub">Updates automatically.</p>
+        <p style="margin:0 0 10px; color:var(--muted);">Updates automatically.</p>
 
         <div class="amort-wrap">
           <table>
@@ -611,12 +514,13 @@
       </div>
     </div>
 
-    <!-- FOOTER -->
+    <!-- FOOTER (UPDATED NAV) -->
     <footer class="site-footer">
       <div class="footer-nav">
         <a href="/">Calculator</a>
         <a href="/lender.html">Lender</a>
         <a href="/realtor.html">Realtor</a>
+        <a href="/early-payoff.html">Early Payoff</a>
         <a href="/contact.html">Contact</a>
       </div>
 
@@ -651,85 +555,6 @@
   </div>
 
   <script>
-    /* ---------------------------
-       HELPERS: PARSE + FORMAT (COMMAs)
-    --------------------------- */
-    function stripToNumber(raw) {
-      if (raw == null) return 0;
-      const s = String(raw).replace(/,/g, '').replace(/[^\d.\-]/g, '');
-      const n = parseFloat(s);
-      return isFinite(n) ? n : 0;
-    }
-
-    function formatNumberWithCommas(n, decimals = 0) {
-      const num = isFinite(n) ? n : 0;
-      return num.toLocaleString(undefined, {
-        minimumFractionDigits: decimals,
-        maximumFractionDigits: decimals
-      });
-    }
-
-    function formatField(el) {
-      const val = stripToNumber(el.value);
-
-      // keep blank if user cleared it
-      if (String(el.value).trim() === "") return;
-
-      // interest & pmi rate: keep as plain decimal
-      if (el.id === "interestRateInput" || el.id === "pmiRateInput") {
-        el.value = (isFinite(val) ? val : 0).toString();
-        return;
-      }
-
-      // normal money-ish fields: commas, no decimals
-      el.value = formatNumberWithCommas(val, 0);
-    }
-
-    function wireCommaFormatting() {
-      const moneyIds = [
-        "homePriceInput",
-        "downPaymentInput",
-        "basicTaxAnnualInput",
-        "basicInsuranceAnnualInput",
-        "basicHoaMonthlyInput",
-        "basicPmiAnnualInput",
-        "annualInsuranceInput",
-        "advancedHoaMonthlyInput"
-      ];
-
-      moneyIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (!el) return;
-
-        // recalc on input (no comma insertion to avoid cursor jump)
-        el.addEventListener("input", calculate);
-
-        // apply commas on blur
-        el.addEventListener("blur", () => {
-          formatField(el);
-          calculate();
-        });
-      });
-
-      ["interestRateInput","pmiRateInput"].forEach(id => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.addEventListener("input", calculate);
-        el.addEventListener("blur", () => {
-          const v = stripToNumber(el.value);
-          if (String(el.value).trim() === "") return;
-          el.value = (isFinite(v) ? v : 0).toString();
-          calculate();
-        });
-      });
-
-      // initial formatting
-      moneyIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) formatField(el);
-      });
-    }
-
     /* ---------------------------
        GLOBAL STATE
     --------------------------- */
@@ -851,10 +676,10 @@
         const row = document.createElement("tr");
         row.innerHTML = `
           <td>${i}</td>
-          <td>${formatNumberWithCommas(payment, 2)}</td>
-          <td>${formatNumberWithCommas(principalPaid, 2)}</td>
-          <td>${formatNumberWithCommas(interest, 2)}</td>
-          <td>${formatNumberWithCommas(balance, 2)}</td>
+          <td>${payment.toFixed(2)}</td>
+          <td>${principalPaid.toFixed(2)}</td>
+          <td>${interest.toFixed(2)}</td>
+          <td>${balance.toFixed(2)}</td>
         `;
         body.appendChild(row);
         if (balance <= 0) break;
@@ -862,11 +687,11 @@
     }
 
     function calculate() {
-      const homePrice = stripToNumber(document.getElementById("homePriceInput").value);
-      const dp = stripToNumber(document.getElementById("downPaymentInput").value);
+      const homePrice = +document.getElementById("homePriceInput").value || 0;
+      const dp = +document.getElementById("downPaymentInput").value || 0;
       const dpMode = document.getElementById("downPaymentMode").value;
 
-      const rate = stripToNumber(document.getElementById("interestRateInput").value) / 100;
+      const rate = (+document.getElementById("interestRateInput").value || 0) / 100;
       const years = +document.getElementById("loanTermYearsInput").value || 30;
       const months = years * 12;
 
@@ -881,7 +706,7 @@
         : (months ? loan / months : 0);
 
       document.getElementById("monthlyPaymentOutput").textContent =
-        isFinite(PI) ? formatNumberWithCommas(PI, 2) : "—";
+        isFinite(PI) ? PI.toFixed(2) : "—";
 
       const page = document.querySelector(".page");
       const mode = page.classList.contains("mode-basic") ? "basic" : "advanced";
@@ -891,22 +716,22 @@
       const ltv = homePrice > 0 ? (loan / homePrice) : 0;
 
       if (mode === "basic") {
-        const basicPmiAnnual = stripToNumber(document.getElementById("basicPmiAnnualInput").value);
+        const basicPmiAnnual = +document.getElementById("basicPmiAnnualInput").value || 0;
         pmiMonthly = basicPmiAnnual / 12;
       } else {
-        const pmiRate = stripToNumber(document.getElementById("pmiRateInput").value) / 100;
+        const pmiRate = (+document.getElementById("pmiRateInput").value || 0) / 100;
         if (ltv > 0.8) pmiMonthly = (loan * pmiRate) / 12;
       }
 
       document.getElementById("pmiMonthlyOutput").textContent =
-        pmiMonthly ? formatNumberWithCommas(pmiMonthly, 2) : "—";
+        pmiMonthly ? pmiMonthly.toFixed(2) : "—";
 
       // Property tax
       let taxAnnual = 0;
       let millageUsed = "—";
 
       if (mode === "basic") {
-        taxAnnual = stripToNumber(document.getElementById("basicTaxAnnualInput").value);
+        taxAnnual = +document.getElementById("basicTaxAnnualInput").value || 0;
       } else {
         const c = document.getElementById("countySelect").value;
         const lu = document.getElementById("localUnitSelect").value;
@@ -921,18 +746,18 @@
       }
 
       document.getElementById("taxResult").textContent =
-        taxAnnual ? formatNumberWithCommas(taxAnnual, 0) : "—";
+        taxAnnual ? taxAnnual.toFixed(2) : "—";
       document.getElementById("millageResult").textContent = millageUsed;
 
       // Insurance
       const insuranceAnnual = mode === "basic"
-        ? stripToNumber(document.getElementById("basicInsuranceAnnualInput").value)
-        : stripToNumber(document.getElementById("annualInsuranceInput").value);
+        ? (+document.getElementById("basicInsuranceAnnualInput").value || 0)
+        : (+document.getElementById("annualInsuranceInput").value || 0);
 
       // HOA
       const hoaMonthly = mode === "basic"
-        ? stripToNumber(document.getElementById("basicHoaMonthlyInput").value)
-        : stripToNumber(document.getElementById("advancedHoaMonthlyInput").value);
+        ? (+document.getElementById("basicHoaMonthlyInput").value || 0)
+        : (+document.getElementById("advancedHoaMonthlyInput").value || 0);
 
       const total =
         PI +
@@ -942,7 +767,7 @@
         hoaMonthly;
 
       document.getElementById("totalMonthlyOutput").textContent =
-        isFinite(total) ? formatNumberWithCommas(total, 2) : "—";
+        isFinite(total) ? total.toFixed(2) : "—";
 
       buildAmortization(loan, mRate, months, PI);
     }
@@ -972,19 +797,30 @@
         document.querySelectorAll(".dp-mode-button").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
         document.getElementById("downPaymentMode").value = btn.dataset.mode;
-
-        // If switching to dollar mode, format immediately with commas
-        const dpEl = document.getElementById("downPaymentInput");
-        if (btn.dataset.mode === "dollar") {
-          formatField(dpEl);
-        }
         calculate();
       });
     });
 
-    document.getElementById("loanTermYearsInput").addEventListener("change", () => {
-      setInterestRateFromPMMS(true);
-      calculate();
+    [
+      "homePriceInput",
+      "downPaymentInput",
+      "interestRateInput",
+      "loanTermYearsInput",
+      "basicTaxAnnualInput",
+      "basicInsuranceAnnualInput",
+      "basicHoaMonthlyInput",
+      "basicPmiAnnualInput",
+      "annualInsuranceInput",
+      "pmiRateInput",
+      "advancedHoaMonthlyInput"
+    ].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const evt = (id === "loanTermYearsInput") ? "change" : "input";
+      el.addEventListener(evt, () => {
+        if (id === "loanTermYearsInput") setInterestRateFromPMMS(true);
+        calculate();
+      });
     });
 
     document.getElementById("countySelect").addEventListener("change", e => {
@@ -1005,7 +841,6 @@
     window.addEventListener("DOMContentLoaded", async () => {
       await loadMillageData();
       await loadPMMSRates();
-      wireCommaFormatting();
       calculate();
     });
   </script>
