@@ -65,16 +65,44 @@
     }
 
     *{ box-sizing:border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif; }
-    body{ margin:0; background:var(--bg); color:var(--text); }
-    .page{ max-width:1100px; margin:0 auto; padding:24px 16px 48px; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x: hidden; /* IMPORTANT: prevents mobile “off-center” caused by any overflow */
+    }
 
-    /* Header (force true center on mobile too) */
+    /* Main constrained container */
+    .page{
+      max-width:1100px;
+      width: 100%;
+      margin:0 auto;
+      padding:24px 16px 48px;
+    }
+
+    /* Full-bleed sections (span viewport like you want on mobile) */
+    .full-bleed{
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .full-bleed .inner{
+      max-width:1100px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Header: hard-center on all sizes */
     header{
       margin-bottom:10px;
       text-align:center;
       display:flex;
       flex-direction:column;
-      align-items:center; /* <-- fixes “not centered” cases on mobile */
+      align-items:center;
+      justify-content:center;
     }
 
     .pill{
@@ -86,25 +114,24 @@
       font-size:0.78rem;
     }
     h1{ margin:4px 0 6px; font-size:2rem; font-weight:700; }
-
     header p{
       margin:0;
       color:var(--muted);
       font-size:0.95rem;
-      max-width: 46rem; /* keeps header copy nicely centered */
+      max-width: 46rem;
     }
 
-    /* Logo under title (background matches page) */
+    /* Logo: remove “bubble” look, match page background by blending (no border/padding) */
     .site-logo{
       display:block;
-      width:min(240px, 80vw);
+      width:min(240px, 82vw);
       height:auto;
       margin:10px auto 6px;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background:var(--bg);
-      box-shadow:none;
-      padding:10px;
+      background: transparent;
+      border: none;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
     }
 
     /* Beige inline banner */
@@ -115,15 +142,13 @@
       padding:10px 12px;
       text-align:center;
       font-size:0.9rem;
-      margin:10px auto 16px;
-      max-width:1100px;
       width: 100%;
     }
     .navbar a{ color:var(--text); text-decoration:none; font-weight:600; }
     .navbar a:hover{ text-decoration:underline; }
     .navbar .sep{ margin:0 10px; color:#9ca3af; }
 
-    .mode-toggle{ display:flex; justify-content:center; margin-bottom:16px; }
+    .mode-toggle{ display:flex; justify-content:center; margin: 16px 0; }
     .mode-toggle-inner{
       display:inline-flex;
       border-radius:999px;
@@ -153,6 +178,7 @@
       padding:18px 16px;
       box-shadow:0 12px 30px rgba(0,0,0,0.08);
       border:1px solid var(--border);
+      width: 100%;
     }
 
     .section-label{ font-size:0.78rem; text-transform:uppercase; color:#9ca3af; margin-bottom:4px; }
@@ -228,7 +254,8 @@
       flex:1 1 auto;
       min-height:260px;
       height:clamp(360px, 65vh, 760px);
-      overflow:auto;
+      overflow:auto;              /* scroll stays inside the box */
+      overflow-x:auto;            /* allow horizontal scroll if needed */
       border-radius:10px;
       border:1px solid var(--border);
       background:#fff;
@@ -243,13 +270,12 @@
 
     /* Footer */
     .site-footer{
-      margin-top:22px;
       background:var(--card);
       border:1px solid var(--border);
       border-radius:18px;
       padding:16px;
       box-shadow:0 12px 30px rgba(0,0,0,0.06);
-      width:100%; /* <-- ensure it spans full content width */
+      width:100%;
     }
     .footer-top{
       display:flex;
@@ -324,44 +350,38 @@
 
     .disclaimer{ margin-top:12px; font-size:0.8rem; color:var(--muted2); text-align:center; }
 
-    /* -------------------------
-       MOBILE: center everything + make footer “span” and look like desktop
-    ------------------------- */
+    /* MOBILE: fix centering + prevent any element from pushing layout sideways */
     @media (max-width: 600px){
-      .page{ padding:18px 12px 36px; }
+      .page{ padding:18px 12px 32px; }
       h1{ font-size:1.6rem; }
 
-      /* Keep the nav centered even when it wraps */
+      /* Nav wraps cleanly (no pipes breaking alignment) */
       .navbar{
         display:flex;
         justify-content:center;
         align-items:center;
         flex-wrap:wrap;
-        gap:10px;
+        gap:10px 14px;
       }
-      .navbar .sep{ display:none; } /* removes awkward wrap with pipes */
+      .navbar .sep{ display:none; }
 
-      .card{ padding:14px 12px; border-radius:16px; box-shadow:0 10px 24px rgba(0,0,0,0.07); }
+      .card{ padding:14px 12px; border-radius:16px; }
 
-      /* DP row was a common source of sideways overflow / “not centered” feel */
+      /* Down payment row: stop overflow */
       .dp-row{ flex-wrap:wrap; justify-content:center; }
-      #downPaymentInput{ flex:1 1 140px; min-width:140px; }
+      #downPaymentInput{ flex:1 1 160px; min-width:160px; }
       .dp-toggle{ margin-left:auto; margin-right:auto; }
 
-      /* results: 2-up grid feel */
+      /* Results: 2-up + full width total */
       .results-row{ gap:10px; }
       .result-pill{ min-width:0; flex:1 1 calc(50% - 10px); }
       .result-pill.total-monthly{ flex-basis:100%; }
 
-      /* amort: sane height, avoid column crush */
-      .amort-wrap{
-        height:clamp(240px, 40vh, 420px);
-        min-height:240px;
-      }
-      .amort-table{ min-width:560px; } /* allows horizontal scroll instead of ugly squeeze */
+      /* Amortization: keep inside box; allow horizontal scroll without shifting page */
+      .amort-wrap{ height:clamp(240px, 40vh, 420px); min-height:240px; }
+      .amort-table{ min-width: 560px; }
 
-      /* Footer: center it and make it look “full width” like desktop */
-      .site-footer{ padding:16px 14px; }
+      /* Footer: center content, but still full-bleed container spans viewport */
       .footer-top{
         flex-direction:column;
         align-items:center;
@@ -380,6 +400,7 @@
       <div class="pill">MichiganMortgageCalculator.org</div>
       <h1>Michigan Mortgage Calculator</h1>
 
+      <!-- Logo (no border/padding so it doesn't look like a “bubble”) -->
       <img
         class="site-logo"
         src="/michigan-mortgage-calculator-thumbnail.png"
@@ -391,12 +412,17 @@
       <p>Estimate your complete Michigan mortgage payment and property taxes instantly.</p>
     </header>
 
-    <nav class="navbar">
-      <a href="/">Calculator</a><span class="sep">|</span>
-      <a href="/lender.html">Lender</a><span class="sep">|</span>
-      <a href="/realtor.html">Realtor</a><span class="sep">|</span>
-      <a href="/contact.html">Contact</a>
-    </nav>
+    <!-- FULL-BLEED NAV (spans viewport on mobile, still aligned to desktop) -->
+    <div class="full-bleed">
+      <div class="inner">
+        <nav class="navbar">
+          <a href="/">Calculator</a><span class="sep">|</span>
+          <a href="/lender.html">Lender</a><span class="sep">|</span>
+          <a href="/realtor.html">Realtor</a><span class="sep">|</span>
+          <a href="/contact.html">Contact</a>
+        </nav>
+      </div>
+    </div>
 
     <div class="mode-toggle">
       <div class="mode-toggle-inner">
@@ -584,47 +610,52 @@
       </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <div class="footer-top">
-        <div class="footer-links">
-          <a href="/">Calculator</a>
-          <a href="/lender.html">Lender</a>
-          <a href="/realtor.html">Realtor</a>
-          <a href="/contact.html">Contact</a>
-        </div>
-        <div class="footer-small">
-          Contact: <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a> ·
-          Phone: <a href="tel:16162059531">616-205-9531</a>
-        </div>
-      </div>
+    <!-- FULL-BLEED FOOTER (spans viewport on mobile) -->
+    <div class="full-bleed" style="margin-top:22px;">
+      <div class="inner">
+        <footer class="site-footer">
+          <div class="footer-top">
+            <div class="footer-links">
+              <a href="/">Calculator</a>
+              <a href="/lender.html">Lender</a>
+              <a href="/realtor.html">Realtor</a>
+              <a href="/contact.html">Contact</a>
+            </div>
+            <div class="footer-small">
+              Contact: <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a> ·
+              Phone: <a href="tel:16162059531">616-205-9531</a>
+            </div>
+          </div>
 
-      <div class="footer-small">
-        Property tax lookups use Michigan millage data (PRE vs non-PRE). Special assessments not included.
-      </div>
+          <div class="footer-small">
+            Property tax lookups use Michigan millage data (PRE vs non-PRE). Special assessments not included.
+          </div>
 
-      <details class="footer-glossary">
-        <summary>
-          <span>Glossary</span>
-          <span class="summary-right">
-            <span>Tap to expand</span>
-            <span class="chev" aria-hidden="true"></span>
-          </span>
-        </summary>
-        <div class="content">
-          <p><strong>Estimates only:</strong> Loan terms, taxes, and fees vary by property and situation. Contact us for a more detailed, property-specific analysis.</p>
-          <p><strong>Millage:</strong> Millage rates vary by county, local unit, and school district and are subject to change.</p>
-          <p><strong>PRE / Non-PRE:</strong> “Primary residence” reflects PRE vs non-PRE. Rentals and second homes typically use non-PRE rates.</p>
-          <p><strong>Special Assessments:</strong> Not included. Roads, water/sewer, sidewalks, and other assessments may apply and can significantly affect your total tax bill.</p>
-          <p><strong>Taxable Value (TV):</strong> This calculator assumes taxable value is <strong>50% of the sale price</strong>.</p>
-          <p><strong>Uncapping:</strong> This estimate assumes taxable value resets to <strong>50% of the sale price</strong>. First-year property taxes are based on the seller’s taxable value as of <strong>December 31 of the prior year</strong>. Contact us for a property-specific analysis.</p>
-        </div>
-      </details>
+          <!-- Glossary (alphabetical) -->
+          <details class="footer-glossary">
+            <summary>
+              <span>Glossary</span>
+              <span class="summary-right">
+                <span>Tap to expand</span>
+                <span class="chev" aria-hidden="true"></span>
+              </span>
+            </summary>
+            <div class="content">
+              <p><strong>Estimates only:</strong> Loan terms, taxes, and fees vary by property and situation. Contact us for a more detailed, property-specific analysis.</p>
+              <p><strong>Millage:</strong> Millage rates vary by county, local unit, and school district and are subject to change.</p>
+              <p><strong>PRE / Non-PRE:</strong> “Primary residence” reflects PRE vs non-PRE. Rentals and second homes typically use non-PRE rates.</p>
+              <p><strong>Special Assessments:</strong> Not included. Roads, water/sewer, sidewalks, and other assessments may apply and can significantly affect your total tax bill.</p>
+              <p><strong>Taxable Value (TV):</strong> This calculator assumes taxable value is <strong>50% of the sale price</strong>.</p>
+              <p><strong>Uncapping:</strong> This estimate assumes taxable value resets to <strong>50% of the sale price</strong>. First-year property taxes are based on the seller’s taxable value as of <strong>December 31 of the prior year</strong>. Contact us for a property-specific analysis.</p>
+            </div>
+          </details>
 
-      <div class="disclaimer">
-        Disclaimer: Estimates only. Verify figures with your lender and local unit before making financial decisions.
+          <div class="disclaimer">
+            Disclaimer: Estimates only. Verify figures with your lender and local unit before making financial decisions.
+          </div>
+        </footer>
       </div>
-    </footer>
+    </div>
   </div>
 
   <script>
