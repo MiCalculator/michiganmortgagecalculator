@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Early Payoff Calculator | Michigan Mortgage Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="canonical" href="https://michiganmortgagecalculator.org/early-payoff.html" />
+  <meta name="description" content="Early payoff calculator for mortgages: compare payoff date and interest with extra monthly or lump-sum payments." />
+
+  <!-- Favicons (match your repo files) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HLMW6NEJ4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6HLMW6NEJ4');
+  </script>
+
+  <style>
+    :root{
+      --bg: #f5f5f7;
+      --text: #111827;
+      --muted: #4b5563;
+      --muted2: #6b7280;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --soft: #f3f4f6;
+      --brand1: #2563eb;
+      --brand2: #4f46e5;
+      --beige: #f5f0e6;
+      --beigeBorder: #eadfcd;
+    }
+
+    *{ box-sizing:border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif; }
+    html, body { height: 100%; width: 100%; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+      max-width:100vw;
+      touch-action: pan-y;
+    }
+    img, svg, canvas, video, iframe, table { max-width: 100%; }
+    .page, .grid, .card, .navbar, footer { max-width: 100%; }
+
+    .page{
+      max-width:1100px;
+      width:100%;
+      margin:0 auto;
+      padding:24px 16px 48px;
+    }
+
+    header{
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      margin-bottom: 10px;
+    }
+    .pill{
+      display:inline-flex;
+      padding:4px 10px;
+      border-radius:999px;
+      background:#e0f2fe;
+      color:#0369a1;
+      font-size:0.78rem;
+    }
+    h1{ margin:8px 0 6px; font-size:2rem; font-weight:800; }
+    header p{ margin:0; color:var(--muted); font-size:0.95rem; max-width:46rem; }
+
+    .navbar{
+      background:var(--beige);
+      border:1px solid var(--beigeBorder);
+      border-radius:14px;
+      padding:10px 12px;
+      text-align:center;
+      font-size:0.9rem;
+      margin:12px auto 16px;
+      width:100%;
+    }
+    .navbar a{ color:var(--text); text-decoration:none; font-weight:700; }
+    .navbar a:hover{ text-decoration:underline; }
+    .navbar .sep{ margin:0 10px; color:#9ca3af; }
+
+    .grid{
+      display:grid;
+      grid-template-columns:minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap:18px;
+      width:100%;
+    }
+    @media (max-width: 900px){ .grid{ grid-template-columns: 1fr; } }
+
+    .card{
+      background:var(--card);
+      border-radius:18px;
+      padding:18px 16px;
+      box-shadow:0 12px 30px rgba(0,0,0,0.08);
+      border:1px solid var(--border);
+      width:100%;
+      min-width:0;
+    }
+
+    .section-label{ font-size:0.78rem; text-transform:uppercase; color:#9ca3af; margin-bottom:6px; }
+
+    label{ font-size:0.78rem; margin-bottom:4px; color:var(--muted); display:block; }
+    input[type="text"], input[type="month"], select{
+      width:100%;
+      padding:8px 10px;
+      border:1px solid #d1d5db;
+      border-radius:10px;
+      background:#fff;
+      font-size:0.9rem;
+      color:var(--text);
+      min-width:0;
+    }
+    input[type="text"]:focus, input[type="month"]:focus, select:focus{
+      border-color:var(--brand1);
+      box-shadow:0 0 0 1px rgba(37,99,235,0.25);
+      outline:none;
+    }
+
+    .field-group{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(170px, 1fr));
+      gap:10px;
+      margin-bottom:10px;
+      width:100%;
+      min-width:0;
+    }
+    @media (max-width: 600px){ .field-group{ grid-template-columns: 1fr !important; } }
+
+    .radio-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin: 8px 0 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .radio-row label{ display:flex; align-items:center; gap:8px; margin:0; font-size:0.9rem; color:var(--muted); }
+    .radio-row input{ transform: translateY(1px); }
+
+    .small-note{ margin-top:6px; font-size:0.72rem; color:var(--muted2); font-style:italic; }
+
+    .results-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:10px; width:100%; }
+    .result-pill{
+      padding:10px 10px;
+      background:var(--soft);
+      border:1px solid var(--border);
+      border-radius:14px;
+      min-width:0;
+      flex:1 1 180px;
+    }
+    .result-pill .label{ font-size:0.72rem; color:var(--muted2); display:block; }
+    .result-pill .value{ margin-top:2px; font-size:1rem; font-weight:800; }
+    .result-pill.highlight .value{ font-size:1.15rem; }
+
+    .table-wrap{
+      border:1px solid var(--border);
+      border-radius:10px;
+      overflow:auto;
+      background:#fff;
+      height: clamp(260px, 55vh, 720px);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table{ width:100%; border-collapse:collapse; font-size:0.76rem; }
+    thead{ background:var(--soft); }
+    th, td{ padding:6px 6px; border-bottom:1px solid var(--border); text-align:right; white-space:nowrap; }
+    th:first-child, td:first-child{ text-align:left; }
+    tbody tr:nth-child(even){ background:#f9fafb; }
+    thead th{ position: sticky; top: 0; z-index: 2; background: var(--soft); }
+
+    .tabs{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin: 10px 0 12px;
+    }
+    .tab-btn{
+      border:1px solid #d1d5db;
+      background:#fff;
+      border-radius:999px;
+      padding:7px 12px;
+      cursor:pointer;
+      font-weight:800;
+      color: var(--muted);
+      font-size:0.85rem;
+    }
+    .tab-btn.active{
+      background:linear-gradient(135deg, var(--brand1), var(--brand2));
+      color:#fff;
+      border-color: transparent;
+    }
+
+    /* Footer like your main site */
+    .site-footer{
+      margin-top:22px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 12px 30px rgba(0,0,0,0.06);
+      width:100%;
+      text-align:center;
+    }
+    .footer-nav{
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+      font-size:0.95rem;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+    .footer-nav a{ color:var(--text); text-decoration:none; }
+    .footer-nav a:hover{ text-decoration:underline; }
+    .footer-line{
+      font-size:0.85rem;
+      color:var(--muted2);
+      line-height:1.5;
+      margin:4px 0;
+    }
+
+    .footer-glossary{
+      margin:12px auto 0;
+      background:var(--beige);
+      border:1px solid var(--beigeBorder);
+      border-radius:18px;
+      padding:14px 16px;
+      text-align:left;
+      max-width: 900px;
+    }
+    .footer-glossary summary{
+      cursor:pointer;
+      font-weight:900;
+      color:var(--text);
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+    }
+    .footer-glossary summary::-webkit-details-marker{ display:none; }
+    .footer-glossary .summary-right{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:0.82rem;
+      color:var(--muted2);
+      font-weight:800;
+    }
+    .footer-glossary .chev{
+      width:28px;
+      height:28px;
+      border-radius:999px;
+      border:1px solid var(--beigeBorder);
+      background:#fff;
+      display:grid;
+      place-items:center;
+      transition:transform .18s ease;
+      flex:0 0 auto;
+    }
+    .footer-glossary .chev::before{ content:"▼"; font-size:12px; transform:translateY(-1px); }
+    details[open] .chev{ transform:rotate(180deg); }
+    .footer-glossary .content{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:0.88rem;
+      line-height:1.5;
+    }
+    .footer-glossary .content p{ margin:8px 0; }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="pill">MichiganMortgageCalculator.org</div>
+      <h1>Early Payoff Calculator</h1>
+      <p>See how much time and interest you can save by adding extra payments (monthly or lump-sum).</p>
+    </header>
+
+    <nav class="navbar">
+      <a href="/">Calculator</a><span class="sep">|</span>
+      <a href="/early-payoff.html">Early Payoff</a><span class="sep">|</span>
+      <a href="/lender.html">Lender</a><span class="sep">|</span>
+      <a href="/realtor.html">Realtor</a><span class="sep">|</span>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="grid">
+      <!-- LEFT: Inputs + Summary -->
+      <div class="card">
+        <div class="section-label">Loan Setup</div>
+
+        <div class="field-group">
+          <div>
+            <label>Current loan balance</label>
+            <input id="balanceInput" type="text" inputmode="numeric" autocomplete="off" value="450,000" data-format="money" />
+          </div>
+          <div>
+            <label>Interest rate (annual %)</label>
+            <input id="rateInput" type="text" inputmode="decimal" autocomplete="off" value="6.875" data-format="decimal" />
+          </div>
+        </div>
+
+        <div class="radio-row" role="group" aria-label="Choose how to define baseline payment">
+          <label><input type="radio" name="baselineMode" value="term" checked> I know remaining term</label>
+          <label><input type="radio" name="baselineMode" value="payment"> I know my monthly payment</label>
+        </div>
+
+        <!-- Mode: remaining term -->
+        <div id="modeTerm">
+          <div class="field-group">
+            <div>
+              <label>Remaining term (years)</label>
+              <select id="termYearsSelect">
+                <option value="30">30</option>
+                <option value="29">29</option>
+                <option value="28" selected>28</option>
+                <option value="27">27</option>
+                <option value="26">26</option>
+                <option value="25">25</option>
+                <option value="20">20</option>
+                <option value="15">15</option>
+                <option value="10">10</option>
+                <option value="5">5</option>
+              </select>
+              <div class="small-note">Baseline monthly payment will be calculated from balance, rate, and remaining term.</div>
+            </div>
+            <div>
+              <label>Start month</label>
+              <input id="startMonthInput" type="month" />
+              <div class="small-note">Used to estimate payoff date.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mode: known payment -->
+        <div id="modePayment" style="display:none;">
+          <div class="field-group">
+            <div>
+              <label>Current monthly payment (P&amp;I)</label>
+              <input id="knownPaymentInput" type="text" inputmode="numeric" autocomplete="off" value="" placeholder="e.g. 3,100" data-format="money" />
+              <div class="small-note">Enter your principal &amp; interest payment only (not taxes/insurance).</div>
+            </div>
+            <div>
+              <label>Start month</label>
+              <input id="startMonthInput2" type="month" />
+            </div>
+          </div>
+        </div>
+
+        <div class="section-label" style="margin-top:14px;">Extra Payments</div>
+
+        <div class="field-group">
+          <div>
+            <label>Extra payment (monthly)</label>
+            <input id="extraMonthlyInput" type="text" inputmode="numeric" autocomplete="off" value="0" data-format="money" />
+          </div>
+          <div>
+            <label>Lump-sum extra payment</label>
+            <input id="lumpSumInput" type="text" inputmode="numeric" autocomplete="off" value="0" data-format="money" />
+            <div class="small-note">Applied in month #1 (immediately).</div>
+          </div>
+        </div>
+
+        <div class="results-row">
+          <div class="result-pill">
+            <span class="label">Baseline payoff</span>
+            <span class="value" id="baselinePayoff">—</span>
+          </div>
+          <div class="result-pill">
+            <span class="label">With extra payments payoff</span>
+            <span class="value" id="extraPayoff">—</span>
+          </div>
+          <div class="result-pill highlight">
+            <span class="label">Months saved</span>
+            <span class="value" id="monthsSaved">—</span>
+          </div>
+          <div class="result-pill highlight">
+            <span class="label">Interest saved</span>
+            <span class="value" id="interestSaved">—</span>
+          </div>
+          <div class="result-pill">
+            <span class="label">Baseline monthly (P&amp;I)</span>
+            <span class="value" id="baselineMonthly">—</span>
+          </div>
+          <div class="result-pill">
+            <span class="label">With extra monthly</span>
+            <span class="value" id="extraMonthlyTotal">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Tables -->
+      <div class="card">
+        <div class="section-label">Amortization</div>
+        <h2 style="margin:6px 0 4px;">Schedule</h2>
+        <p style="margin:0 0 8px; color:var(--muted);">Compare baseline vs extra payoff.</p>
+
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="baseline">Baseline</button>
+          <button class="tab-btn" data-tab="extra">With Extra</button>
+        </div>
+
+        <div id="tabBaseline">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Payment</th>
+                  <th>Extra</th>
+                  <th>Principal</th>
+                  <th>Interest</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+              <tbody id="baselineBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="tabExtra" style="display:none;">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Payment</th>
+                  <th>Extra</th>
+                  <th>Principal</th>
+                  <th>Interest</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+              <tbody id="extraBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-nav">
+        <a href="/">Calculator</a>
+        <a href="/lender.html">Lender</a>
+        <a href="/realtor.html">Realtor</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+
+      <div class="footer-line">
+        Contact: <a href="mailto:michiganmortgagecalculator@gmail.com">michiganmortgagecalculator@gmail.com</a> ·
+        Phone: <a href="tel:16162059531">616-205-9531</a>
+      </div>
+
+      <div class="footer-line">
+        Property tax lookups use Michigan millage data (PRE vs non-PRE). Special assessments not included.
+      </div>
+
+      <details class="footer-glossary">
+        <summary>
+          <span>Glossary</span>
+          <span class="summary-right">
+            <span>Tap to expand</span>
+            <span class="chev" aria-hidden="true"></span>
+          </span>
+        </summary>
+        <div class="content">
+          <p><strong>Amortization:</strong> A schedule showing how each payment splits into interest vs principal over time.</p>
+          <p><strong>Extra payments:</strong> Additional principal reductions that can shorten payoff time and reduce total interest.</p>
+          <p><strong>Lump-sum:</strong> A one-time extra principal payment applied immediately (month #1 here).</p>
+          <p><strong>P&amp;I:</strong> Principal and interest payment (does not include taxes/insurance/PMI/HOA).</p>
+        </div>
+      </details>
+    </footer>
+  </div>
+
+  <script>
+    /* ---------------------------
+       Formatting helpers (commas)
+    --------------------------- */
+    function stripToNumber(raw) {
+      if (raw == null) return 0;
+      const s = String(raw).replace(/,/g, '').replace(/[^\d.\-]/g, '');
+      const n = parseFloat(s);
+      return isFinite(n) ? n : 0;
+    }
+    function fmtMoney(n, decimals = 0) {
+      const num = isFinite(n) ? n : 0;
+      return num.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    }
+    function formatField(el) {
+      const v = stripToNumber(el.value);
+      if (String(el.value).trim() === "") return;
+
+      if (el.dataset.format === "decimal") {
+        el.value = (isFinite(v) ? v : 0).toString();
+        return;
+      }
+      el.value = fmtMoney(v, 0);
+    }
+
+    function wireFormatting() {
+      document.querySelectorAll('input[data-format="money"]').forEach(el => {
+        el.addEventListener("input", calculate);
+        el.addEventListener("blur", () => { formatField(el); calculate(); });
+        formatField(el);
+      });
+      document.querySelectorAll('input[data-format="decimal"]').forEach(el => {
+        el.addEventListener("input", calculate);
+        el.addEventListener("blur", () => {
+          const v = stripToNumber(el.value);
+          if (String(el.value).trim() === "") return;
+          el.value = (isFinite(v) ? v : 0).toString();
+          calculate();
+        });
+      });
+    }
+
+    /* ---------------------------
+       Core loan math
+    --------------------------- */
+    function paymentFromTerm(balance, annualRate, months) {
+      const r = annualRate / 12;
+      if (months <= 0) return 0;
+      if (r <= 0) return balance / months;
+      return (r * balance) / (1 - Math.pow(1 + r, -months));
+    }
+
+    function amortize({ balance, annualRate, monthlyPayment, extraMonthly = 0, lumpSum = 0, maxMonths = 1000 }) {
+      const r = annualRate / 12;
+      let b = balance;
+
+      // Apply lump sum immediately (month 0 -> reduces balance before first payment)
+      if (lumpSum > 0) b = Math.max(0, b - lumpSum);
+
+      const rows = [];
+      let totalInterest = 0;
+
+      for (let i = 1; i <= maxMonths; i++) {
+        if (b <= 0) break;
+
+        const interest = r > 0 ? b * r : 0;
+        let principal = monthlyPayment - interest;
+
+        // Guard: payment too low (negative amortization)
+        if (principal <= 0) {
+          return {
+            rows: [],
+            totalInterest: NaN,
+            months: NaN,
+            payoffMonthIndex: NaN,
+            error: "Monthly payment is too low to cover interest (negative amortization). Increase payment or lower rate/balance."
+          };
+        }
+
+        let extra = Math.max(0, extraMonthly);
+
+        // If final month, cap amounts so balance hits zero exactly
+        let payPrincipal = principal + extra;
+        if (payPrincipal > b) {
+          extra = Math.max(0, b - principal);
+          payPrincipal = b;
+        }
+
+        const newBalance = Math.max(0, b - payPrincipal);
+        totalInterest += interest;
+
+        rows.push({
+          n: i,
+          payment: monthlyPayment,
+          extra: extra,
+          principal: payPrincipal,
+          interest: interest,
+          balance: newBalance
+        });
+
+        b = newBalance;
+      }
+
+      return {
+        rows,
+        totalInterest,
+        months: rows.length,
+        payoffMonthIndex: rows.length,
+        error: null
+      };
+    }
+
+    function formatPayoffDate(startYYYYMM, monthsToPayoff) {
+      if (!startYYYYMM || !monthsToPayoff || !isFinite(monthsToPayoff)) return "—";
+      const [y, m] = startYYYYMM.split("-").map(Number);
+      if (!y || !m) return "—";
+      const start = new Date(y, m - 1, 1);
+      const payoff = new Date(start.getFullYear(), start.getMonth() + (monthsToPayoff - 1), 1);
+      const opts = { year: "numeric", month: "short" };
+      return payoff.toLocaleDateString(undefined, opts);
+    }
+
+    /* ---------------------------
+       UI + calc glue
+    --------------------------- */
+    const els = {
+      balance: document.getElementById("balanceInput"),
+      rate: document.getElementById("rateInput"),
+      termYears: document.getElementById("termYearsSelect"),
+      knownPayment: document.getElementById("knownPaymentInput"),
+      extraMonthly: document.getElementById("extraMonthlyInput"),
+      lumpSum: document.getElementById("lumpSumInput"),
+      start1: document.getElementById("startMonthInput"),
+      start2: document.getElementById("startMonthInput2"),
+
+      baselinePayoff: document.getElementById("baselinePayoff"),
+      extraPayoff: document.getElementById("extraPayoff"),
+      monthsSaved: document.getElementById("monthsSaved"),
+      interestSaved: document.getElementById("interestSaved"),
+      baselineMonthly: document.getElementById("baselineMonthly"),
+      extraMonthlyTotal: document.getElementById("extraMonthlyTotal"),
+
+      baselineBody: document.getElementById("baselineBody"),
+      extraBody: document.getElementById("extraBody"),
+
+      modeTerm: document.getElementById("modeTerm"),
+      modePayment: document.getElementById("modePayment"),
+    };
+
+    function getBaselineMode() {
+      return document.querySelector('input[name="baselineMode"]:checked')?.value || "term";
+    }
+
+    function renderTable(tbody, rows) {
+      tbody.innerHTML = "";
+      if (!rows || !rows.length) return;
+
+      const frag = document.createDocumentFragment();
+      for (const r of rows) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${r.n}</td>
+          <td>${fmtMoney(r.payment, 2)}</td>
+          <td>${r.extra ? fmtMoney(r.extra, 2) : "0.00"}</td>
+          <td>${fmtMoney(r.principal, 2)}</td>
+          <td>${fmtMoney(r.interest, 2)}</td>
+          <td>${fmtMoney(r.balance, 2)}</td>
+        `;
+        frag.appendChild(tr);
+      }
+      tbody.appendChild(frag);
+    }
+
+    function calculate() {
+      const balance = stripToNumber(els.balance.value);
+      const annualRate = stripToNumber(els.rate.value) / 100;
+      const extraMonthly = stripToNumber(els.extraMonthly.value);
+      const lumpSum = stripToNumber(els.lumpSum.value);
+
+      if (!balance || balance <= 0 || !isFinite(balance) || annualRate < 0) {
+        els.baselinePayoff.textContent = "—";
+        els.extraPayoff.textContent = "—";
+        els.monthsSaved.textContent = "—";
+        els.interestSaved.textContent = "—";
+        els.baselineMonthly.textContent = "—";
+        els.extraMonthlyTotal.textContent = "—";
+        els.baselineBody.innerHTML = "";
+        els.extraBody.innerHTML = "";
+        return;
+      }
+
+      const mode = getBaselineMode();
+      const startYYYYMM = mode === "term" ? els.start1.value : els.start2.value;
+
+      let baselinePayment = 0;
+
+      if (mode === "term") {
+        const months = (parseInt(els.termYears.value, 10) || 0) * 12;
+        baselinePayment = paymentFromTerm(balance, annualRate, months);
+      } else {
+        baselinePayment = stripToNumber(els.knownPayment.value);
+      }
+
+      // Baseline schedule (no extras)
+      const base = amortize({
+        balance,
+        annualRate,
+        monthlyPayment: baselinePayment,
+        extraMonthly: 0,
+        lumpSum: 0,
+        maxMonths: 2000
+      });
+
+      // Extra schedule
+      const withExtra = amortize({
+        balance,
+        annualRate,
+        monthlyPayment: baselinePayment,
+        extraMonthly,
+        lumpSum,
+        maxMonths: 2000
+      });
+
+      // Handle errors (negative amortization)
+      if (base.error || withExtra.error || !isFinite(baselinePayment) || baselinePayment <= 0) {
+        const msg = base.error || withExtra.error || "Check your inputs.";
+        els.baselinePayoff.textContent = msg;
+        els.extraPayoff.textContent = msg;
+        els.monthsSaved.textContent = "—";
+        els.interestSaved.textContent = "—";
+        els.baselineMonthly.textContent = "—";
+        els.extraMonthlyTotal.textContent = "—";
+        els.baselineBody.innerHTML = "";
+        els.extraBody.innerHTML = "";
+        return;
+      }
+
+      // Outputs
+      els.baselineMonthly.textContent = "$" + fmtMoney(baselinePayment, 2);
+      els.extraMonthlyTotal.textContent = "$" + fmtMoney(baselinePayment + extraMonthly, 2);
+
+      els.baselinePayoff.textContent = formatPayoffDate(startYYYYMM, base.months);
+      els.extraPayoff.textContent = formatPayoffDate(startYYYYMM, withExtra.months);
+
+      const savedMonths = base.months - withExtra.months;
+      els.monthsSaved.textContent = isFinite(savedMonths) ? String(savedMonths) : "—";
+
+      const savedInterest = base.totalInterest - withExtra.totalInterest;
+      els.interestSaved.textContent = isFinite(savedInterest) ? ("$" + fmtMoney(savedInterest, 2)) : "—";
+
+      // Tables
+      renderTable(els.baselineBody, base.rows);
+      renderTable(els.extraBody, withExtra.rows);
+    }
+
+    // mode toggle
+    document.querySelectorAll('input[name="baselineMode"]').forEach(r => {
+      r.addEventListener("change", () => {
+        const mode = getBaselineMode();
+        els.modeTerm.style.display = (mode === "term") ? "" : "none";
+        els.modePayment.style.display = (mode === "payment") ? "" : "none";
+        calculate();
+      });
+    });
+
+    // Tab buttons
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const tab = btn.dataset.tab;
+        document.getElementById("tabBaseline").style.display = (tab === "baseline") ? "" : "none";
+        document.getElementById("tabExtra").style.display = (tab === "extra") ? "" : "none";
+      });
+    });
+
+    // Start month defaults (current month)
+    function setDefaultStartMonth() {
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      const val = `${yyyy}-${mm}`;
+      if (!els.start1.value) els.start1.value = val;
+      if (!els.start2.value) els.start2.value = val;
+    }
+
+    // Wire inputs
+    [
+      els.balance, els.rate, els.termYears, els.knownPayment,
+      els.extraMonthly, els.lumpSum, els.start1, els.start2
+    ].forEach(el => {
+      if (!el) return;
+      const evt = (el.tagName === "SELECT" || el.type === "month") ? "change" : "input";
+      el.addEventListener(evt, calculate);
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      setDefaultStartMonth();
+      wireFormatting();
+      calculate();
+    });
+  </script>
+</body>
+</html>
