@@ -107,7 +107,7 @@
     }
 
     .grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 20px; }
-    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; gap: 14px; } }
 
     .card {
       background: white;
@@ -116,6 +116,10 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.08);
       border: 1px solid #e5e7eb;
     }
+    @media (max-width: 900px){
+      .card{ padding: 16px 14px; }
+    }
+
     .section-label { font-size: 0.78rem; text-transform: uppercase; color: #9ca3af; margin-bottom: 4px; }
     .field-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 10px; margin-bottom: 10px; }
 
@@ -152,7 +156,7 @@
       font-size: 1rem;
       color: #4b5563;
       line-height: 1;
-      min-width: 52px; /* extra width so it doesn’t feel cramped */
+      min-width: 52px;
     }
     .dp-mode-button.active { background: #2563eb; color: #fff; }
 
@@ -173,14 +177,56 @@
     .result-pill .value { margin-top: 2px; font-size: 0.95rem; font-weight: 600; }
     .result-pill.total-monthly .value { font-size: 1.2rem; font-weight: 800; }
 
+    /* Table base */
     table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
     thead { background: #f3f4f6; }
     th, td { padding: 4px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; }
     th:first-child, td:first-child { text-align: left; }
     tbody tr:nth-child(even) { background: #f9fafb; }
-
-    /* Freeze amortization header */
     thead th { position: sticky; top: 0; z-index: 2; background: #f3f4f6; }
+
+    /* Make amortization box fill the card on desktop and be mobile-friendly */
+    .card.amort-card{
+      display: flex;
+      flex-direction: column;
+    }
+    .amort-sub{
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #4b5563;
+    }
+    .amort-wrap{
+      flex: 1 1 auto;
+      min-height: 240px;
+      height: clamp(320px, 65vh, 720px);
+      overflow: auto;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+    }
+    .amort-table{
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.76rem;
+      table-layout: auto;
+    }
+    .amort-table thead th{
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: #f3f4f6;
+    }
+
+    @media (max-width: 900px){
+      .amort-wrap{
+        height: clamp(260px, 45vh, 460px);
+      }
+    }
+    @media (max-width: 420px){
+      .amort-table{
+        min-width: 520px; /* prevents columns crushing on tiny screens */
+      }
+    }
 
     .basic-only, .advanced-only { display: none; }
     .page.mode-basic .basic-only { display: block; }
@@ -451,13 +497,13 @@
       </div>
 
       <!-- RIGHT -->
-      <div class="card">
+      <div class="card amort-card">
         <div class="section-label">Advanced Output</div>
         <h2>Amortization Schedule</h2>
-        <p>Updates automatically.</p>
+        <p class="amort-sub">Updates automatically.</p>
 
-        <div style="max-height:380px; overflow:auto; border-radius:10px; border:1px solid #e5e7eb;">
-          <table>
+        <div class="amort-wrap">
+          <table class="amort-table">
             <thead>
               <tr>
                 <th>#</th>
@@ -473,7 +519,7 @@
       </div>
     </div>
 
-    <!-- FOOTER (moved glossary + contact here) -->
+    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="footer-top">
         <div class="footer-links">
