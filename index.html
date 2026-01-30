@@ -323,7 +323,6 @@
       <p>Estimate your complete Michigan mortgage payment and property taxes instantly.</p>
     </header>
 
-    <!-- NAV: keep | separators even on mobile -->
     <nav class="navbar">
       <a href="/">Calculator</a><span class="sep">|</span>
       <a href="/lender.html">Lender</a><span class="sep">|</span>
@@ -546,13 +545,13 @@
           </span>
         </summary>
         <div class="content">
+          <p><strong>Administrative fees:</strong> 1% admin fee is applicable in some taxing jurisdictions.</p>
           <p><strong>Estimates only:</strong> Loan terms, taxes, and fees vary by property and situation. Contact us for a more detailed, property-specific analysis.</p>
           <p><strong>Millage:</strong> Millage rates vary by county, local unit, and school district and are subject to change.</p>
           <p><strong>PRE / Non-PRE:</strong> “Primary residence” reflects PRE vs non-PRE. Rentals and second homes typically use non-PRE rates.</p>
           <p><strong>Special Assessments:</strong> Not included. Roads, water/sewer, sidewalks, and other assessments may apply and can significantly affect your total tax bill.</p>
           <p><strong>Taxable Value (TV):</strong> This calculator assumes taxable value is <strong>50% of the sale price</strong>.</p>
           <p><strong>Uncapping:</strong> This estimate assumes taxable value resets to <strong>50% of the sale price</strong>. First-year property taxes are based on the seller’s taxable value as of <strong>December 31 of the prior year</strong>. Contact us for a property-specific analysis.</p>
-          <p><strong>Administrative fees:</strong> <strong>1% admin fee is applicable in some taxing jurisdictions.</strong></p>
         </div>
       </details>
     </footer>
@@ -589,14 +588,11 @@
       const v = stripToNumber(dpEl.value);
       if (String(dpEl.value).trim() === "") return;
 
-      // Only comma-format down payment if $ mode
       if (mode === "dollar") dpEl.value = fmt0(v);
-      else dpEl.value = String(v); // keep percent clean
+      else dpEl.value = String(v);
     }
 
-    function setText(el, value) {
-      el.textContent = value;
-    }
+    function setText(el, value) { el.textContent = value; }
 
     /* ---------------------------
        GLOBAL STATE
@@ -837,24 +833,21 @@
         btn.classList.add("active");
         document.getElementById("downPaymentMode").value = btn.dataset.mode;
 
-        // Reformat down payment immediately based on new mode
         formatDownPaymentByMode();
         calculate();
       });
     });
 
-    // Inputs that should comma-format on blur
     function wireCommaInputs() {
       const homePrice = document.getElementById("homePriceInput");
       const insBasic = document.getElementById("basicInsuranceAnnualInput");
       const insAdv = document.getElementById("annualInsuranceInput");
       const dp = document.getElementById("downPaymentInput");
+      const basicTax = document.getElementById("basicTaxAnnualInput");
 
-      // Home price: commas always
       homePrice.addEventListener("input", calculate);
       homePrice.addEventListener("blur", () => { formatMoneyInput(homePrice); calculate(); });
 
-      // Insurance: commas always
       if (insBasic) {
         insBasic.addEventListener("input", calculate);
         insBasic.addEventListener("blur", () => { formatMoneyInput(insBasic); calculate(); });
@@ -864,22 +857,24 @@
         insAdv.addEventListener("blur", () => { formatMoneyInput(insAdv); calculate(); });
       }
 
-      // Down payment: comma-format only when $ mode
       dp.addEventListener("input", calculate);
       dp.addEventListener("blur", () => { formatDownPaymentByMode(); calculate(); });
 
-      // Initial formatting
+      if (basicTax) {
+        basicTax.addEventListener("input", calculate);
+        basicTax.addEventListener("blur", () => { formatMoneyInput(basicTax); calculate(); });
+      }
+
       formatMoneyInput(homePrice);
       if (insBasic) formatMoneyInput(insBasic);
       if (insAdv) formatMoneyInput(insAdv);
       formatDownPaymentByMode();
+      if (basicTax && basicTax.value) formatMoneyInput(basicTax);
     }
 
-    // Other inputs just recalc
     [
       "interestRateInput",
       "loanTermYearsInput",
-      "basicTaxAnnualInput",
       "basicHoaMonthlyInput",
       "basicPmiAnnualInput",
       "pmiRateInput",
@@ -894,12 +889,6 @@
       });
     });
 
-    // Make basic annual tax comma-format on blur too (nice UX)
-    const basicTax = document.getElementById("basicTaxAnnualInput");
-    if (basicTax) {
-      basicTax.addEventListener("blur", () => { formatMoneyInput(basicTax); calculate(); });
-    }
-
     document.getElementById("countySelect").addEventListener("change", e => {
       populateLocalUnits(e.target.value);
       calculate();
@@ -912,9 +901,6 @@
     document.getElementById("schoolSelect").addEventListener("change", calculate);
     document.getElementById("preCheckbox").addEventListener("change", calculate);
 
-    /* ---------------------------
-       INIT
-    --------------------------- */
     window.addEventListener("DOMContentLoaded", async () => {
       await loadMillageData();
       await loadPMMSRates();
@@ -924,3 +910,5 @@
   </script>
 </body>
 </html>
+
+
