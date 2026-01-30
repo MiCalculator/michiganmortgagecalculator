@@ -10,7 +10,6 @@
   <!-- SEO -->
   <meta name="description" content="Michigan Mortgage Calculator with millage-based property tax estimates, PMI, insurance, and full amortization." />
   <meta name="keywords" content="Michigan mortgage calculator, Michigan property tax calculator, millage rates, PMI calculator Michigan" />
-
   <meta name="google-site-verification" content="uJ4hk7yJuv8LHqrCEiFtQOGfmhZ7CqYCpsd8QdF_f1c" />
 
   <!-- Favicons (match your repo files) -->
@@ -71,6 +70,7 @@
 
     html, body { margin:0; padding:0; width:100%; overflow-x:hidden; background:var(--bg); color:var(--text); }
     img, svg, canvas, video, iframe, table { max-width: 100%; }
+
     .page { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
 
     header { margin-bottom: 10px; text-align: center; display:flex; flex-direction:column; align-items:center; }
@@ -102,6 +102,7 @@
       margin: 10px auto 16px;
       max-width: 1100px;
       width: 100%;
+      line-height: 1.6;
     }
     .navbar a { color: var(--text); text-decoration: none; font-weight: 700; }
     .navbar a:hover { text-decoration: underline; }
@@ -143,12 +144,15 @@
       width: 100%;
       min-width: 0;
     }
+
     .section-label { font-size: 0.78rem; text-transform: uppercase; color: #9ca3af; margin-bottom: 4px; }
     .field-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 10px; margin-bottom: 10px; width:100%; min-width:0; }
-    @media (max-width: 600px){ .field-group { grid-template-columns: 1fr !important; } .navbar .sep{ display:none; } }
+    @media (max-width: 600px){ .field-group { grid-template-columns: 1fr !important; } }
 
     label { font-size: 0.78rem; margin-bottom: 4px; color: var(--muted); display: block; }
-    input[type="number"], select {
+
+    /* Use text inputs so we can show commas (keep numeric keyboard) */
+    input[type="text"], select {
       width: 100%;
       padding: 7px 9px;
       border: 1px solid #d1d5db;
@@ -158,7 +162,7 @@
       color: var(--text);
       min-width: 0;
     }
-    input[type="number"]:focus, select:focus {
+    input[type="text"]:focus, select:focus {
       border-color: var(--brand1);
       box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
       outline: none;
@@ -200,8 +204,8 @@
       flex: 1 1 160px;
     }
     .result-pill .label { font-size: 0.72rem; color: var(--muted2); display: block; }
-    .result-pill .value { margin-top: 2px; font-size: 0.95rem; font-weight: 600; }
-    .result-pill.total-monthly .value { font-size: 1.2rem; font-weight: 800; }
+    .result-pill .value { margin-top: 2px; font-size: 0.95rem; font-weight: 700; }
+    .result-pill.total-monthly .value { font-size: 1.2rem; font-weight: 900; }
 
     table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
     thead { background: var(--soft); }
@@ -228,7 +232,7 @@
       .amort-wrap{ height: clamp(240px, 40vh, 420px); }
     }
 
-    /* Footer (full-width card) */
+    /* Footer */
     .site-footer{
       margin-top:22px;
       background:var(--card);
@@ -245,7 +249,7 @@
       gap:18px;
       flex-wrap:wrap;
       font-size:0.95rem;
-      font-weight:800;
+      font-weight:900;
       margin-bottom:10px;
     }
     .footer-nav a{ color:var(--text); text-decoration:none; }
@@ -285,7 +289,7 @@
       gap:10px;
       font-size:0.82rem;
       color:var(--muted2);
-      font-weight:800;
+      font-weight:900;
     }
     .footer-glossary .chev{
       width:28px;
@@ -319,7 +323,7 @@
       <p>Estimate your complete Michigan mortgage payment and property taxes instantly.</p>
     </header>
 
-    <!-- NAVBAR UPDATED: Early Payoff between Realtor and Contact -->
+    <!-- NAV: keep | separators even on mobile -->
     <nav class="navbar">
       <a href="/">Calculator</a><span class="sep">|</span>
       <a href="/lender.html">Lender</a><span class="sep">|</span>
@@ -346,13 +350,13 @@
         <div class="field-group">
           <div>
             <label>Home price</label>
-            <input id="homePriceInput" type="number" value="300000" />
+            <input id="homePriceInput" type="text" inputmode="numeric" autocomplete="off" value="300,000" />
           </div>
 
           <div>
             <label>Down payment</label>
             <div class="dp-row">
-              <input id="downPaymentInput" type="number" value="20" />
+              <input id="downPaymentInput" type="text" inputmode="numeric" autocomplete="off" value="20" />
               <div class="dp-toggle">
                 <button class="dp-mode-button" data-mode="dollar">$</button>
                 <button class="dp-mode-button active" data-mode="percent">%</button>
@@ -365,7 +369,7 @@
         <div class="field-group">
           <div>
             <label>Interest rate (annual %)</label>
-            <input id="interestRateInput" type="number" placeholder="6.2" />
+            <input id="interestRateInput" type="text" inputmode="decimal" autocomplete="off" placeholder="6.2" />
             <div id="pmmsNote" class="small-note"></div>
           </div>
 
@@ -388,22 +392,22 @@
           <div class="field-group">
             <div>
               <label>Annual property tax</label>
-              <input id="basicTaxAnnualInput" type="number" placeholder="3600" />
+              <input id="basicTaxAnnualInput" type="text" inputmode="numeric" autocomplete="off" placeholder="3,600" />
             </div>
             <div>
               <label>Home insurance (annual)</label>
-              <input id="basicInsuranceAnnualInput" type="number" value="1200" />
+              <input id="basicInsuranceAnnualInput" type="text" inputmode="numeric" autocomplete="off" value="1,200" />
             </div>
           </div>
 
           <div class="field-group">
             <div>
               <label>HOA dues (monthly)</label>
-              <input id="basicHoaMonthlyInput" type="number" placeholder="0" />
+              <input id="basicHoaMonthlyInput" type="text" inputmode="numeric" autocomplete="off" placeholder="0" />
             </div>
             <div>
               <label>PMI (annual)</label>
-              <input id="basicPmiAnnualInput" type="number" placeholder="0" />
+              <input id="basicPmiAnnualInput" type="text" inputmode="numeric" autocomplete="off" placeholder="0" />
             </div>
           </div>
         </div>
@@ -450,18 +454,18 @@
           <div class="field-group">
             <div>
               <label>Home insurance (annual)</label>
-              <input id="annualInsuranceInput" type="number" value="1200" />
+              <input id="annualInsuranceInput" type="text" inputmode="numeric" autocomplete="off" value="1,200" />
             </div>
             <div>
               <label>PMI rate</label>
-              <input id="pmiRateInput" type="number" value="0.5" />
+              <input id="pmiRateInput" type="text" inputmode="decimal" autocomplete="off" value="0.5" />
             </div>
           </div>
 
           <div class="field-group">
             <div>
               <label>HOA dues (monthly)</label>
-              <input id="advancedHoaMonthlyInput" type="number" value="0" />
+              <input id="advancedHoaMonthlyInput" type="text" inputmode="numeric" autocomplete="off" value="0" />
             </div>
           </div>
         </div>
@@ -514,7 +518,7 @@
       </div>
     </div>
 
-    <!-- FOOTER (UPDATED NAV) -->
+    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="footer-nav">
         <a href="/">Calculator</a>
@@ -533,7 +537,6 @@
         Property tax lookups use Michigan millage data (PRE vs non-PRE). Special assessments not included.
       </div>
 
-      <!-- Glossary (alphabetical + arrow dropdown) -->
       <details class="footer-glossary">
         <summary>
           <span>Glossary</span>
@@ -549,12 +552,52 @@
           <p><strong>Special Assessments:</strong> Not included. Roads, water/sewer, sidewalks, and other assessments may apply and can significantly affect your total tax bill.</p>
           <p><strong>Taxable Value (TV):</strong> This calculator assumes taxable value is <strong>50% of the sale price</strong>.</p>
           <p><strong>Uncapping:</strong> This estimate assumes taxable value resets to <strong>50% of the sale price</strong>. First-year property taxes are based on the seller’s taxable value as of <strong>December 31 of the prior year</strong>. Contact us for a property-specific analysis.</p>
+          <p><strong>Administrative fees:</strong> <strong>1% admin fee is applicable in some taxing jurisdictions.</strong></p>
         </div>
       </details>
     </footer>
   </div>
 
   <script>
+    /* ---------------------------
+       Formatting helpers (commas)
+    --------------------------- */
+    function stripToNumber(raw) {
+      if (raw == null) return 0;
+      const s = String(raw).replace(/,/g, '').replace(/[^\d.\-]/g, '');
+      const n = parseFloat(s);
+      return isFinite(n) ? n : 0;
+    }
+    function fmt(n, decimals = 2) {
+      const num = isFinite(n) ? n : 0;
+      return num.toLocaleString(undefined, {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+    }
+    function fmt0(n) { return fmt(n, 0); }
+
+    function formatMoneyInput(el) {
+      const v = stripToNumber(el.value);
+      if (String(el.value).trim() === "") return;
+      el.value = fmt0(v);
+    }
+
+    function formatDownPaymentByMode() {
+      const mode = document.getElementById("downPaymentMode").value;
+      const dpEl = document.getElementById("downPaymentInput");
+      const v = stripToNumber(dpEl.value);
+      if (String(dpEl.value).trim() === "") return;
+
+      // Only comma-format down payment if $ mode
+      if (mode === "dollar") dpEl.value = fmt0(v);
+      else dpEl.value = String(v); // keep percent clean
+    }
+
+    function setText(el, value) {
+      el.textContent = value;
+    }
+
     /* ---------------------------
        GLOBAL STATE
     --------------------------- */
@@ -676,10 +719,10 @@
         const row = document.createElement("tr");
         row.innerHTML = `
           <td>${i}</td>
-          <td>${payment.toFixed(2)}</td>
-          <td>${principalPaid.toFixed(2)}</td>
-          <td>${interest.toFixed(2)}</td>
-          <td>${balance.toFixed(2)}</td>
+          <td>${fmt(payment, 2)}</td>
+          <td>${fmt(principalPaid, 2)}</td>
+          <td>${fmt(interest, 2)}</td>
+          <td>${fmt(balance, 2)}</td>
         `;
         body.appendChild(row);
         if (balance <= 0) break;
@@ -687,11 +730,11 @@
     }
 
     function calculate() {
-      const homePrice = +document.getElementById("homePriceInput").value || 0;
-      const dp = +document.getElementById("downPaymentInput").value || 0;
+      const homePrice = stripToNumber(document.getElementById("homePriceInput").value);
+      const dp = stripToNumber(document.getElementById("downPaymentInput").value);
       const dpMode = document.getElementById("downPaymentMode").value;
 
-      const rate = (+document.getElementById("interestRateInput").value || 0) / 100;
+      const rate = (stripToNumber(document.getElementById("interestRateInput").value) || 0) / 100;
       const years = +document.getElementById("loanTermYearsInput").value || 30;
       const months = years * 12;
 
@@ -705,8 +748,7 @@
         ? (mRate * loan) / (1 - Math.pow(1 + mRate, -months))
         : (months ? loan / months : 0);
 
-      document.getElementById("monthlyPaymentOutput").textContent =
-        isFinite(PI) ? PI.toFixed(2) : "—";
+      setText(document.getElementById("monthlyPaymentOutput"), isFinite(PI) ? fmt(PI, 2) : "—");
 
       const page = document.querySelector(".page");
       const mode = page.classList.contains("mode-basic") ? "basic" : "advanced";
@@ -716,22 +758,21 @@
       const ltv = homePrice > 0 ? (loan / homePrice) : 0;
 
       if (mode === "basic") {
-        const basicPmiAnnual = +document.getElementById("basicPmiAnnualInput").value || 0;
+        const basicPmiAnnual = stripToNumber(document.getElementById("basicPmiAnnualInput").value) || 0;
         pmiMonthly = basicPmiAnnual / 12;
       } else {
-        const pmiRate = (+document.getElementById("pmiRateInput").value || 0) / 100;
+        const pmiRate = (stripToNumber(document.getElementById("pmiRateInput").value) || 0) / 100;
         if (ltv > 0.8) pmiMonthly = (loan * pmiRate) / 12;
       }
 
-      document.getElementById("pmiMonthlyOutput").textContent =
-        pmiMonthly ? pmiMonthly.toFixed(2) : "—";
+      setText(document.getElementById("pmiMonthlyOutput"), pmiMonthly ? fmt(pmiMonthly, 2) : "—");
 
       // Property tax
       let taxAnnual = 0;
       let millageUsed = "—";
 
       if (mode === "basic") {
-        taxAnnual = +document.getElementById("basicTaxAnnualInput").value || 0;
+        taxAnnual = stripToNumber(document.getElementById("basicTaxAnnualInput").value) || 0;
       } else {
         const c = document.getElementById("countySelect").value;
         const lu = document.getElementById("localUnitSelect").value;
@@ -745,19 +786,18 @@
         }
       }
 
-      document.getElementById("taxResult").textContent =
-        taxAnnual ? taxAnnual.toFixed(2) : "—";
-      document.getElementById("millageResult").textContent = millageUsed;
+      setText(document.getElementById("taxResult"), taxAnnual ? fmt0(taxAnnual) : "—");
+      setText(document.getElementById("millageResult"), millageUsed);
 
       // Insurance
       const insuranceAnnual = mode === "basic"
-        ? (+document.getElementById("basicInsuranceAnnualInput").value || 0)
-        : (+document.getElementById("annualInsuranceInput").value || 0);
+        ? (stripToNumber(document.getElementById("basicInsuranceAnnualInput").value) || 0)
+        : (stripToNumber(document.getElementById("annualInsuranceInput").value) || 0);
 
       // HOA
       const hoaMonthly = mode === "basic"
-        ? (+document.getElementById("basicHoaMonthlyInput").value || 0)
-        : (+document.getElementById("advancedHoaMonthlyInput").value || 0);
+        ? (stripToNumber(document.getElementById("basicHoaMonthlyInput").value) || 0)
+        : (stripToNumber(document.getElementById("advancedHoaMonthlyInput").value) || 0);
 
       const total =
         PI +
@@ -766,8 +806,7 @@
         (insuranceAnnual / 12) +
         hoaMonthly;
 
-      document.getElementById("totalMonthlyOutput").textContent =
-        isFinite(total) ? total.toFixed(2) : "—";
+      setText(document.getElementById("totalMonthlyOutput"), isFinite(total) ? fmt(total, 2) : "—");
 
       buildAmortization(loan, mRate, months, PI);
     }
@@ -797,20 +836,52 @@
         document.querySelectorAll(".dp-mode-button").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
         document.getElementById("downPaymentMode").value = btn.dataset.mode;
+
+        // Reformat down payment immediately based on new mode
+        formatDownPaymentByMode();
         calculate();
       });
     });
 
+    // Inputs that should comma-format on blur
+    function wireCommaInputs() {
+      const homePrice = document.getElementById("homePriceInput");
+      const insBasic = document.getElementById("basicInsuranceAnnualInput");
+      const insAdv = document.getElementById("annualInsuranceInput");
+      const dp = document.getElementById("downPaymentInput");
+
+      // Home price: commas always
+      homePrice.addEventListener("input", calculate);
+      homePrice.addEventListener("blur", () => { formatMoneyInput(homePrice); calculate(); });
+
+      // Insurance: commas always
+      if (insBasic) {
+        insBasic.addEventListener("input", calculate);
+        insBasic.addEventListener("blur", () => { formatMoneyInput(insBasic); calculate(); });
+      }
+      if (insAdv) {
+        insAdv.addEventListener("input", calculate);
+        insAdv.addEventListener("blur", () => { formatMoneyInput(insAdv); calculate(); });
+      }
+
+      // Down payment: comma-format only when $ mode
+      dp.addEventListener("input", calculate);
+      dp.addEventListener("blur", () => { formatDownPaymentByMode(); calculate(); });
+
+      // Initial formatting
+      formatMoneyInput(homePrice);
+      if (insBasic) formatMoneyInput(insBasic);
+      if (insAdv) formatMoneyInput(insAdv);
+      formatDownPaymentByMode();
+    }
+
+    // Other inputs just recalc
     [
-      "homePriceInput",
-      "downPaymentInput",
       "interestRateInput",
       "loanTermYearsInput",
       "basicTaxAnnualInput",
-      "basicInsuranceAnnualInput",
       "basicHoaMonthlyInput",
       "basicPmiAnnualInput",
-      "annualInsuranceInput",
       "pmiRateInput",
       "advancedHoaMonthlyInput"
     ].forEach(id => {
@@ -822,6 +893,12 @@
         calculate();
       });
     });
+
+    // Make basic annual tax comma-format on blur too (nice UX)
+    const basicTax = document.getElementById("basicTaxAnnualInput");
+    if (basicTax) {
+      basicTax.addEventListener("blur", () => { formatMoneyInput(basicTax); calculate(); });
+    }
 
     document.getElementById("countySelect").addEventListener("change", e => {
       populateLocalUnits(e.target.value);
@@ -841,6 +918,7 @@
     window.addEventListener("DOMContentLoaded", async () => {
       await loadMillageData();
       await loadPMMSRates();
+      wireCommaInputs();
       calculate();
     });
   </script>
